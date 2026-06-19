@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Magnificent Midlife — Reading Companion</title>
+<meta name="description" content="A distilled reading companion to Kate Muir's How to Have a Magnificent Midlife Crisis — the substance of each chapter, made for reading together.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#241d28;
+    --ink-soft:#52485a;
+    --paper:#f3ecdf;
+    --paper-warm:#ece2d0;
+    --line:#d6c8b2;
+    --plum:#6c3a5c;
+    --plum-deep:#4e2945;
+    --moss:#5a6b4f;
+    --gold:#b07b3e;
+    --shadow:rgba(54,33,49,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Newsreader',Georgia,serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.62;
+    font-size:1.06rem;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* faint paper texture */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(circle at 18% 12%, rgba(176,123,62,.06), transparent 40%),
+      radial-gradient(circle at 82% 78%, rgba(108,58,92,.06), transparent 42%);
+  }
+  .progress{
+    position:fixed;top:0;left:0;height:3px;width:0%;
+    background:linear-gradient(90deg,var(--plum),var(--gold));
+    z-index:50;transition:width .1s linear;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 26px;position:relative;z-index:1}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    min-height:92vh;display:flex;flex-direction:column;justify-content:center;
+    padding:90px 0 70px;position:relative;
+  }
+  .kicker{
+    font-family:'Fraunces',serif;font-size:.74rem;letter-spacing:.42em;
+    text-transform:uppercase;color:var(--plum);font-weight:600;margin-bottom:30px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif;font-weight:500;
+    font-size:clamp(2.7rem,9vw,5.4rem);line-height:.98;letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  h1.title em{font-style:italic;color:var(--plum-deep)}
+  .sub{
+    font-size:clamp(1.05rem,2.4vw,1.3rem);color:var(--ink-soft);
+    max-width:30ch;margin-top:34px;font-style:italic;
+  }
+  .byline{
+    margin-top:46px;font-family:'Fraunces',serif;font-size:.86rem;
+    letter-spacing:.04em;color:var(--ink-soft);
+  }
+  .byline strong{color:var(--ink);font-weight:600}
+  .scroll-cue{
+    margin-top:64px;font-family:'Fraunces',serif;font-size:.72rem;
+    letter-spacing:.3em;text-transform:uppercase;color:var(--gold);
+    display:flex;align-items:center;gap:12px;
+  }
+  .scroll-cue::after{content:"";width:46px;height:1px;background:var(--gold);
+    animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.35;width:30px}50%{opacity:1;width:54px}}
+
+  /* ---------- INTRO NOTE ---------- */
+  .note{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:44px 0;margin:30px 0 10px;
+  }
+  .note p{margin-bottom:16px;color:var(--ink-soft)}
+  .note p:last-child{margin-bottom:0}
+  .note .lead{font-family:'Fraunces',serif;font-size:1.18rem;color:var(--ink);font-style:italic}
+
+  /* ---------- SECTION DIVIDERS ---------- */
+  .part{
+    text-align:center;padding:80px 0 28px;
+  }
+  .part .pn{
+    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.4em;
+    text-transform:uppercase;color:var(--gold);
+  }
+  .part .pt{
+    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
+    font-size:clamp(2rem,6vw,3rem);color:var(--plum-deep);margin-top:8px;
+  }
+  .part .pd{color:var(--ink-soft);max-width:34ch;margin:14px auto 0;font-size:.98rem}
+
+  /* ---------- CHAPTER ---------- */
+  .chapter{
+    padding:38px 0;border-bottom:1px solid var(--line);
+    opacity:0;transform:translateY(24px);
+    transition:opacity .7s ease,transform .7s ease;
+  }
+  .chapter.in{opacity:1;transform:none}
+  .chapter .num{
+    font-family:'Fraunces',serif;font-size:.78rem;letter-spacing:.3em;
+    text-transform:uppercase;color:var(--plum);font-weight:600;
+  }
+  .chapter h2{
+    font-family:'Fraunces',serif;font-weight:500;
+    font-size:clamp(1.7rem,5vw,2.5rem);line-height:1.04;letter-spacing:-.01em;
+    margin:8px 0 18px;color:var(--ink);
+  }
+  .chapter .tag{
+    display:inline-block;font-family:'Fraunces',serif;font-style:italic;
+    font-size:1.06rem;color:var(--moss);margin-bottom:20px;
+  }
+  .chapter p{margin-bottom:16px}
+  .chapter strong{font-weight:600;color:var(--plum-deep)}
+  .pull{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    font-size:clamp(1.3rem,3.6vw,1.7rem);line-height:1.28;color:var(--plum-deep);
+    border-left:3px solid var(--gold);padding:6px 0 6px 22px;margin:26px 0;
+  }
+  /* discussion prompts */
+  .prompts{
+    margin-top:24px;background:var(--paper-warm);
+    border:1px solid var(--line);border-radius:3px;padding:20px 22px 22px;
+  }
+  .prompts h3{
+    font-family:'Fraunces',serif;font-size:.74rem;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .prompts h3::before{content:"✦";color:var(--gold);font-size:.9rem}
+  .prompts li{
+    list-style:none;padding:10px 0;border-top:1px solid var(--line);
+    font-style:italic;color:var(--ink-soft);
+  }
+  .prompts li:first-of-type{border-top:none;padding-top:2px}
+
+  /* ---------- CLOSE ---------- */
+  .close{padding:70px 0 30px;text-align:center}
+  .close .ig{
+    font-family:'Fraunces',serif;font-style:italic;
+    font-size:clamp(1.5rem,4.4vw,2.1rem);color:var(--plum-deep);line-height:1.22;
+  }
+  .close .src{color:var(--ink-soft);margin-top:22px;font-size:.92rem}
+  footer{
+    text-align:center;padding:40px 0 70px;color:var(--ink-soft);
+    font-family:'Fraunces',serif;font-size:.78rem;letter-spacing:.04em;
+  }
+  footer a{color:var(--plum);text-decoration:none;border-bottom:1px solid var(--line)}
+
+  @media (max-width:520px){
+    body{font-size:1.02rem}
+    .wrap{padding:0 20px}
+    .pull{font-size:1.2rem;padding-left:16px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .chapter{opacity:1;transform:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="bar"></div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">A reading companion</div>
+    <h1 class="title">How to Have a<br><em>Magnificent</em><br>Midlife Crisis</h1>
+    <p class="sub">Not a time of decline, but of transformation — if you meet it with knowledge instead of fear.</p>
+    <div class="byline">The distilled substance of <strong>Kate Muir's</strong> book — chapter by chapter, made for reading together.</div>
+    <div class="scroll-cue">Begin</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="note">
+    <p class="lead">This isn't the book. It's the wheat — the ideas worth carrying out of each chapter, with the anecdotes left behind.</p>
+    <p>Muir's argument runs through three parts: <strong>Mind</strong>, <strong>Body</strong>, <strong>Spirit</strong>. Her central reframe is that midlife is less a crisis to survive than a turning point you get to <em>steer</em>. She borrows a way of dividing a long life into quarters — Grow (to 25), Achieve (to 50), <em>Becoming</em> (to 75), Harvesting (to 100) — and the whole book lives in that word: becoming.</p>
+    <p>Each chapter below carries a one-line essence, the core ideas, and a few prompts to talk through together.</p>
+  </div>
+
+  <!-- ================= MIND ================= -->
+  <div class="part">
+    <div class="pn">Part One</div>
+    <div class="pt">Mind</div>
+    <div class="pd">The hormonal, neurological and psychological weather of midlife — and what it's actually doing to the brain.</div>
+  </div>
+
+  <section class="chapter">
+    <div class="num">Chapter 1</div>
+    <h2>Navigating the Mental Health Maelstrom</h2>
+    <div class="tag">Hormones do much of their work in the brain — not just the ovaries.</div>
+    <p>The calm surface of a midlife can hide a whirlpool underneath: unresolved grief, resentment, trauma. Perimenopause is a real and under-recognised driver of <strong>first-time anxiety, depression and rage</strong> — not merely "life stress." Estrogen, progesterone and testosterone regulate serotonin, dopamine and the calming GABA system, so when they fall, mood and cognition can fall with them.</p>
+    <p>The trap: antidepressants are often prescribed when the missing link is hormonal — or a combination of both. The official diagnostic manual still doesn't list perimenopausal depression. The fix is to <strong>see the whole woman</strong>, track symptoms, and consider hormones alongside therapy.</p>
+    <div class="pull">Don't make big decisions in the first year of grieving a parent.</div>
+    <p>Trauma resurfaces in midlife when life finally goes quiet — but so does the possibility of <strong>post-traumatic growth</strong>. The brain is malleable; people don't just survive what they thought would break them, they sometimes grow from it.</p>
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <ul>
+        <li>What's been "glassy on the surface, wild underneath" for each of us lately?</li>
+        <li>Where might we be reaching for a solution to something we haven't actually named yet?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="num">Chapter 2</div>
+    <h2>The Midlife Brain Reboot</h2>
+    <div class="tag">The female brain rewires three times — and the third is the most radical.</div>
+    <p>Puberty, pregnancy, perimenopause: three times the brain restructures, all kickstarted by hormones. Perimenopause is the biggest renovation — grey matter drops during the chaos, then makes a <strong>comeback, sometimes to higher levels than before.</strong> "Brain fog" is real and measurable (a roughly 30% dip in brain energy across the transition), but it's a transitional state, not a permanent loss.</p>
+    <div class="pull">You will be a different person — so how are you going to embrace that?</div>
+    <p>The encouraging part: the science finally confirms what women have reported for decades. The disruption is real, the destination often sharper. Lifestyle (Mediterranean diet, exercise, meditation) and, for some, HRT all support the rebuild.</p>
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <ul>
+        <li>If the "renovation" leaves us as different people, who do we each want to become?</li>
+        <li>What would it change to treat brain fog as scaffolding rather than decline?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="num">Chapter 3</div>
+    <h2>Could I Be Neurodivergent?</h2>
+    <div class="tag">A late diagnosis can be a liberating lightbulb, not a label to fear.</div>
+    <p>Autism and ADHD diagnoses are surging in midlife women because the original screening tools were built on <strong>male presentation</strong> — so girls who masked, or were "shy and anxious," slipped through. Hormonal change in midlife can unmask or amplify traits, hitting hard just when life is most demanding.</p>
+    <p>A diagnosis at this stage often works as <strong>"retroactive backgammon"</strong> — re-reading a whole life and seeing why the moves played out as they did. It can be both relief and grief. The black-and-white, "whistleblower" honesty common in neurodivergent people is a genuine strength society misreads as "being difficult."</p>
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <ul>
+        <li>Are there patterns in either of our lives that might read differently with more self-knowledge?</li>
+        <li>Where do we mask — and what does the masking cost?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="num">Chapter 4</div>
+    <h2>How Not to Disappear at Work</h2>
+    <div class="tag">Being forced out can force a metamorphosis.</div>
+    <p>Women "disappear" from midlife work through a triple bind — <strong>menopause, ageism, gender bias</strong> — often quietly: going part-time, not seeking promotion, leaving. Sometimes the exit is silenced by an NDA. But honesty about menopause at work can, paradoxically, <em>advance</em> a career by building trust.</p>
+    <div class="pull">Your shit is your superpower.</div>
+    <p>Leaving a role isn't the end of the road. Decades of resilience and a deep network are assets. The reinvention question: if not now, when?</p>
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <ul>
+        <li>What would each of us do with a "second or third career"?</li>
+        <li>Where are we self-censoring at work to avoid looking "weak"?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="num">Chapter 5</div>
+    <h2>How to Dodge Dementia</h2>
+    <div class="tag">Midlife is the prevention window — not too early to act.</div>
+    <p>Perimenopause is "Alzheimer's ground zero": the hormonal fall is when plaques and tangles can begin, long before symptoms. Two-thirds of Alzheimer's patients are women. The hopeful flip side: this is the <strong>first generation with the knowledge to act early</strong>.</p>
+    <p>The toolkit: HRT (started in the window of perimenopause/early menopause), <strong>resistance training and HIIT</strong>, a Mediterranean diet, good sleep, and treating hot flushes and night sweats (which correlate with more plaques). Vascular dementia is largely about keeping blood flowing — diet, not smoking, lowering blood pressure. Prevention beats the weak, expensive "cures."</p>
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <ul>
+        <li>What's one preventive habit each of us could start this month and actually keep?</li>
+        <li>What did we watch our own parents go through, and what do we want to do differently?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="num">Chapter 6</div>
+    <h2>The Power of Wild Swimming</h2>
+    <div class="tag">It's impossible to grieve in icy water.</div>
+    <p>Cold-water immersion delivers a serotonin and dopamine surge, builds <strong>stress resilience</strong> — the "this too shall pass" skill of being calm while uncomfortable — boosts immunity and brown-fat metabolism, and may be neuroprotective. Two minutes is enough to switch on the brown-fat response.</p>
+    <div class="pull">There's no ego in the cold.</div>
+    <p>Beyond the biology, it's <strong>community and eccentricity</strong> — odd costumes at odd hours by odd people — and a small daily proof that you can face the worst and keep walking.</p>
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <ul>
+        <li>What's our version of the cold plunge — the thing that resets us?</li>
+        <li>Where could a small dose of "good stress" build our tolerance for the big kind?</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= BODY ================= -->
+  <div class="part">
+    <div class="pn">Part Two</div>
+    <div class="pt">Body</div>
+    <div class="pd">The science the medical world has been slow to share — hormones, longevity, and reclaiming what's ours.</div>
+  </div>
+
+  <section class="chapter">
+    <div class="num">Chapter 7</div>
+    <h2>Ageproof Yourself with HRT</h2>
+    <div class="tag">Nothing is more natural than topping up your own hormones.</div>
+    <p>The 2002 scare attached to the <em>old, synthetic</em> HRT. Modern <strong>body-identical HRT</strong> — molecular copies of your own estrogen, progesterone and testosterone — is far safer, and it does two things: crushes symptoms, and extends <strong>healthspan</strong> (protecting heart, bones, brain, even eyes). The "I'll take the natural route" framing is backwards.</p>
+    <div class="pull">The most dangerous thing we did to women was tell them that something their body naturally makes will kill them.</div>
+    <p>The practical path: track your symptoms, walk in informed, ask for transdermal estrogen plus micronised progesterone, and adjust the dose — it's not a lifetime commitment to try. Beware "menopause-friendly" marketing that sells everything except the actual hormones.</p>
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <ul>
+        <li>What have we each absorbed about HRT, and where did that belief come from?</li>
+        <li>How do we tell medical fact from cultural story on this?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="num">Chapter 8</div>
+    <h2>Reclaiming Testosterone</h2>
+    <div class="tag">It's not a male hormone. Stop gendering hormones.</div>
+    <p>Testosterone is the hormone women make in the <strong>largest quantity</strong> (outside pregnancy) — the receptor is even encoded on the X chromosome. Topping it back up to natural female levels can restore libido, cognition, mood, energy, muscle and bone. Yet women face huge barriers to access while men are prescribed ten times the dose freely.</p>
+    <div class="pull">Men literally get the receptor from women.</div>
+    <p>Emerging research points to protective effects for brain, heart and bone. The resistance is less about science than about <strong>gender destabilisation</strong> — and, Muir suspects, discomfort at older women holding renewed power.</p>
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <ul>
+        <li>Why does the same hormone get celebrated in men and feared in women?</li>
+        <li>What would "living in hope rather than fear" look like for our own health choices?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="num">Chapter 9</div>
+    <h2>The Importance of Being Cliterate</h2>
+    <div class="tag">Pleasure is the measure of a sexual encounter — not orgasm, not penetration.</div>
+    <p>Sex changes in midlife, but doesn't have to end — there may be half a century of pleasure ahead. The blockers are physical (vaginal dryness, hormone loss) and psychological, and they're addressable: <strong>vaginal estrogen, testosterone, lube, toys, and above all communication.</strong> Most women can't orgasm from penetration alone, yet many think they're broken.</p>
+    <div class="pull">If you are waiting for someone else to change in order for you to be happy, you might be waiting a long time.</div>
+    <p>Midlife can be a sexual reinvention — including fluidity and exploration. The work is often learning to <strong>ask for what you want</strong> after a lifetime of people-pleasing.</p>
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <ul>
+        <li>What have we never quite said out loud to each other that we could?</li>
+        <li>Where have we been "playing an old role" rather than meeting who we are now?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="num">Chapter 10</div>
+    <h2>Viva la Vulva</h2>
+    <div class="tag">Preventable suffering, hiding in plain sight.</div>
+    <p>The vaginal microbiome — the "vagibiome" — protects against infection. As estrogen falls, the protective bacteria give way and UTIs surge. <strong>Low-dose vaginal estrogen halves UTIs</strong>, plumps the tissue, and is safe even for most breast-cancer survivors — yet it's wildly under-prescribed. In older women, a UTI can cascade into delirium, falls, sepsis, even permanent decline.</p>
+    <div class="pull">We have so much data. The problem is that nobody's talking about it.</div>
+    <p>Probiotics, hydration and a vegetable-rich diet help too. The theme: a whole generation has suffered in silence over something simple and treatable.</p>
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <ul>
+        <li>Who in our lives — a mother, an aunt — might this knowledge actually help?</li>
+        <li>What other "just getting old" problems might really be preventable?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="num">Chapter 11</div>
+    <h2>Pumping Up Your Muscle and Bone</h2>
+    <div class="tag">Bones are silent until they break. And then they scream.</div>
+    <p>One in two women over 50 will fracture due to osteoporosis. The two defences: <strong>resistance training — lift heavy, not "namby-pamby pink weights"</strong> — plus protein, Vitamin D and calcium; and HRT to slow loss and rebuild. Used together they're stronger still. Catch it at the <em>osteopenia</em> stage, before the break.</p>
+    <div class="pull">Muscle is the organ of longevity.</div>
+    <p>Low muscle mass is the first sign of low bone density. Building muscle isn't masculine vanity — it's the single thing that protects independence, metabolism, bones, balance and brain resilience as you age.</p>
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <ul>
+        <li>What's our honest relationship with strength training right now?</li>
+        <li>Could we make lifting something we do together?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="num">Chapter 12</div>
+    <h2>Avoiding the Midlife Muffin Top</h2>
+    <div class="tag">Ask "will it make me strong?" — not "will it make me fat?"</div>
+    <p>Body composition shifts in midlife because of <strong>hormones, not willpower</strong>: as estradiol falls, fat redistributes around the middle and insulin resistance rises. Calorie-counting tends to fail. What works: protein, fibre, ~30 plants a week, steady blood glucose (eat veg first, sweet things last), and <strong>building muscle</strong>.</p>
+    <div class="pull">We can blame our hormones, not our habits — and use that as a reason to act, not to panic.</div>
+    <p>Semaglutides (Ozempic and kin) can help, but risk muscle and bone loss — so pair them with weight training and, where suitable, HRT. The deeper shift is from a lifetime of food-as-guilt to food-as-fuel.</p>
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <ul>
+        <li>What food stories from our younger years are we still carrying?</li>
+        <li>How would meals change if "strong" replaced "thin" as the goal?</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= SPIRIT ================= -->
+  <div class="part">
+    <div class="pn">Part Three</div>
+    <div class="pt">Spirit</div>
+    <div class="pd">Habits, relationships and reinvention — the shift from role to soul.</div>
+  </div>
+
+  <section class="chapter">
+    <div class="num">Chapter 13</div>
+    <h2>Women and Wine</h2>
+    <div class="tag">Don't ask why the addiction — ask why the pain.</div>
+    <p>Aging bodies process alcohol worse, just as "Mummy Wine Time" culture normalises daily self-medication. In midlife, drink stops being a release and becomes a burden — and more than two units a day raises breast-cancer risk by 20%. Many find that <strong>drinking less or stopping clears skin, sleep and mood</strong>, with little regret.</p>
+    <div class="pull">When I got sober, I thought I was saying goodbye to all the fun and sparkle — and it turned out to be the opposite.</div>
+    <p>For those who struggle, addiction is "a normal response to trauma," and recovery runs on <strong>community and honesty</strong> — twelve-step, Smart Recovery, therapy. The chapter's gift is simply permission to look hard at a habit hardwired into every social ritual.</p>
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <ul>
+        <li>What does each drink actually do for us — and is it still doing it?</li>
+        <li>What would "sober-curious" change about how we spend evenings together?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="num">Chapter 14</div>
+    <h2>Digital Detox</h2>
+    <div class="tag">Aim for daily digital health, not a one-off detox.</div>
+    <p>Phones cannibalise the brain's <strong>"default mode network"</strong> — the daydreaming, mind-wandering downtime where we plan, remember, and build the self. Constant notifications keep us in low-grade fight-or-flight; "continuous partial attention" means we never fully concentrate or fully rest.</p>
+    <div class="pull">The brain that doesn't feed itself eats itself.</div>
+    <p>The practical fixes are small and firm: no phone in bed (get a real alarm clock), batch emails, carry a notebook, protect attention, and — crucially — <strong>model good behaviour</strong> for the people who look to you. Use tech for connection, not as ultra-processed mental food.</p>
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <ul>
+        <li>Where is the phone stealing presence we'd rather give each other?</li>
+        <li>What's one boundary we could set — and actually hold?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="num">Chapter 15</div>
+    <h2>Divorce, the Moneypause and the Couplepause</h2>
+    <div class="tag">Relationships, like cars, need regular MOTs.</div>
+    <p>Divorce peaks in perimenopause (average age 44); two-thirds are initiated by women — often not for someone new, but for <strong>time and selfhood</strong>. Hormonal dysregulation can even sabotage divorce <em>outcomes</em> ("Moneypause"). But losing the softening hormones also lets women see clearly the compromises their caring instincts had masked.</p>
+    <div class="pull">If only women knew what went on in the heads of their husbands.</div>
+    <p>The hopeful thread is the <strong>"couplepause"</strong>: get therapy early, before conflict becomes unbearable; communicate; see your partner's burden (men carry their own mental load and hear "I don't trust you" as "you are not enough"). Affairs take energy out of a relationship — but couples who repair often come back stronger.</p>
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <ul>
+        <li>What does each of us carry that the other might not fully see?</li>
+        <li>What would a regular "relationship MOT" look like for us?</li>
+        <li>When one of us goes quiet after conflict — what's really happening underneath?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="num">Chapter 16</div>
+    <h2>Renovating Relationships</h2>
+    <div class="tag">Is this person a radiator or a drain?</div>
+    <p>Friendships need rebuilding in midlife, especially after a rupture like divorce or leaving a job. Some friends are <strong>for a season, not forever</strong> — and treasuring them for what they were beats mourning what they're not. Protect finite energy; it's fine to walk away from a drain, and to work hard on the friends-for-life who make your world bigger.</p>
+    <div class="pull">Just be there.</div>
+    <p>Against isolation, Muir surveys the alternatives: <strong>online dating</strong> (treat it as an anthropology experiment, cast wide), co-housing and "intentional communities," even van life. Humans were built for small groups sharing resources and company — not for living alone.</p>
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <ul>
+        <li>Which friendships warm us, and which quietly drain us?</li>
+        <li>What kind of community do we want around us in twenty years?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="num">Chapter 17</div>
+    <h2>Creative Awakening</h2>
+    <div class="tag">A shift from role to soul.</div>
+    <p>Midlife creativity is less about art than about letting the <strong>authentic, questioning self</strong> resurface after years of duty. The examples span a journalist who became a photographer, a therapist who became a climate activist, a teacher who became a celebrated designer — each "possessed by a need" more than making a choice.</p>
+    <div class="pull">Creativity is not about creating a painting or a house, but creating yourself.</div>
+    <p>Often the trigger is rock bottom; often the freedom comes from no longer caring what anyone thinks. "Age is a privilege." The renaissance is a vision of your place in the wider world.</p>
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <ul>
+        <li>What's the quiet pull each of us keeps not quite following?</li>
+        <li>If we cared less about success and failure, what would we make or do?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <div class="num">Chapter 18</div>
+    <h2>The Psychedelic Adventure</h2>
+    <div class="tag">Five years of therapy in one night.</div>
+    <p>Muir's journey ends with a guided, high-dose psilocybin experience — and real science now backs psychedelics for depression and end-of-life distress (psilocybin's structure mirrors serotonin's). <strong>Set, setting, integration, and a trusted facilitator are everything</strong>; this is not recreational use.</p>
+    <div class="pull">I realised, as I should have from the beginning, that I am in control of this trip.</div>
+    <p>The trip surfaced <strong>self-compassion over self-criticism</strong>, and a buried, loving memory of her mother — reconnection rather than analysis. The wider point: physical changes send psychological waves, and the search they trigger can lead somewhere better — toward soul and essence.</p>
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <ul>
+        <li>Setting aside the method — what would each of us want to heal or understand?</li>
+        <li>Where do we choose self-criticism when self-compassion is available?</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= CLOSE ================= -->
+  <div class="close">
+    <p class="ig"><em>Ikigai</em> — your reason for being: what you love, what you're good at, what you can be paid for, and what the world needs.</p>
+    <p class="src">This next stage isn't retirement. It's <em>becoming</em>. Leap before you look — you are not alone.</p>
+  </div>
+
+  <footer>
+    A reading companion to <em>How to Have a Magnificent Midlife Crisis</em> by Kate Muir.<br>
+    Distilled for reading together. The full book holds the stories this leaves behind.
+  </footer>
+
+</div>
+
+<script>
+  // scroll progress
+  const bar = document.getElementById('bar');
+  function onScroll(){
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max>0 ? (h.scrollTop/max)*100 : 0) + '%';
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // reveal chapters
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.chapter').forEach(c=>io.observe(c));
+
+  // smooth "begin" cue
+  document.querySelector('.scroll-cue').addEventListener('click',()=>{
+    document.querySelector('.note').scrollIntoView({behavior:'smooth'});
+  });
+  document.querySelector('.scroll-cue').style.cursor='pointer';
+</script>
+</body>
+</html>
