@@ -561,6 +561,174 @@
   }
   .topic-warn strong{color:var(--ember);font-weight:600;font-style:normal}
 
+
+  /* ====== TOUCH VOCABULARY — sensual glossary ====== */
+  .touch-vocab{
+    margin:70px 0 30px;padding:54px 38px 44px;
+    background:linear-gradient(135deg,rgba(108,58,92,.07),rgba(176,123,62,.06));
+    border:1px solid var(--line);border-radius:4px;
+  }
+  .touch-vocab .tv-heading{text-align:center;margin-bottom:34px}
+  .touch-vocab .tv-kicker{
+    font-family:'Fraunces',serif;font-size:.7rem;letter-spacing:.42em;
+    text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px;
+  }
+  .touch-vocab h3{
+    font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+    font-size:clamp(1.7rem,4.4vw,2.3rem);color:var(--plum-deep);
+    line-height:1.04;margin-bottom:10px;
+  }
+  .touch-vocab h3 em{color:var(--gold);font-weight:300;font-style:italic}
+  .touch-vocab .tv-sub{
+    font-family:'Fraunces',serif;font-style:italic;color:var(--moss);
+    font-size:1.02rem;max-width:42ch;margin:0 auto;
+  }
+  .touch-entry{
+    display:grid;grid-template-columns:140px 1fr;gap:24px;
+    padding:14px 0;border-top:1px solid var(--line);
+    align-items:baseline;
+  }
+  .touch-entry:first-of-type{border-top:none}
+  .tv-word{
+    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
+    color:var(--gold);font-size:1.18rem;letter-spacing:.04em;
+  }
+  .tv-def{
+    font-family:'Fraunces',serif;font-style:italic;color:var(--ink);
+    font-size:1.04rem;line-height:1.55;
+  }
+  .tv-def strong{color:var(--plum-deep);font-weight:600;font-style:normal}
+  @media (max-width:540px){
+    .touch-entry{grid-template-columns:1fr;gap:4px}
+    .tv-word{font-size:1.1rem}
+    .touch-vocab{padding:42px 24px 36px}
+  }
+
+  /* ====== THE EVENING — literary erotica section ====== */
+  .the-evening{
+    margin:90px -28px 30px;padding:90px clamp(28px,6vw,60px) 80px;
+    background:linear-gradient(160deg,#2a1424 0%,#1a0e1c 55%,#2a1424 100%);
+    color:#f4ead6;position:relative;overflow:hidden;
+  }
+  .the-evening::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 75% 18%, rgba(176,123,62,.18), transparent 50%),
+      radial-gradient(circle at 25% 75%, rgba(138,42,58,.22), transparent 50%),
+      radial-gradient(circle at 60% 95%, rgba(176,123,62,.12), transparent 45%);
+  }
+  .the-evening::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(255,200,140,.45) 0, transparent 2px),
+      radial-gradient(circle at 88% 28%, rgba(255,200,140,.38) 0, transparent 2px),
+      radial-gradient(circle at 22% 62%, rgba(255,200,140,.35) 0, transparent 2px),
+      radial-gradient(circle at 78% 82%, rgba(255,200,140,.42) 0, transparent 2px),
+      radial-gradient(circle at 45% 50%, rgba(255,200,140,.3) 0, transparent 2px);
+    animation:flicker 6s ease-in-out infinite alternate;
+  }
+  .the-evening > *{position:relative;z-index:1;max-width:62ch;margin-left:auto;margin-right:auto}
+  .the-evening .te-heading{text-align:center;margin-bottom:46px}
+  .the-evening .te-kicker{
+    font-family:'Fraunces',serif;font-size:.7rem;letter-spacing:.42em;
+    text-transform:uppercase;color:#d49659;font-weight:600;margin-bottom:16px;
+  }
+  .the-evening h2{
+    font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+    font-size:clamp(2.3rem,6.5vw,3.8rem);line-height:1;color:#f4ead6;
+    letter-spacing:-.012em;margin-bottom:14px;
+  }
+  .the-evening h2 em{color:#d49659;font-style:italic;font-weight:300}
+  .the-evening .te-sub{
+    font-family:'Fraunces',serif;font-style:italic;
+    color:rgba(244,234,214,.78);font-size:1.06rem;max-width:42ch;margin:0 auto;
+  }
+  .the-evening .te-lead{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+    font-size:clamp(1.25rem,3vw,1.55rem);line-height:1.5;
+    color:#f4ead6;margin-bottom:36px;text-align:center;
+  }
+  .the-evening p{
+    font-family:'Newsreader',serif;font-size:1.1rem;line-height:1.72;
+    color:rgba(244,234,214,.9);margin-bottom:22px;
+  }
+  .the-evening p strong{color:#f4ead6;font-weight:600}
+  .the-evening p em{font-style:italic;color:#d49659}
+  .te-break{
+    display:flex;align-items:center;justify-content:center;
+    margin:32px auto;gap:14px;
+  }
+  .te-break::before,.te-break::after{
+    content:"";display:block;width:80px;height:1px;background:rgba(212,150,89,.35);
+  }
+  .te-break .te-dot{
+    width:5px;height:5px;border-radius:50%;background:#d49659;opacity:.6;
+  }
+  .the-evening .te-close{
+    font-family:'Fraunces',serif;font-style:italic;
+    font-size:clamp(1.2rem,3vw,1.5rem);text-align:center;color:#d49659;
+    margin-top:48px;padding-top:36px;
+    border-top:1px solid rgba(212,150,89,.3);line-height:1.45;
+  }
+  @media (max-width:600px){
+    .the-evening{margin:70px -22px 20px;padding:70px 24px 60px}
+  }
+
+  /* ====== INVITATION — closing call ====== */
+  .invitation{
+    margin:30px 0 30px;padding:54px 38px 48px;text-align:center;
+    background:linear-gradient(135deg,rgba(176,123,62,.12),rgba(138,42,58,.10));
+    border:1px solid var(--line);border-radius:4px;
+  }
+  .invitation .inv-kicker{
+    font-family:'Fraunces',serif;font-size:.68rem;letter-spacing:.42em;
+    text-transform:uppercase;color:var(--ember);font-weight:600;margin-bottom:18px;
+  }
+  .invitation h3{
+    font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+    color:var(--plum-deep);font-size:clamp(1.7rem,4.4vw,2.4rem);
+    line-height:1.05;margin-bottom:22px;
+  }
+  .invitation h3 em{color:var(--gold);font-style:italic;font-weight:300}
+  .invitation p{
+    font-family:'Fraunces',serif;font-style:italic;color:var(--ink);
+    font-size:1.12rem;line-height:1.6;max-width:52ch;margin:0 auto 16px;
+  }
+  .invitation p strong{color:var(--plum-deep);font-weight:600;font-style:normal}
+  .invitation .inv-final{
+    color:var(--gold);font-size:1.3rem;margin-top:28px;
+    padding-top:24px;border-top:1px solid rgba(176,123,62,.25);
+    max-width:44ch;
+  }
+
+  /* steamy variant for Keeping the Flame practices when used in the warm zone */
+  .practice.warm{background:linear-gradient(135deg,rgba(255,255,255,.55),rgba(241,230,210,.6))}
+
+  /* ====== Discussion Guide "how to use this" intro card ====== */
+  .dg-howto{
+    margin:30px 0 40px;padding:32px 36px 28px;
+    background:linear-gradient(135deg,rgba(108,58,92,.07),rgba(176,123,62,.05));
+    border:1px solid var(--line);border-radius:4px;border-left:3px solid var(--plum);
+  }
+  .dg-howto-kicker{
+    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.36em;
+    text-transform:uppercase;color:var(--plum);font-weight:600;
+    display:block;margin-bottom:14px;
+  }
+  .dg-howto p{
+    font-family:'Newsreader',serif;color:var(--ink-soft);font-size:1.02rem;
+    line-height:1.62;margin-bottom:14px;
+  }
+  .dg-howto p strong{color:var(--ink);font-weight:600}
+  .dg-howto p em{font-style:italic;color:var(--plum-deep)}
+  .dg-howto p:last-child{margin-bottom:0}
+  .dg-howto .dg-howto-warn{
+    margin-top:18px;padding:14px 18px;
+    background:rgba(138,42,58,.06);border:1px solid rgba(138,42,58,.18);
+    border-radius:3px;font-size:.98rem;
+  }
+  .dg-howto .dg-howto-warn strong{color:var(--ember);font-weight:600}
+
   /* second visual pause variant */
   .visual-pause.alt{
     background:
@@ -603,7 +771,8 @@
     <div class="intim-intro">
       <p class="lead drop-cap">This isn't Muir's path. It's the extension of it.</p>
       <p>Where the book companion maps the hormonal and medical terrain of midlife intimacy, this section answers a harder question: what does the current research actually say keeps two people wanting each other across years and decades — and what, in daily practice, prevents the slow erosion into routine, roommates, and quietly separate lives?</p>
-      <p>The findings are clearer than most couples ever hear. They come from decades of work by therapists like <strong>Esther Perel</strong>, sex researchers like <strong>Emily Nagoski</strong>, relationship scientists like <strong>Arthur Aron</strong>, and meta-analysts like <strong>Kristen Mark</strong>. The verdict: long-term desire does not survive on autopilot — but it is entirely possible to maintain, and even deepen, with the right understanding and a few specific practices. The science first; then the practice.</p>
+      <p>The findings are clearer than most couples ever hear. They come from decades of work by therapists like <strong>Esther Perel</strong>, sex researchers like <strong>Emily Nagoski</strong>, relationship scientists like <strong>Arthur Aron</strong>, meta-analysts like <strong>Kristen Mark</strong>, and clinicians like <strong>Marta Meana</strong>, whose work on the structure of female desire is largely unknown outside the literature and almost too important to leave there. The verdict, across the lot of them: long-term desire does not survive on autopilot — but it is entirely possible to maintain, and even to deepen, with the right understanding and a few specific practices.</p>
+      <p>The page that follows is built as a temperature: cool at the top, where the research lives; warmer through the middle, where the topography and the practices live; warmer still through the conversation and the questions; and at the bottom, in candlelight, where the body finally gets the room. <strong>Read at the speed that suits each section.</strong> The slow version is the only version that works.</p>
     </div>
 
     <!-- THE RESEARCH -->
@@ -699,6 +868,28 @@
       </div>
     </div>
 
+    <div class="intim-part">
+      <div class="pnum">V · The Desire to be Desired</div>
+      <h3>Marta Meana — When Wanting is Being Wanted</h3>
+      <div class="tag">For many women, the deepest erotic charge is not in desiring — it is in being desired.</div>
+      <p>The Las Vegas–based sex researcher Marta Meana, whose decades at UNLV culminated in <em>Female Sexual Dysfunction</em> and a remarkable run of papers on the architecture of female desire, offers a perspective that often surprises both partners in a long marriage: <strong>for many women, the deepest erotic charge is not in desiring — it is in being desired.</strong> Not in wanting, but in being wanted, palpably, specifically, by someone whose wanting they can feel.</p>
+      <p>This sits in productive tension with Nagoski's accelerator/brake framework, which centres on the woman's own internal systems. Meana's contribution is to add the relational dimension that the dual-control model leaves underspecified: a woman's body often does not generate desire in a vacuum. <strong>It responds to being seen, being chosen, being pursued — being treated, ongoingly, as the object of focused, specific, sustained want.</strong> What dies in long-term partnership, in her account, is often not the partner's desirability. It is the experience of being desired by them.</p>
+      <p>The implications are practical, and they are quiet. Tell her she is beautiful, in specific language, when there is no agenda and no plan to act on it. Look at her when she enters a room. Compliment, without irony, the way she has done her hair, the way she moves, the dress she has not worn in two years. Name what you find beautiful about her, in increasing specificity. <strong>The erotic charge is not in your wanting. It is in her being able to feel that you want her.</strong> Anything less is a kind of efficiency that, over the years, costs the relationship more than it ever saves.</p>
+      <div class="pull">She does not need to feel desire. She needs to feel desired.</div>
+      <p>Meana's framework also clarifies why so many midlife couples feel that something has gone quiet that they cannot quite name. The partners still love each other. They often still find each other physically attractive. But the visible, audible, palpable <em>performance</em> of wanting — the specific, ongoing, articulated <em>I see you, I choose you, I want you</em> — has gone unspoken because it felt unnecessary. It is not unnecessary. <strong>The articulation is the practice.</strong> Saying it, with specificity, with regularity, with no agenda attached, is most of the work.</p>
+
+      <div class="mini-prompts">
+        <span class="mp-label">To discuss · being desired</span>
+        <ul>
+          <li>When did you last feel unmistakably, specifically wanted by me — not loved, but <em>wanted</em>?</li>
+          <li>What would help you feel desired in daily life, not just in the bedroom?</li>
+          <li>What specific words, looks, gestures land for you — and which ones, however well-intentioned, miss?</li>
+          <li>What part of being wanted have I stopped doing because at some point it felt unnecessary?</li>
+          <li>How would you like to be pursued, given that we are no longer strangers and do not need to be?</li>
+        </ul>
+      </div>
+    </div>
+
     <!-- atmospheric break between the research and the practice -->
     <div class="visual-pause" aria-hidden="true">
       <div class="visual-pause-quote">Foreplay does not start five minutes before. It starts immediately after the previous time.</div>
@@ -706,9 +897,9 @@
 
     <!-- COMMON MISUNDERSTANDINGS -->
     <div class="section-heading">
-      <div class="sh-kicker">Six myths</div>
+      <div class="sh-kicker">Eight myths</div>
       <h2>What we get <em>wrong</em> about long-term desire</h2>
-      <p class="sh-sub">The most damaging beliefs are the ones we don't know we hold. The research has retired most of them.</p>
+      <p class="sh-sub">The most damaging beliefs are the ones we don't know we hold. The research, almost without exception, has retired them.</p>
     </div>
 
     <div class="myths">
@@ -771,6 +962,26 @@
           <p class="reality-text">Avoidance kills the mystery. <strong>Honest conversation outside the bedroom</strong> — over coffee, on a walk, in the car — is one of the strongest predictors of maintained long-term desire (Mark &amp; Lasslo). What kills mystery is the slow accumulation of unsaid things.</p>
         </div>
       </div>
+
+      <div class="myth-card">
+        <div class="myth-num">VII</div>
+        <div>
+          <span class="myth-label">Myth</span>
+          <p class="myth-statement">Older couples have less sex because they want less.</p>
+          <span class="reality-label">Reality</span>
+          <p class="reality-text">Survey data consistently shows that <strong>many midlife people still want intimacy as much as ever — they just feel they "shouldn't"</strong>, or face shame, or have stopped initiating because the last attempts went poorly. Diminished frequency rarely reflects diminished desire. It reflects unspoken brakes that have stacked up over years.</p>
+        </div>
+      </div>
+
+      <div class="myth-card">
+        <div class="myth-num">VIII</div>
+        <div>
+          <span class="myth-label">Myth</span>
+          <p class="myth-statement">Lubrication, toys or aids are a sign something's wrong.</p>
+          <span class="reality-label">Reality</span>
+          <p class="reality-text">They are <strong>basic adaptations as bodies change.</strong> Estrogen decline means lubrication takes longer; a small bottle of good oil is not a confession of failure but a respect for how the body actually works at forty-eight. The same applies to whatever else makes the body more comfortable. <em>The point is pleasure, not ideology.</em></p>
+        </div>
+      </div>
     </div>
 
     <!-- TOPOGRAPHY OF MIDLIFE INTIMACY -->
@@ -811,6 +1022,18 @@
         <p>You know each other now. You have time and resources you didn't have at thirty. You have less to prove and more to discover. <strong>The constraints — less spontaneous arousal, more sensitive brakes — point exactly at the practice that builds the deepest long-term intimacy:</strong> slowness, anticipation, attentive presence, the room itself.</p>
       </div>
 
+      <div class="topo-block">
+        <span class="topo-num">VI · The pleasure shift</span>
+        <h4>What gets better, not worse</h4>
+        <p>One of the well-kept secrets of midlife research: <strong>orgasmic capacity often <em>improves</em> for women in their forties and fifties.</strong> The reasons are not mysterious — less performance anxiety, more knowledge of one's own body, less pressure to perform a particular kind of sex, and a partner who (ideally) has finally learned to slow down. The data on this is consistent across decades: when surveyed in private, midlife women report higher rates of satisfying climax than their twenty-something counterparts. <em>The body has not declined. It has refined.</em></p>
+      </div>
+
+      <div class="topo-block">
+        <span class="topo-num">VII · The afternoon question</span>
+        <h4>The forgotten kind of intimacy</h4>
+        <p>One of the quietest losses of long-term partnership is <strong>non-bedroom intimacy.</strong> The afternoon kiss in the kitchen. The hand on the back of the neck while passing in the hallway. The lingering hug at the door. Couples who lose these often think they've lost desire, when actually they've stopped doing the small things that fed it. <em>The bedroom is downstream of the kitchen.</em> Restoring sensual contact to the rest of the day is one of the most reliable interventions in the entire research literature.</p>
+      </div>
+
       <div class="mini-prompts">
         <span class="mp-label">To discuss · the body, now</span>
         <ul>
@@ -820,27 +1043,6 @@
           <li>What gift do you think midlife has given us that we'd never have had earlier?</li>
         </ul>
       </div>
-    </div>
-
-    <!-- ON WANTING — the embodied/sensual interlude -->
-    <div class="on-wanting">
-      <div class="ow-heading">
-        <div class="ow-kicker">On wanting</div>
-        <h2>The <em>specific hunger</em> of midlife</h2>
-        <p class="ow-sub">What desire actually feels like, once you stop trying to recover the version it was before.</p>
-      </div>
-
-      <p class="lead-2">There are sentences that name what desire actually is. The catch of breath when a known body is suddenly seen again. The slow heat that builds along the inside of an arm while she reads. The way pleasure asks for time and darkness and the specific texture of one person's skin.</p>
-
-      <p>This is what midlife intimacy actually offers, once you stop trying to recover the version it was at twenty-five. <strong>Slower wanting. Deeper noticing.</strong> The specific hunger that knows exactly what it wants — and finally has the patience to wait for it.</p>
-
-      <p>The body in midlife is not less; it is <em>more particular</em>. What used to be loud and indiscriminate has become quiet and precise. Touch in the right place, at the right pressure, after the right number of minutes — and the whole body remembers itself. Touch in the wrong place, too soon, and the brake closes a door that takes hours to reopen.</p>
-
-      <p>This is the gift, properly received: <strong>the body is now a teacher, not a tool.</strong> If you slow down enough to learn what it is actually saying, midlife intimacy becomes more erotic than it ever was when both of you were too young to know.</p>
-
-      <p>The practical question is not <em>how do we get back what we had.</em> It is the harder, better question: <strong>what specifically do we want now — and do we have the courage to ask each other?</strong></p>
-
-      <div class="pull-dark">Anticipation is its own pleasure. Build it like a fire — slowly, deliberately, watching it catch.</div>
     </div>
 
     <!-- KEEPING THE FLAME ALIVE -->
@@ -861,7 +1063,7 @@
         <div class="pn-num">I</div>
         <div class="pbody">
           <h4>Engineer anticipation</h4>
-          <p>The hours before intimacy matter more than the minutes during. <strong>A message at lunch that lands in the chest. A glance across the room at dinner that says: later. A note left in a coat pocket.</strong> Perel's principle — that foreplay starts the morning after, not the minute before — points at this. Build anticipation as a deliberate practice, not a happy accident. The body shows up to a moment that has been prepared.</p>
+          <p>The hours before her body arrives at the bed matter far more than the minutes once it does. <strong>A message at noon that lands somewhere in the chest: <em>I have been thinking about you all morning, specifically, and I cannot wait until tonight.</em></strong> A glance across the kitchen at dinner that says, without saying, that you have plans. A note slipped into the pocket of a coat she will not wear until 2pm. None of this is about what will happen. All of it is the slow, deliberate cultivation of a body that knows, throughout its day, that it is being thought about. Perel's principle — that foreplay starts the morning after, not the minute before — points exactly at this. <em>The body shows up to a moment that has been prepared.</em></p>
         </div>
       </div>
 
@@ -869,7 +1071,7 @@
         <div class="pn-num">II</div>
         <div class="pbody">
           <h4>Release the brakes before adding to the accelerator</h4>
-          <p>Don't start with lingerie. Start with: <strong>what is on her plate today? What stress is on her body? What did the office take out of her? What is left undone in the house?</strong> The unwashed dishes, the work deadline, the conversation with her mother — these are not romance-killers in the abstract. They are literal neurological inhibitors. Nagoski's clearest practical advice: do whatever lifts those <em>before</em> reaching for accelerators. Sometimes the most erotic act of the evening is loading the dishwasher.</p>
+          <p>Do not start with lingerie. Start with: <strong>what is on her body today? What stress did she carry home? What did the office take out of her, what did her mother's call take out of her, what is left undone in the kitchen that her brain will not let go of?</strong> The unwashed dishes, the unread emails, the unanswered question from the school — these are not romance-killers in the abstract. They are literal neurological inhibitors, switches in the inhibition system Nagoski writes about. <em>You lift them before you reach for anything else.</em> Sometimes the most erotic act of the evening is the one nobody photographs: loading the dishwasher, taking the call she has been dreading, running her the bath. The bed is downstream of all of it. <strong>Lower the brake first; the accelerator will take care of itself.</strong></p>
         </div>
       </div>
 
@@ -893,15 +1095,15 @@
         <div class="pn-num">V</div>
         <div class="pbody">
           <h4>Treat sensuality as ambient, not scheduled</h4>
-          <p>The kitchen touch. The bath together that isn't "about" anything. The long hug at the door. The way you brush hair off her face. <strong>Couples who maintain desire over decades describe sensual contact as woven through the day, not switched on at bedtime.</strong> The body needs the slow build, not the sudden ask. Pleasure is not an event you initiate; it is an atmosphere you keep alive.</p>
+          <p>The hand on the small of her back as you pass her in the kitchen. The kiss on the back of her neck while she stirs the pot. The way you brush hair off her face when she is reading and does not look up. The bath you draw for her on a Tuesday that is not <em>about</em> anything. The long hug at the door before either of you has time to put your coats down. <strong>Couples who keep wanting each other for decades describe their sensual life not as switched on at bedtime but as woven through every hour they spend in the same room.</strong> The body needs the slow build of the day, not the sudden ask of the night. <em>Pleasure is not an event you initiate. It is an atmosphere you maintain.</em></p>
         </div>
       </div>
 
       <div class="practice">
         <div class="pn-num">VI</div>
         <div class="pbody">
-          <h4>Design the steamy evening as production, not availability</h4>
-          <p>Lighting matters. Music matters. Scent matters. Fresh sheets matter. <strong>No phones. No deadlines. No "we should."</strong> Treat it as a small piece of theatre you build together — anticipation, environment, slowness, attention. Decide on the playlist. Decide on the candles. Let the room itself remove the brakes. The body responds to the room before it responds to the partner.</p>
+          <h4>Design the evening as production, not availability</h4>
+          <p>Light the candles before either of you arrives home. Choose the music ahead of time so neither of you has to break the spell to scroll. <strong>Phones into a drawer. Notifications off. No deadlines, no obligations, no "we should."</strong> Clean sheets. The good oil within reach. The bath drawn before she asks. Treat the evening as a small piece of theatre you have written together: anticipation, scent, slowness, attention, low light. <em>The body responds to the room before it responds to the partner.</em> The room is half the work and almost none of the credit; design it like it matters, because it does.</p>
         </div>
       </div>
 
@@ -1002,7 +1204,14 @@
     <div class="section-heading">
       <div class="sh-kicker">The discussion guide</div>
       <h2>Nine <em>topics</em>, fifty questions</h2>
-      <p class="sh-sub">Pick one topic per evening. Don't try them all at once. The slow version is the only version that works.</p>
+      <p class="sh-sub">One topic per evening. Maybe one topic per week. The slow version is the only version that works.</p>
+    </div>
+
+    <div class="dg-howto">
+      <span class="dg-howto-kicker">How to use this</span>
+      <p>Pick a topic together. Pour something. Put the phones somewhere else. <strong>Take turns: one of you asks a question, the other speaks for as long as they need to, and the asker says nothing except short clarifying questions.</strong> Then swap. No interrupting. No "well actually." No solving. No taking it personally even when it sounds personal — especially when it sounds personal.</p>
+      <p>You will not finish a topic in one evening. That is the point. A topic that took years to build needs more than an hour to unbuild. <em>If you only get through two questions, you have done the work.</em></p>
+      <p class="dg-howto-warn"><strong>One ground rule.</strong> Whatever they share, your reaction in the first five seconds determines whether they share the next thing. Curiosity, not assessment. Receive what is offered without surprise, without correction, without immediately wanting to act on it. You will have time later to act. Tonight you are listening.</p>
     </div>
 
     <div class="discussion-guide">
@@ -1146,6 +1355,163 @@
         <li>What part of you have you been hiding even when you don't need to?</li>
         <li>If you could only change one thing about how you show up — what would it be?</li>
       </ul>
+    </div>
+
+    <!-- ============ STEAMY FINALE — the gradient peaks here ============ -->
+
+    <div class="on-wanting">
+      <div class="ow-heading">
+        <div class="ow-kicker">On wanting</div>
+        <h2>The <em>specific hunger</em> of midlife</h2>
+        <p class="ow-sub">What desire actually feels like, once you stop trying to recover the version it was before.</p>
+      </div>
+
+      <p class="lead-2">There are sentences that name what desire actually is. The catch of breath when a known body is suddenly seen again. The slow heat that builds along the inside of an arm while she reads. The way pleasure asks for time and darkness and the specific texture of one person's skin.</p>
+
+      <p>This is what midlife intimacy actually offers, once you stop trying to recover the version it was at twenty-five. <strong>Slower wanting. Deeper noticing.</strong> The specific hunger that knows exactly what it wants — and finally has the patience to wait for it.</p>
+
+      <p>The body in midlife is not less; it is <em>more particular</em>. What used to be loud and indiscriminate has become quiet and precise. Touch in the right place, at the right pressure, after the right number of minutes — and the whole body remembers itself. Touch in the wrong place, too soon, and the brake closes a door that takes hours to reopen.</p>
+
+      <p>This is the gift, properly received: <strong>the body is now a teacher, not a tool.</strong> If you slow down enough to learn what it is actually saying, midlife intimacy becomes more erotic than it ever was when both of you were too young to know.</p>
+
+      <p>The practical question is not <em>how do we get back what we had.</em> It is the harder, better question: <strong>what specifically do we want now — and do we have the courage to ask each other?</strong></p>
+
+      <div class="pull-dark">Anticipation is its own pleasure. Build it like a fire — slowly, deliberately, watching it catch.</div>
+    </div>
+
+    <!-- THE VOCABULARY OF TOUCH — sensual glossary -->
+    <div class="touch-vocab">
+      <div class="tv-heading">
+        <div class="tv-kicker">A small dictionary</div>
+        <h3>The <em>vocabulary</em> of touch</h3>
+        <p class="tv-sub">A list of things to do with your hands and mouth that have no agenda. A starting point, not a script.</p>
+      </div>
+
+      <div class="touch-entry">
+        <span class="tv-word">linger</span>
+        <p class="tv-def">to hold a touch in one place long past when it would have been polite to move on. <strong>The most underrated word in the dictionary.</strong></p>
+      </div>
+      <div class="touch-entry">
+        <span class="tv-word">trace</span>
+        <p class="tv-def">to follow the line of a body part with one fingertip — a collarbone, the inside of an arm, the long quiet seam of a thigh.</p>
+      </div>
+      <div class="touch-entry">
+        <span class="tv-word">graze</span>
+        <p class="tv-def">the lightest possible contact. A kiss not quite landed. A hand barely there. Often more powerful than pressure.</p>
+      </div>
+      <div class="touch-entry">
+        <span class="tv-word">press</span>
+        <p class="tv-def">to hold weight against another body without moving — chest to chest, palm to spine, hip to hip. Stillness, as a form of speech.</p>
+      </div>
+      <div class="touch-entry">
+        <span class="tv-word">hold</span>
+        <p class="tv-def">to wrap both arms around them from behind, without speaking, for longer than feels necessary. Two minutes. Then three.</p>
+      </div>
+      <div class="touch-entry">
+        <span class="tv-word">breathe</span>
+        <p class="tv-def">to exhale slowly against skin without touching it. The skin will rise on its own. Wait for it.</p>
+      </div>
+      <div class="touch-entry">
+        <span class="tv-word">pause</span>
+        <p class="tv-def">to stop, mid-act, and stay completely still — until they speak, or move, or breathe in a way that tells you to begin again.</p>
+      </div>
+      <div class="touch-entry">
+        <span class="tv-word">name</span>
+        <p class="tv-def">to say, slowly, in their ear, what you are about to do, before you do it. <em>And then you do it.</em></p>
+      </div>
+      <div class="touch-entry">
+        <span class="tv-word">look</span>
+        <p class="tv-def">to keep your eyes on their face while you touch them — especially when they have closed theirs. They will feel it.</p>
+      </div>
+      <div class="touch-entry">
+        <span class="tv-word">ask</span>
+        <p class="tv-def">without words. With pressure, with pace, with where your hand stops. The body knows how to answer.</p>
+      </div>
+      <div class="touch-entry">
+        <span class="tv-word">return</span>
+        <p class="tv-def">to come back, several minutes later, to the same place you were touching before — but more slowly this time, as if you had been thinking about it the entire time. Because you had been.</p>
+      </div>
+      <div class="touch-entry">
+        <span class="tv-word">whisper</span>
+        <p class="tv-def">to say one thing — one — directly into the ear, while not moving any other part of the body. <em>What that one thing is</em> matters less than the fact that you have stopped everything else to say it.</p>
+      </div>
+      <div class="touch-entry">
+        <span class="tv-word">taste</span>
+        <p class="tv-def">to use your mouth slowly on a part of her that is not the obvious one. The wrist. The hip. The place behind the knee. <strong>Spend a minute there before going anywhere else.</strong></p>
+      </div>
+      <div class="touch-entry">
+        <span class="tv-word">undress</span>
+        <p class="tv-def">slowly, one item at a time, kissing the place that has been revealed before the next item leaves her body. <em>Take twice as long as feels reasonable.</em></p>
+      </div>
+      <div class="touch-entry">
+        <span class="tv-word">wait</span>
+        <p class="tv-def">the most advanced word in the dictionary. To stop, deliberately, just short of where she is asking you to go — and to stay there until she asks again, and then once more after that. <strong>The body that has been made to wait, kindly, becomes a body that has decided to want.</strong></p>
+      </div>
+    </div>
+
+    <!-- THE EVENING — literary erotica scene -->
+    <div class="the-evening">
+      <div class="te-heading">
+        <div class="te-kicker">A scene</div>
+        <h2>Tonight, if <em>everything</em> worked</h2>
+        <p class="te-sub">An imagined evening, written slowly. Not a script. A possibility. Read it together if you can.</p>
+      </div>
+
+      <p class="te-lead">What if tonight could be the evening you have each, separately, already been wanting — and never quite asked for?</p>
+
+      <p>You arrive home at the same time. You have not done this on purpose. The children — if there are children — are somewhere else for the night. The phones are off, in a drawer. The lights are low because she lit candles before you came in. You notice. She notices that you noticed.</p>
+
+      <p>She kisses you first. Slowly. The way she did before either of you was married. Not because you have negotiated it. Because she felt like it.</p>
+
+      <p>You don't reach for her yet. You sit beside her the way you sat beside her in the first years, before efficiency. You ask about a small thing in her day. <strong>You actually listen.</strong> You watch her mouth while she speaks.</p>
+
+      <div class="te-break"><span class="te-dot"></span></div>
+
+      <p>You put your hand on her thigh. Not far up. Just there. Five minutes pass. You tell her something you haven't said in a long time — that she is beautiful tonight, <em>specifically</em>, because of how her hair fell when she sat down. She half-blushes — the way only women in their forties blush, half-pleased and half-wary that they shouldn't be pleased.</p>
+
+      <p>You kiss her again. Longer. Your hand moves up her thigh, slowly. Then you take it to the side of her neck — the place she likes to be held but never quite says. You hold her there while you kiss her. You can feel her pulse against your fingers.</p>
+
+      <p>She makes the small sound she has always made when she has decided to want you.</p>
+
+      <div class="te-break"><span class="te-dot"></span></div>
+
+      <p>Now everything slows down.</p>
+
+      <p>You stand. You take her hand. You don't lead her to the bedroom yet. You lead her to the kitchen — because she has always loved being kissed against the counter, the way she was kissed there the first time you both lived together. You lift her, gently, onto the counter. You stand between her knees. You keep kissing her. You unbutton one button. <em>Then you stop.</em> You wait. You let her breathe.</p>
+
+      <p>You move your mouth to her neck. To the place under her ear. You stay there longer than feels reasonable. You feel her grip the back of your shirt.</p>
+
+      <div class="te-break"><span class="te-dot"></span></div>
+
+      <p>Eventually — much later, after she has decided three separate times to want more — you take her upstairs.</p>
+
+      <p>You undress her slowly, the way she has been asking you to undress her for years without ever quite saying so. One piece. Then a pause. Then another. You kiss the place that has been revealed before you reveal the next.</p>
+
+      <p>You lay her down. You don't lie on top of her yet. You sit beside her on the bed. You let your hand travel — slowly — from her ankle to her thigh to her hip to the soft place under her ribs. You watch her face the whole time. Her eyes are closed. Her mouth is slightly open.</p>
+
+      <p>You go to the place she has been wanting to be touched. You stay there. You watch her face. <strong>You go slowly because slow is the only thing that has ever worked.</strong></p>
+
+      <div class="te-break"><span class="te-dot"></span></div>
+
+      <p>When eventually — much later — you move on top of her, you stay still for thirty seconds. Eyes open. You hold her gaze. You begin only when she breathes you in.</p>
+
+      <p>You move at half the speed you think is right. Then half of that. Mouth open. Breath audible. You stop every minute or so. You hold still. You feel her hand press against the small of your back, asking. <em>You begin again.</em></p>
+
+      <p>She comes — eventually, if she comes, and even if she doesn't — with the specific gratitude of a woman who has finally, patiently, been listened to with hands and mouth and weight.</p>
+
+      <p>Afterwards, you do not let her go. You stay. You kiss her shoulder. You let her come back into the room.</p>
+
+      <div class="te-close">This is what it can be like.<br>This is what — with patience, with care, with the slow attentive listening the research keeps pointing toward — it actually can be.</div>
+    </div>
+
+    <!-- THE INVITATION — closing call -->
+    <div class="invitation">
+      <div class="inv-kicker">An invitation</div>
+      <h3>You have read all of it now.</h3>
+      <p>The data. The myths. The body. The practices. The questions you might ask each other. The evening you might have.</p>
+      <p><strong>The research can take you to the door. Your bodies have to walk through.</strong></p>
+      <p>So — choose an evening this week. Tell each other now, before either of you has had time to negotiate why not. Block it. Make it ordinary that it is sacred. Light the candle before either of you comes home. Have the conversation. Have the evening. Let the slow, patient, attentive listening become real, this time, in your hands.</p>
+      <p class="inv-final">Then — afterwards — start over from the beginning.<br>The page does not run out.</p>
     </div>
 
   </section>
