@@ -198,8 +198,8 @@
     font-size:clamp(1.55rem,4.2vw,2rem);color:var(--plum-deep);
     text-align:center;margin-bottom:34px;line-height:1.18;
   }
-  .pathway-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-  @media (max-width:600px){.pathway-cards{grid-template-columns:1fr}}
+  .pathway-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+  @media (max-width:780px){.pathway-cards{grid-template-columns:1fr}}
   .pathway-card{
     display:block;text-decoration:none;color:inherit;
     background:var(--paper-warm);border:1px solid var(--line);border-radius:3px;
@@ -212,11 +212,13 @@
   }
   .pathway-card.crisis{border-left:3px solid var(--plum)}
   .pathway-card.intim{border-left:3px solid var(--gold)}
+  .pathway-card.ember{border-left:3px solid #8a2a3a}
   .pathway-card .pw-label{
     font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.3em;
     text-transform:uppercase;color:var(--plum);font-weight:600;
   }
   .pathway-card.intim .pw-label{color:var(--gold)}
+  .pathway-card.ember .pw-label{color:#8a2a3a}
   .pathway-card .pw-title{
     font-family:'Fraunces',serif;font-weight:500;
     font-size:1.45rem;line-height:1.16;color:var(--ink);margin:10px 0;
@@ -228,6 +230,7 @@
     display:flex;align-items:center;gap:10px;
   }
   .pathway-card.intim .pw-arrow{color:var(--gold)}
+  .pathway-card.ember .pw-arrow{color:#8a2a3a}
   .pathway-card .pw-arrow::after{content:"→";font-size:1rem;transition:transform .25s ease}
   .pathway-card:hover .pw-arrow::after{transform:translateX(4px)}
 
@@ -300,6 +303,304 @@
   .practice .pbody p{margin:0;color:var(--ink-soft);font-size:.97rem;line-height:1.55}
   .practice .pbody strong{color:var(--plum-deep);font-weight:600}
 
+  /* ---------- BECOMING (GAME) INTRO ---------- */
+  .bgame{padding:90px 0 30px;border-top:1px solid var(--line);margin-top:50px}
+  .bgame-header{padding-bottom:18px;text-align:center}
+  .bgame-header .pn{
+    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.4em;
+    text-transform:uppercase;color:#8a2a3a;
+  }
+  .bgame-header .pt{
+    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
+    font-size:clamp(2.1rem,6vw,3.2rem);color:var(--plum-deep);
+    margin-top:10px;letter-spacing:-.01em;line-height:1.04;
+  }
+  .bgame-header .pd{color:var(--ink-soft);max-width:42ch;margin:16px auto 0;font-size:1rem}
+  .bgame-intro{padding:30px 0;border-bottom:1px solid var(--line)}
+  .bgame-intro p{margin-bottom:16px;color:var(--ink-soft)}
+  .bgame-intro .lead{font-family:'Fraunces',serif;font-style:italic;font-size:1.15rem;color:var(--ink)}
+  .bgame-tiers{
+    display:grid;grid-template-columns:repeat(6,1fr);gap:8px;
+    margin:30px 0 10px;
+  }
+  @media (max-width:780px){.bgame-tiers{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:480px){.bgame-tiers{grid-template-columns:repeat(2,1fr)}}
+  .bgame-tier{
+    background:var(--paper-warm);border:1px solid var(--line);border-radius:3px;
+    padding:14px 12px;text-align:center;
+  }
+  .bgame-tier .t-num{
+    font-family:'Fraunces',serif;font-style:italic;color:#8a2a3a;
+    font-size:1.4rem;line-height:1;margin-bottom:4px;
+  }
+  .bgame-tier .t-name{
+    font-family:'Fraunces',serif;font-size:.78rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--ink);font-weight:600;
+  }
+  .bgame-prep{
+    margin-top:36px;padding:26px 26px 22px;
+    background:var(--paper-warm);border:1px solid var(--line);border-radius:3px;
+    border-left:3px solid #8a2a3a;
+  }
+  .bgame-prep h4{
+    font-family:'Fraunces',serif;font-size:.78rem;letter-spacing:.26em;
+    text-transform:uppercase;color:#8a2a3a;font-weight:600;margin-bottom:12px;
+  }
+  .bgame-prep ul{list-style:none;padding:0;margin:0}
+  .bgame-prep li{
+    padding:7px 0 7px 22px;position:relative;color:var(--ink-soft);font-size:.96rem;
+    border-top:1px solid var(--line);
+  }
+  .bgame-prep li:first-of-type{border-top:none}
+  .bgame-prep li::before{
+    content:"✦";position:absolute;left:0;color:#8a2a3a;font-size:.78rem;top:11px;
+  }
+  .bgame-consent{
+    margin-top:24px;padding:20px 24px;
+    border:1px dashed var(--line);border-radius:3px;
+    font-style:italic;color:var(--ink-soft);font-size:.95rem;line-height:1.55;
+  }
+  .bgame-consent strong{color:var(--plum-deep);font-weight:600;font-style:normal}
+  .bgame-begin{
+    margin:40px auto 0;display:block;width:fit-content;
+    font-family:'Fraunces',serif;font-size:.78rem;letter-spacing:.3em;
+    text-transform:uppercase;font-weight:600;color:#fff;
+    background:linear-gradient(135deg,#8a2a3a,var(--plum-deep));
+    border:none;padding:18px 38px;border-radius:3px;cursor:pointer;
+    transition:transform .25s ease,box-shadow .25s ease;
+    box-shadow:0 6px 20px rgba(78,41,69,.3);
+  }
+  .bgame-begin:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(78,41,69,.45)}
+  .bgame-begin:active{transform:translateY(0)}
+
+  /* ---------- GAME OVERLAY ---------- */
+  .game-overlay{
+    position:fixed;inset:0;z-index:100;
+    background:radial-gradient(ellipse at center,#3a1e34 0%,#1a0d18 80%);
+    color:#f0e7d5;
+    display:none;flex-direction:column;
+    overflow:hidden;
+  }
+  .game-overlay.active{display:flex;animation:fadeInGame .8s ease}
+  @keyframes fadeInGame{from{opacity:0}to{opacity:1}}
+  .game-overlay::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(176,123,62,.12), transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(138,42,58,.15), transparent 55%);
+  }
+  .go-top{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 24px;position:relative;z-index:2;
+  }
+  .go-tier{
+    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.32em;
+    text-transform:uppercase;color:var(--gold);font-weight:600;
+  }
+  .go-exit{
+    background:transparent;border:1px solid rgba(240,231,213,.3);
+    color:#f0e7d5;font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.24em;
+    text-transform:uppercase;padding:8px 16px;border-radius:3px;cursor:pointer;
+    transition:border-color .2s ease,background .2s ease;
+  }
+  .go-exit:hover{border-color:var(--gold);background:rgba(176,123,62,.1)}
+  .go-intensity{
+    height:3px;margin:0 24px;background:rgba(240,231,213,.12);
+    border-radius:2px;overflow:hidden;position:relative;z-index:2;
+  }
+  .go-intensity .bar{
+    height:100%;background:linear-gradient(90deg,var(--gold),#8a2a3a);
+    width:16.66%;transition:width .8s cubic-bezier(.4,0,.2,1);
+  }
+  .go-stage{
+    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:24px;position:relative;z-index:2;
+    overflow-y:auto;
+  }
+  .go-tier-intro{
+    text-align:center;max-width:560px;
+    animation:slideUp .6s ease;
+  }
+  @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+  .go-tier-intro .t-num{
+    font-family:'Fraunces',serif;font-style:italic;color:var(--gold);
+    font-size:1.1rem;letter-spacing:.18em;text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .go-tier-intro h2{
+    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
+    font-size:clamp(2.4rem,7vw,3.8rem);color:#f0e7d5;line-height:1.04;
+    margin-bottom:18px;
+  }
+  .go-tier-intro .t-sub{
+    font-family:'Fraunces',serif;font-size:1.1rem;font-style:italic;
+    color:rgba(240,231,213,.78);margin-bottom:30px;line-height:1.45;
+  }
+  .go-tier-intro .t-mood{
+    font-family:'Fraunces',serif;font-size:.94rem;
+    color:rgba(240,231,213,.6);font-style:italic;
+    border-top:1px solid rgba(240,231,213,.18);
+    border-bottom:1px solid rgba(240,231,213,.18);
+    padding:18px 0;margin-bottom:36px;
+  }
+  /* dice */
+  .dice-area{
+    display:flex;gap:30px;justify-content:center;perspective:600px;
+    margin:10px 0 30px;min-height:120px;align-items:center;
+  }
+  .die{
+    width:90px;height:90px;position:relative;transform-style:preserve-3d;
+    transition:transform 1.6s cubic-bezier(.34,1.2,.5,1);
+  }
+  .die.rolling{transition:transform 1.4s cubic-bezier(.4,0,.2,1)}
+  .die-face{
+    position:absolute;inset:0;border-radius:14px;
+    display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);
+    padding:14%;backface-visibility:hidden;
+    box-shadow:0 6px 16px rgba(0,0,0,.4);
+  }
+  .die.plum .die-face{background:linear-gradient(135deg,#f3ecdf,#ece2d0);border:1px solid #6c3a5c}
+  .die.gold .die-face{background:linear-gradient(135deg,#f3ecdf,#ece2d0);border:1px solid #b07b3e}
+  .die.plum .pip{background:var(--plum-deep)}
+  .die.gold .pip{background:#b07b3e}
+  .die-face.f1{transform:rotateY(0deg) translateZ(45px)}
+  .die-face.f2{transform:rotateY(-90deg) translateZ(45px)}
+  .die-face.f3{transform:rotateY(180deg) translateZ(45px)}
+  .die-face.f4{transform:rotateY(90deg) translateZ(45px)}
+  .die-face.f5{transform:rotateX(-90deg) translateZ(45px)}
+  .die-face.f6{transform:rotateX(90deg) translateZ(45px)}
+  .pip{width:14px;height:14px;border-radius:50%;align-self:center;justify-self:center}
+  /* pip positions per face */
+  .f1 .pip:nth-child(1){grid-area:2/2}
+  .f2 .pip:nth-child(1){grid-area:1/1}
+  .f2 .pip:nth-child(2){grid-area:3/3}
+  .f3 .pip:nth-child(1){grid-area:1/1}
+  .f3 .pip:nth-child(2){grid-area:2/2}
+  .f3 .pip:nth-child(3){grid-area:3/3}
+  .f4 .pip:nth-child(1){grid-area:1/1}
+  .f4 .pip:nth-child(2){grid-area:1/3}
+  .f4 .pip:nth-child(3){grid-area:3/1}
+  .f4 .pip:nth-child(4){grid-area:3/3}
+  .f5 .pip:nth-child(1){grid-area:1/1}
+  .f5 .pip:nth-child(2){grid-area:1/3}
+  .f5 .pip:nth-child(3){grid-area:2/2}
+  .f5 .pip:nth-child(4){grid-area:3/1}
+  .f5 .pip:nth-child(5){grid-area:3/3}
+  .f6 .pip:nth-child(1){grid-area:1/1}
+  .f6 .pip:nth-child(2){grid-area:1/3}
+  .f6 .pip:nth-child(3){grid-area:2/1}
+  .f6 .pip:nth-child(4){grid-area:2/3}
+  .f6 .pip:nth-child(5){grid-area:3/1}
+  .f6 .pip:nth-child(6){grid-area:3/3}
+  .die-labels{
+    display:flex;gap:30px;justify-content:center;margin-top:-18px;margin-bottom:30px;
+    font-family:'Fraunces',serif;font-size:.64rem;letter-spacing:.3em;
+    text-transform:uppercase;color:rgba(240,231,213,.5);
+  }
+  .die-labels span{width:90px;text-align:center}
+  /* card */
+  .game-card{
+    max-width:560px;width:100%;min-height:240px;
+    background:linear-gradient(160deg,rgba(243,236,223,.96),rgba(236,226,208,.96));
+    color:var(--ink);border-radius:6px;padding:34px 32px 30px;
+    box-shadow:0 18px 48px rgba(0,0,0,.45);
+    position:relative;overflow:hidden;
+    opacity:0;transform:translateY(30px) scale(.96);
+    transition:opacity .6s ease,transform .6s cubic-bezier(.34,1.2,.5,1);
+  }
+  .game-card.visible{opacity:1;transform:none}
+  .game-card::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(circle at 90% 10%, rgba(176,123,62,.1), transparent 50%);
+  }
+  .gc-header{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-bottom:18px;
+  }
+  .gc-tier{
+    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--gold);font-weight:600;
+  }
+  .gc-direction{
+    font-family:'Fraunces',serif;font-style:italic;font-size:.92rem;
+    color:var(--plum-deep);
+  }
+  .gc-direction .arrow{color:var(--gold);font-style:normal;font-weight:600;margin:0 6px}
+  .gc-text{
+    font-family:'Fraunces',serif;font-size:1.18rem;line-height:1.45;
+    color:var(--ink);margin-bottom:18px;
+  }
+  .gc-mod{
+    background:rgba(108,58,92,.08);border:1px solid rgba(108,58,92,.2);
+    border-radius:3px;padding:12px 14px;margin-bottom:8px;
+  }
+  .gc-mod-label{
+    font-family:'Fraunces',serif;font-size:.62rem;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--plum);font-weight:600;display:block;margin-bottom:4px;
+  }
+  .gc-mod-text{font-family:'Fraunces',serif;font-style:italic;color:var(--plum-deep);font-size:.96rem}
+  /* buttons */
+  .go-actions{
+    display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+    margin-top:24px;
+  }
+  .gbtn{
+    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.28em;
+    text-transform:uppercase;font-weight:600;
+    padding:14px 28px;border-radius:3px;cursor:pointer;
+    transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+    border:none;
+  }
+  .gbtn.primary{
+    background:linear-gradient(135deg,var(--gold),#8a2a3a);color:#fff;
+    box-shadow:0 4px 14px rgba(138,42,58,.4);
+  }
+  .gbtn.primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(138,42,58,.55)}
+  .gbtn.ghost{
+    background:transparent;color:rgba(240,231,213,.85);
+    border:1px solid rgba(240,231,213,.3);
+  }
+  .gbtn.ghost:hover{border-color:var(--gold);color:var(--gold);background:rgba(176,123,62,.08)}
+  .gbtn.solid-dark{
+    background:rgba(240,231,213,.08);color:#f0e7d5;
+    border:1px solid rgba(240,231,213,.18);
+  }
+  .gbtn.solid-dark:hover{background:rgba(240,231,213,.15)}
+  /* breath pause between tiers */
+  .breath{
+    text-align:center;max-width:520px;animation:slideUp .6s ease;
+  }
+  .breath h3{
+    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
+    font-size:clamp(1.6rem,5vw,2.4rem);color:#f0e7d5;margin-bottom:18px;
+  }
+  .breath p{
+    font-family:'Fraunces',serif;font-style:italic;
+    color:rgba(240,231,213,.78);font-size:1.04rem;line-height:1.55;margin-bottom:28px;
+  }
+  .breath-circle{
+    width:140px;height:140px;border-radius:50%;margin:0 auto 30px;
+    border:1px solid rgba(176,123,62,.5);
+    animation:breathe 6s ease-in-out infinite;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-style:italic;color:rgba(240,231,213,.5);
+    font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;
+  }
+  @keyframes breathe{
+    0%,100%{transform:scale(.85);box-shadow:0 0 0 0 rgba(176,123,62,.4)}
+    50%{transform:scale(1);box-shadow:0 0 0 24px rgba(176,123,62,0)}
+  }
+  /* ending */
+  .ending{text-align:center;max-width:560px;animation:slideUp .8s ease}
+  .ending h2{
+    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
+    font-size:clamp(2rem,6vw,3rem);color:#f0e7d5;line-height:1.1;margin-bottom:24px;
+  }
+  .ending p{
+    font-family:'Fraunces',serif;font-style:italic;color:rgba(240,231,213,.78);
+    font-size:1.1rem;line-height:1.5;margin-bottom:30px;
+  }
+
   /* ---------- CLOSE ---------- */
   .close{padding:70px 0 30px;text-align:center}
   .close .ig{
@@ -355,6 +656,12 @@
         <div class="pw-title">Improved Intimacy</div>
         <p class="pw-sub">The science of desire that lasts — Perel, Nagoski, Aron, Mark & Lasslo — and seven practices to keep the flame alive against the gravity of routine.</p>
         <div class="pw-arrow">Begin the intimacy path</div>
+      </a>
+      <a class="pathway-card ember" href="#becoming">
+        <div class="pw-label">Path Three</div>
+        <div class="pw-title">The Becoming</div>
+        <p class="pw-sub">An interactive dice-and-card game for partners — six tiers of gradually deepening intimacy, designed around science and consent. Made for a steamy evening with no rush.</p>
+        <div class="pw-arrow">Enter the game</div>
       </a>
     </div>
   </div>
@@ -1277,6 +1584,57 @@
     </div>
   </section>
 
+  <!-- ================= THE BECOMING (GAME) ================= -->
+  <section class="bgame" id="becoming">
+    <div class="bgame-header">
+      <div class="pn">Path Three</div>
+      <div class="pt">The Becoming</div>
+      <div class="pd">An interactive dice-and-card game for partners — six tiers, two dice, two hundred and sixteen possible card-experiences. Made for one steamy evening with no rush.</div>
+    </div>
+
+    <div class="bgame-intro">
+      <p class="lead">This is not a quiz, and not foreplay-by-numbers. It's a structure that holds the room while two people slow down and pay attention.</p>
+      <p>The game has <strong>six tiers</strong>, each more intimate than the last. You roll <strong>two dice</strong> at each tier: a plum die that picks the card, and a gold die that applies a modifier — blindfolded, in silence, twice, reversed, with sensation, or pure. That gives <strong>216 unique card-experiences</strong>, so no two evenings ever play out the same.</p>
+      <p>Either of you can advance a tier when you're both ready. Either of you can <em>stay</em> at a tier as long as you like. Either of you can stop the whole game at any moment, without explanation. <strong>The slower you go, the better it works.</strong> This is built on the research from <em>Path Two</em>: the brakes release first, the accelerators come second, the partner who remains slightly mysterious remains desirable.</p>
+
+      <div class="bgame-tiers">
+        <div class="bgame-tier"><div class="t-num">I</div><div class="t-name">Whisper</div></div>
+        <div class="bgame-tier"><div class="t-num">II</div><div class="t-name">Touch</div></div>
+        <div class="bgame-tier"><div class="t-num">III</div><div class="t-name">Tease</div></div>
+        <div class="bgame-tier"><div class="t-num">IV</div><div class="t-name">Reveal</div></div>
+        <div class="bgame-tier"><div class="t-num">V</div><div class="t-name">Surrender</div></div>
+        <div class="bgame-tier"><div class="t-num">VI</div><div class="t-name">Burn</div></div>
+      </div>
+
+      <div class="bgame-prep">
+        <h4>Before you begin — prepare the room</h4>
+        <ul>
+          <li>Block at least ninety minutes. Phones off, not silenced — off.</li>
+          <li>Lower the lights. Candles if you have them. Soft music if you both like.</li>
+          <li>Water within reach. A silk scarf or eye mask for the blindfold modifier.</li>
+          <li>Optional: ice in a small bowl, warm oil, a feather, anything that adds sensation.</li>
+          <li>No goal. No timer. No outcome expected. Slow is the point.</li>
+        </ul>
+      </div>
+
+      <div class="bgame-consent">
+        <strong>A word on consent and pacing.</strong> Every card has a Skip button. Either of you can press it without explanation. Either of you can stop the game entirely with the Exit button at any time. Staying at a tier is as valuable as advancing. The final tier's last card is simply: <em>"Forget the cards. Be with them."</em> The cards are the structure; you are the meaning.
+      </div>
+
+      <button class="bgame-begin" id="bgame-begin-btn">Enter the game</button>
+    </div>
+  </section>
+
+  <!-- ================= GAME OVERLAY ================= -->
+  <div class="game-overlay" id="game-overlay" aria-hidden="true">
+    <div class="go-top">
+      <div class="go-tier" id="go-tier-label">Tier I · Whisper</div>
+      <button class="go-exit" id="go-exit-btn">Exit</button>
+    </div>
+    <div class="go-intensity"><div class="bar" id="go-intensity-bar"></div></div>
+    <div class="go-stage" id="go-stage"></div>
+  </div>
+
   <!-- ================= CLOSE ================= -->
   <div class="close">
     <p class="ig"><em>Ikigai</em> — your reason for being: what you love, what you're good at, what you can be paid for, and what the world needs.</p>
@@ -1312,6 +1670,292 @@
     document.querySelector('.note').scrollIntoView({behavior:'smooth'});
   });
   document.querySelector('.scroll-cue').style.cursor='pointer';
+
+  /* ============================================================
+     THE BECOMING — game engine
+     ============================================================ */
+  const TIERS = [
+    { id:1, roman:'I', name:'Whisper',
+      sub:'Words and eye contact only — no touch yet.',
+      mood:'The room learns the shape of anticipation.' },
+    { id:2, roman:'II', name:'Touch',
+      sub:'Clothed, slow, deliberate contact.',
+      mood:'The body waking, gently, before it knows where it is going.' },
+    { id:3, roman:'III', name:'Tease',
+      sub:'Lips, breath, edges — the blindfold appears.',
+      mood:'Sensation at the threshold of not-quite-yet.' },
+    { id:4, roman:'IV', name:'Reveal',
+      sub:'Clothing comes off; sight is taken, or focused.',
+      mood:'Being seen — and being seen seeing.' },
+    { id:5, roman:'V', name:'Surrender',
+      sub:'Whole bodies, mouths, slow turns at giving and receiving.',
+      mood:'Letting go of the steering wheel.' },
+    { id:6, roman:'VI', name:'Burn',
+      sub:'Final union — slow, eyes open, intentional.',
+      mood:'Nothing left between you.' }
+  ];
+
+  const CARDS = {
+    1:[
+      "Look into the giver's eyes for sixty seconds without speaking. The receiver may not look away.",
+      "Whisper into the receiver's ear three things you find beautiful about them tonight — slowly, with breath.",
+      "Sit one meter apart. The giver describes, in detail, the most beautiful moment they remember sharing with the receiver. No interruption.",
+      "The giver names one place on the receiver's body they want to touch later tonight. The receiver decides whether it will be allowed — but no touching yet.",
+      "The giver tells the receiver a fantasy they have had about them, in whatever detail feels right. No reaction is required.",
+      "The receiver chooses three words. The giver builds a one-minute description of what the night is going to be like — using only those words and their imagination."
+    ],
+    2:[
+      "The giver places one hand on the receiver's face. Holds it there for thirty seconds. Does not move.",
+      "The giver traces the receiver's jaw, neck and collarbone with a single fingertip. Does not skip ahead.",
+      "The giver stands behind the receiver and runs both hands down their arms from shoulder to wrist. Three times.",
+      "The giver brushes the receiver's hair away from their face — very slowly — tucks it behind their ear, lets the hand linger.",
+      "The giver presses the palm of one hand against the receiver's chest, over the heart. Holds it there until the pulse can be felt.",
+      "The giver wraps both arms around the receiver from behind, and holds them, without speaking, for two minutes."
+    ],
+    3:[
+      "Blindfold the receiver. The giver places three slow kisses anywhere they choose — but not on the mouth. The receiver guesses where each was.",
+      "The giver kisses the receiver everywhere except the mouth for two full minutes. The receiver may not initiate a mouth kiss.",
+      "The giver runs only their lips — no tongue — along the receiver's neck, ear and shoulder. Slowly.",
+      "The giver breathes against the receiver's skin in three places of their choosing. No touch. Just breath.",
+      "The giver bites — gently — the receiver's bottom lip, ear, and the side of their neck. One bite each, with full pauses between.",
+      "The receiver lies back. The giver kisses them deeply for one full minute. Then stops entirely. Then begins again."
+    ],
+    4:[
+      "The giver removes one piece of the receiver's clothing. Slowly. The receiver may not help.",
+      "Blindfold the giver. The receiver guides the giver's hands to three places on their body — anywhere they like.",
+      "The giver stands over the receiver and removes their own clothing — one piece — while the receiver watches in silence.",
+      "The receiver removes one piece of the giver's clothing using only their teeth and lips.",
+      "Both partners undress each other simultaneously, slowly, without breaking eye contact.",
+      "The receiver is fully undressed by the giver and laid down. The giver looks at them — just looks — for one full minute before any touch begins."
+    ],
+    5:[
+      "The giver uses only their mouth on the receiver's body for three minutes. The receiver chooses where to begin and may redirect at any time.",
+      "The receiver lies still. The giver may not be touched for five minutes — only give. The receiver speaks only to direct.",
+      "Blindfold the receiver. The giver explores their whole body slowly with hands, mouth and breath. No goal. No rush.",
+      "The giver presses the receiver into the bed with their weight. Holds them there, kissing them deeply, for as long as both want.",
+      "The receiver names one place on their body. The giver attends to that place — and only that place — for three minutes.",
+      "The giver works slowly from one end of the receiver to the other — kisses, breath, hands — making no part feel less wanted than another."
+    ],
+    6:[
+      "Begin slowly — or whatever the equivalent is for the two of you — and stay still for thirty full seconds. Eyes open.",
+      "The giver moves at exactly half the speed they think is right. Eyes open. Mouths open.",
+      "The receiver sets the pace, entirely. The giver follows. No suggestions.",
+      "Agree together on a single position. Stay in it. Slow. Deep. Quiet enough to hear each other breathe.",
+      "The giver pauses every thirty seconds. Looks at the receiver. Begins again.",
+      "Forget the cards. Be with them. As long as both of you want."
+    ]
+  };
+
+  const MODIFIERS = [
+    { name:'Blindfolded', text:'One of you wears the blindfold for the full duration of this card. The pair decides who.' },
+    { name:'In Silence',  text:'No words during this card — only breath, eyes and touch communicate. Sounds are allowed.' },
+    { name:'Twice',       text:'The action is performed, then immediately performed again — same card, no break between.' },
+    { name:'Reversed',    text:'Halfway through, the giver and receiver swap roles. Same card, opposite direction.' },
+    { name:'With Sensation', text:'Introduce a sensory element — ice, warm oil, silk, a feather. The giver chooses.' },
+    { name:'Pure',        text:'The card as written, with no modifier. The plainest version of the act.' }
+  ];
+
+  // game state
+  let state = {
+    tier:1, cardsThisTier:0, giverIsA:true, lastCardDie:0, lastModDie:0, active:false
+  };
+
+  const overlay = document.getElementById('game-overlay');
+  const stage = document.getElementById('go-stage');
+  const tierLabel = document.getElementById('go-tier-label');
+  const intensityBar = document.getElementById('go-intensity-bar');
+
+  function rollDie(){ return Math.floor(Math.random()*6)+1; }
+
+  // build a die element with 6 faces and pips for each
+  function buildDie(color){
+    const die = document.createElement('div');
+    die.className = 'die ' + color;
+    for(let f=1; f<=6; f++){
+      const face = document.createElement('div');
+      face.className = 'die-face f'+f;
+      for(let p=0; p<f; p++){
+        const pip = document.createElement('div');
+        pip.className = 'pip';
+        face.appendChild(pip);
+      }
+      die.appendChild(face);
+    }
+    return die;
+  }
+
+  // CSS rotation needed to bring face N forward
+  const faceRotations = {
+    1:'rotateX(0deg) rotateY(0deg)',
+    2:'rotateX(0deg) rotateY(90deg)',
+    3:'rotateX(0deg) rotateY(180deg)',
+    4:'rotateX(0deg) rotateY(-90deg)',
+    5:'rotateX(90deg) rotateY(0deg)',
+    6:'rotateX(-90deg) rotateY(0deg)'
+  };
+
+  function animateDie(die, targetFace){
+    // tumble a few times then settle on the target face
+    const extraSpinsX = (Math.floor(Math.random()*3)+2)*360;
+    const extraSpinsY = (Math.floor(Math.random()*3)+2)*360;
+    const base = faceRotations[targetFace].match(/rotateX\((-?\d+)deg\) rotateY\((-?\d+)deg\)/);
+    const targetX = parseInt(base[1],10);
+    const targetY = parseInt(base[2],10);
+    die.classList.add('rolling');
+    die.style.transform = 'rotateX('+(targetX+extraSpinsX)+'deg) rotateY('+(targetY+extraSpinsY)+'deg)';
+  }
+
+  function renderTierIntro(){
+    const t = TIERS[state.tier-1];
+    tierLabel.textContent = 'Tier ' + t.roman + ' · ' + t.name;
+    intensityBar.style.width = (state.tier * 16.66) + '%';
+    stage.innerHTML =
+      '<div class="go-tier-intro">' +
+        '<div class="t-num">Tier ' + t.roman + '</div>' +
+        '<h2>' + t.name + '</h2>' +
+        '<div class="t-sub">' + t.sub + '</div>' +
+        '<div class="t-mood">' + t.mood + '</div>' +
+        '<div class="go-actions">' +
+          '<button class="gbtn primary" id="roll-btn">Roll the dice</button>' +
+        '</div>' +
+      '</div>';
+    document.getElementById('roll-btn').addEventListener('click', renderDiceAndRoll);
+  }
+
+  function renderDiceAndRoll(){
+    const t = TIERS[state.tier-1];
+    stage.innerHTML =
+      '<div class="dice-area" id="dice-area"></div>' +
+      '<div class="die-labels"><span>Card</span><span>Modifier</span></div>';
+    const area = document.getElementById('dice-area');
+    const plumDie = buildDie('plum');
+    const goldDie = buildDie('gold');
+    area.appendChild(plumDie);
+    area.appendChild(goldDie);
+
+    // start at face 1 so the geometry resolves
+    plumDie.style.transform = faceRotations[1];
+    goldDie.style.transform = faceRotations[1];
+
+    // roll on next tick
+    requestAnimationFrame(()=>{
+      const cardN = rollDie();
+      const modN  = rollDie();
+      state.lastCardDie = cardN;
+      state.lastModDie = modN;
+      animateDie(plumDie, cardN);
+      animateDie(goldDie, modN);
+      setTimeout(()=>{ renderCard(cardN, modN); }, 1700);
+    });
+  }
+
+  function renderCard(cardN, modN){
+    const t = TIERS[state.tier-1];
+    const text = CARDS[state.tier][cardN-1];
+    const mod = MODIFIERS[modN-1];
+    const giver = state.giverIsA ? 'A' : 'B';
+    const receiver = state.giverIsA ? 'B' : 'A';
+
+    // keep dice visible but smaller; card appears below
+    stage.innerHTML =
+      '<div class="game-card" id="game-card">' +
+        '<div class="gc-header">' +
+          '<div class="gc-tier">Tier ' + t.roman + ' · ' + t.name + '</div>' +
+          '<div class="gc-direction">' +
+            'Giver: <strong>' + giver + '</strong> <span class="arrow">→</span> Receiver: <strong>' + receiver + '</strong>' +
+          '</div>' +
+        '</div>' +
+        '<div class="gc-text">' + text + '</div>' +
+        (mod.name !== 'Pure' ?
+          '<div class="gc-mod">' +
+            '<span class="gc-mod-label">Modifier · ' + mod.name + '</span>' +
+            '<span class="gc-mod-text">' + mod.text + '</span>' +
+          '</div>' : '') +
+      '</div>' +
+      '<div class="go-actions">' +
+        '<button class="gbtn primary" id="done-btn">Done</button>' +
+        '<button class="gbtn ghost" id="skip-btn">Skip</button>' +
+        (state.cardsThisTier >= 2 ?
+          '<button class="gbtn solid-dark" id="advance-btn">Advance tier ' +
+            (state.tier < 6 ? '→' : '· finale') + '</button>' : '') +
+      '</div>';
+    requestAnimationFrame(()=>{
+      document.getElementById('game-card').classList.add('visible');
+    });
+    document.getElementById('done-btn').addEventListener('click', nextCard);
+    document.getElementById('skip-btn').addEventListener('click', nextCard);
+    const adv = document.getElementById('advance-btn');
+    if (adv) adv.addEventListener('click', advanceTier);
+  }
+
+  function nextCard(){
+    state.cardsThisTier++;
+    state.giverIsA = !state.giverIsA;
+    renderDiceAndRoll();
+  }
+
+  function advanceTier(){
+    if (state.tier >= 6){ renderEnding(); return; }
+    state.tier++;
+    state.cardsThisTier = 0;
+    renderBreath();
+  }
+
+  function renderBreath(){
+    const t = TIERS[state.tier-1];
+    tierLabel.textContent = 'Tier ' + t.roman + ' · ' + t.name;
+    intensityBar.style.width = (state.tier * 16.66) + '%';
+    stage.innerHTML =
+      '<div class="breath">' +
+        '<div class="breath-circle">Breathe</div>' +
+        '<h3>Before we move on</h3>' +
+        '<p>Stay here for a moment. Look at them. Drink some water if you need it. The next tier begins when you are both ready.</p>' +
+        '<div class="go-actions">' +
+          '<button class="gbtn primary" id="continue-btn">Enter ' + t.name + '</button>' +
+          '<button class="gbtn ghost" id="stay-btn">Actually — stay at the last tier</button>' +
+        '</div>' +
+      '</div>';
+    document.getElementById('continue-btn').addEventListener('click', renderTierIntro);
+    document.getElementById('stay-btn').addEventListener('click', ()=>{
+      state.tier--;
+      tierLabel.textContent = 'Tier ' + TIERS[state.tier-1].roman + ' · ' + TIERS[state.tier-1].name;
+      intensityBar.style.width = (state.tier * 16.66) + '%';
+      renderDiceAndRoll();
+    });
+  }
+
+  function renderEnding(){
+    tierLabel.textContent = 'Becoming · complete';
+    intensityBar.style.width = '100%';
+    stage.innerHTML =
+      '<div class="ending">' +
+        '<h2>The cards are over.</h2>' +
+        '<p>What happens next belongs only to you. Stay with each other. Stay in the dark. Stay slow. There is nothing to perform and nowhere to be.</p>' +
+        '<p style="opacity:.55;font-size:.95rem">When you are ready to leave the room — and only then — the exit is at the top.</p>' +
+      '</div>';
+  }
+
+  function enterGame(){
+    state = { tier:1, cardsThisTier:0, giverIsA:true, lastCardDie:0, lastModDie:0, active:true };
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    renderTierIntro();
+  }
+
+  function exitGame(){
+    if (state.active && !confirm('Exit the game? Progress is not saved.')) return;
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    state.active = false;
+  }
+
+  document.getElementById('bgame-begin-btn').addEventListener('click', enterGame);
+  document.getElementById('go-exit-btn').addEventListener('click', exitGame);
+  document.addEventListener('keydown', (e)=>{
+    if (e.key === 'Escape' && state.active) exitGame();
+  });
 </script>
 </body>
 </html>
