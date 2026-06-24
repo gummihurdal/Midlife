@@ -19,3 +19,4 @@ Same shape as the dragonfly project: one `index.html`, no build step, no externa
 - It's a *companion*, not the book — it deliberately keeps the ideas and leaves the anecdotes behind.
 - To change the domain, edit `CNAME` and the matching DNS record.
 - Respects reduced-motion; scales down to mobile.
+
