@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>For the Middle Years — A companion for couples in midlife</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Three companions for couples navigating midlife together: a book distilled, the science of desire, and an interactive game for two.">
+<meta name="theme-color" content="#f5f0e6">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
@@ -24,7 +25,7 @@
     --dark-wine:#2a1424;
     --light-cream:#f4ead6;
     --line:rgba(60,30,20,.12);
-    --shadow:rgba(60,30,20,.08);
+    --shadow:rgba(60,30,20,.10);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
@@ -38,175 +39,193 @@
   img{display:block;max-width:100%}
   a{color:inherit;text-decoration:none}
 
-  /* tiny site mark */
+  /* tiny site mark — fixed top-left */
   .site-mark{
     position:fixed;top:22px;left:28px;z-index:50;
-    font-family:'Fraunces',serif;font-size:.7rem;letter-spacing:.34em;
+    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.34em;
     text-transform:uppercase;color:var(--plum);font-weight:500;
     mix-blend-mode:multiply;
   }
+  @media (max-width:600px){
+    .site-mark{top:16px;left:20px;font-size:.58rem;letter-spacing:.28em}
+  }
 
-  /* ============ HERO ============ */
+  /* =================================================================
+     HERO — compact, proportionate (~70vh desktop, ~62vh phone)
+     ================================================================= */
   .hero{
-    min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
-    padding:120px 28px 80px;text-align:center;position:relative;
+    min-height:72vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+    padding:100px 28px 50px;text-align:center;position:relative;
     background:var(--paper);
   }
   .hero::before{
     content:"";position:absolute;inset:0;pointer-events:none;
     background:
-      radial-gradient(ellipse 60% 50% at 80% 15%, rgba(176,123,62,.12), transparent 60%),
-      radial-gradient(ellipse 50% 40% at 15% 85%, rgba(108,58,92,.08), transparent 60%);
+      radial-gradient(ellipse 60% 50% at 80% 15%, rgba(176,123,62,.10), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 15% 85%, rgba(108,58,92,.07), transparent 60%);
   }
-  .hero-inner{position:relative;z-index:1;max-width:880px;width:100%}
+  .hero-inner{position:relative;z-index:1;max-width:720px;width:100%}
   .hero .kicker{
-    font-family:'Fraunces',serif;font-size:.74rem;letter-spacing:.42em;
+    font-family:'Fraunces',serif;font-size:.7rem;letter-spacing:.42em;
     text-transform:uppercase;color:var(--plum);font-weight:600;
-    margin-bottom:30px;opacity:0;animation:fadeUp 1.4s ease .2s forwards;
+    margin-bottom:24px;opacity:0;animation:fadeUp 1.2s ease .15s forwards;
   }
   .hero h1{
     font-family:'Fraunces',serif;font-weight:400;
-    font-size:clamp(3.5rem,11vw,8rem);line-height:.92;letter-spacing:-.02em;
-    color:var(--ink);margin-bottom:36px;
-    opacity:0;animation:fadeUp 1.6s ease .35s forwards;
+    font-size:clamp(2.6rem,7vw,4.8rem);line-height:1;letter-spacing:-.018em;
+    color:var(--ink);margin-bottom:24px;
+    opacity:0;animation:fadeUp 1.4s ease .3s forwards;
   }
   .hero h1 em{font-style:italic;font-weight:300;color:var(--plum-deep)}
   .hero .sub{
     font-family:'Fraunces',serif;font-style:italic;font-weight:300;
-    font-size:clamp(1.15rem,2.6vw,1.55rem);color:var(--ink-soft);
-    max-width:36ch;margin:0 auto 30px;line-height:1.45;
-    opacity:0;animation:fadeUp 1.4s ease .5s forwards;
+    font-size:clamp(1.05rem,2.3vw,1.35rem);color:var(--ink-soft);
+    max-width:36ch;margin:0 auto 28px;line-height:1.45;
+    opacity:0;animation:fadeUp 1.2s ease .45s forwards;
   }
   .hero-ornament{
-    margin:0 auto 50px;opacity:0;animation:fadeUp 1.4s ease .65s forwards;
+    margin:0 auto 24px;opacity:0;animation:fadeUp 1.2s ease .6s forwards;
   }
   .hero-ornament line,.hero-ornament path{stroke:var(--gold);stroke-width:1;fill:none}
   .hero-ornament circle{fill:var(--gold)}
   .hero-cue{
-    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.36em;
+    font-family:'Fraunces',serif;font-size:.62rem;letter-spacing:.34em;
     text-transform:uppercase;color:var(--ink-soft);font-weight:500;
-    opacity:0;animation:fadeUp 1.4s ease .8s forwards;
+    opacity:0;animation:fadeUp 1.2s ease .75s forwards;
   }
-  .hero-cue::after{
-    content:"";display:block;width:1px;height:48px;background:var(--ink-soft);
-    margin:18px auto 0;animation:lineGrow 3s ease infinite;
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @media (max-width:600px){
+    .hero{min-height:62vh;padding:80px 22px 40px}
+    .hero h1{margin-bottom:20px}
+    .hero-ornament{margin-bottom:18px}
   }
-  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-  @keyframes lineGrow{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
 
-  /* ============ FEATURE BLOCKS ============ */
-  .feature{
-    display:grid;grid-template-columns:1fr 1fr;min-height:88vh;
-    position:relative;overflow:hidden;
+  /* =================================================================
+     PATHS GRID — three cards visible at once on desktop
+     ================================================================= */
+  .paths{
+    padding:60px 28px 100px;background:var(--paper);
+    position:relative;
   }
-  .feature.reverse{direction:rtl}
-  .feature.reverse > *{direction:ltr}
-  .feat-image{
-    position:relative;overflow:hidden;
+  .paths-header{text-align:center;max-width:640px;margin:0 auto 50px}
+  .paths-kicker{
+    font-family:'Fraunces',serif;font-size:.7rem;letter-spacing:.42em;
+    text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px;
   }
-  .feat-image img{
+  .paths-title{
+    font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+    font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.1;color:var(--plum-deep);
+    letter-spacing:-.008em;margin-bottom:14px;
+  }
+  .paths-sub{
+    color:var(--ink-soft);font-size:1rem;line-height:1.55;
+  }
+  .paths-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:28px;
+    max-width:1320px;margin:0 auto;
+  }
+  @media (max-width:1000px){
+    .paths-grid{grid-template-columns:1fr;gap:22px;max-width:520px}
+    .paths{padding:40px 22px 80px}
+  }
+
+  /* path card */
+  .path-card{
+    display:flex;flex-direction:column;
+    background:var(--paper-warm);
+    border:1px solid var(--line);border-radius:4px;
+    overflow:hidden;
+    transition:transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s ease;
+    color:var(--ink);
+    position:relative;
+  }
+  .path-card:hover{
+    transform:translateY(-6px);box-shadow:0 18px 38px var(--shadow);
+  }
+  .path-card-image{
+    width:100%;aspect-ratio:4/3;overflow:hidden;position:relative;
+    background:linear-gradient(135deg,#e8ddc8,#d8c9ad);
+  }
+  .path-card-image img{
     width:100%;height:100%;object-fit:cover;
     transition:transform 1.4s cubic-bezier(.16,1,.3,1);
   }
-  .feature:hover .feat-image img{transform:scale(1.04)}
-  .feat-image::after{
-    content:"";position:absolute;inset:0;pointer-events:none;
-    background:linear-gradient(45deg, rgba(0,0,0,.1), transparent 40%);
+  .path-card:hover .path-card-image img{transform:scale(1.05)}
+  .path-card-content{
+    padding:28px 26px 26px;
+    display:flex;flex-direction:column;flex:1;
   }
-  .feat-content{
-    display:flex;flex-direction:column;justify-content:center;
-    padding:80px clamp(40px,7vw,100px);
-    position:relative;
+  .path-card-top{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-bottom:14px;
   }
-  .feat-content::before{
-    content:"";position:absolute;inset:0;pointer-events:none;
-  }
-  .feat-num{
+  .path-card-num{
     font-family:'Fraunces',serif;font-style:italic;font-weight:300;
-    font-size:5rem;line-height:1;color:currentColor;opacity:.18;
-    margin-bottom:24px;
+    font-size:1.6rem;line-height:1;opacity:.5;
   }
-  .feat-label{
-    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.4em;
-    text-transform:uppercase;font-weight:600;margin-bottom:18px;
-  }
-  .feat-title{
-    font-family:'Fraunces',serif;font-weight:400;
-    font-size:clamp(2.4rem,5vw,4rem);line-height:.98;letter-spacing:-.015em;
-    margin-bottom:24px;
-  }
-  .feat-title em{font-style:italic;font-weight:300}
-  .feat-desc{
-    font-family:'Newsreader',serif;font-size:1.08rem;line-height:1.6;
-    margin-bottom:36px;max-width:46ch;
-  }
-  .feat-desc em{font-style:italic}
-  .feat-cta{
-    display:inline-flex;align-items:center;gap:14px;width:fit-content;
-    font-family:'Fraunces',serif;font-size:.74rem;letter-spacing:.32em;
+  .path-card-label{
+    font-family:'Fraunces',serif;font-size:.62rem;letter-spacing:.32em;
     text-transform:uppercase;font-weight:600;
-    padding:18px 0;border-bottom:1px solid currentColor;
+  }
+  .path-card-title{
+    font-family:'Fraunces',serif;font-weight:500;
+    font-size:1.55rem;line-height:1.1;letter-spacing:-.008em;
+    margin-bottom:14px;color:var(--ink);
+  }
+  .path-card-title em{font-style:italic;font-weight:300}
+  .path-card-desc{
+    font-family:'Newsreader',serif;font-size:.98rem;line-height:1.55;
+    color:var(--ink-soft);margin-bottom:24px;flex:1;
+  }
+  .path-card-desc em{font-style:italic}
+  .path-card-cta{
+    display:inline-flex;align-items:center;gap:10px;width:fit-content;
+    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.32em;
+    text-transform:uppercase;font-weight:600;
+    padding-bottom:6px;border-bottom:1px solid currentColor;
     transition:gap .3s ease;
   }
-  .feat-cta:hover{gap:22px}
-  .feat-cta .arr{font-size:1.1rem;letter-spacing:0}
+  .path-card:hover .path-card-cta{gap:14px}
+  .path-card-cta .arr{font-size:.95rem;letter-spacing:0}
 
-  /* PATH ONE — cream paper, plum accents */
-  .feat-one{background:var(--paper)}
-  .feat-one .feat-content{color:var(--ink)}
-  .feat-one .feat-label{color:var(--plum)}
-  .feat-one .feat-title em{color:var(--plum-deep)}
-  .feat-one .feat-cta{color:var(--plum)}
+  /* Path-specific accents */
+  .path-card.one .path-card-num,
+  .path-card.one .path-card-label,
+  .path-card.one .path-card-title em,
+  .path-card.one .path-card-cta{color:var(--plum)}
 
-  /* PATH TWO — warm vellum, gold accents */
-  .feat-two{background:var(--vellum)}
-  .feat-two .feat-content{color:var(--ink)}
-  .feat-two .feat-content::before{
-    background:
-      radial-gradient(circle at 70% 30%, rgba(176,123,62,.12), transparent 50%),
-      radial-gradient(circle at 30% 70%, rgba(108,58,92,.08), transparent 55%);
+  .path-card.two .path-card-num,
+  .path-card.two .path-card-label,
+  .path-card.two .path-card-title em,
+  .path-card.two .path-card-cta{color:var(--gold)}
+  .path-card.two{background:var(--vellum)}
+
+  .path-card.three{
+    background:linear-gradient(165deg,var(--dark-wine),var(--dark));
+    color:var(--light-cream);border-color:rgba(244,234,214,.15);
   }
-  .feat-two .feat-label{color:var(--gold)}
-  .feat-two .feat-title em{color:var(--gold)}
-  .feat-two .feat-cta{color:var(--gold)}
+  .path-card.three .path-card-title{color:var(--light-cream)}
+  .path-card.three .path-card-desc{color:rgba(244,234,214,.78)}
+  .path-card.three .path-card-num,
+  .path-card.three .path-card-label,
+  .path-card.three .path-card-title em,
+  .path-card.three .path-card-cta{color:#d49659}
 
-  /* PATH THREE — dark wine, ember accents */
-  .feat-three{
-    background:linear-gradient(135deg,var(--dark-wine),var(--dark));
-    color:var(--light-cream);
-  }
-  .feat-three .feat-content{color:var(--light-cream)}
-  .feat-three .feat-content::before{
-    background:
-      radial-gradient(circle at 70% 30%, rgba(176,123,62,.22), transparent 50%),
-      radial-gradient(circle at 30% 70%, rgba(138,42,58,.2), transparent 55%);
-  }
-  .feat-three .feat-label{color:#d49659}
-  .feat-three .feat-title em{color:#d49659}
-  .feat-three .feat-desc{color:rgba(244,234,214,.8)}
-  .feat-three .feat-desc em{color:#d49659;font-style:italic}
-  .feat-three .feat-cta{color:#d49659;border-bottom-color:rgba(212,150,89,.5)}
-  .feat-three .feat-num{color:#d49659}
-
-  /* divider between features */
-  .feature + .feature::before{
-    content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
-    width:60px;height:1px;background:currentColor;opacity:.15;z-index:2;
-  }
-
-  /* ============ FOOTER ============ */
+  /* =================================================================
+     FOOTER
+     ================================================================= */
   footer{
-    background:var(--paper);
-    padding:80px 28px 60px;text-align:center;
+    background:var(--paper-warm);
+    padding:50px 28px 40px;text-align:center;
     border-top:1px solid var(--line);
   }
   footer .quiet{
     font-family:'Fraunces',serif;font-style:italic;color:var(--ink-soft);
-    font-size:1rem;margin-bottom:18px;
+    font-size:.95rem;margin-bottom:14px;
   }
   footer .credits{
-    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.22em;
-    text-transform:uppercase;color:var(--ink-soft);opacity:.65;
+    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--ink-soft);opacity:.7;
   }
   footer .credits a{
     color:var(--plum);border-bottom:1px solid var(--line);
@@ -214,110 +233,118 @@
   }
   footer .credits a:hover{color:var(--gold)}
 
-  /* ============ RESPONSIVE ============ */
-  @media (max-width: 900px){
-    .feature{grid-template-columns:1fr;min-height:auto}
-    .feature.reverse{direction:ltr}
-    .feat-image{height:55vh;min-height:380px}
-    .feat-content{padding:60px 32px}
-    .feat-num{font-size:3.5rem;margin-bottom:14px}
-  }
-  @media (max-width: 540px){
-    .site-mark{top:16px;left:18px;font-size:.62rem}
-    .hero{padding:100px 22px 60px}
-    .feat-content{padding:50px 24px}
-    .feat-image{height:50vh;min-height:320px}
-  }
+  /* reduced motion */
   @media (prefers-reduced-motion: reduce){
     *{animation:none!important;transition:none!important}
   }
 
-  /* image loading skeleton */
-  .feat-image{background:linear-gradient(120deg,#e8ddc8 0%,#d8c9ad 50%,#e8ddc8 100%)}
+  /* iPhone notch safe-area */
+  @supports(padding:max(0px)){
+    .site-mark{left:max(20px, env(safe-area-inset-left));}
+  }
 </style>
 </head>
 <body>
 
 <div class="site-mark">Midlife · Together</div>
 
-<!-- ============ HERO ============ -->
+<!-- HERO -->
 <header class="hero">
   <div class="hero-inner">
     <div class="kicker">A companion for couples · in midlife</div>
-    <h1>For the<br><em>Middle</em><br>Years</h1>
+    <h1>For the<br><em>Middle</em> Years</h1>
     <p class="sub">Three rooms. A book, the science, an evening. Choose any door.</p>
-    <svg class="hero-ornament" viewBox="0 0 100 130" width="36" height="46" aria-hidden="true">
+    <svg class="hero-ornament" viewBox="0 0 100 130" width="32" height="42" aria-hidden="true">
       <line x1="50" y1="0" x2="50" y2="38"/>
       <path d="M50 38 L62 50 L50 62 L38 50 Z"/>
       <circle cx="50" cy="74" r="2"/>
       <path d="M50 86 L62 98 L50 110 L38 98 Z"/>
       <line x1="50" y1="110" x2="50" y2="130"/>
     </svg>
-    <div class="hero-cue">Begin below</div>
+    <div class="hero-cue">Choose your path ↓</div>
   </div>
 </header>
 
-<!-- ============ PATH ONE ============ -->
-<section class="feature feat-one">
-  <div class="feat-image">
-    <img src="https://images.unsplash.com/photo-1757175461743-97f5dc343c58?w=1400&q=80&auto=format&fit=crop"
-         srcset="https://images.unsplash.com/photo-1757175461743-97f5dc343c58?w=800&q=80&auto=format&fit=crop 800w,
-                 https://images.unsplash.com/photo-1757175461743-97f5dc343c58?w=1400&q=80&auto=format&fit=crop 1400w,
-                 https://images.unsplash.com/photo-1757175461743-97f5dc343c58?w=2000&q=80&auto=format&fit=crop 2000w"
-         sizes="(max-width: 900px) 100vw, 50vw"
-         alt="An open book with pages illuminated by soft light"
-         loading="lazy">
+<!-- PATHS GRID — all three visible together on desktop -->
+<section class="paths">
+  <div class="paths-header">
+    <div class="paths-kicker">Three rooms</div>
+    <h2 class="paths-title">Three readings of <em>the same</em> midlife</h2>
+    <p class="paths-sub">A book read together. The science of long-term desire. An interactive game for steamy evenings. Read them in any order.</p>
   </div>
-  <div class="feat-content">
-    <div class="feat-num">I</div>
-    <div class="feat-label">Path One</div>
-    <h2 class="feat-title">The <em>Midlife</em> Crisis</h2>
-    <p class="feat-desc">Kate Muir's <em>How to Have a Magnificent Midlife Crisis</em>, distilled. Eighteen chapters on the hormonal, neurological and psychological weather of midlife — Mind, Body, Spirit — each with the wheat of the chapter and questions designed to read together.</p>
-    <a href="path-one.html" class="feat-cta">Begin reading <span class="arr">→</span></a>
+
+  <div class="paths-grid">
+
+    <!-- PATH ONE -->
+    <a class="path-card one" href="path-one.html">
+      <div class="path-card-image">
+        <img src="https://images.unsplash.com/photo-1757175461743-97f5dc343c58?w=900&q=80&auto=format&fit=crop"
+             srcset="https://images.unsplash.com/photo-1757175461743-97f5dc343c58?w=600&q=80&auto=format&fit=crop 600w,
+                     https://images.unsplash.com/photo-1757175461743-97f5dc343c58?w=900&q=80&auto=format&fit=crop 900w,
+                     https://images.unsplash.com/photo-1757175461743-97f5dc343c58?w=1400&q=80&auto=format&fit=crop 1400w"
+             sizes="(max-width: 1000px) 100vw, 33vw"
+             alt="An open book illuminated by soft light"
+             loading="lazy" decoding="async">
+      </div>
+      <div class="path-card-content">
+        <div class="path-card-top">
+          <div class="path-card-label">Path One</div>
+          <div class="path-card-num">I</div>
+        </div>
+        <h3 class="path-card-title">The <em>Midlife</em> Crisis</h3>
+        <p class="path-card-desc">Kate Muir's <em>How to Have a Magnificent Midlife Crisis</em>, distilled. Eighteen chapters with questions to read together.</p>
+        <span class="path-card-cta">Begin reading <span class="arr">→</span></span>
+      </div>
+    </a>
+
+    <!-- PATH TWO -->
+    <a class="path-card two" href="path-two.html">
+      <div class="path-card-image">
+        <img src="https://images.unsplash.com/photo-1751929412521-e3078bd4af3b?w=900&q=80&auto=format&fit=crop"
+             srcset="https://images.unsplash.com/photo-1751929412521-e3078bd4af3b?w=600&q=80&auto=format&fit=crop 600w,
+                     https://images.unsplash.com/photo-1751929412521-e3078bd4af3b?w=900&q=80&auto=format&fit=crop 900w,
+                     https://images.unsplash.com/photo-1751929412521-e3078bd4af3b?w=1400&q=80&auto=format&fit=crop 1400w"
+             sizes="(max-width: 1000px) 100vw, 33vw"
+             alt="A close-up of a pink peony in bloom"
+             loading="lazy" decoding="async">
+      </div>
+      <div class="path-card-content">
+        <div class="path-card-top">
+          <div class="path-card-label">Path Two</div>
+          <div class="path-card-num">II</div>
+        </div>
+        <h3 class="path-card-title"><em>Improved</em> Intimacy</h3>
+        <p class="path-card-desc">The science of desire that lasts — Perel, Nagoski, Aron, Mark &amp; Lasslo. Seven practices to keep the flame alive.</p>
+        <span class="path-card-cta">Begin reading <span class="arr">→</span></span>
+      </div>
+    </a>
+
+    <!-- PATH THREE -->
+    <a class="path-card three" href="path-three.html">
+      <div class="path-card-image">
+        <img src="https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=900&q=80&auto=format&fit=crop"
+             srcset="https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=600&q=80&auto=format&fit=crop 600w,
+                     https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=900&q=80&auto=format&fit=crop 900w,
+                     https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=1400&q=80&auto=format&fit=crop 1400w"
+             sizes="(max-width: 1000px) 100vw, 33vw"
+             alt="A single lit candle in the dark"
+             loading="lazy" decoding="async">
+      </div>
+      <div class="path-card-content">
+        <div class="path-card-top">
+          <div class="path-card-label">Path Three</div>
+          <div class="path-card-num">III</div>
+        </div>
+        <h3 class="path-card-title">The <em>Becoming</em></h3>
+        <p class="path-card-desc">An interactive dice-and-card game for two. Six tiers, 216 unique card-experiences. For one evening with no rush.</p>
+        <span class="path-card-cta">Enter the room <span class="arr">→</span></span>
+      </div>
+    </a>
+
   </div>
 </section>
 
-<!-- ============ PATH TWO ============ -->
-<section class="feature feat-two reverse">
-  <div class="feat-image">
-    <img src="https://images.unsplash.com/photo-1751929412521-e3078bd4af3b?w=1400&q=80&auto=format&fit=crop"
-         srcset="https://images.unsplash.com/photo-1751929412521-e3078bd4af3b?w=800&q=80&auto=format&fit=crop 800w,
-                 https://images.unsplash.com/photo-1751929412521-e3078bd4af3b?w=1400&q=80&auto=format&fit=crop 1400w,
-                 https://images.unsplash.com/photo-1751929412521-e3078bd4af3b?w=2000&q=80&auto=format&fit=crop 2000w"
-         sizes="(max-width: 900px) 100vw, 50vw"
-         alt="A close-up of a pink peony blossom"
-         loading="lazy">
-  </div>
-  <div class="feat-content">
-    <div class="feat-num">II</div>
-    <div class="feat-label">Path Two</div>
-    <h2 class="feat-title"><em>Improved</em> Intimacy</h2>
-    <p class="feat-desc">The science of desire that lasts. Esther Perel on the paradox at the heart, Emily Nagoski on the brakes and accelerators of arousal, Arthur Aron on novelty and self-expansion, Mark &amp; Lasslo on every factor that maintains long-term desire — and seven practices that translate the research into evenings.</p>
-    <a href="path-two.html" class="feat-cta">Begin reading <span class="arr">→</span></a>
-  </div>
-</section>
-
-<!-- ============ PATH THREE ============ -->
-<section class="feature feat-three">
-  <div class="feat-image">
-    <img src="https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=1400&q=80&auto=format&fit=crop"
-         srcset="https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=800&q=80&auto=format&fit=crop 800w,
-                 https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=1400&q=80&auto=format&fit=crop 1400w,
-                 https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=2000&q=80&auto=format&fit=crop 2000w"
-         sizes="(max-width: 900px) 100vw, 50vw"
-         alt="A single lit candle glowing in the dark"
-         loading="lazy">
-  </div>
-  <div class="feat-content">
-    <div class="feat-num">III</div>
-    <div class="feat-label">Path Three</div>
-    <h2 class="feat-title">The <em>Becoming</em></h2>
-    <p class="feat-desc">An interactive dice-and-card game for two. Six tiers — <em>Whisper · Touch · Tease · Reveal · Surrender · Burn</em>. Two dice, two hundred and sixteen unique card-experiences, designed around the science of consent and slowness. For one evening with no rush.</p>
-    <a href="path-three.html" class="feat-cta">Enter the room <span class="arr">→</span></a>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
+<!-- FOOTER -->
 <footer>
   <p class="quiet">A private companion. Made for couples in midlife.</p>
   <p class="credits">Photography: Liana S · Emma Swoboda · Katharina Maria · <a href="https://unsplash.com/license" target="_blank" rel="noopener">Unsplash</a></p>
