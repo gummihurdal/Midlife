@@ -548,6 +548,18 @@
   /* anchored headings shouldn't hide under sticky bars */
   h1,h2,h3,h4{scroll-margin-top:84px}
 
+
+  /* ====== wheel level tabs ====== */
+  .wheel-levels{display:flex;gap:10px;justify-content:center;margin:4px 0 6px}
+  .wlevel{--wl:#c98a3c;appearance:none;cursor:pointer;font:inherit;
+    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;font-weight:600;
+    color:rgba(244,234,214,.7);background:rgba(244,234,214,.05);
+    border:1px solid rgba(244,234,214,.18);border-radius:999px;padding:9px 20px;transition:all .2s ease}
+  .wlevel:hover{color:#fff;border-color:var(--wl)}
+  .wlevel.active{color:#1a0d18;background:var(--wl);border-color:var(--wl);box-shadow:0 4px 16px rgba(0,0,0,.4)}
+  .wheel-blurb{text-align:center;font-family:'Fraunces',serif;font-style:italic;
+    color:rgba(244,234,214,.66);font-size:.95rem;margin:0 auto 14px;max-width:34ch;line-height:1.45}
+
 </style>
 </head>
 <body>
@@ -912,55 +924,132 @@
   // ============================================================
 
   // ---- SPIN THE WHEEL : 8 soft categories, each with a prompt pool ----
-  const WHEEL = [
-    { key:'Senses', color:'#9db4d8', prompts:[
-      "Close {Rp} eyes. {Gs} brings three different textures to {Rp} skin, one at a time, and {Rs} names each.",
-      "{Gs} describes, slowly, {Gp} favourite thing about the way {Rs} smells. Then breathes it in for real.",
-      "Both close their eyes and, for one full minute, only listen \\u2014 to the room, to each other's breathing."
-    ]},
-    { key:'Talk', color:'#a9c0e2', prompts:[
-      "{Gs} finishes this out loud, slowly: 'The first time I wanted you, it was because\\u2026'",
-      "{Gs} tells {Ro} one small thing {gs} has never said and has always meant.",
-      "{Rs} asks one question {rs} has been a little afraid to ask. {Gs} answers honestly."
-    ]},
-    { key:'Praise', color:'#b9a9e0', prompts:[
-      "{Gs} names three things {gs} finds beautiful about {Ro} tonight \\u2014 specific, not general.",
-      "{Gs} tells {Ro} the part of {Rp} body {gs} thinks about most, and why.",
-      "{Gs} says, slowly and without irony, the most flattering true sentence {gs} can about {Ro}."
-    ]},
-    { key:'Touch', color:'#e0b6c8', prompts:[
-      "{Gs} traces {Rp} jaw, neck and collarbone with one fingertip, and does not skip ahead.",
-      "{Gs} holds {Rp} hand and kisses each fingertip, slowly, one at a time.",
-      "{Gs} places both palms flat on {Rp} back and breathes in time with {Ro} for a full minute."
-    ]},
-    { key:'Move', color:'#f0c98e', prompts:[
-      "Put on one slow song. {Gs} leads {Ro} in a slow dance until it ends \\u2014 no talking.",
-      "{Gs} pulls {Ro} close by the hips and they simply sway, foreheads touching, for one minute.",
-      "{Rs} sits. {Gs} moves slowly closer across the room, eyes locked, and does not look away."
-    ]},
-    { key:'Memory', color:'#f0c46a', prompts:[
-      "{Gs} describes, in detail, the best night the two of them have ever spent together.",
-      "{Gs} recalls the exact moment {gs} knew this was different, and tells {Ro} every detail.",
-      "Both name, in turn, one memory of the other they never want to forget."
-    ]},
-    { key:'Dream', color:'#e6a9c0', prompts:[
-      "{Gs} describes a place {gs} wants to take {Ro} someday, slowly, until {Rs} can see it.",
-      "{Gs} tells {Ro} one thing {gs} wants for the two of them a year from now.",
-      "{Gs} describes, in detail, a perfect day with {Ro} that hasn't happened yet."
-    ]},
-    { key:'Laugh', color:'#c9a9e0', prompts:[
-      "{Gs} does the worst possible impression of how they first met. {Rs} may not help.",
-      "{Gs} tries to make {Ro} laugh in thirty seconds using only {Gp} face. No words.",
-      "Both confess, in turn, the most embarrassing thing they once did to seem attractive."
-    ]}
-  ];
+  // ---- SPIN THE WHEEL : three levels, each its own 8-slice wheel ----
+  // Levels escalate: soft (no touch / words), spicy (hands, mouths), wild (bolder).
+  const WHEEL_LEVELS = {
+    soft: {
+      label:'Soft', accent:'#c98a3c',
+      blurb:'Words, looks, the lightest touch. Brakes-off, nothing rushed.',
+      slices:[
+        { key:'Senses', color:'#9db4d8', prompts:[
+          "Close your eyes. {Gs} brings three textures to {Rp} skin, one at a time, and {Rs} names each.",
+          "{Gs} describes, slowly, {Gp} favourite thing about the way {Rs} smells \u2014 then breathes it in for real.",
+          "Both close their eyes and, for one full minute, only listen \u2014 to the room, to each other breathing." ]},
+        { key:'Talk', color:'#a9c0e2', prompts:[
+          "{Gs} finishes this out loud, slowly: \u201cThe first time I wanted you, it was because\u2026\u201d",
+          "{Gs} tells {Ro} one small thing {gs} has never said and has always meant.",
+          "{Rs} asks one question {rs} has been a little afraid to ask. {Gs} answers honestly." ]},
+        { key:'Praise', color:'#b9a9e0', prompts:[
+          "{Gs} names three things {gs} finds beautiful about {Ro} tonight \u2014 specific, not general.",
+          "{Gs} tells {Ro} the part of {Rp} face {gs} loves most, and why.",
+          "{Gs} says, slowly and without irony, the most flattering true sentence {gs} can about {Ro}." ]},
+        { key:'Touch', color:'#e0b6c8', prompts:[
+          "{Gs} traces {Rp} jaw, neck and collarbone with one fingertip, and does not skip ahead.",
+          "{Gs} holds {Rp} hand and kisses each fingertip, slowly, one at a time.",
+          "{Gs} places both palms flat on {Rp} back and breathes in time with {Ro} for a full minute." ]},
+        { key:'Move', color:'#f0c98e', prompts:[
+          "Put on one slow song. {Gs} leads {Ro} in a slow dance until it ends \u2014 no talking.",
+          "{Gs} pulls {Ro} close by the hips and they simply sway, foreheads touching, for one minute.",
+          "{Rs} sits. {Gs} crosses the room slowly, eyes locked, and does not look away." ]},
+        { key:'Memory', color:'#f0c46a', prompts:[
+          "{Gs} describes, in detail, the best night the two of them have ever spent together.",
+          "{Gs} recalls the exact moment {gs} knew this was different, and tells {Ro} every detail.",
+          "Both name, in turn, one memory of the other they never want to forget." ]},
+        { key:'Dream', color:'#e6a9c0', prompts:[
+          "{Gs} describes a place {gs} wants to take {Ro} someday, slowly, until {Rs} can see it.",
+          "{Gs} tells {Ro} one thing {gs} wants for the two of them a year from now.",
+          "{Gs} describes a perfect day with {Ro} that hasn\u2019t happened yet." ]},
+        { key:'Laugh', color:'#c9a9e0', prompts:[
+          "{Gs} does the worst possible impression of how they first met. {Rs} may not help.",
+          "{Gs} tries to make {Ro} laugh in thirty seconds using only {Gp} face. No words.",
+          "Both confess, in turn, the most embarrassing thing they once did to seem attractive." ]}
+      ]
+    },
+    spicy: {
+      label:'Spicy', accent:'#b53a4a',
+      blurb:'Hands, mouths, clothes still mostly on. Warmer, slower, hungrier.',
+      slices:[
+        { key:'Neck', color:'#d98a6a', prompts:[
+          "{Gs} kisses {Rp} neck on the side {rs} likes, then breathes against it, then does it again.",
+          "{Gs} runs {Gp} lips \u2014 no hands \u2014 from {Rp} ear to {Rp} collarbone, slowly.",
+          "{Gs} holds {Ro} by the back of the neck and kisses {Ro} until {Rs} pulls {Go} closer." ]},
+        { key:'Hands', color:'#e0a06a', prompts:[
+          "{Gs} runs one hand from {Rp} collarbone down to just above the waistband. Stops. Returns.",
+          "{Gs} slides a hand up the inside of {Rp} thigh and stops two inches short. Holds.",
+          "{Gs} runs both hands up the back of {Rp} shirt and spreads the fingers across bare skin." ]},
+        { key:'Tease', color:'#d06a8a', prompts:[
+          "{Gs} leans in to kiss {Ro}, stops a breath away, and waits until {Rs} closes the gap.",
+          "{Gs} tells {Ro}, in detail, one thing {gs} is going to do later \u2014 then changes the subject.",
+          "{Gs} kisses everywhere except {Rp} mouth for two minutes. {Rs} may not initiate." ]},
+        { key:'Undress', color:'#c06a9a', prompts:[
+          "{Gs} removes exactly one piece of {Rp} clothing, slowly, and kisses the place it leaves.",
+          "{Rs} removes one piece of {Gp} clothing using only {Rp} teeth and lips.",
+          "{Gs} undresses {Ro} to one fewer layer, then makes {Ro} wait, fully, before anything more." ]},
+        { key:'Whisper', color:'#b06aaa', prompts:[
+          "{Gs} says one thing directly into {Rp} ear, low, and lets it land before moving.",
+          "{Gs} tells {Ro} a fantasy in {Rp} own words, lights low, no apology.",
+          "{Gs} narrates what {gs} wants while keeping {Gp} hands completely still." ]},
+        { key:'Press', color:'#a06aba', prompts:[
+          "{Gs} presses {Ro} to the wall with one hand on the chest and just holds {Ro} there.",
+          "{Gs} pulls {Ro} into {Gp} lap, wraps both arms around {Ro}, and stays still for thirty seconds.",
+          "{Gs} presses {Ro} into the bed with {Gp} weight and kisses {Ro} slow and deep." ]},
+        { key:'Taste', color:'#9a7aca', prompts:[
+          "{Gs} uses only {Gp} mouth on the inside of {Rp} wrist, the hip, the place behind the knee.",
+          "{Gs} bites \u2014 gently \u2014 {Rp} bottom lip, holds it, releases, repeats slower.",
+          "{Gs} kisses just below the waistband over clothing, looks up, says nothing, returns to the mouth." ]},
+        { key:'Lead', color:'#8a8ada', prompts:[
+          "{Rs} sets the pace for two minutes. {Gs} follows exactly, no suggestions.",
+          "{Gs} pins {Rp} wrists above {Rp} head and kisses {Ro} until {Rs} asks for more.",
+          "{Rs} closes {Rp} eyes and {Gs} decides everything for the next ninety seconds." ]}
+      ]
+    },
+    wild: {
+      label:'Wild', accent:'#7a2f8a',
+      blurb:'Bolder, fewer clothes, more wanting. Only when you both want it loud.',
+      slices:[
+        { key:'Strip', color:'#8a3a9a', prompts:[
+          "{Gs} undresses {Ro} completely, slowly, kissing each newly bared place before the next.",
+          "{Rs} undresses while {Gs} watches in silence, sitting, not touching, not speaking.",
+          "They undress each other at once, eye contact unbroken; whoever looks away first owes a minute of stillness." ]},
+        { key:'Worship', color:'#9a3a8a', prompts:[
+          "{Gs} works slowly from {Rp} mouth down \u2014 neck, chest, stomach \u2014 staying at each place too long.",
+          "{Rs} names one place and {Gs} attends to it, only it, with mouth and hands, for three minutes.",
+          "{Gs} explores all of {Ro} slowly with mouth and hands. No goal, no rush, no hesitation." ]},
+        { key:'Restrain', color:'#aa3a7a', prompts:[
+          "{Gs} holds {Rp} wrists down and will not let {Ro} move until {Rs} says please.",
+          "{Rs} is not allowed to be touched for five minutes \u2014 only to give. {Gs} receives, fully.",
+          "Blindfold {Ro}. {Gs} decides everything; {Rs} only directs with one word at a time." ]},
+        { key:'Power', color:'#ba3a6a', prompts:[
+          "{Rs} pulls {Go} in by the hips, sets the pace, then changes it, then changes it again.",
+          "{Gs} takes {Ro} from behind \u2014 clothed or not \u2014 and holds {Ro} there, kissing the neck.",
+          "{Rs} decides: lead, or be led. Whatever {rs} chooses, {Gs} gives it completely." ]},
+        { key:'Edge', color:'#ca3a5a', prompts:[
+          "{Gs} brings {Ro} close, then stops, then brings {Ro} close again \u2014 three times before more.",
+          "{Gs} moves at half the speed {gs} thinks is right, then half of that, pausing every thirty seconds.",
+          "{Rs} must stay completely still and quiet while {Gs} does whatever {gs} likes for two minutes." ]},
+        { key:'Confess', color:'#c0356a', prompts:[
+          "{Gs} tells {Ro} the boldest thing {gs} has wanted to do and never said. {Rs} only listens.",
+          "{Rs} describes, out loud, exactly what {rs} wants right now \u2014 no softening.",
+          "Each names one thing they want to try that they have never asked for. No reaction required." ]},
+        { key:'Union', color:'#b03a8a', prompts:[
+          "Agree on one position. Stay in it. Slow. Deep. Quiet enough to hear each other breathe.",
+          "Begin, then go completely still for thirty seconds, eyes open, before moving.",
+          "{Gs} stays still inside, looks at {Ro}, begins again, and repeats for as long as both want." ]},
+        { key:'Surrender', color:'#9a2faa', prompts:[
+          "Forget the wheel. Take what you want, give what they want, stay until you cannot stay.",
+          "Both stop, look at each other, and say one true thing before continuing.",
+          "{Rs} leads completely; {Gs} does nothing that is not asked for." ]}
+      ]
+    }
+  };
+  let wheelLevel = 'soft';
 
   // ---- SCRATCH CARDS : pool of small surprises for one evening ----
   const SCRATCH = [
     "A kiss, anywhere {Rs} chooses, that lasts a full sixty seconds.",
     "{Gs} gives {Ro} a five-minute shoulder rub, slowly, asking nothing in return.",
     "One honest compliment, whispered, about something {Gs} has never mentioned before.",
-    "{Gs} draws a slow bath or pours a drink \\u2014 {Rp} choice \\u2014 and brings it to {Ro}.",
+    "{Gs} draws a slow bath or pours a drink — {Rp} choice — and brings it to {Ro}.",
     "Three minutes of being held from behind, in silence, no agenda.",
     "{Gs} undresses {Ro} of exactly one item, slowly, and kisses the place it leaves.",
     "{Rs} names a place to be kissed; {Gs} stays there twice as long as expected.",
@@ -1177,12 +1266,13 @@
       '<div class="ending">' +
         '<h2>The cards are over.</h2>' +
         '<p>What happens next belongs only to you. Stay with each other. Stay in the dark. Stay slow. There is nothing to perform and nowhere to be.</p>' +
-        '<p style="opacity:.55;font-size:.95rem">When you are ready to leave the room — and only then — the exit is at the top.</p>' +
+        '<div class="go-actions" style="margin-top:30px"><button class="gbtn primary" id="ending-back">Back to the Playroom</button></div>' +
       '</div>';
+    document.getElementById('ending-back').addEventListener('click', backToHub);
   }
 
   function enterGame(){
-    state = { tier:1, cardsThisTier:0, leadIsHer:true, lastCardDie:0, lastModDie:0, active:true, theme:null };
+    state = { tier:1, cardsThisTier:0, leadIsHer:true, lastCardDie:0, lastModDie:0, active:true, theme:null, game:'becoming' };
     overlay.classList.add('active');
     overlay.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
@@ -1225,12 +1315,21 @@
     });
   }
 
-  function exitGame(){
-    if (state.active && !confirm('Exit the game? Progress is not saved.')) return;
+  function closeOverlay(){
     overlay.classList.remove('active');
     overlay.setAttribute('aria-hidden','true');
     document.body.style.overflow = '';
     state.active = false;
+    stage.innerHTML = '';
+  }
+  // Back to the hub from a lightweight game — no confirm needed.
+  function backToHub(){ closeOverlay(); }
+  // Exit button (top-right). Only the long Becoming game, mid-run, warns.
+  function exitGame(){
+    if (state.game === 'becoming' && state.active && state.tier >= 1 && state.cardsThisTier > 0){
+      if (!confirm('Leave the game? You can always start again.')) return;
+    }
+    closeOverlay();
   }
 
   // ---- hub router ----
@@ -1252,6 +1351,7 @@
   // ============================================================
   function openOverlay(label, accent){
     state.active = true;
+    state.game = (label==='Spin the Wheel'?'wheel':label==='Scratch Cards'?'scratch':label==='LoveSlots'?'slots':'other');
     document.documentElement.style.setProperty('--game-accent', accent || '#b07b3e');
     tierLabel.textContent = label;
     intensityBar.style.width = '0%';
@@ -1262,44 +1362,60 @@
 
   let wheelLeadIsHer = true;
   function enterWheel(){
-    openOverlay('Spin the Wheel', '#c98a3c');
-    renderWheel(null);
+    wheelLevel = 'soft';
+    openOverlay('Spin the Wheel', WHEEL_LEVELS.soft.accent);
+    renderWheel();
   }
-  function renderWheel(landedIndex){
-    const n = WHEEL.length, seg = 360/n;
-    // build conic-gradient ring
+  function renderWheel(){
+    const lvl = WHEEL_LEVELS[wheelLevel];
+    document.documentElement.style.setProperty('--game-accent', lvl.accent);
+    const slices = lvl.slices, n = slices.length, seg = 360/n;
     let stops = [];
-    for (let i=0;i<n;i++){ stops.push(WHEEL[i].color+' '+(seg*i)+'deg '+(seg*(i+1))+'deg'); }
+    for (let i=0;i<n;i++){ stops.push(slices[i].color+' '+(seg*i)+'deg '+(seg*(i+1))+'deg'); }
     const ring = 'conic-gradient(from -' + (seg/2) + 'deg,' + stops.join(',') + ')';
     let labels = '';
     for (let i=0;i<n;i++){
       const a = seg*i;
-      labels += '<div class="wheel-label" style="transform:rotate('+a+'deg) translateY(-104px) rotate('+(-a)+'deg)">'+WHEEL[i].key+'</div>';
+      labels += '<div class="wheel-label" style="transform:rotate('+a+'deg) translateY(-104px) rotate('+(-a)+'deg)">'+slices[i].key+'</div>';
     }
+    // level tabs
+    let tabs = '<div class="wheel-levels">';
+    for (const k of ['soft','spicy','wild']){
+      tabs += '<button class="wlevel'+(k===wheelLevel?' active':'')+'" data-lvl="'+k+'" style="--wl:'+WHEEL_LEVELS[k].accent+'">'+WHEEL_LEVELS[k].label+'</button>';
+    }
+    tabs += '</div>';
     stage.innerHTML =
+      tabs +
+      '<p class="wheel-blurb">'+lvl.blurb+'</p>' +
       '<div class="wheel-wrap">' +
         '<div class="wheel-pointer"></div>' +
         '<div class="wheel" id="wheel" style="background:'+ring+'">' +
-          '<div class="wheel-labels" id="wheel-labels">'+labels+'</div>' +
+          '<div class="wheel-labels">'+labels+'</div>' +
           '<button class="wheel-hub" id="wheel-hub">SPIN</button>' +
         '</div>' +
         '<div class="wheel-out" id="wheel-out"></div>' +
-      '</div>';
+      '</div>' +
+      '<div class="go-actions"><button class="gbtn ghost" id="wheel-back">Back to the Playroom</button></div>';
+    // tab handlers
+    stage.querySelectorAll('.wlevel').forEach(b=>b.addEventListener('click',()=>{
+      wheelLevel = b.getAttribute('data-lvl');
+      renderWheel();
+    }));
+    document.getElementById('wheel-back').addEventListener('click', backToHub);
     const wheel = document.getElementById('wheel');
-    let spinning = false, currentRot = 0;
+    let spinning = false;
     document.getElementById('wheel-hub').addEventListener('click', ()=>{
       if (spinning) return;
       spinning = true;
       document.getElementById('wheel-out').innerHTML = '';
       const pick = Math.floor(Math.random()*n);
       const turns = 4 + Math.floor(Math.random()*3);
-      // pointer is at top (pointing down); segment center for pick should land at top
       const targetCenter = seg*pick;
-      currentRot = turns*360 + (360 - targetCenter);
+      const rot = turns*360 + (360 - targetCenter);
       wheel.style.transition = 'transform 3.6s cubic-bezier(.15,.85,.2,1)';
-      wheel.style.transform = 'rotate('+currentRot+'deg)';
+      wheel.style.transform = 'rotate('+rot+'deg)';
       setTimeout(()=>{
-        const cat = WHEEL[pick];
+        const cat = slices[pick];
         const prompt = cat.prompts[Math.floor(Math.random()*cat.prompts.length)];
         const lead = wheelLeadIsHer ? 'Her' : 'His';
         document.getElementById('wheel-out').innerHTML =
@@ -1307,14 +1423,14 @@
             '<div class="wr-cat" style="color:'+cat.color+'">'+cat.key+'</div>' +
             '<div class="wr-lead"><span class="gc-lead-dot"></span>'+lead+' turn to lead</div>' +
             '<div class="wr-text">'+fillCard(prompt, wheelLeadIsHer)+'</div>' +
-            '<div class="go-actions">' +
-              '<button class="gbtn primary" id="wheel-again">Spin again</button>' +
-            '</div>' +
+            '<div class="go-actions"><button class="gbtn primary" id="wheel-again">Spin again</button></div>' +
           '</div>';
         requestAnimationFrame(()=>document.getElementById('wheel-result').classList.add('show'));
         document.getElementById('wheel-again').addEventListener('click', ()=>{
           wheelLeadIsHer = !wheelLeadIsHer;
           spinning = false;
+          wheel.style.transition = 'none';
+          // keep current rotation; allow next spin
         });
       }, 3700);
     });
@@ -1329,6 +1445,7 @@
     renderScratch();
   }
   function renderScratch(){
+    scratchOpened = false; // reset each render so "New cards" is scratchable again
     // pick three distinct surprises
     const pool = SCRATCH.slice();
     for (let i=pool.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [pool[i],pool[j]]=[pool[j],pool[i]]; }
@@ -1338,7 +1455,7 @@
       '<div class="scratch-wrap">' +
         '<p class="scratch-intro">Three cards, face down. <span class="gc-lead-dot"></span>'+lead+' turn to lead \u2014 choose one and scratch it open with a finger. The other two stay secret.</p>' +
         '<div class="scratch-row" id="scratch-row"></div>' +
-        '<div class="go-actions" id="scratch-actions" style="opacity:0"><button class="gbtn primary" id="scratch-again">New cards</button></div>' +
+        '<div class="go-actions" id="scratch-actions" style="opacity:0"><button class="gbtn primary" id="scratch-again">New cards</button><button class="gbtn ghost" id="scratch-back">Back to the Playroom</button></div>' +
       '</div>';
     const row = document.getElementById('scratch-row');
     three.forEach((txt, idx)=>{
@@ -1353,6 +1470,7 @@
     document.getElementById('scratch-again').addEventListener('click', ()=>{
       scratchLeadIsHer = !scratchLeadIsHer; renderScratch();
     });
+    const sb=document.getElementById('scratch-back'); if(sb) sb.addEventListener('click', backToHub);
   }
   let scratchOpened = false;
   function initScratch(canvas, card, idx){
@@ -1422,8 +1540,9 @@
           '<div class="reel" id="reel3"></div>' +
         '</div>' +
         '<div class="slots-out" id="slots-out"></div>' +
-        '<div class="go-actions"><button class="gbtn primary" id="slots-spin">Spin the reels</button></div>' +
+        '<div class="go-actions"><button class="gbtn primary" id="slots-spin">Spin the reels</button><button class="gbtn ghost" id="slots-back">Back to the Playroom</button></div>' +
       '</div>';
+    const sb=document.getElementById('slots-back'); if(sb) sb.addEventListener('click', backToHub);
     const reels = [SLOT_WAY, SLOT_ACT, SLOT_WHERE, SLOT_HOW];
     reels.forEach((r,i)=>{ document.getElementById('reel'+i).textContent = r[0]; });
     document.getElementById('slots-spin').addEventListener('click', ()=>{
