@@ -146,6 +146,69 @@
   }
   .prompts li:first-of-type{border-top:none;padding-top:2px}
 
+  /* ---------- FOR US ---------- */
+  .forus{padding:80px 0 30px}
+  .forus .pn{
+    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.4em;
+    text-transform:uppercase;color:var(--gold);text-align:center;
+  }
+  .forus .pt{
+    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
+    font-size:clamp(2rem,6vw,3rem);color:var(--plum-deep);
+    text-align:center;margin-top:8px;
+  }
+  .forus .pd{
+    color:var(--ink-soft);max-width:36ch;margin:14px auto 50px;
+    text-align:center;font-size:.98rem;
+  }
+  .q-prepared{
+    margin:30px 0;padding:32px 28px 26px;
+    background:var(--paper-warm);
+    border:1px solid var(--line);border-left:3px solid var(--plum);
+    border-radius:3px;
+    opacity:0;transform:translateY(20px);
+    transition:opacity .7s ease,transform .7s ease;
+  }
+  .q-prepared.in{opacity:1;transform:none}
+  .q-prepared .qnum{
+    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.3em;
+    text-transform:uppercase;color:var(--plum);font-weight:600;
+  }
+  .q-prepared .qtext{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    font-size:clamp(1.2rem,3vw,1.5rem);line-height:1.3;
+    color:var(--ink);margin:10px 0 22px;
+  }
+  .q-prepared .label{
+    font-family:'Fraunces',serif;font-size:.68rem;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--gold);font-weight:600;
+    margin:18px 0 8px;display:flex;align-items:center;gap:10px;
+  }
+  .q-prepared .label::before{content:"✦";color:var(--gold);font-size:.8rem}
+  .q-prepared .thought{color:var(--ink-soft);margin-bottom:4px}
+  .q-prepared .thought strong{color:var(--plum-deep);font-weight:600}
+  .q-prepared .ways li{
+    list-style:none;padding:8px 0;border-top:1px solid var(--line);
+    font-style:italic;color:var(--ink-soft);
+  }
+  .q-prepared .ways li:first-of-type{border-top:none;padding-top:2px}
+  .q-open{
+    margin:22px 0;padding:22px 24px;
+    border-top:1px solid var(--line);
+    opacity:0;transform:translateY(16px);
+    transition:opacity .7s ease,transform .7s ease;
+  }
+  .q-open.in{opacity:1;transform:none}
+  .q-open .qnum{
+    font-family:'Fraunces',serif;font-size:.7rem;letter-spacing:.3em;
+    text-transform:uppercase;color:var(--plum);font-weight:600;
+  }
+  .q-open .qtext{
+    font-family:'Fraunces',serif;font-style:italic;
+    font-size:clamp(1.1rem,2.6vw,1.3rem);line-height:1.32;
+    color:var(--ink);margin-top:8px;
+  }
+
   /* ---------- CLOSE ---------- */
   .close{padding:70px 0 30px;text-align:center}
   .close .ig{
@@ -501,6 +564,61 @@
     </div>
   </section>
 
+  <!-- ================= FOR US ================= -->
+  <div class="forus">
+    <div class="pn">For Us</div>
+    <div class="pt">A conversation</div>
+    <div class="pd">Six questions to carry into the next quiet evening. The first two come with what's already been thought — the rest, only with you.</div>
+
+    <div class="q-prepared">
+      <div class="qnum">Question One · prepared</div>
+      <p class="qtext">What does it mean — really — when you say you want to "just be yourself, not someone's mom"?</p>
+      <div class="label">A thought to bring</div>
+      <p class="thought">This is the central question of the entire book. Midlife, for a woman, is the moment the roles built over decades — daughter, partner, mother, professional — stop fitting, and the self underneath starts asking to be let out again. Your exhaustion isn't about loving the girls or me any less. It's about <strong>always being someone's something</strong>. I want to understand what it would look like to give that underneath-self more room — not just an hour stolen here and there, but space that's actually yours by design.</p>
+      <div class="label">Ways in</div>
+      <ul class="ways">
+        <li>When in your life did you last feel most like yourself — and what made that possible?</li>
+        <li>What part of you do Tiffany and Chloe never get to see? What part does the office never see?</li>
+        <li>If you had one weekend a month that was nobody's but yours — no daughter, no Grace, no partner — what would you actually do with it?</li>
+        <li>What can I carry so that you carry less?</li>
+      </ul>
+    </div>
+
+    <div class="q-prepared">
+      <div class="qnum">Question Two · prepared</div>
+      <p class="qtext">Where am I adding weight to your life — and where am I lightening it?</p>
+      <div class="label">A thought to bring</div>
+      <p class="thought">I want to be the part that makes your life lighter, never heavier. But intention isn't enough — only you can tell me how it actually lands. The book calls this the <strong>couplepause</strong>: the place where two people, both changing, either learn to see each other clearly or quietly drift. I'd rather hear an honest answer that stings than a kind one that doesn't.</p>
+      <div class="label">Ways in</div>
+      <ul class="ways">
+        <li>When have I been "too much" — too intense, too fast, too soon — even when I meant well?</li>
+        <li>When have I been "just right" — the kind of presence that lets you breathe rather than brace?</li>
+        <li>What's something I do that you wish I did more of? Less of?</li>
+        <li>What would you ask of me if you knew I'd take it seriously and not flinch?</li>
+      </ul>
+    </div>
+
+    <div class="q-open">
+      <div class="qnum">Question Three · open</div>
+      <p class="qtext">What does "private and safe" mean to you — not only in bed, but in the rest of our life together?</p>
+    </div>
+
+    <div class="q-open">
+      <div class="qnum">Question Four · open</div>
+      <p class="qtext">Of all the women in this book — Rachael, Karen, Fiona, Muir herself — who did you most recognise yourself in, and which part of her story?</p>
+    </div>
+
+    <div class="q-open">
+      <div class="qnum">Question Five · open</div>
+      <p class="qtext">What's the hardest thing about this current life period that's hard to say in the moment — but easier to write, or to point at on a page?</p>
+    </div>
+
+    <div class="q-open">
+      <div class="qnum">Question Six · open</div>
+      <p class="qtext">If we let go of how any of this looks from the outside — to friends, to the girls, to the world — what would we change about how we spend our time together?</p>
+    </div>
+  </div>
+
   <!-- ================= CLOSE ================= -->
   <div class="close">
     <p class="ig"><em>Ikigai</em> — your reason for being: what you love, what you're good at, what you can be paid for, and what the world needs.</p>
@@ -529,7 +647,7 @@
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
-  document.querySelectorAll('.chapter').forEach(c=>io.observe(c));
+  document.querySelectorAll('.chapter, .q-prepared, .q-open').forEach(c=>io.observe(c));
 
   // smooth "begin" cue
   document.querySelector('.scroll-cue').addEventListener('click',()=>{
