@@ -807,6 +807,186 @@
   /* Override media query for path cards so 3 still fit on tablet */
   @media (max-width:780px){.pathway-cards{grid-template-columns:1fr;gap:14px}}
 
+  /* ==========================================================
+     CUSTOM SVG ILLUSTRATIONS + ATMOSPHERIC VISUAL LANGUAGE
+     ========================================================== */
+
+  /* hero ornament — central art-deco flourish */
+  .hero-ornament{
+    display:block;margin:34px auto 30px;
+    opacity:0;animation:fadeInOrn 1.6s ease .4s forwards;
+  }
+  @keyframes fadeInOrn{to{opacity:1}}
+  .hero-ornament .o-line,.hero-ornament .o-shape{stroke:var(--gold);stroke-width:1;fill:none}
+  .hero-ornament .o-dot{fill:var(--gold)}
+
+  /* pathway card icons */
+  .pw-icon-wrap{
+    width:100%;height:80px;display:flex;align-items:center;justify-content:center;
+    margin-bottom:18px;border-bottom:1px solid var(--line);padding-bottom:18px;
+    transition:opacity .3s ease;
+  }
+  .pw-icon{width:90px;height:70px;color:currentColor;opacity:.75;transition:opacity .3s ease,transform .5s ease}
+  .pathway-card:hover .pw-icon{opacity:1;transform:scale(1.06)}
+  .pw-icon line,.pw-icon path:not(.flame):not(.fill),.pw-icon rect,.pw-icon circle{
+    stroke:currentColor;fill:none;
+  }
+  .pw-icon .fill{fill:currentColor}
+  /* candle flame animation on the third card */
+  .candle-icon .flame{
+    fill:currentColor;
+    transform-origin:30px 32px;
+    animation:flicker-flame 1.8s ease-in-out infinite alternate;
+  }
+  @keyframes flicker-flame{
+    0%{transform:scaleY(1) scaleX(1);opacity:.85}
+    30%{transform:scaleY(.92) scaleX(1.06);opacity:1}
+    60%{transform:scaleY(1.05) scaleX(.95);opacity:.75}
+    100%{transform:scaleY(.98) scaleX(1.02);opacity:.9}
+  }
+
+  /* path opener ornamental rule (replaces simple line) */
+  .path-opener .rule-orn{
+    display:block;margin:0 auto 24px;height:14px;
+  }
+  .path-opener .rule-orn line,.path-opener .rule-orn circle{
+    stroke:currentColor;fill:none;stroke-width:1;
+  }
+  .path-opener .rule-orn .dot{fill:currentColor;stroke:none}
+
+  /* PATH TWO — silk-flow atmospheric visual after opener */
+  .silk-flow{
+    display:block;width:100%;height:80px;margin:10px 0 50px;
+    opacity:.85;
+  }
+  .silk-flow path{stroke:var(--gold);fill:none;stroke-width:1}
+
+  /* PATH TWO — practice cards: add a beautiful Roman numeral treatment */
+  .practice{position:relative;overflow:hidden}
+  .practice::before{
+    content:"";position:absolute;top:0;right:0;width:120px;height:120px;
+    background:radial-gradient(circle at top right, rgba(176,123,62,.18), transparent 60%);
+    pointer-events:none;
+  }
+  .practice .pn-num{position:relative;z-index:1}
+
+  /* PATH TWO — research section: add elegant Roman numeral motif */
+  .intim-part{position:relative}
+  .intim-part .pnum::before{
+    content:"";display:inline-block;width:14px;height:1px;
+    background:var(--gold);vertical-align:middle;margin-right:10px;
+  }
+
+  /* PATH TWO — "Keeping the flame" section header with flame motif */
+  .flame-header{
+    display:flex;align-items:center;justify-content:center;gap:24px;
+    margin-bottom:14px;
+  }
+  .flame-header svg{width:32px;height:42px;color:#8a2a3a}
+  .flame-header svg .flame{
+    fill:currentColor;transform-origin:16px 30px;
+    animation:flicker-flame 2.1s ease-in-out infinite alternate;
+  }
+  .flame-header h2{margin-bottom:0!important}
+
+  /* PATH THREE — candlelight scene under opener */
+  .candle-scene{
+    display:block;margin:0 auto 30px;width:100%;max-width:520px;height:220px;
+    opacity:0;animation:fadeInOrn 2s ease .6s forwards;
+  }
+  .candle-scene .body{stroke:#f4ead6;stroke-width:1;fill:rgba(244,234,214,.04)}
+  .candle-scene .wick{stroke:#f4ead6;stroke-width:.5}
+  .candle-scene .flame{fill:#f4b860;transform-origin:center bottom;animation:flicker-flame 2.4s ease-in-out infinite alternate}
+  .candle-scene .glow{fill:#f4b860}
+  .candle-scene .flame-2{animation-delay:.4s;animation-duration:1.9s}
+  .candle-scene .flame-3{animation-delay:.8s;animation-duration:2.6s}
+
+  /* PATH THREE — tier preview cards: stronger Roman numerals with subtle illustration */
+  .zone-three .bgame-tier{
+    transition:transform .3s ease,background .3s ease;
+  }
+  .zone-three .bgame-tier:hover{
+    transform:translateY(-2px);
+    background:rgba(244,234,214,.1);
+  }
+
+  /* PATH THREE — Enter button area: add ambient flame glow */
+  .bgame-cta-wrap{
+    position:relative;margin-top:40px;text-align:center;
+  }
+  .bgame-cta-wrap::before{
+    content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:300px;height:100px;
+    background:radial-gradient(ellipse, rgba(176,123,62,.25), transparent 60%);
+    pointer-events:none;z-index:0;
+  }
+  .bgame-begin{position:relative;z-index:1}
+
+  /* section ornaments between Mind/Body/Spirit parts */
+  .part .pn-orn{
+    display:block;margin:0 auto 10px;width:60px;
+  }
+  .part .pn-orn line{stroke:var(--gold);stroke-width:1}
+  .part .pn-orn circle{fill:var(--gold);stroke:none}
+
+  /* refined hover on pathway cards */
+  .pathway-card{cursor:pointer}
+  .pathway-card .pw-arrow::before{
+    content:"";display:inline-block;width:24px;height:1px;background:currentColor;
+    margin-right:10px;transition:width .3s ease;
+  }
+  .pathway-card:hover .pw-arrow::before{width:40px}
+  /* tiny decorative element top-right of pathway cards */
+  .pathway-card .pw-corner{
+    position:absolute;top:14px;right:18px;
+    font-family:'Fraunces',serif;font-style:italic;color:currentColor;
+    opacity:.4;font-size:1.4rem;line-height:1;
+  }
+
+  /* image-replacing utility: refined "intimacy section pull-image-feel" — gradient block */
+  .visual-pause{
+    margin:50px -26px;height:240px;
+    background:
+      radial-gradient(ellipse at 30% 50%, rgba(176,123,62,.4), transparent 55%),
+      radial-gradient(ellipse at 75% 60%, rgba(108,58,92,.35), transparent 50%),
+      linear-gradient(135deg, #1a0e1c 0%, #3a1e34 60%, #4a2540 100%);
+    position:relative;overflow:hidden;border-radius:3px;
+  }
+  .visual-pause::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      radial-gradient(circle at 25% 50%, rgba(244,184,96,.7) 0, transparent 3px),
+      radial-gradient(circle at 50% 45%, rgba(244,184,96,.5) 0, transparent 2px),
+      radial-gradient(circle at 75% 50%, rgba(244,184,96,.8) 0, transparent 3px);
+    animation:flicker 5s ease-in-out infinite alternate;
+  }
+  .visual-pause-quote{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    font-family:'Fraunces',serif;font-style:italic;color:rgba(244,234,214,.9);
+    font-size:clamp(1.1rem,3vw,1.5rem);text-align:center;max-width:80%;
+    line-height:1.4;letter-spacing:.005em;
+  }
+  .visual-pause-quote::before,.visual-pause-quote::after{
+    content:"";display:block;width:30px;height:1px;background:#d49659;
+    margin:14px auto;opacity:.8;
+  }
+  @media (max-width:600px){
+    .visual-pause{margin:40px -20px;height:200px}
+  }
+
+  /* improved scroll cue in hero */
+  .scroll-cue{padding:8px 0;transition:opacity .3s ease}
+  .scroll-cue:hover{opacity:.7}
+
+  /* mobile UX polish */
+  @media (max-width:600px){
+    .path-opener{padding:80px 0 40px}
+    .zone-three .path-opener{padding-top:100px}
+    .pathways{padding:40px 0 60px}
+    .pw-icon-wrap{height:64px}
+    .pw-icon{width:74px;height:58px}
+  }
+
   /* ---------- CLOSE ---------- */
   .close{padding:70px 0 30px;text-align:center}
   .close .ig{
@@ -840,6 +1020,13 @@
     <div class="kicker">A reading companion</div>
     <h1 class="title">How to Have a<br><em>Magnificent</em><br>Midlife Crisis</h1>
     <p class="sub">Not a time of decline, but of transformation — if you meet it with knowledge instead of fear.</p>
+    <svg class="hero-ornament" viewBox="0 0 100 130" width="34" height="44" aria-hidden="true">
+      <line class="o-line" x1="50" y1="0" x2="50" y2="38"/>
+      <path class="o-shape" d="M50 38 L62 50 L50 62 L38 50 Z"/>
+      <circle class="o-dot" cx="50" cy="74" r="2"/>
+      <path class="o-shape" d="M50 86 L62 98 L50 110 L38 98 Z"/>
+      <line class="o-line" x1="50" y1="110" x2="50" y2="130"/>
+    </svg>
     <div class="byline">The distilled substance of <strong>Kate Muir's</strong> book — chapter by chapter, made for reading together.</div>
     <div class="scroll-cue">Begin</div>
   </div>
@@ -855,18 +1042,57 @@
     <p class="pathways-sub">Three environments, in one place. Read the book. Read the science. Or step into the room.</p>
     <div class="pathway-cards">
       <a class="pathway-card crisis" href="#midlife">
+        <span class="pw-corner">I</span>
+        <div class="pw-icon-wrap">
+          <svg class="pw-icon" viewBox="0 0 100 70" aria-hidden="true">
+            <path d="M10 15 L50 10 L90 15 L90 60 L50 55 L10 60 Z" stroke-width="1.2"/>
+            <line x1="50" y1="10" x2="50" y2="55"/>
+            <line x1="20" y1="25" x2="42" y2="22" opacity=".55" stroke-width=".7"/>
+            <line x1="20" y1="32" x2="42" y2="29" opacity=".55" stroke-width=".7"/>
+            <line x1="20" y1="39" x2="42" y2="36" opacity=".55" stroke-width=".7"/>
+            <line x1="20" y1="46" x2="38" y2="44" opacity=".55" stroke-width=".7"/>
+            <line x1="58" y1="22" x2="80" y2="25" opacity=".55" stroke-width=".7"/>
+            <line x1="58" y1="29" x2="80" y2="32" opacity=".55" stroke-width=".7"/>
+            <line x1="58" y1="36" x2="80" y2="39" opacity=".55" stroke-width=".7"/>
+            <line x1="62" y1="43" x2="80" y2="46" opacity=".55" stroke-width=".7"/>
+          </svg>
+        </div>
         <div class="pw-label">Path One</div>
         <div class="pw-title">The Midlife Crisis</div>
         <p class="pw-sub">Kate Muir's full book distilled — eighteen chapters on the hormonal, neurological and psychological weather of midlife, with questions to read together.</p>
         <div class="pw-arrow">Begin the book companion</div>
       </a>
       <a class="pathway-card intim" href="#intimacy">
+        <span class="pw-corner">II</span>
+        <div class="pw-icon-wrap">
+          <svg class="pw-icon" viewBox="0 0 100 70" aria-hidden="true">
+            <circle cx="30" cy="35" r="14" opacity=".55" stroke-width=".8"/>
+            <circle cx="70" cy="35" r="14" opacity=".55" stroke-width=".8"/>
+            <circle cx="50" cy="20" r="14" opacity=".55" stroke-width=".8"/>
+            <circle cx="50" cy="50" r="14" opacity=".55" stroke-width=".8"/>
+            <circle cx="40" cy="28" r="9" stroke-width=".9"/>
+            <circle cx="60" cy="28" r="9" stroke-width=".9"/>
+            <circle cx="40" cy="42" r="9" stroke-width=".9"/>
+            <circle cx="60" cy="42" r="9" stroke-width=".9"/>
+            <circle class="fill" cx="50" cy="35" r="2.5"/>
+          </svg>
+        </div>
         <div class="pw-label">Path Two</div>
         <div class="pw-title">Improved Intimacy</div>
         <p class="pw-sub">The science of desire that lasts — Perel, Nagoski, Aron, Mark & Lasslo — and seven practices to keep the flame alive against the gravity of routine.</p>
         <div class="pw-arrow">Begin the intimacy path</div>
       </a>
       <a class="pathway-card ember" href="#becoming">
+        <span class="pw-corner">III</span>
+        <div class="pw-icon-wrap">
+          <svg class="pw-icon candle-icon" viewBox="0 0 60 90" aria-hidden="true">
+            <rect x="22" y="42" width="16" height="42" stroke-width="1.2"/>
+            <line x1="30" y1="42" x2="30" y2="34" stroke-width=".6"/>
+            <path class="flame fill" d="M30 34 Q21 22 30 6 Q39 22 30 34 Z"/>
+            <line x1="22" y1="50" x2="38" y2="50" opacity=".4" stroke-width=".5"/>
+            <line x1="22" y1="56" x2="38" y2="56" opacity=".4" stroke-width=".5"/>
+          </svg>
+        </div>
         <div class="pw-label">Path Three</div>
         <div class="pw-title">The Becoming</div>
         <p class="pw-sub">An interactive dice-and-card game for partners — six tiers of gradually deepening intimacy, designed around science and consent. Made for a steamy evening with no rush.</p>
@@ -883,7 +1109,12 @@
 
   <div class="path-opener">
     <div class="label">Path One</div>
-    <div class="rule"></div>
+    <svg class="rule-orn" viewBox="0 0 80 14" width="80" height="14" aria-hidden="true">
+      <line x1="0" y1="7" x2="32" y2="7"/>
+      <circle cx="40" cy="7" r="3"/>
+      <circle class="dot" cx="40" cy="7" r="1"/>
+      <line x1="48" y1="7" x2="80" y2="7"/>
+    </svg>
     <div class="title">The <em>Midlife</em> Crisis</div>
     <p class="sub">Kate Muir's book distilled — eighteen chapters on the hormonal, neurological and psychological weather of midlife, made for reading together.</p>
   </div>
@@ -1650,10 +1881,22 @@
 
   <div class="path-opener">
     <div class="label">Path Two</div>
-    <div class="rule"></div>
+    <svg class="rule-orn" viewBox="0 0 80 14" width="80" height="14" aria-hidden="true">
+      <line x1="0" y1="7" x2="32" y2="7"/>
+      <circle cx="40" cy="7" r="3"/>
+      <circle class="dot" cx="40" cy="7" r="1"/>
+      <line x1="48" y1="7" x2="80" y2="7"/>
+    </svg>
     <div class="title"><em>Improved</em> Intimacy</div>
     <p class="sub">The science of desire that lasts — Perel, Nagoski, Aron, Mark &amp; Lasslo — and seven practices to keep the flame alive against the gravity of routine.</p>
   </div>
+
+  <svg class="silk-flow" viewBox="0 0 800 80" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 30 Q200 5 400 30 T800 30" opacity=".55"/>
+    <path d="M0 42 Q200 12 400 42 T800 42" opacity=".45"/>
+    <path d="M0 54 Q200 22 400 54 T800 54" opacity=".35"/>
+    <path d="M0 66 Q200 36 400 66 T800 66" opacity=".22"/>
+  </svg>
 
   <!-- ================= IMPROVED INTIMACY ================= -->
   <section class="intimacy" id="intimacy">
@@ -1721,9 +1964,22 @@
       <p>The thread connecting them: long-term desire is not a passive resource that exists or doesn't. <strong>It is a renewable practice that responds to specific, learnable inputs.</strong> Low or shifting desire is not a verdict on the relationship; it is a signal about what needs attention.</p>
     </div>
 
+    <!-- atmospheric break between the research and the practice -->
+    <div class="visual-pause" aria-hidden="true">
+      <div class="visual-pause-quote">Foreplay does not start five minutes before. It starts immediately after the previous time.</div>
+    </div>
+
     <!-- KEEPING THE FLAME ALIVE -->
     <div class="intim-flame">
-      <h2>Keeping the Flame Alive</h2>
+      <div class="flame-header">
+        <svg viewBox="0 0 32 42" aria-hidden="true">
+          <path class="flame" d="M16 38 Q4 28 8 16 Q10 22 12 20 Q12 8 16 2 Q20 8 20 20 Q22 22 24 16 Q28 28 16 38 Z"/>
+        </svg>
+        <h2>Keeping the Flame Alive</h2>
+        <svg viewBox="0 0 32 42" aria-hidden="true">
+          <path class="flame" d="M16 38 Q4 28 8 16 Q10 22 12 20 Q12 8 16 2 Q20 8 20 20 Q22 22 24 16 Q28 28 16 38 Z"/>
+        </svg>
+      </div>
       <p class="flame-tag">Seven practices, drawn straight from the research, that translate theory into evenings.</p>
       <p>Theory only matters if it changes how a Tuesday feels. The practices below come directly from the work above — Perel's paradox, Nagoski's brakes and accelerators, Aron's novelty, Mark &amp; Lasslo's synthesis. They are not romantic advice from a magazine. They are the operating manual that the science keeps pointing toward.</p>
 
@@ -1829,10 +2085,39 @@
 
   <div class="path-opener">
     <div class="label">Path Three</div>
-    <div class="rule"></div>
+    <svg class="rule-orn" viewBox="0 0 80 14" width="80" height="14" aria-hidden="true">
+      <line x1="0" y1="7" x2="32" y2="7"/>
+      <circle cx="40" cy="7" r="3"/>
+      <circle class="dot" cx="40" cy="7" r="1"/>
+      <line x1="48" y1="7" x2="80" y2="7"/>
+    </svg>
     <div class="title">The <em>Becoming</em></div>
     <p class="sub">An interactive dice-and-card game for two — six tiers, two hundred and sixteen unique card-experiences, designed around science and consent. For one steamy evening, with no rush.</p>
   </div>
+
+  <svg class="candle-scene" viewBox="0 0 520 220" aria-hidden="true">
+    <!-- left short candle -->
+    <g transform="translate(120,0)">
+      <ellipse class="glow" cx="0" cy="70" rx="50" ry="60" opacity=".22"/>
+      <rect class="body" x="-12" y="100" width="24" height="100" rx="1"/>
+      <line class="wick" x1="0" y1="100" x2="0" y2="90"/>
+      <path class="flame flame-2" d="M0 90 Q-10 76 0 56 Q10 76 0 90 Z"/>
+    </g>
+    <!-- center tall candle -->
+    <g transform="translate(260,0)">
+      <ellipse class="glow" cx="0" cy="50" rx="60" ry="72" opacity=".28"/>
+      <rect class="body" x="-14" y="70" width="28" height="130" rx="1"/>
+      <line class="wick" x1="0" y1="70" x2="0" y2="58"/>
+      <path class="flame" d="M0 58 Q-12 40 0 16 Q12 40 0 58 Z"/>
+    </g>
+    <!-- right medium candle -->
+    <g transform="translate(400,0)">
+      <ellipse class="glow" cx="0" cy="60" rx="54" ry="64" opacity=".24"/>
+      <rect class="body" x="-13" y="86" width="26" height="114" rx="1"/>
+      <line class="wick" x1="0" y1="86" x2="0" y2="74"/>
+      <path class="flame flame-3" d="M0 74 Q-11 58 0 36 Q11 58 0 74 Z"/>
+    </g>
+  </svg>
 
   <!-- ================= THE BECOMING (GAME) ================= -->
   <section class="bgame" id="becoming">
@@ -1871,7 +2156,9 @@
         <strong>A word on consent and pacing.</strong> Every card has a Skip button. Either of you can press it without explanation. Either of you can stop the game entirely with the Exit button at any time. Staying at a tier is as valuable as advancing. The final tier's last card is simply: <em>"Forget the cards. Be with them."</em> The cards are the structure; you are the meaning.
       </div>
 
-      <button class="bgame-begin" id="bgame-begin-btn">Enter the game</button>
+      <div class="bgame-cta-wrap">
+        <button class="bgame-begin" id="bgame-begin-btn">Enter the game</button>
+      </div>
     </div>
   </section>
 
