@@ -450,13 +450,83 @@
   .game-card .gc-mod{opacity:0;transition:opacity 1.6s ease 1.2s}
   .game-card.visible .gc-mod{opacity:1}
 
+
+  /* ====== GAME HUB ====== */
+  .game-hub{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:34px 0 10px}
+  .hub-card{--hc:#b07b3e;position:relative;overflow:hidden;text-align:left;cursor:pointer;
+    background:linear-gradient(160deg,rgba(244,234,214,.06),rgba(244,234,214,.02));
+    border:1px solid rgba(244,234,214,.16);border-radius:8px;padding:24px 22px 20px;
+    color:var(--light-cream);font:inherit;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+  .hub-card:hover{transform:translateY(-3px);border-color:var(--hc);box-shadow:0 14px 36px rgba(0,0,0,.45)}
+  .hc-glow{position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;
+    background:radial-gradient(circle,var(--hc),transparent 70%);opacity:.45;filter:blur(6px);pointer-events:none}
+  .hc-mark{font-size:1.5rem;color:var(--hc);margin-bottom:14px;line-height:1}
+  .hc-name{font-family:'Fraunces',serif;font-weight:500;font-size:1.32rem;color:var(--light-cream);margin-bottom:8px;letter-spacing:-.01em}
+  .hc-desc{font-family:'Newsreader',serif;color:rgba(244,234,214,.74);font-size:.96rem;line-height:1.5;margin-bottom:14px}
+  .hc-meta{font-family:'Fraunces',serif;font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--hc);font-weight:600;opacity:.85}
+  @media (max-width:680px){.game-hub{grid-template-columns:1fr}}
+
+  .hub-divider{display:flex;align-items:center;gap:16px;margin:34px 0 6px;color:rgba(244,234,214,.4)}
+  .hub-divider::before,.hub-divider::after{content:"";flex:1;height:1px;background:rgba(244,234,214,.14)}
+  .hub-divider span{font-family:'Fraunces',serif;font-style:italic;font-size:.86rem;white-space:nowrap}
+
+  /* ====== SPIN THE WHEEL ====== */
+  .wheel-wrap{position:relative;display:flex;flex-direction:column;align-items:center;padding:10px 0 20px;width:100%;max-width:520px;margin:0 auto}
+  .wheel-pointer{width:0;height:0;border-left:13px solid transparent;border-right:13px solid transparent;border-top:22px solid var(--game-accent);margin-bottom:-8px;z-index:3;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}
+  .wheel{position:relative;width:260px;height:260px;border-radius:50%;border:3px solid rgba(244,234,214,.18);
+    box-shadow:0 18px 50px rgba(0,0,0,.55),inset 0 0 0 8px rgba(26,13,24,.35);transform:rotate(0deg)}
+  .wheel-labels{position:absolute;inset:0}
+  .wheel-label{position:absolute;top:50%;left:50%;transform-origin:0 0;font-family:'Fraunces',serif;
+    font-size:.84rem;font-weight:600;color:#241018;white-space:nowrap;margin:-8px 0 0 -4px}
+  .wheel-hub{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:74px;height:74px;border-radius:50%;
+    background:#1a0d18;color:var(--game-accent);border:2px solid var(--game-accent);cursor:pointer;
+    font-family:'Fraunces',serif;font-weight:700;letter-spacing:.1em;font-size:.9rem;z-index:2;
+    box-shadow:0 0 18px rgba(0,0,0,.6);transition:transform .2s ease}
+  .wheel-hub:hover{transform:translate(-50%,-50%) scale(1.06)}
+  .wheel-out{width:100%;margin-top:26px}
+  .wheel-result{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;
+    background:linear-gradient(160deg,rgba(244,234,214,.96),rgba(237,225,205,.96));color:#2a1810;
+    border-radius:6px;padding:26px 24px;text-align:center;box-shadow:0 16px 40px rgba(0,0,0,.45)}
+  .wheel-result.show{opacity:1;transform:none}
+  .wr-cat{font-family:'Fraunces',serif;font-style:italic;font-size:1.5rem;margin-bottom:8px}
+  .wr-lead{font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:#6c3a5c;margin-bottom:14px}
+  .wr-text{font-family:'Fraunces',serif;font-size:1.16rem;line-height:1.5;color:#2a1810;margin-bottom:20px}
+
+  /* ====== SCRATCH CARDS ====== */
+  .scratch-wrap{width:100%;max-width:560px;margin:0 auto;padding:10px 0}
+  .scratch-intro{font-family:'Fraunces',serif;font-style:italic;color:rgba(244,234,214,.8);text-align:center;font-size:1.02rem;line-height:1.5;margin-bottom:24px}
+  .scratch-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .scratch-card{position:relative;aspect-ratio:3/4;border-radius:8px;overflow:hidden;
+    background:linear-gradient(160deg,rgba(244,234,214,.96),rgba(237,225,205,.96));
+    box-shadow:0 10px 26px rgba(0,0,0,.4);transition:opacity .5s ease,transform .5s ease}
+  .scratch-card.dimmed{opacity:.32;transform:scale(.96)}
+  .sc-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    padding:16px;text-align:center;font-family:'Fraunces',serif;font-size:.84rem;line-height:1.4;color:#2a1810}
+  .sc-canvas{position:absolute;inset:0;width:100%;height:100%;cursor:grab;touch-action:none}
+  @media (max-width:560px){.sc-text{font-size:.74rem;padding:10px}}
+
+  /* ====== LOVESLOTS ====== */
+  .slots-wrap{width:100%;max-width:520px;margin:0 auto;padding:10px 0;text-align:center}
+  .slots-intro{font-family:'Fraunces',serif;font-style:italic;color:rgba(244,234,214,.8);font-size:1.02rem;margin-bottom:22px}
+  .slots-machine{display:flex;flex-direction:column;gap:8px;background:rgba(26,13,24,.6);
+    border:1px solid var(--game-accent);border-radius:10px;padding:16px;box-shadow:0 14px 40px rgba(0,0,0,.5),inset 0 0 30px rgba(162,92,158,.12)}
+  .reel{font-family:'Fraunces',serif;font-size:1.04rem;color:var(--light-cream);padding:14px 12px;
+    background:linear-gradient(180deg,rgba(244,234,214,.08),rgba(244,234,214,.02));
+    border:1px solid rgba(244,234,214,.14);border-radius:6px;min-height:22px;transition:transform .1s ease}
+  .reel.spinning{opacity:.7;filter:blur(.4px)}
+  .reel.locked{transform:scale(1.04);border-color:var(--game-accent);color:var(--game-accent)}
+  .slots-out{margin:22px 0 6px;min-height:10px}
+  .slot-result{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease;
+    font-family:'Fraunces',serif;font-style:italic;font-size:1.24rem;line-height:1.5;color:var(--game-accent)}
+  .slot-result.show{opacity:1;transform:none}
+
 </style>
 </head>
 <body>
 
 <nav class="topbar" id="topbar">
   <a class="back" href="index.html"><span>←</span> All Paths</a>
-  <div class="mark">Path III · The Becoming</div>
+  <div class="mark">Path III · The Playroom</div>
 </nav>
 
 <header class="phero">
@@ -470,17 +540,55 @@
   </div>
   <div class="phero-content">
     <div class="label">Path Three</div>
-    <h1>The <em>Becoming</em></h1>
-    <p class="tagline">An interactive dice-and-card game for two. Choose a mood, then move through six tiers and hundreds of card-experiences \u2014 designed around consent and slowness. For one evening with no rush.</p>
+    <h1>The <em>Playroom</em></h1>
+    <p class="tagline">A small collection of private games for two — a deep six-tier evening, a quick spin of the wheel, scratch-cards, and slots. All built around consent and slowness. For one evening with no rush.</p>
   </div>
   <div class="scroll-down">Enter</div>
 </header>
 
 <main class="wrap">
 <section class="bgame" id="becoming">
-    <div class="pt">The Becoming</div>
-      <div class="pd">An interactive dice-and-card game for partners \u2014 choose a mood, then six tiers, two dice, and hundreds of possible card-experiences. Made for one evening with no rush.</div>
+    <div class="pt">The Playroom</div>
+      <div class="pd">A small collection of games for two. Each one is private, unhurried, and built around the same idea: slow down, pay attention, choose each other on purpose.</div>
     </div>
+
+    <div class="game-hub">
+      <button class="hub-card" data-game="becoming" style="--hc:#8a2a3a">
+        <div class="hc-glow"></div>
+        <div class="hc-mark">❖</div>
+        <div class="hc-name">The Becoming</div>
+        <div class="hc-desc">The deep one. Six tiers, four moods, hundreds of cards — a whole slow evening with no rush.</div>
+        <div class="hc-meta">Longform · 6 tiers</div>
+      </button>
+
+      <button class="hub-card" data-game="wheel" style="--hc:#c98a3c">
+        <div class="hc-glow"></div>
+        <div class="hc-mark">◉</div>
+        <div class="hc-name">Spin the Wheel</div>
+        <div class="hc-desc">Let the wheel pick your next move. Eight gentle categories — tap, watch it land, do what it says.</div>
+        <div class="hc-meta">Quick · one move at a time</div>
+      </button>
+
+      <button class="hub-card" data-game="scratch" style="--hc:#5a9aa0">
+        <div class="hc-glow"></div>
+        <div class="hc-mark">▨</div>
+        <div class="hc-name">Scratch Cards</div>
+        <div class="hc-desc">Three cards, face down. Scratch one open to reveal a small surprise meant only for tonight.</div>
+        <div class="hc-meta">Reveal · a single surprise</div>
+      </button>
+
+      <button class="hub-card" data-game="slots" style="--hc:#a25c9e">
+        <div class="hc-glow"></div>
+        <div class="hc-mark">♦</div>
+        <div class="hc-name">LoveSlots</div>
+        <div class="hc-desc">Three reels spin and combine into one playful instruction — a way, a place, and how long.</div>
+        <div class="hc-meta">Playful · pure chance</div>
+      </button>
+    </div>
+
+    <div class="hub-divider"><span>or read about the deep game below</span></div>
+
+    <div class="pt" style="margin-top:10px">The Becoming</div>
 
     <div class="bgame-intro">
       <p class="lead">This is not a quiz, and not foreplay-by-numbers. It's a structure that holds the room while two people slow down and pay attention.</p>
@@ -770,6 +878,75 @@
 
   };
 
+
+  // ============================================================
+  //  ADDITIONAL GAMES — share fillCard() + pronoun system
+  // ============================================================
+
+  // ---- SPIN THE WHEEL : 8 soft categories, each with a prompt pool ----
+  const WHEEL = [
+    { key:'Senses', color:'#9db4d8', prompts:[
+      "Close {Rp} eyes. {Gs} brings three different textures to {Rp} skin, one at a time, and {Rs} names each.",
+      "{Gs} describes, slowly, {Gp} favourite thing about the way {Rs} smells. Then breathes it in for real.",
+      "Both close their eyes and, for one full minute, only listen \\u2014 to the room, to each other's breathing."
+    ]},
+    { key:'Talk', color:'#a9c0e2', prompts:[
+      "{Gs} finishes this out loud, slowly: 'The first time I wanted you, it was because\\u2026'",
+      "{Gs} tells {Ro} one small thing {gs} has never said and has always meant.",
+      "{Rs} asks one question {rs} has been a little afraid to ask. {Gs} answers honestly."
+    ]},
+    { key:'Praise', color:'#b9a9e0', prompts:[
+      "{Gs} names three things {gs} finds beautiful about {Ro} tonight \\u2014 specific, not general.",
+      "{Gs} tells {Ro} the part of {Rp} body {gs} thinks about most, and why.",
+      "{Gs} says, slowly and without irony, the most flattering true sentence {gs} can about {Ro}."
+    ]},
+    { key:'Touch', color:'#e0b6c8', prompts:[
+      "{Gs} traces {Rp} jaw, neck and collarbone with one fingertip, and does not skip ahead.",
+      "{Gs} holds {Rp} hand and kisses each fingertip, slowly, one at a time.",
+      "{Gs} places both palms flat on {Rp} back and breathes in time with {Ro} for a full minute."
+    ]},
+    { key:'Move', color:'#f0c98e', prompts:[
+      "Put on one slow song. {Gs} leads {Ro} in a slow dance until it ends \\u2014 no talking.",
+      "{Gs} pulls {Ro} close by the hips and they simply sway, foreheads touching, for one minute.",
+      "{Rs} sits. {Gs} moves slowly closer across the room, eyes locked, and does not look away."
+    ]},
+    { key:'Memory', color:'#f0c46a', prompts:[
+      "{Gs} describes, in detail, the best night the two of them have ever spent together.",
+      "{Gs} recalls the exact moment {gs} knew this was different, and tells {Ro} every detail.",
+      "Both name, in turn, one memory of the other they never want to forget."
+    ]},
+    { key:'Dream', color:'#e6a9c0', prompts:[
+      "{Gs} describes a place {gs} wants to take {Ro} someday, slowly, until {Rs} can see it.",
+      "{Gs} tells {Ro} one thing {gs} wants for the two of them a year from now.",
+      "{Gs} describes, in detail, a perfect day with {Ro} that hasn't happened yet."
+    ]},
+    { key:'Laugh', color:'#c9a9e0', prompts:[
+      "{Gs} does the worst possible impression of how they first met. {Rs} may not help.",
+      "{Gs} tries to make {Ro} laugh in thirty seconds using only {Gp} face. No words.",
+      "Both confess, in turn, the most embarrassing thing they once did to seem attractive."
+    ]}
+  ];
+
+  // ---- SCRATCH CARDS : pool of small surprises for one evening ----
+  const SCRATCH = [
+    "A kiss, anywhere {Rs} chooses, that lasts a full sixty seconds.",
+    "{Gs} gives {Ro} a five-minute shoulder rub, slowly, asking nothing in return.",
+    "One honest compliment, whispered, about something {Gs} has never mentioned before.",
+    "{Gs} draws a slow bath or pours a drink \\u2014 {Rp} choice \\u2014 and brings it to {Ro}.",
+    "Three minutes of being held from behind, in silence, no agenda.",
+    "{Gs} undresses {Ro} of exactly one item, slowly, and kisses the place it leaves.",
+    "{Rs} names a place to be kissed; {Gs} stays there twice as long as expected.",
+    "A two-minute kiss with a thirty-second pause in the middle, just looking.",
+    "{Gs} tells {Ro} a fantasy, in {Rp} own words, with the lights low.",
+    "Free choice: {Rs} asks for anything, and {Gs} says yes if {gs} can."
+  ];
+
+  // ---- LOVESLOTS : three reels compose one instruction ----
+  const SLOT_WAY = ["Slowly","With your eyes closed","In total silence","Without using your hands","Whispering the whole time","As slowly as you possibly can"];
+  const SLOT_ACT = ["kiss","trace one fingertip along","breathe against","press your palm to","run your lips over","hold still against"];
+  const SLOT_WHERE = ["the side of the neck","the inside of a wrist","the collarbone","just below the ear","the small of the back","wherever they last pointed"];
+  const SLOT_HOW = ["for thirty seconds","until they exhale","three separate times","for one full minute","until they ask for more","twice, with a pause between"];
+
   const MODIFIERS = [
     { name:'Blindfolded', text:'One of you wears the blindfold for the full duration of this card. The pair decides who.' },
     { name:'In Silence',  text:'No words during this card — only breath, eyes and touch communicate. Sounds are allowed.' },
@@ -1028,8 +1205,222 @@
     state.active = false;
   }
 
-  document.getElementById('bgame-begin-btn').addEventListener('click', enterGame);
+  // ---- hub router ----
+  document.querySelectorAll('.hub-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const g = card.getAttribute('data-game');
+      if (g === 'becoming') return enterGame();
+      if (g === 'wheel')    return enterWheel();
+      if (g === 'scratch')  return enterScratch();
+      if (g === 'slots')    return enterSlots();
+    });
+  });
+  const beginBtn = document.getElementById('bgame-begin-btn');
+  if (beginBtn) beginBtn.addEventListener('click', enterGame);
   document.getElementById('go-exit-btn').addEventListener('click', exitGame);
+
+  // ============================================================
+  //  SPIN THE WHEEL
+  // ============================================================
+  function openOverlay(label, accent){
+    state.active = true;
+    document.documentElement.style.setProperty('--game-accent', accent || '#b07b3e');
+    tierLabel.textContent = label;
+    intensityBar.style.width = '0%';
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  let wheelLeadIsHer = true;
+  function enterWheel(){
+    openOverlay('Spin the Wheel', '#c98a3c');
+    renderWheel(null);
+  }
+  function renderWheel(landedIndex){
+    const n = WHEEL.length, seg = 360/n;
+    // build conic-gradient ring
+    let stops = [];
+    for (let i=0;i<n;i++){ stops.push(WHEEL[i].color+' '+(seg*i)+'deg '+(seg*(i+1))+'deg'); }
+    const ring = 'conic-gradient(from -' + (seg/2) + 'deg,' + stops.join(',') + ')';
+    let labels = '';
+    for (let i=0;i<n;i++){
+      const a = seg*i;
+      labels += '<div class="wheel-label" style="transform:rotate('+a+'deg) translateY(-104px) rotate('+(-a)+'deg)">'+WHEEL[i].key+'</div>';
+    }
+    stage.innerHTML =
+      '<div class="wheel-wrap">' +
+        '<div class="wheel-pointer"></div>' +
+        '<div class="wheel" id="wheel" style="background:'+ring+'">' +
+          '<div class="wheel-labels" id="wheel-labels">'+labels+'</div>' +
+          '<button class="wheel-hub" id="wheel-hub">SPIN</button>' +
+        '</div>' +
+        '<div class="wheel-out" id="wheel-out"></div>' +
+      '</div>';
+    const wheel = document.getElementById('wheel');
+    let spinning = false, currentRot = 0;
+    document.getElementById('wheel-hub').addEventListener('click', ()=>{
+      if (spinning) return;
+      spinning = true;
+      document.getElementById('wheel-out').innerHTML = '';
+      const pick = Math.floor(Math.random()*n);
+      const turns = 4 + Math.floor(Math.random()*3);
+      // pointer is at top (pointing down); segment center for pick should land at top
+      const targetCenter = seg*pick;
+      currentRot = turns*360 + (360 - targetCenter);
+      wheel.style.transition = 'transform 3.6s cubic-bezier(.15,.85,.2,1)';
+      wheel.style.transform = 'rotate('+currentRot+'deg)';
+      setTimeout(()=>{
+        const cat = WHEEL[pick];
+        const prompt = cat.prompts[Math.floor(Math.random()*cat.prompts.length)];
+        const lead = wheelLeadIsHer ? 'Her' : 'His';
+        document.getElementById('wheel-out').innerHTML =
+          '<div class="wheel-result" id="wheel-result">' +
+            '<div class="wr-cat" style="color:'+cat.color+'">'+cat.key+'</div>' +
+            '<div class="wr-lead"><span class="gc-lead-dot"></span>'+lead+' turn to lead</div>' +
+            '<div class="wr-text">'+fillCard(prompt, wheelLeadIsHer)+'</div>' +
+            '<div class="go-actions">' +
+              '<button class="gbtn primary" id="wheel-again">Spin again</button>' +
+            '</div>' +
+          '</div>';
+        requestAnimationFrame(()=>document.getElementById('wheel-result').classList.add('show'));
+        document.getElementById('wheel-again').addEventListener('click', ()=>{
+          wheelLeadIsHer = !wheelLeadIsHer;
+          spinning = false;
+        });
+      }, 3700);
+    });
+  }
+
+  // ============================================================
+  //  SCRATCH CARDS
+  // ============================================================
+  let scratchLeadIsHer = true;
+  function enterScratch(){
+    openOverlay('Scratch Cards', '#5a9aa0');
+    renderScratch();
+  }
+  function renderScratch(){
+    // pick three distinct surprises
+    const pool = SCRATCH.slice();
+    for (let i=pool.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [pool[i],pool[j]]=[pool[j],pool[i]]; }
+    const three = pool.slice(0,3);
+    const lead = scratchLeadIsHer ? 'Her' : 'His';
+    stage.innerHTML =
+      '<div class="scratch-wrap">' +
+        '<p class="scratch-intro">Three cards, face down. <span class="gc-lead-dot"></span>'+lead+' turn to lead \u2014 choose one and scratch it open with a finger. The other two stay secret.</p>' +
+        '<div class="scratch-row" id="scratch-row"></div>' +
+        '<div class="go-actions" id="scratch-actions" style="opacity:0"><button class="gbtn primary" id="scratch-again">New cards</button></div>' +
+      '</div>';
+    const row = document.getElementById('scratch-row');
+    three.forEach((txt, idx)=>{
+      const card = document.createElement('div');
+      card.className = 'scratch-card';
+      card.innerHTML = '<div class="sc-text">'+fillCard(txt, scratchLeadIsHer)+'</div>';
+      const cv = document.createElement('canvas');
+      cv.className = 'sc-canvas'; card.appendChild(cv);
+      row.appendChild(card);
+      initScratch(cv, card, idx);
+    });
+    document.getElementById('scratch-again').addEventListener('click', ()=>{
+      scratchLeadIsHer = !scratchLeadIsHer; renderScratch();
+    });
+  }
+  let scratchOpened = false;
+  function initScratch(canvas, card, idx){
+    const rect = () => card.getBoundingClientRect();
+    function size(){
+      const r = rect();
+      canvas.width = r.width; canvas.height = r.height;
+      const ctx = canvas.getContext('2d');
+      const g = ctx.createLinearGradient(0,0,r.width,r.height);
+      g.addColorStop(0,'#2b3f44'); g.addColorStop(1,'#16252a');
+      ctx.fillStyle = g; ctx.fillRect(0,0,r.width,r.height);
+      ctx.fillStyle = 'rgba(160,210,210,.5)';
+      ctx.font = '600 13px Fraunces, serif'; ctx.textAlign='center';
+      ctx.fillText('scratch to reveal', r.width/2, r.height/2);
+    }
+    setTimeout(size, 30);
+    const ctx = canvas.getContext('2d');
+    let drawing=false, cleared=0;
+    function scratchAt(x,y){
+      ctx.globalCompositeOperation='destination-out';
+      ctx.beginPath(); ctx.arc(x,y,22,0,Math.PI*2); ctx.fill();
+    }
+    function pos(e){
+      const r=canvas.getBoundingClientRect();
+      const t=e.touches?e.touches[0]:e;
+      return [t.clientX-r.left, t.clientY-r.top];
+    }
+    function start(e){ if(scratchOpened&&!card.classList.contains('opening'))return; drawing=true; card.classList.add('opening'); const[x,y]=pos(e); scratchAt(x,y); e.preventDefault(); }
+    function move(e){ if(!drawing)return; const[x,y]=pos(e); scratchAt(x,y); e.preventDefault(); }
+    function end(){ if(!drawing)return; drawing=false; checkCleared(); }
+    function checkCleared(){
+      const img = ctx.getImageData(0,0,canvas.width,canvas.height).data;
+      let clear=0; for(let i=3;i<img.length;i+=4*40){ if(img[i]===0) clear++; }
+      const ratio = clear/(img.length/(4*40));
+      if(ratio>0.5){
+        canvas.style.transition='opacity .6s ease'; canvas.style.opacity='0';
+        card.classList.add('revealed'); scratchOpened=true;
+        // fade the other cards
+        document.querySelectorAll('.scratch-card').forEach(c=>{ if(c!==card) c.classList.add('dimmed'); });
+        const act=document.getElementById('scratch-actions'); if(act) act.style.opacity='1';
+      }
+    }
+    canvas.addEventListener('mousedown',start); canvas.addEventListener('mousemove',move);
+    window.addEventListener('mouseup',end);
+    canvas.addEventListener('touchstart',start,{passive:false});
+    canvas.addEventListener('touchmove',move,{passive:false});
+    canvas.addEventListener('touchend',end);
+  }
+
+  // ============================================================
+  //  LOVESLOTS
+  // ============================================================
+  let slotsLeadIsHer = true;
+  function enterSlots(){
+    openOverlay('LoveSlots', '#a25c9e');
+    renderSlots();
+  }
+  function renderSlots(){
+    const lead = slotsLeadIsHer ? 'Her' : 'His';
+    stage.innerHTML =
+      '<div class="slots-wrap">' +
+        '<p class="slots-intro"><span class="gc-lead-dot"></span>'+lead+' turn to lead. Pull the handle and let the reels decide.</p>' +
+        '<div class="slots-machine">' +
+          '<div class="reel" id="reel0"></div>' +
+          '<div class="reel" id="reel1"></div>' +
+          '<div class="reel" id="reel2"></div>' +
+          '<div class="reel" id="reel3"></div>' +
+        '</div>' +
+        '<div class="slots-out" id="slots-out"></div>' +
+        '<div class="go-actions"><button class="gbtn primary" id="slots-spin">Spin the reels</button></div>' +
+      '</div>';
+    const reels = [SLOT_WAY, SLOT_ACT, SLOT_WHERE, SLOT_HOW];
+    reels.forEach((r,i)=>{ document.getElementById('reel'+i).textContent = r[0]; });
+    document.getElementById('slots-spin').addEventListener('click', ()=>{
+      const picks = reels.map(r=>Math.floor(Math.random()*r.length));
+      reels.forEach((r,i)=>{
+        const el = document.getElementById('reel'+i);
+        let ticks = 0, max = 14 + i*5;
+        const iv = setInterval(()=>{
+          el.textContent = r[Math.floor(Math.random()*r.length)];
+          el.classList.add('spinning');
+          if(++ticks>=max){ clearInterval(iv); el.textContent=r[picks[i]]; el.classList.remove('spinning'); el.classList.add('locked');
+            setTimeout(()=>el.classList.remove('locked'),400);
+            if(i===reels.length-1) showSlotResult(picks);
+          }
+        }, 70);
+      });
+    });
+  }
+  function showSlotResult(picks){
+    const sentence = SLOT_WAY[picks[0]] + ', ' + SLOT_ACT[picks[1]] + ' ' + SLOT_WHERE[picks[2]] + ' ' + SLOT_HOW[picks[3]] + '.';
+    const out = document.getElementById('slots-out');
+    out.innerHTML = '<div class="slot-result" id="slot-result">'+sentence+'</div>';
+    requestAnimationFrame(()=>document.getElementById('slot-result').classList.add('show'));
+    slotsLeadIsHer = !slotsLeadIsHer;
+  }
   document.addEventListener('keydown', (e)=>{
     if (e.key === 'Escape' && state.active) exitGame();
   });
