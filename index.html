@@ -601,6 +601,212 @@
     font-size:1.1rem;line-height:1.5;margin-bottom:30px;
   }
 
+  /* ==========================================================
+     ZONE SYSTEM — separate visual environments per path
+     ========================================================== */
+  body{background:var(--paper)}
+  .zone{position:relative;overflow:hidden}
+  .zone > .wrap{position:relative;z-index:1}
+  .zone::before{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  }
+
+  /* Zone: pathway selector (still on paper, but with a soft transition divider above) */
+  .zone-paths{
+    background:var(--paper);
+    border-top:1px solid var(--line);
+  }
+
+  /* Zone One: book companion — paper with a barely-there plum wash */
+  .zone-one{background:var(--paper)}
+  .zone-one::before{
+    background:
+      radial-gradient(ellipse at 80% 0%, rgba(108,58,92,.05), transparent 60%),
+      radial-gradient(ellipse at 20% 100%, rgba(176,123,62,.04), transparent 55%);
+  }
+
+  /* Zone Two: improved intimacy — warm vellum, slightly blush, scholarly */
+  .zone-two{
+    background:linear-gradient(180deg,
+      var(--paper) 0%,
+      #f1e6d2 60px,
+      #efe1c8 50%,
+      #f1e6d2 calc(100% - 60px),
+      var(--paper) 100%);
+    color:var(--ink);
+  }
+  .zone-two::before{
+    background:
+      radial-gradient(circle at 85% 15%, rgba(176,123,62,.10), transparent 50%),
+      radial-gradient(circle at 15% 65%, rgba(108,58,92,.07), transparent 50%),
+      radial-gradient(circle at 90% 85%, rgba(176,123,62,.08), transparent 45%);
+  }
+
+  /* Zone Three: the becoming — dark candlelit threshold */
+  .zone-three{
+    background:linear-gradient(180deg,
+      var(--paper) 0%,
+      #4a2540 120px,
+      #2a1424 22%,
+      #1a0e1c 50%,
+      #1a0e1c 100%);
+    color:#f0e7d5;
+  }
+  .zone-three::before{
+    background:
+      radial-gradient(circle at 25% 30%, rgba(176,123,62,.16), transparent 45%),
+      radial-gradient(circle at 75% 60%, rgba(138,42,58,.18), transparent 50%),
+      radial-gradient(circle at 50% 90%, rgba(176,123,62,.10), transparent 55%);
+  }
+  /* small "candle flicker" decorative dots — purely decorative */
+  .zone-three::after{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+    background-image:
+      radial-gradient(circle at 12% 22%, rgba(255,200,140,.45) 0, transparent 2px),
+      radial-gradient(circle at 88% 38%, rgba(255,200,140,.35) 0, transparent 2px),
+      radial-gradient(circle at 22% 68%, rgba(255,200,140,.35) 0, transparent 2px),
+      radial-gradient(circle at 78% 82%, rgba(255,200,140,.4) 0, transparent 2px);
+    animation:flicker 4.5s ease-in-out infinite alternate;
+  }
+  @keyframes flicker{
+    0%{opacity:.55}
+    50%{opacity:.85}
+    100%{opacity:.65}
+  }
+
+  /* Close zone returns to paper */
+  .zone-close{background:var(--paper)}
+
+  /* ---------- PATH OPENER (the title block at the start of each zone) ---------- */
+  .path-opener{
+    text-align:center;padding:110px 0 60px;position:relative;
+  }
+  .path-opener .label{
+    font-family:'Fraunces',serif;font-size:.74rem;letter-spacing:.42em;
+    text-transform:uppercase;font-weight:600;margin-bottom:18px;
+  }
+  .path-opener .rule{
+    width:80px;height:1px;margin:0 auto 22px;
+  }
+  .path-opener .title{
+    font-family:'Fraunces',serif;font-weight:500;
+    font-size:clamp(2.8rem,9vw,5rem);line-height:.98;letter-spacing:-.012em;
+    margin-bottom:24px;
+  }
+  .path-opener .title em{font-style:italic}
+  .path-opener .sub{
+    font-family:'Fraunces',serif;font-style:italic;
+    font-size:clamp(1.05rem,2.4vw,1.25rem);max-width:36ch;
+    margin:0 auto;line-height:1.5;
+  }
+  /* Zone-specific opener treatments */
+  .zone-one .path-opener .label{color:var(--plum)}
+  .zone-one .path-opener .rule{background:var(--plum)}
+  .zone-one .path-opener .title{color:var(--ink)}
+  .zone-one .path-opener .title em{color:var(--plum-deep)}
+  .zone-one .path-opener .sub{color:var(--ink-soft)}
+
+  .zone-two .path-opener .label{color:var(--gold)}
+  .zone-two .path-opener .rule{background:var(--gold)}
+  .zone-two .path-opener .title{color:var(--plum-deep)}
+  .zone-two .path-opener .title em{color:var(--gold)}
+  .zone-two .path-opener .sub{color:var(--ink-soft)}
+
+  .zone-three .path-opener{padding-top:140px}
+  .zone-three .path-opener .label{color:#d49659}
+  .zone-three .path-opener .rule{background:#d49659}
+  .zone-three .path-opener .title{color:#f4ead6}
+  .zone-three .path-opener .title em{color:#d49659}
+  .zone-three .path-opener .sub{color:rgba(244,234,214,.78)}
+
+  /* ---------- ZONE THREE DARK OVERRIDES ---------- */
+  .zone-three .bgame{border-top:none;margin-top:0;padding-top:20px}
+  .zone-three .bgame-header{display:none} /* opener replaces it */
+  .zone-three .bgame-intro{border-bottom:1px solid rgba(244,234,214,.15)}
+  .zone-three .bgame-intro p{color:rgba(244,234,214,.78)}
+  .zone-three .bgame-intro p strong{color:#f4ead6}
+  .zone-three .bgame-intro .lead{color:#f4ead6;font-style:italic}
+  .zone-three .bgame-tier{
+    background:rgba(244,234,214,.06);
+    border:1px solid rgba(244,234,214,.18);
+    backdrop-filter:blur(2px);
+  }
+  .zone-three .bgame-tier .t-num{color:#d49659}
+  .zone-three .bgame-tier .t-name{color:#f4ead6}
+  .zone-three .bgame-prep{
+    background:rgba(244,234,214,.05);
+    border:1px solid rgba(244,234,214,.18);
+    border-left:3px solid #d49659;
+  }
+  .zone-three .bgame-prep h4{color:#d49659}
+  .zone-three .bgame-prep li{
+    color:rgba(244,234,214,.78);border-top-color:rgba(244,234,214,.15);
+  }
+  .zone-three .bgame-prep li::before{color:#d49659}
+  .zone-three .bgame-consent{
+    color:rgba(244,234,214,.78);
+    border-color:rgba(244,234,214,.25);
+  }
+  .zone-three .bgame-consent strong{color:#f4ead6}
+
+  /* Zone-two opener spacing tweak */
+  .zone-two .intim-header{display:none} /* opener replaces it */
+  .zone-two .intimacy{padding-top:0;border-top:none;margin-top:0}
+  .zone-two .intim-intro{padding-top:10px}
+
+  /* Path opener for Path One (since the original intro lives below it) */
+  .zone-one .path-opener{padding-bottom:30px}
+  .zone-one .note{border-top:none;padding-top:24px}
+  .zone-one .note .lead{font-size:1.22rem}
+
+  /* ---------- ZONE TRANSITION ORNAMENT ---------- */
+  .zone-orn{
+    text-align:center;padding:50px 0 30px;
+    font-family:'Fraunces',serif;font-style:italic;font-size:1.6rem;
+    color:var(--gold);letter-spacing:.6em;
+  }
+  .zone-orn::before{content:"❦"}
+  .zone-three .zone-orn{color:#d49659}
+
+  /* Make hero shorter — reduce empty space before path selector */
+  header.hero{min-height:78vh;padding:80px 0 50px}
+
+  /* ---------- PATHWAY SELECTOR — make it more striking ---------- */
+  .pathways{padding:60px 0 80px}
+  .pathways-kicker{
+    font-family:'Fraunces',serif;font-size:.74rem;letter-spacing:.42em;
+    text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:12px;
+  }
+  .pathways-title{
+    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
+    font-size:clamp(1.7rem,4.4vw,2.3rem);color:var(--plum-deep);
+    text-align:center;margin-bottom:14px;line-height:1.18;
+  }
+  .pathways-sub{
+    text-align:center;color:var(--ink-soft);max-width:38ch;margin:0 auto 36px;
+    font-size:.98rem;line-height:1.5;
+  }
+  .pathway-card{
+    display:block;text-decoration:none;color:inherit;
+    background:var(--paper-warm);border:1px solid var(--line);border-radius:3px;
+    padding:30px 26px 26px;
+    transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease,background .3s ease;
+    position:relative;overflow:hidden;
+  }
+  .pathway-card::after{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,transparent,currentColor,transparent);
+    opacity:.2;transition:opacity .3s ease;
+  }
+  .pathway-card.crisis{color:var(--plum)}
+  .pathway-card.intim{color:var(--gold)}
+  .pathway-card.ember{color:#8a2a3a}
+  .pathway-card:hover::after{opacity:1}
+  .pathway-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px var(--shadow)}
+
+  /* Override media query for path cards so 3 still fit on tablet */
+  @media (max-width:780px){.pathway-cards{grid-template-columns:1fr;gap:14px}}
+
   /* ---------- CLOSE ---------- */
   .close{padding:70px 0 30px;text-align:center}
   .close .ig{
@@ -639,11 +845,14 @@
   </div>
 </header>
 
-<div class="wrap">
+<!-- ============ ZONE: PATHWAYS ============ -->
+<div class="zone zone-paths">
+  <div class="wrap">
 
   <div class="pathways">
     <div class="pathways-kicker">Choose your path</div>
-    <div class="pathways-title">Two readings of the same midlife terrain</div>
+    <div class="pathways-title">Three readings of the same midlife terrain</div>
+    <p class="pathways-sub">Three environments, in one place. Read the book. Read the science. Or step into the room.</p>
     <div class="pathway-cards">
       <a class="pathway-card crisis" href="#midlife">
         <div class="pw-label">Path One</div>
@@ -664,6 +873,19 @@
         <div class="pw-arrow">Enter the game</div>
       </a>
     </div>
+  </div>
+  </div>
+</div>
+
+<!-- ============ ZONE ONE: THE MIDLIFE CRISIS ============ -->
+<div class="zone zone-one">
+  <div class="wrap">
+
+  <div class="path-opener">
+    <div class="label">Path One</div>
+    <div class="rule"></div>
+    <div class="title">The <em>Midlife</em> Crisis</div>
+    <p class="sub">Kate Muir's book distilled — eighteen chapters on the hormonal, neurological and psychological weather of midlife, made for reading together.</p>
   </div>
 
   <div class="note" id="midlife">
@@ -1419,6 +1641,20 @@
     </div>
   </section>
 
+  </div>
+</div>
+
+<!-- ============ ZONE TWO: IMPROVED INTIMACY ============ -->
+<div class="zone zone-two">
+  <div class="wrap">
+
+  <div class="path-opener">
+    <div class="label">Path Two</div>
+    <div class="rule"></div>
+    <div class="title"><em>Improved</em> Intimacy</div>
+    <p class="sub">The science of desire that lasts — Perel, Nagoski, Aron, Mark &amp; Lasslo — and seven practices to keep the flame alive against the gravity of routine.</p>
+  </div>
+
   <!-- ================= IMPROVED INTIMACY ================= -->
   <section class="intimacy" id="intimacy">
     <div class="intim-header">
@@ -1584,6 +1820,20 @@
     </div>
   </section>
 
+  </div>
+</div>
+
+<!-- ============ ZONE THREE: THE BECOMING ============ -->
+<div class="zone zone-three">
+  <div class="wrap">
+
+  <div class="path-opener">
+    <div class="label">Path Three</div>
+    <div class="rule"></div>
+    <div class="title">The <em>Becoming</em></div>
+    <p class="sub">An interactive dice-and-card game for two — six tiers, two hundred and sixteen unique card-experiences, designed around science and consent. For one steamy evening, with no rush.</p>
+  </div>
+
   <!-- ================= THE BECOMING (GAME) ================= -->
   <section class="bgame" id="becoming">
     <div class="bgame-header">
@@ -1625,6 +1875,10 @@
     </div>
   </section>
 
+  </div>
+</div>
+
+<!-- ============ GAME OVERLAY (fixed, lives outside zones) ============ -->
   <!-- ================= GAME OVERLAY ================= -->
   <div class="game-overlay" id="game-overlay" aria-hidden="true">
     <div class="go-top">
@@ -1634,6 +1888,10 @@
     <div class="go-intensity"><div class="bar" id="go-intensity-bar"></div></div>
     <div class="go-stage" id="go-stage"></div>
   </div>
+
+<!-- ============ ZONE: CLOSE ============ -->
+<div class="zone zone-close">
+  <div class="wrap">
 
   <!-- ================= CLOSE ================= -->
   <div class="close">
@@ -1646,6 +1904,7 @@
     Distilled for reading together. The full book holds the stories this leaves behind.
   </footer>
 
+  </div>
 </div>
 
 <script>
@@ -1665,9 +1924,9 @@
   },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('.chapter').forEach(c=>io.observe(c));
 
-  // smooth "begin" cue
+  // smooth "begin" cue — scrolls to the path selector
   document.querySelector('.scroll-cue').addEventListener('click',()=>{
-    document.querySelector('.note').scrollIntoView({behavior:'smooth'});
+    document.querySelector('.pathways').scrollIntoView({behavior:'smooth'});
   });
   document.querySelector('.scroll-cue').style.cursor='pointer';
 
