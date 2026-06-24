@@ -187,6 +187,119 @@
   }
   .prompts .q-more li:first-of-type{border-top:none;padding-top:2px}
 
+  /* ---------- PATHWAY SELECTOR ---------- */
+  .pathways{padding:30px 0 60px}
+  .pathways-kicker{
+    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.4em;
+    text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:8px;
+  }
+  .pathways-title{
+    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
+    font-size:clamp(1.55rem,4.2vw,2rem);color:var(--plum-deep);
+    text-align:center;margin-bottom:34px;line-height:1.18;
+  }
+  .pathway-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media (max-width:600px){.pathway-cards{grid-template-columns:1fr}}
+  .pathway-card{
+    display:block;text-decoration:none;color:inherit;
+    background:var(--paper-warm);border:1px solid var(--line);border-radius:3px;
+    padding:28px 26px 24px;
+    transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+  }
+  .pathway-card:hover{
+    transform:translateY(-3px);border-color:var(--plum);
+    box-shadow:0 8px 24px var(--shadow);
+  }
+  .pathway-card.crisis{border-left:3px solid var(--plum)}
+  .pathway-card.intim{border-left:3px solid var(--gold)}
+  .pathway-card .pw-label{
+    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.3em;
+    text-transform:uppercase;color:var(--plum);font-weight:600;
+  }
+  .pathway-card.intim .pw-label{color:var(--gold)}
+  .pathway-card .pw-title{
+    font-family:'Fraunces',serif;font-weight:500;
+    font-size:1.45rem;line-height:1.16;color:var(--ink);margin:10px 0;
+  }
+  .pathway-card .pw-sub{color:var(--ink-soft);font-size:.96rem;line-height:1.5;margin-bottom:18px}
+  .pathway-card .pw-arrow{
+    font-family:'Fraunces',serif;font-size:.7rem;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--plum);font-weight:600;
+    display:flex;align-items:center;gap:10px;
+  }
+  .pathway-card.intim .pw-arrow{color:var(--gold)}
+  .pathway-card .pw-arrow::after{content:"→";font-size:1rem;transition:transform .25s ease}
+  .pathway-card:hover .pw-arrow::after{transform:translateX(4px)}
+
+  /* ---------- INTIMACY SECTION ---------- */
+  .intimacy{padding:90px 0 30px;border-top:1px solid var(--line);margin-top:50px}
+  .intim-header{padding-bottom:18px;text-align:center}
+  .intim-header .pn{
+    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.4em;
+    text-transform:uppercase;color:var(--gold);
+  }
+  .intim-header .pt{
+    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
+    font-size:clamp(2.1rem,6vw,3.2rem);color:var(--plum-deep);
+    margin-top:10px;letter-spacing:-.01em;line-height:1.04;
+  }
+  .intim-header .pd{
+    color:var(--ink-soft);max-width:42ch;margin:16px auto 0;font-size:1rem;
+  }
+  .intim-intro{padding:30px 0 14px;border-bottom:1px solid var(--line);margin-bottom:20px}
+  .intim-intro p{margin-bottom:16px;color:var(--ink-soft)}
+  .intim-intro p:last-child{margin-bottom:0}
+  .intim-intro .lead{font-family:'Fraunces',serif;font-style:italic;font-size:1.15rem;color:var(--ink)}
+  .intim-part{padding:36px 0;border-bottom:1px solid var(--line)}
+  .intim-part .pnum{
+    font-family:'Fraunces',serif;font-size:.78rem;letter-spacing:.3em;
+    text-transform:uppercase;color:var(--gold);font-weight:600;
+  }
+  .intim-part h3{
+    font-family:'Fraunces',serif;font-weight:500;
+    font-size:clamp(1.45rem,4.2vw,2rem);line-height:1.1;color:var(--ink);
+    margin:8px 0 14px;
+  }
+  .intim-part .tag{
+    display:inline-block;font-family:'Fraunces',serif;font-style:italic;
+    font-size:1.02rem;color:var(--moss);margin-bottom:18px;
+  }
+  .intim-part p{margin-bottom:14px}
+  .intim-part strong{color:var(--plum-deep);font-weight:600}
+  .intim-part ul.factors{list-style:none;padding:6px 0 0;margin:10px 0 6px}
+  .intim-part ul.factors li{
+    padding:6px 0 6px 18px;position:relative;color:var(--ink-soft);font-size:.98rem;
+  }
+  .intim-part ul.factors li::before{
+    content:"·";position:absolute;left:4px;color:var(--gold);font-weight:700;
+  }
+  .intim-flame{padding:60px 0 30px}
+  .intim-flame h2{
+    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
+    font-size:clamp(1.9rem,5.4vw,2.6rem);line-height:1.1;color:var(--plum-deep);
+    margin-bottom:10px;text-align:center;
+  }
+  .intim-flame .flame-tag{
+    font-family:'Fraunces',serif;font-style:italic;color:var(--moss);
+    text-align:center;margin-bottom:26px;font-size:1.04rem;
+  }
+  .intim-flame > p{margin-bottom:30px;color:var(--ink-soft)}
+  .practice{
+    margin:18px 0;padding:22px 24px 20px;
+    background:var(--paper-warm);border:1px solid var(--line);border-radius:3px;
+    display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;
+  }
+  .practice .pn-num{
+    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
+    font-size:2.1rem;color:var(--gold);line-height:1;padding-top:2px;
+  }
+  .practice .pbody h4{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:1.1rem;color:var(--plum-deep);margin-bottom:8px;
+  }
+  .practice .pbody p{margin:0;color:var(--ink-soft);font-size:.97rem;line-height:1.55}
+  .practice .pbody strong{color:var(--plum-deep);font-weight:600}
+
   /* ---------- CLOSE ---------- */
   .close{padding:70px 0 30px;text-align:center}
   .close .ig{
@@ -227,7 +340,26 @@
 
 <div class="wrap">
 
-  <div class="note">
+  <div class="pathways">
+    <div class="pathways-kicker">Choose your path</div>
+    <div class="pathways-title">Two readings of the same midlife terrain</div>
+    <div class="pathway-cards">
+      <a class="pathway-card crisis" href="#midlife">
+        <div class="pw-label">Path One</div>
+        <div class="pw-title">The Midlife Crisis</div>
+        <p class="pw-sub">Kate Muir's full book distilled — eighteen chapters on the hormonal, neurological and psychological weather of midlife, with questions to read together.</p>
+        <div class="pw-arrow">Begin the book companion</div>
+      </a>
+      <a class="pathway-card intim" href="#intimacy">
+        <div class="pw-label">Path Two</div>
+        <div class="pw-title">Improved Intimacy</div>
+        <p class="pw-sub">The science of desire that lasts — Perel, Nagoski, Aron, Mark & Lasslo — and seven practices to keep the flame alive against the gravity of routine.</p>
+        <div class="pw-arrow">Begin the intimacy path</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="note" id="midlife">
     <p class="lead">This isn't the book. It's the wheat — the ideas worth carrying out of each chapter, with the anecdotes left behind.</p>
     <p>Muir's argument runs through three parts: <strong>Mind</strong>, <strong>Body</strong>, <strong>Spirit</strong>. Her central reframe is that midlife is less a crisis to survive than a turning point you get to <em>steer</em>. She borrows a way of dividing a long life into quarters — Grow (to 25), Achieve (to 50), <em>Becoming</em> (to 75), Harvesting (to 100) — and the whole book lives in that word: becoming.</p>
     <p>Each chapter below carries a one-line essence, the core ideas, and a few prompts to talk through together.</p>
@@ -977,6 +1109,171 @@
               <li>Soul, essence, becoming — which of these words means most to you right now?</li>
               <li>If you could send a message to yourself ten years from now, what would it say?</li>
             </ul>
+    </div>
+  </section>
+
+  <!-- ================= IMPROVED INTIMACY ================= -->
+  <section class="intimacy" id="intimacy">
+    <div class="intim-header">
+      <div class="pn">Path Two</div>
+      <div class="pt">Improved Intimacy</div>
+      <div class="pd">The science of desire that lasts — and the daily practice that keeps it alive.</div>
+    </div>
+
+    <div class="intim-intro">
+      <p class="lead">This isn't Muir's path. It's the extension of it.</p>
+      <p>Where the book companion maps the hormonal and medical terrain of midlife intimacy, this section answers a harder question: what does the current research actually say keeps two people wanting each other across years and decades — and what, in daily practice, prevents the slow erosion into routine, roommates, and quietly separate lives?</p>
+      <p>The findings are clearer than most couples ever hear. They come from decades of work by therapists like <strong>Esther Perel</strong>, sex researchers like <strong>Emily Nagoski</strong>, relationship scientists like <strong>Arthur Aron</strong>, and meta-analysts like <strong>Kristen Mark</strong>. The verdict: long-term desire does not survive on autopilot — but it is entirely possible to maintain, and even deepen, with the right understanding and a few specific practices. The science first; then the practice.</p>
+    </div>
+
+    <!-- THE RESEARCH -->
+    <div class="intim-part">
+      <div class="pnum">I · The Paradox at the Heart</div>
+      <h3>Esther Perel — Love and Desire on Different Fuels</h3>
+      <div class="tag">Closeness builds love. Distance builds desire. Both are needed.</div>
+      <p>The Belgian psychotherapist Esther Perel — whose <em>Mating in Captivity</em> was re-released in 2025 as <em>In Search of Erotic Intelligence</em> — argues that love and desire run on opposing logics, and that the very things that build one can quietly extinguish the other.</p>
+      <p><strong>Love thrives on closeness, predictability, security. Desire thrives on distance, mystery, novelty.</strong> A couple who shares everything — schedules, finances, secrets, screens, even moods — can find themselves intimately bonded but no longer attracted. Perel calls this <em>fusion</em>: the well-intentioned merging that erases the otherness desire needs to keep burning.</p>
+      <p>Her distinction between <strong>secrecy</strong> (destructive) and <strong>privacy</strong> (necessary) is central. Partners need interior lives. They need parts of themselves that belong only to them. The pursuit, the anticipation, the thrill of not quite knowing — these don't survive total transparency. The partner who remains slightly inaccessible remains desirable; the partner fully possessed becomes invisible.</p>
+      <div class="pull">Love seeks to know. Desire cannot live without mystery.</div>
+      <p>Perel's most quoted practical line: <strong>foreplay does not start five minutes before sex. It starts immediately after the previous time.</strong> Desire is built in the hours and days between, not the minutes leading up.</p>
+    </div>
+
+    <div class="intim-part">
+      <div class="pnum">II · The Mechanics</div>
+      <h3>Emily Nagoski — Accelerators and Brakes</h3>
+      <div class="tag">Most long-term desire problems aren't a weak accelerator — they're a stuck brake.</div>
+      <p>Where Perel works in metaphor, Emily Nagoski works in neuroscience. Her bestselling <em>Come As You Are</em> (2015) and the follow-up <em>Come Together</em> (2024) translate the <strong>Dual Control Model</strong> — developed by Kinsey Institute researchers John Bancroft and Erick Janssen — into a framework that has reshaped how clinicians talk to couples about desire.</p>
+      <p>The model: the brain has a sexual <strong>accelerator</strong> (the Sexual Excitation System) that responds to anything coded as erotic, and a sexual <strong>brake</strong> (the Sexual Inhibition System) that responds to anything coded as threat — stress, unfinished arguments, unwashed dishes, body shame, work pressure, the children awake in the next room, the unanswered email. Most long-term desire problems are not about a weak accelerator. <strong>They are about a brake that won't release.</strong></p>
+      <p>This reframes everything. Lingerie, candles, more frequency, exotic locations — these are all accelerator-targeted interventions. They rarely work in long-term relationships because the brakes are the bottleneck. Reducing perceived threat — emotional, physical, environmental — is where the real work lives.</p>
+      <div class="pull">Desire doesn't happen in a vacuum. It happens in context.</div>
+      <p>Nagoski also rescues women in particular from a damaging cultural myth. Roughly <strong>85% of women experience <em>responsive</em> desire</strong>, not spontaneous. Arousal arrives <em>after</em> the context is right, not before. Waiting to feel "in the mood" before stepping into a sensual context is waiting for the wrong thing in the wrong order. The mood is built; it doesn't arrive on its own.</p>
+    </div>
+
+    <div class="intim-part">
+      <div class="pnum">III · The Growth</div>
+      <h3>Arthur Aron — Self-Expansion and Novelty</h3>
+      <div class="tag">The partner becomes associated with the growth — or with the rut.</div>
+      <p>For decades, Arthur Aron and colleagues at Stony Brook University have studied a different angle: what actually keeps couples alive to each other beyond the first years? Their answer is the <strong>self-expansion model</strong> — the finding that humans seek experiences that grow the self, and we associate that growth with whoever helps us achieve it.</p>
+      <p>The most famous study (Aron, Norman, Aron, McKenna & Heyman, 2000) randomly assigned couples to either <em>novel and arousing</em> activities or mundane ones. The couples doing the novel activities reported significantly more relationship satisfaction and closeness afterwards. A 16-year longitudinal follow-up confirmed the basic finding: <strong>less boredom and more shared exciting activities at year 7 predicted substantially higher satisfaction at year 16</strong>, even after controlling for satisfaction at year 7.</p>
+      <p>The mechanism: when a couple learns something new together, faces a slightly uncomfortable experience together, travels somewhere new together, the partner becomes associated with the growth — and the relationship is re-anchored to expansion rather than maintenance. The 2024 Coffey vacation study and a 2025 virtual-reality replication continue to confirm the effect. <strong>Routine flattens; novelty rebuilds.</strong></p>
+      <div class="pull">Couples who do exciting things together at year seven are still in love at year sixteen.</div>
+    </div>
+
+    <div class="intim-part">
+      <div class="pnum">IV · The Synthesis</div>
+      <h3>Mark &amp; Lasslo — What Actually Maintains Desire</h3>
+      <div class="tag">A systematic review of every major study, in one model.</div>
+      <p>In 2018, University of Kentucky researchers Kristen Mark and Julie Lasslo published a landmark systematic review in <em>The Journal of Sex Research</em> — analysing 64 articles spanning more than twenty years of research on maintaining sexual desire in long-term relationships.</p>
+      <p>The integrated model they built identifies the factors with the most consistent evidence behind them:</p>
+      <ul class="factors">
+        <li><strong>Individual autonomy</strong> — a robust self outside the relationship</li>
+        <li><strong>Continued attraction to the partner</strong> — physical, intellectual, emotional</li>
+        <li><strong>Stress management and mental wellbeing</strong></li>
+        <li><strong>Honest, regular communication about sex itself</strong></li>
+        <li><strong>Intentional intimate behaviours beyond intercourse</strong> — touch, presence, attention</li>
+        <li><strong>Conscious prioritisation</strong> — treating intimacy as worth scheduling, not something that "should just happen"</li>
+        <li><strong>Sexual exploration and openness to change</strong></li>
+        <li><strong>Effective conflict resolution</strong></li>
+      </ul>
+      <p>The thread connecting them: long-term desire is not a passive resource that exists or doesn't. <strong>It is a renewable practice that responds to specific, learnable inputs.</strong> Low or shifting desire is not a verdict on the relationship; it is a signal about what needs attention.</p>
+    </div>
+
+    <!-- KEEPING THE FLAME ALIVE -->
+    <div class="intim-flame">
+      <h2>Keeping the Flame Alive</h2>
+      <p class="flame-tag">Seven practices, drawn straight from the research, that translate theory into evenings.</p>
+      <p>Theory only matters if it changes how a Tuesday feels. The practices below come directly from the work above — Perel's paradox, Nagoski's brakes and accelerators, Aron's novelty, Mark &amp; Lasslo's synthesis. They are not romantic advice from a magazine. They are the operating manual that the science keeps pointing toward.</p>
+
+      <div class="practice">
+        <div class="pn-num">I</div>
+        <div class="pbody">
+          <h4>Engineer anticipation</h4>
+          <p>The hours before intimacy matter more than the minutes during. <strong>A message at lunch that lands in the chest. A glance across the room at dinner that says: later. A note left in a coat pocket.</strong> Perel's principle — that foreplay starts the morning after, not the minute before — points at this. Build anticipation as a deliberate practice, not a happy accident. The body shows up to a moment that has been prepared.</p>
+        </div>
+      </div>
+
+      <div class="practice">
+        <div class="pn-num">II</div>
+        <div class="pbody">
+          <h4>Release the brakes before adding to the accelerator</h4>
+          <p>Don't start with lingerie. Start with: <strong>what is on her plate today? What stress is on her body? What did the office take out of her? What is left undone in the house?</strong> The unwashed dishes, the work deadline, the conversation with her mother — these are not romance-killers in the abstract. They are literal neurological inhibitors. Nagoski's clearest practical advice: do whatever lifts those <em>before</em> reaching for accelerators. Sometimes the most erotic act of the evening is loading the dishwasher.</p>
+        </div>
+      </div>
+
+      <div class="practice">
+        <div class="pn-num">III</div>
+        <div class="pbody">
+          <h4>Build novelty into the calendar</h4>
+          <p>Aron's research is unambiguous: <strong>do one new thing together every two weeks.</strong> Not the same date night on a loop. A new city you've never visited. A dish neither of you has cooked. A walking route never taken. A class. A trip. A skill you both lack. The shared first-time becomes a recurring deposit in the relationship's energy account — and the partner becomes the person you grow with rather than the person you settle next to.</p>
+        </div>
+      </div>
+
+      <div class="practice">
+        <div class="pn-num">IV</div>
+        <div class="pbody">
+          <h4>Preserve privacy and otherness</h4>
+          <p>Perel's distinction is crucial: <strong>privacy is not secrecy.</strong> Have your own friends. Have your own pursuits. Have an inner life. Do not tell everything. Do not finish every sentence. The partner who remains slightly unknowable remains slightly desirable. The fully transparent partner — known down to every thought, fully merged — becomes harder to ardently want. Mystery isn't a strategy; it's a respect for the otherness of another person.</p>
+        </div>
+      </div>
+
+      <div class="practice">
+        <div class="pn-num">V</div>
+        <div class="pbody">
+          <h4>Treat sensuality as ambient, not scheduled</h4>
+          <p>The kitchen touch. The bath together that isn't "about" anything. The long hug at the door. The way you brush hair off her face. <strong>Couples who maintain desire over decades describe sensual contact as woven through the day, not switched on at bedtime.</strong> The body needs the slow build, not the sudden ask. Pleasure is not an event you initiate; it is an atmosphere you keep alive.</p>
+        </div>
+      </div>
+
+      <div class="practice">
+        <div class="pn-num">VI</div>
+        <div class="pbody">
+          <h4>Design the steamy evening as production, not availability</h4>
+          <p>Lighting matters. Music matters. Scent matters. Fresh sheets matter. <strong>No phones. No deadlines. No "we should."</strong> Treat it as a small piece of theatre you build together — anticipation, environment, slowness, attention. Decide on the playlist. Decide on the candles. Let the room itself remove the brakes. The body responds to the room before it responds to the partner.</p>
+        </div>
+      </div>
+
+      <div class="practice">
+        <div class="pn-num">VII</div>
+        <div class="pbody">
+          <h4>Talk about it outside the bedroom</h4>
+          <p>Not during sex — too high-stakes. Not after sex — too vulnerable. <strong>Over coffee. On a walk. In the car.</strong> The Mark &amp; Lasslo review found honest communication is one of the strongest predictors of maintained desire — and it almost never happens spontaneously. The conversation has to be designed too: low pressure, low judgement, real curiosity, real listening. Ask, don't assume.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTIMACY PROMPTS -->
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <div class="q-block">
+        <p class="q-question">When you feel most wanted, what's actually happening — and what's not happening?</p>
+        <span class="q-label">A thought to bring</span>
+        <p class="q-thought">The research is clear: feeling wanted requires both stimulation (accelerator) and the absence of threat (brakes released). For most women in long-term relationships, <strong>the brake side is the bigger lever</strong> — and yet most partners spend all their energy on the accelerator. This question helps name what specifically lifts or lowers the brakes for you, beyond what's obvious to either of us.</p>
+        <span class="q-label">Ways in</span>
+        <ul class="q-ways">
+          <li>What does "in the mood" actually mean to you, sensorily and emotionally?</li>
+          <li>When you've felt most desired by me, what was different about the day, the room, or yourself?</li>
+          <li>What's something quiet that closes you, that I might not have noticed?</li>
+        </ul>
+      </div>
+      <div class="q-block">
+        <p class="q-question">What part of you do you want to keep slightly to yourself — and what part of me do you wish stayed slightly out of reach?</p>
+        <span class="q-label">A thought to bring</span>
+        <p class="q-thought">Perel's most counterintuitive finding: <strong>too much fusion smothers desire.</strong> A partner who is fully known and fully available stops being someone you can ardently want. The healthy version of this isn't secrecy — it's protected interiority for both people. The question is what we each want kept slightly mysterious, on purpose.</p>
+        <span class="q-label">Ways in</span>
+        <ul class="q-ways">
+          <li>Where do you feel most yourself when I'm not in the room?</li>
+          <li>When have you been most attracted to me, and what was I doing or being that made that the case?</li>
+          <li>What about us has become too predictable for either of our taste?</li>
+        </ul>
+      </div>
+      <span class="q-more-label">More to explore</span>
+      <ul class="q-more">
+        <li>What's one novel experience we should plan in the next month — something neither of us has done before?</li>
+        <li>Which of the seven practices above feels like the easiest to start, and which the most distant from where we are?</li>
+        <li>What's the difference, for you, between feeling close and feeling wanted?</li>
+        <li>Where in our daily life could sensuality become ambient rather than scheduled?</li>
+        <li>What would change about our evenings if we treated them as designed, not defaulted?</li>
+      </ul>
     </div>
   </section>
 
