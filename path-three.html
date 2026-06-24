@@ -499,18 +499,27 @@
   .wr-text{font-family:'Fraunces',serif;font-size:1.16rem;line-height:1.5;color:#2a1810;margin-bottom:20px}
 
   /* ====== SCRATCH CARDS ====== */
-  .scratch-wrap{width:100%;max-width:560px;margin:0 auto;padding:10px 0}
-  .scratch-intro{font-family:'Fraunces',serif;font-style:italic;color:rgba(244,234,214,.8);text-align:center;font-size:1.02rem;line-height:1.5;margin-bottom:24px}
-  .scratch-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .scratch-card{position:relative;aspect-ratio:3/4;border-radius:8px;overflow:hidden;
-    background:linear-gradient(160deg,rgba(244,234,214,.96),rgba(237,225,205,.96));
-    box-shadow:0 10px 26px rgba(0,0,0,.4);transition:opacity .5s ease,transform .5s ease}
-  .scratch-card.dimmed{opacity:.32;transform:scale(.96)}
+  .scratch-wrap{width:100%;max-width:520px;margin:0 auto;padding:6px 0;text-align:center}
+  .scratch-intro{font-family:'Fraunces',serif;font-style:italic;color:rgba(244,234,214,.82);font-size:1.04rem;line-height:1.5;margin-bottom:22px}
+  .scratch-choices{display:flex;gap:10px;justify-content:center;margin-bottom:22px}
+  .sc-choice{appearance:none;cursor:pointer;font:inherit;font-family:'Fraunces',serif;font-size:.66rem;
+    letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:rgba(244,234,214,.78);
+    background:rgba(244,234,214,.05);border:1px solid rgba(244,234,214,.18);border-radius:999px;
+    padding:10px 20px;transition:all .2s ease}
+  .sc-choice:hover{color:#fff;border-color:var(--game-accent)}
+  .sc-choice.active{color:#1a0d18;background:var(--game-accent);border-color:var(--game-accent)}
+  .scratch-stage{min-height:10px}
+  .scratch-card{position:relative;width:100%;max-width:420px;margin:0 auto;aspect-ratio:5/3;
+    border-radius:12px;overflow:hidden;background:linear-gradient(160deg,#f4ead6,#ede1cd);
+    box-shadow:0 16px 40px rgba(0,0,0,.45)}
   .sc-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-    padding:16px;text-align:center;font-family:'Fraunces',serif;font-size:.84rem;line-height:1.4;color:#2a1810}
-  .sc-canvas{position:absolute;inset:0;width:100%;height:100%;cursor:grab;touch-action:none}
-  @media (max-width:560px){.sc-text{font-size:.74rem;padding:10px}}
-
+    padding:26px;text-align:center;font-family:'Fraunces',serif;font-size:1.12rem;line-height:1.45;color:#2a1810}
+  .sc-canvas{position:absolute;inset:0;cursor:grab;touch-action:none;border-radius:12px}
+  .sc-hint{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);pointer-events:none;
+    font-family:'Fraunces',serif;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;
+    color:rgba(220,235,235,.7);transition:opacity .3s ease}
+  .sc-controls{display:flex;gap:12px;justify-content:center;margin-top:22px}
+  @media (max-width:480px){.sc-text{font-size:1rem;padding:20px}}
   /* ====== LOVESLOTS ====== */
   .slots-wrap{width:100%;max-width:520px;margin:0 auto;padding:10px 0;text-align:center}
   .slots-intro{font-family:'Fraunces',serif;font-style:italic;color:rgba(244,234,214,.8);font-size:1.02rem;margin-bottom:22px}
@@ -1470,79 +1479,110 @@
     renderScratch();
   }
   function renderScratch(){
-    scratchOpened = false; // reset each render so "New cards" is scratchable again
-    // pick three distinct surprises
+    // choose three distinct surprises; show as three choices, scratch one open
     const pool = SCRATCH.slice();
     for (let i=pool.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [pool[i],pool[j]]=[pool[j],pool[i]]; }
-    const three = pool.slice(0,3);
+    const three = pool.slice(0,3).map(t=>fillCard(t, scratchLeadIsHer));
     const lead = scratchLeadIsHer ? 'Her' : 'His';
     stage.innerHTML =
       '<div class="scratch-wrap">' +
-        '<p class="scratch-intro">Three cards, face down. <span class="gc-lead-dot"></span>'+lead+' turn to lead \u2014 choose one and scratch it open with a finger. The other two stay secret.</p>' +
-        '<div class="scratch-row" id="scratch-row"></div>' +
-        '<div class="go-actions" id="scratch-actions" style="opacity:0"><button class="gbtn primary" id="scratch-again">New cards</button><button class="gbtn ghost" id="scratch-back">Back to the Playroom</button></div>' +
+        '<p class="scratch-intro"><span class="gc-lead-dot"></span>'+lead+' turn to lead. Pick a card, then scratch it open with a finger \u2014 or tap Reveal.</p>' +
+        '<div class="scratch-choices" id="scratch-choices">' +
+          '<button class="sc-choice" data-i="0">Card I</button>' +
+          '<button class="sc-choice" data-i="1">Card II</button>' +
+          '<button class="sc-choice" data-i="2">Card III</button>' +
+        '</div>' +
+        '<div class="scratch-stage" id="scratch-stage"></div>' +
+        '<div class="go-actions" id="scratch-actions"><button class="gbtn ghost" id="scratch-back">Back to the Playroom</button></div>' +
       '</div>';
-    const row = document.getElementById('scratch-row');
-    three.forEach((txt, idx)=>{
-      const card = document.createElement('div');
-      card.className = 'scratch-card';
-      card.innerHTML = '<div class="sc-text">'+fillCard(txt, scratchLeadIsHer)+'</div>';
-      const cv = document.createElement('canvas');
-      cv.className = 'sc-canvas'; card.appendChild(cv);
-      row.appendChild(card);
-      initScratch(cv, card, idx);
-    });
-    document.getElementById('scratch-again').addEventListener('click', ()=>{
-      scratchLeadIsHer = !scratchLeadIsHer; renderScratch();
-    });
-    const sb=document.getElementById('scratch-back'); if(sb) sb.addEventListener('click', backToHub);
+    const choices = stage.querySelectorAll('.sc-choice');
+    choices.forEach(btn=>btn.addEventListener('click', ()=>{
+      choices.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      openScratchCard(three[+btn.getAttribute('data-i')]);
+    }));
+    document.getElementById('scratch-back').addEventListener('click', backToHub);
   }
-  let scratchOpened = false;
-  function initScratch(canvas, card, idx){
-    const rect = () => card.getBoundingClientRect();
-    function size(){
-      const r = rect();
-      canvas.width = r.width; canvas.height = r.height;
-      const ctx = canvas.getContext('2d');
-      const g = ctx.createLinearGradient(0,0,r.width,r.height);
-      g.addColorStop(0,'#2b3f44'); g.addColorStop(1,'#16252a');
-      ctx.fillStyle = g; ctx.fillRect(0,0,r.width,r.height);
-      ctx.fillStyle = 'rgba(160,210,210,.5)';
-      ctx.font = '600 13px Fraunces, serif'; ctx.textAlign='center';
-      ctx.fillText('scratch to reveal', r.width/2, r.height/2);
-    }
-    setTimeout(size, 30);
+
+  function openScratchCard(text){
+    const host = document.getElementById('scratch-stage');
+    host.innerHTML =
+      '<div class="scratch-card" id="scratch-card">' +
+        '<div class="sc-text">'+text+'</div>' +
+        '<canvas class="sc-canvas" id="sc-canvas"></canvas>' +
+        '<div class="sc-hint" id="sc-hint">scratch to reveal</div>' +
+      '</div>' +
+      '<div class="sc-controls">' +
+        '<button class="gbtn ghost" id="sc-reveal">Reveal it</button>' +
+        '<button class="gbtn primary" id="sc-new">New cards</button>' +
+      '</div>';
+    const card = document.getElementById('scratch-card');
+    const canvas = document.getElementById('sc-canvas');
+    const hint = document.getElementById('sc-hint');
     const ctx = canvas.getContext('2d');
-    let drawing=false, cleared=0;
-    function scratchAt(x,y){
-      ctx.globalCompositeOperation='destination-out';
-      ctx.beginPath(); ctx.arc(x,y,22,0,Math.PI*2); ctx.fill();
+    let revealed = false;
+
+    function paintCover(){
+      const r = card.getBoundingClientRect();
+      if (r.width < 8 || r.height < 8){ requestAnimationFrame(paintCover); return; }
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(r.width * dpr);
+      canvas.height = Math.round(r.height * dpr);
+      canvas.style.width = r.width + 'px';
+      canvas.style.height = r.height + 'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      const g = ctx.createLinearGradient(0,0,r.width,r.height);
+      g.addColorStop(0,'#33484d'); g.addColorStop(1,'#1a2a2f');
+      ctx.fillStyle = g; ctx.fillRect(0,0,r.width,r.height);
+      // subtle sheen
+      ctx.fillStyle='rgba(255,255,255,.05)';
+      for(let i=0;i<r.width+r.height;i+=14){ ctx.fillRect(i-r.height,0,4,r.height); }
     }
+    // paint after layout settles
+    requestAnimationFrame(()=>requestAnimationFrame(paintCover));
+    window.addEventListener('resize', paintCover, {passive:true});
+
+    let drawing=false;
     function pos(e){
       const r=canvas.getBoundingClientRect();
-      const t=e.touches?e.touches[0]:e;
+      const t=(e.touches&&e.touches[0])?e.touches[0]:e;
       return [t.clientX-r.left, t.clientY-r.top];
     }
-    function start(e){ if(scratchOpened&&!card.classList.contains('opening'))return; drawing=true; card.classList.add('opening'); const[x,y]=pos(e); scratchAt(x,y); e.preventDefault(); }
-    function move(e){ if(!drawing)return; const[x,y]=pos(e); scratchAt(x,y); e.preventDefault(); }
-    function end(){ if(!drawing)return; drawing=false; checkCleared(); }
-    function checkCleared(){
-      const img = ctx.getImageData(0,0,canvas.width,canvas.height).data;
-      let clear=0; for(let i=3;i<img.length;i+=4*40){ if(img[i]===0) clear++; }
-      const ratio = clear/(img.length/(4*40));
-      if(ratio>0.5){
-        canvas.style.transition='opacity .6s ease'; canvas.style.opacity='0';
-        card.classList.add('revealed'); scratchOpened=true;
-        // fade the other cards
-        document.querySelectorAll('.scratch-card').forEach(c=>{ if(c!==card) c.classList.add('dimmed'); });
-        const act=document.getElementById('scratch-actions'); if(act) act.style.opacity='1';
-      }
+    function scratchAt(x,y){
+      ctx.globalCompositeOperation='destination-out';
+      ctx.beginPath(); ctx.arc(x,y,26,0,Math.PI*2); ctx.fill();
     }
-    canvas.addEventListener('mousedown',start); canvas.addEventListener('mousemove',move);
+    function start(e){ if(revealed)return; drawing=true; hint.style.opacity='0'; const[x,y]=pos(e); scratchAt(x,y); if(e.cancelable)e.preventDefault(); }
+    function move(e){ if(!drawing||revealed)return; const[x,y]=pos(e); scratchAt(x,y); if(e.cancelable)e.preventDefault(); }
+    function end(){ if(!drawing)return; drawing=false; if(clearedEnough()) doReveal(); }
+    function clearedEnough(){
+      try{
+        const w=canvas.width,h=canvas.height;
+        const data=ctx.getImageData(0,0,w,h).data;
+        let cleared=0,total=0;
+        for(let i=3;i<data.length;i+=4*50){ total++; if(data[i]===0) cleared++; }
+        return total>0 && cleared/total > 0.45;
+      }catch(_){ return false; }
+    }
+    function doReveal(){
+      if(revealed)return; revealed=true;
+      canvas.style.transition='opacity .5s ease'; canvas.style.opacity='0';
+      hint.style.opacity='0';
+      card.classList.add('revealed');
+      setTimeout(()=>{ if(canvas.parentNode) canvas.style.display='none'; }, 520);
+    }
+
+    canvas.addEventListener('mousedown',start);
+    canvas.addEventListener('mousemove',move);
     window.addEventListener('mouseup',end);
     canvas.addEventListener('touchstart',start,{passive:false});
     canvas.addEventListener('touchmove',move,{passive:false});
     canvas.addEventListener('touchend',end);
+
+    document.getElementById('sc-reveal').addEventListener('click', doReveal);
+    document.getElementById('sc-new').addEventListener('click', ()=>{
+      scratchLeadIsHer = !scratchLeadIsHer; renderScratch();
+    });
   }
 
   // ============================================================
