@@ -487,7 +487,7 @@
   }
   .self-reflect ul li:first-child{border-top:none}
   .self-reflect ul li::before{
-    content:"\\2726";position:absolute;left:0;color:var(--gold);
+    content:"\2726";position:absolute;left:0;color:var(--gold);
     font-style:normal;font-size:.78rem;top:14px;
   }
 
@@ -1553,11 +1553,27 @@
 
 <script>
 
-  // reveal chapters on scroll
+  // reveal-on-scroll. IMPORTANT: every class that starts at opacity:0 MUST be
+  // listed here, or it stays invisible forever. Keep this in sync with the CSS.
+  const REVEAL_SELECTORS = '.chapter, .part, .intim-part, .practice, .myth-card, .topo-block, .script-card, .topic';
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-  },{rootMargin:'0px 0px -10% 0px'});
-  document.querySelectorAll('.chapter, .part, .intim-part, .practice, .bgame-tier').forEach(el=>io.observe(el));
+  },{rootMargin:'0px 0px -8% 0px'});
+  const revealEls = document.querySelectorAll(REVEAL_SELECTORS);
+  revealEls.forEach(el=>io.observe(el));
+
+  // SAFETY NET: if IntersectionObserver is unsupported, or any element is still
+  // hidden after load (e.g. above the fold, never triggers intersection), reveal it.
+  function failsafeReveal(){
+    document.querySelectorAll(REVEAL_SELECTORS).forEach(el=>{
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in');
+    });
+  }
+  window.addEventListener('load', ()=>{ failsafeReveal(); setTimeout(failsafeReveal, 400); });
+  if (!('IntersectionObserver' in window)){
+    document.querySelectorAll(REVEAL_SELECTORS).forEach(el=>el.classList.add('in'));
+  }
 
 </script>
 </body>
