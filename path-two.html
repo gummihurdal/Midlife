@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Path Two · Improved Intimacy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f5f0e6; --paper-warm:#ede5d3; --vellum:#f1e6d2;
+    --ink:#2a1810; --ink-soft:#5a4a3e;
+    --plum:#6c3a5c; --plum-deep:#4e2945;
+    --gold:#b07b3e; --ember:#8a2a3a;
+    --moss:#5a6b4a;
+    --dark:#1a0e1c; --dark-wine:#2a1424;
+    --light-cream:#f4ead6;
+    --line:rgba(60,30,20,.12); --shadow:rgba(60,30,20,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  body{font-family:'Newsreader',Georgia,serif;font-size:18px;line-height:1.6;color:var(--ink);overflow-x:hidden}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+
+  /* universal back-to-home top bar */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 28px;
+    background:rgba(245,240,230,.85);backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    transition:transform .35s ease, background .35s ease, color .35s ease;
+  }
+  .topbar.hidden{transform:translateY(-100%)}
+  .topbar a.back{
+    font-family:'Fraunces',serif;font-size:.7rem;letter-spacing:.32em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:500;
+    display:inline-flex;align-items:center;gap:10px;
+    transition:color .2s ease, gap .25s ease;
+  }
+  .topbar a.back:hover{color:var(--plum);gap:14px}
+  .topbar .mark{
+    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.32em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:500;opacity:.7;
+  }
+
+  /* path hero — common */
+  .phero{
+    min-height:88vh;position:relative;overflow:hidden;
+    display:flex;align-items:flex-end;
+  }
+  .phero-image{position:absolute;inset:0;z-index:0}
+  .phero-image img{width:100%;height:100%;object-fit:cover}
+  .phero-image::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,.15) 50%, rgba(0,0,0,.55) 100%);
+  }
+  .phero-content{
+    position:relative;z-index:1;width:100%;
+    padding:0 28px 80px;max-width:1200px;margin:0 auto;
+  }
+  .phero .label{
+    font-family:'Fraunces',serif;font-size:.74rem;letter-spacing:.42em;
+    text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:600;
+    margin-bottom:24px;
+  }
+  .phero h1{
+    font-family:'Fraunces',serif;font-weight:400;
+    font-size:clamp(3rem,8.5vw,6.5rem);line-height:.96;letter-spacing:-.015em;
+    color:#fff;margin-bottom:24px;
+  }
+  .phero h1 em{font-style:italic;font-weight:300}
+  .phero .tagline{
+    font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.1rem,2.3vw,1.4rem);
+    color:rgba(255,255,255,.85);max-width:48ch;line-height:1.5;
+  }
+  .phero .scroll-down{
+    position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+    font-family:'Fraunces',serif;font-size:.62rem;letter-spacing:.32em;
+    text-transform:uppercase;color:rgba(255,255,255,.6);
+  }
+  .phero .scroll-down::after{
+    content:"";display:block;width:1px;height:34px;background:rgba(255,255,255,.4);
+    margin:14px auto 0;animation:lineGrow 3s ease infinite;
+  }
+  @keyframes lineGrow{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
+
+  /* common content wrap */
+  .wrap{max-width:760px;margin:0 auto;padding:0 28px}
+  @media (max-width:540px){.wrap{padding:0 22px}}
+
+  /* page footer */
+  .pfooter{
+    padding:80px 28px 60px;text-align:center;border-top:1px solid var(--line);
+    margin-top:80px;
+  }
+  .pfooter .quiet{
+    font-family:'Fraunces',serif;font-style:italic;color:var(--ink-soft);
+    font-size:1rem;margin-bottom:18px;
+  }
+  .pfooter a.home-link{
+    display:inline-flex;align-items:center;gap:12px;
+    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.32em;
+    text-transform:uppercase;color:var(--plum);font-weight:600;
+    padding:14px 0;border-bottom:1px solid var(--plum);
+    transition:gap .25s ease;
+  }
+  .pfooter a.home-link:hover{gap:16px}
+  .pfooter .credits{
+    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--ink-soft);opacity:.6;margin-top:28px;
+  }
+
+  body{background:var(--vellum)}
+  .pfooter{background:var(--vellum)}
+  .topbar{background:rgba(241,230,210,.85)}
+
+  .intimacy{padding:50px 0 30px}
+  .intim-intro{padding:40px 0 24px;border-bottom:1px solid var(--line);margin-bottom:30px}
+  .intim-intro p{margin-bottom:16px;color:var(--ink-soft);font-size:1.05rem}
+  .intim-intro p:last-child{margin-bottom:0}
+  .intim-intro .lead{
+    font-family:'Fraunces',serif;font-style:italic;font-size:1.32rem;color:var(--ink);
+    margin-bottom:22px;line-height:1.45;
+  }
+  .intim-intro strong{color:var(--plum-deep);font-weight:600}
+
+  .intim-part{
+    padding:48px 0;border-bottom:1px solid var(--line);
+    opacity:0;transform:translateY(20px);transition:opacity .8s ease, transform .8s ease;
+  }
+  .intim-part.in{opacity:1;transform:none}
+  .intim-part .pnum{
+    font-family:'Fraunces',serif;font-size:.78rem;letter-spacing:.32em;
+    text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px;
+  }
+  .intim-part .pnum::before{
+    content:"";display:inline-block;width:14px;height:1px;
+    background:var(--gold);vertical-align:middle;margin-right:10px;
+  }
+  .intim-part h3{
+    font-family:'Fraunces',serif;font-weight:500;
+    font-size:clamp(1.55rem,4vw,2.2rem);line-height:1.08;color:var(--ink);
+    margin-bottom:16px;
+  }
+  .intim-part .tag{
+    display:inline-block;font-family:'Fraunces',serif;font-style:italic;
+    font-size:1.06rem;color:var(--moss);margin-bottom:20px;
+  }
+  .intim-part p{margin-bottom:14px}
+  .intim-part p strong{color:var(--plum-deep);font-weight:600}
+  .intim-part p em{font-style:italic}
+  .intim-part ul.factors{list-style:none;padding:8px 0;margin:14px 0}
+  .intim-part ul.factors li{
+    padding:8px 0 8px 22px;position:relative;color:var(--ink-soft);font-size:1rem;
+    border-top:1px solid var(--line);
+  }
+  .intim-part ul.factors li:first-child{border-top:none}
+  .intim-part ul.factors li::before{
+    content:"·";position:absolute;left:8px;color:var(--gold);font-weight:700;
+  }
+  .intim-part ul.factors li strong{color:var(--ink);font-weight:600}
+  .pull{
+    margin:24px 0;padding:14px 22px;border-left:2px solid var(--gold);
+    font-family:'Fraunces',serif;font-style:italic;color:var(--plum-deep);
+    font-size:clamp(1.1rem,2.6vw,1.3rem);line-height:1.45;
+  }
+
+  /* visual pause atmospheric block */
+  .visual-pause{
+    margin:60px -28px;height:280px;
+    background:
+      radial-gradient(ellipse at 30% 50%, rgba(176,123,62,.4), transparent 55%),
+      radial-gradient(ellipse at 75% 60%, rgba(108,58,92,.35), transparent 50%),
+      linear-gradient(135deg, var(--dark) 0%, var(--dark-wine) 60%, #4a2540 100%);
+    position:relative;overflow:hidden;
+  }
+  .visual-pause::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      radial-gradient(circle at 25% 50%, rgba(244,184,96,.7) 0, transparent 3px),
+      radial-gradient(circle at 50% 45%, rgba(244,184,96,.5) 0, transparent 2px),
+      radial-gradient(circle at 75% 50%, rgba(244,184,96,.8) 0, transparent 3px);
+    animation:flicker 5s ease-in-out infinite alternate;
+  }
+  @keyframes flicker{0%{opacity:.55}50%{opacity:.85}100%{opacity:.65}}
+  .visual-pause-quote{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    font-family:'Fraunces',serif;font-style:italic;color:rgba(244,234,214,.92);
+    font-size:clamp(1.15rem,3vw,1.6rem);text-align:center;max-width:80%;
+    line-height:1.4;
+  }
+  .visual-pause-quote::before,.visual-pause-quote::after{
+    content:"";display:block;width:36px;height:1px;background:#d49659;
+    margin:18px auto;opacity:.85;
+  }
+  @media (max-width:600px){.visual-pause{margin:50px -22px;height:240px}}
+
+  /* keeping the flame */
+  .intim-flame{padding:60px 0 30px}
+  .flame-header{
+    display:flex;align-items:center;justify-content:center;gap:24px;margin-bottom:14px;
+  }
+  .flame-header svg{width:30px;height:40px;color:var(--ember)}
+  .flame-header svg .flame{fill:currentColor;transform-origin:center bottom;animation:flicker-flame 2.1s ease-in-out infinite alternate}
+  @keyframes flicker-flame{
+    0%{transform:scaleY(1) scaleX(1);opacity:.85}
+    30%{transform:scaleY(.92) scaleX(1.06);opacity:1}
+    60%{transform:scaleY(1.05) scaleX(.95);opacity:.75}
+    100%{transform:scaleY(.98) scaleX(1.02);opacity:.9}
+  }
+  .intim-flame h2{
+    font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+    font-size:clamp(1.9rem,5vw,2.7rem);line-height:1.08;color:var(--plum-deep);
+    text-align:center;
+  }
+  .intim-flame .flame-tag{
+    font-family:'Fraunces',serif;font-style:italic;color:var(--moss);
+    text-align:center;margin-bottom:32px;font-size:1.06rem;
+  }
+  .intim-flame > p{margin-bottom:32px;color:var(--ink-soft)}
+  .practice{
+    margin:18px 0;padding:24px 26px 20px;
+    background:rgba(255,255,255,.5);border:1px solid var(--line);border-radius:3px;
+    display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;
+    position:relative;overflow:hidden;
+    opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease;
+  }
+  .practice.in{opacity:1;transform:none}
+  .practice::before{
+    content:"";position:absolute;top:0;right:0;width:140px;height:140px;
+    background:radial-gradient(circle at top right, rgba(176,123,62,.18), transparent 60%);
+    pointer-events:none;
+  }
+  .practice .pn-num{
+    font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+    font-size:2.2rem;color:var(--gold);line-height:1;padding-top:2px;
+    position:relative;z-index:1;
+  }
+  .practice .pbody h4{
+    font-family:'Fraunces',serif;font-weight:600;font-size:1.14rem;
+    color:var(--plum-deep);margin-bottom:8px;
+  }
+  .practice .pbody p{margin:0;color:var(--ink-soft);font-size:.98rem;line-height:1.6}
+  .practice .pbody strong{color:var(--plum-deep);font-weight:600}
+
+  /* prompts box (same as path one) */
+  .prompts{
+    margin-top:40px;padding:30px 28px;background:rgba(255,255,255,.6);
+    border:1px solid var(--line);border-radius:3px;border-left:3px solid var(--gold);
+  }
+  .prompts h3{
+    font-family:'Fraunces',serif;font-size:.74rem;letter-spacing:.32em;
+    text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:18px;
+  }
+  .q-block{margin-bottom:24px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+  .q-block:last-of-type{border-bottom:none;margin-bottom:14px;padding-bottom:0}
+  .q-question{
+    font-family:'Fraunces',serif;font-style:italic;font-size:1.12rem;
+    color:var(--plum-deep);margin-bottom:14px;line-height:1.42;
+  }
+  .q-label{
+    display:inline-block;font-family:'Fraunces',serif;font-size:.6rem;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--gold);font-weight:600;margin-top:6px;margin-bottom:8px;
+  }
+  .q-thought{font-size:.97rem;color:var(--ink-soft);margin-bottom:14px;line-height:1.55}
+  .q-thought strong{color:var(--ink);font-weight:600}
+  .q-ways{list-style:none;padding:0;margin:6px 0 0}
+  .q-ways li{
+    padding:4px 0 4px 18px;position:relative;color:var(--ink-soft);
+    font-size:.95rem;font-style:italic;
+  }
+  .q-ways li::before{content:"—";position:absolute;left:0;color:var(--gold)}
+  .q-more-label{
+    display:block;font-family:'Fraunces',serif;font-size:.6rem;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--gold);font-weight:600;margin:12px 0 10px;
+  }
+  .q-more{list-style:none;padding:0;margin:0}
+  .q-more li{
+    padding:6px 0 6px 18px;position:relative;color:var(--ink);
+    font-family:'Fraunces',serif;font-style:italic;font-size:1.02rem;
+  }
+  .q-more li::before{content:"·";position:absolute;left:6px;color:var(--gold);font-weight:700}
+</style>
+</head>
+<body>
+
+<nav class="topbar" id="topbar">
+  <a class="back" href="index.html"><span>←</span> All Paths</a>
+  <div class="mark">Path II · Improved Intimacy</div>
+</nav>
+
+<header class="phero">
+  <div class="phero-image">
+    <img src="https://images.unsplash.com/photo-1751929412521-e3078bd4af3b?w=2000&q=80&auto=format&fit=crop"
+         srcset="https://images.unsplash.com/photo-1751929412521-e3078bd4af3b?w=1200&q=80&auto=format&fit=crop 1200w,
+                 https://images.unsplash.com/photo-1751929412521-e3078bd4af3b?w=2000&q=80&auto=format&fit=crop 2000w,
+                 https://images.unsplash.com/photo-1751929412521-e3078bd4af3b?w=2800&q=80&auto=format&fit=crop 2800w"
+         sizes="100vw"
+         alt="Close-up of a pink peony blossom">
+  </div>
+  <div class="phero-content">
+    <div class="label">Path Two</div>
+    <h1><em>Improved</em><br>Intimacy</h1>
+    <p class="tagline">The science of desire that lasts — Perel, Nagoski, Aron, Mark &amp; Lasslo — and seven practices to keep the flame alive against the gravity of routine.</p>
+  </div>
+  <div class="scroll-down">Begin</div>
+</header>
+
+<main class="wrap">
+<section class="intimacy" id="intimacy">
+    <div class="pt">Improved Intimacy</div>
+      <div class="pd">The science of desire that lasts — and the daily practice that keeps it alive.</div>
+    </div>
+
+    <div class="intim-intro">
+      <p class="lead">This isn't Muir's path. It's the extension of it.</p>
+      <p>Where the book companion maps the hormonal and medical terrain of midlife intimacy, this section answers a harder question: what does the current research actually say keeps two people wanting each other across years and decades — and what, in daily practice, prevents the slow erosion into routine, roommates, and quietly separate lives?</p>
+      <p>The findings are clearer than most couples ever hear. They come from decades of work by therapists like <strong>Esther Perel</strong>, sex researchers like <strong>Emily Nagoski</strong>, relationship scientists like <strong>Arthur Aron</strong>, and meta-analysts like <strong>Kristen Mark</strong>. The verdict: long-term desire does not survive on autopilot — but it is entirely possible to maintain, and even deepen, with the right understanding and a few specific practices. The science first; then the practice.</p>
+    </div>
+
+    <!-- THE RESEARCH -->
+    <div class="intim-part">
+      <div class="pnum">I · The Paradox at the Heart</div>
+      <h3>Esther Perel — Love and Desire on Different Fuels</h3>
+      <div class="tag">Closeness builds love. Distance builds desire. Both are needed.</div>
+      <p>The Belgian psychotherapist Esther Perel — whose <em>Mating in Captivity</em> was re-released in 2025 as <em>In Search of Erotic Intelligence</em> — argues that love and desire run on opposing logics, and that the very things that build one can quietly extinguish the other.</p>
+      <p><strong>Love thrives on closeness, predictability, security. Desire thrives on distance, mystery, novelty.</strong> A couple who shares everything — schedules, finances, secrets, screens, even moods — can find themselves intimately bonded but no longer attracted. Perel calls this <em>fusion</em>: the well-intentioned merging that erases the otherness desire needs to keep burning.</p>
+      <p>Her distinction between <strong>secrecy</strong> (destructive) and <strong>privacy</strong> (necessary) is central. Partners need interior lives. They need parts of themselves that belong only to them. The pursuit, the anticipation, the thrill of not quite knowing — these don't survive total transparency. The partner who remains slightly inaccessible remains desirable; the partner fully possessed becomes invisible.</p>
+      <div class="pull">Love seeks to know. Desire cannot live without mystery.</div>
+      <p>Perel's most quoted practical line: <strong>foreplay does not start five minutes before sex. It starts immediately after the previous time.</strong> Desire is built in the hours and days between, not the minutes leading up.</p>
+    </div>
+
+    <div class="intim-part">
+      <div class="pnum">II · The Mechanics</div>
+      <h3>Emily Nagoski — Accelerators and Brakes</h3>
+      <div class="tag">Most long-term desire problems aren't a weak accelerator — they're a stuck brake.</div>
+      <p>Where Perel works in metaphor, Emily Nagoski works in neuroscience. Her bestselling <em>Come As You Are</em> (2015) and the follow-up <em>Come Together</em> (2024) translate the <strong>Dual Control Model</strong> — developed by Kinsey Institute researchers John Bancroft and Erick Janssen — into a framework that has reshaped how clinicians talk to couples about desire.</p>
+      <p>The model: the brain has a sexual <strong>accelerator</strong> (the Sexual Excitation System) that responds to anything coded as erotic, and a sexual <strong>brake</strong> (the Sexual Inhibition System) that responds to anything coded as threat — stress, unfinished arguments, unwashed dishes, body shame, work pressure, the children awake in the next room, the unanswered email. Most long-term desire problems are not about a weak accelerator. <strong>They are about a brake that won't release.</strong></p>
+      <p>This reframes everything. Lingerie, candles, more frequency, exotic locations — these are all accelerator-targeted interventions. They rarely work in long-term relationships because the brakes are the bottleneck. Reducing perceived threat — emotional, physical, environmental — is where the real work lives.</p>
+      <div class="pull">Desire doesn't happen in a vacuum. It happens in context.</div>
+      <p>Nagoski also rescues women in particular from a damaging cultural myth. Roughly <strong>85% of women experience <em>responsive</em> desire</strong>, not spontaneous. Arousal arrives <em>after</em> the context is right, not before. Waiting to feel "in the mood" before stepping into a sensual context is waiting for the wrong thing in the wrong order. The mood is built; it doesn't arrive on its own.</p>
+    </div>
+
+    <div class="intim-part">
+      <div class="pnum">III · The Growth</div>
+      <h3>Arthur Aron — Self-Expansion and Novelty</h3>
+      <div class="tag">The partner becomes associated with the growth — or with the rut.</div>
+      <p>For decades, Arthur Aron and colleagues at Stony Brook University have studied a different angle: what actually keeps couples alive to each other beyond the first years? Their answer is the <strong>self-expansion model</strong> — the finding that humans seek experiences that grow the self, and we associate that growth with whoever helps us achieve it.</p>
+      <p>The most famous study (Aron, Norman, Aron, McKenna & Heyman, 2000) randomly assigned couples to either <em>novel and arousing</em> activities or mundane ones. The couples doing the novel activities reported significantly more relationship satisfaction and closeness afterwards. A 16-year longitudinal follow-up confirmed the basic finding: <strong>less boredom and more shared exciting activities at year 7 predicted substantially higher satisfaction at year 16</strong>, even after controlling for satisfaction at year 7.</p>
+      <p>The mechanism: when a couple learns something new together, faces a slightly uncomfortable experience together, travels somewhere new together, the partner becomes associated with the growth — and the relationship is re-anchored to expansion rather than maintenance. The 2024 Coffey vacation study and a 2025 virtual-reality replication continue to confirm the effect. <strong>Routine flattens; novelty rebuilds.</strong></p>
+      <div class="pull">Couples who do exciting things together at year seven are still in love at year sixteen.</div>
+    </div>
+
+    <div class="intim-part">
+      <div class="pnum">IV · The Synthesis</div>
+      <h3>Mark &amp; Lasslo — What Actually Maintains Desire</h3>
+      <div class="tag">A systematic review of every major study, in one model.</div>
+      <p>In 2018, University of Kentucky researchers Kristen Mark and Julie Lasslo published a landmark systematic review in <em>The Journal of Sex Research</em> — analysing 64 articles spanning more than twenty years of research on maintaining sexual desire in long-term relationships.</p>
+      <p>The integrated model they built identifies the factors with the most consistent evidence behind them:</p>
+      <ul class="factors">
+        <li><strong>Individual autonomy</strong> — a robust self outside the relationship</li>
+        <li><strong>Continued attraction to the partner</strong> — physical, intellectual, emotional</li>
+        <li><strong>Stress management and mental wellbeing</strong></li>
+        <li><strong>Honest, regular communication about sex itself</strong></li>
+        <li><strong>Intentional intimate behaviours beyond intercourse</strong> — touch, presence, attention</li>
+        <li><strong>Conscious prioritisation</strong> — treating intimacy as worth scheduling, not something that "should just happen"</li>
+        <li><strong>Sexual exploration and openness to change</strong></li>
+        <li><strong>Effective conflict resolution</strong></li>
+      </ul>
+      <p>The thread connecting them: long-term desire is not a passive resource that exists or doesn't. <strong>It is a renewable practice that responds to specific, learnable inputs.</strong> Low or shifting desire is not a verdict on the relationship; it is a signal about what needs attention.</p>
+    </div>
+
+    <!-- atmospheric break between the research and the practice -->
+    <div class="visual-pause" aria-hidden="true">
+      <div class="visual-pause-quote">Foreplay does not start five minutes before. It starts immediately after the previous time.</div>
+    </div>
+
+    <!-- KEEPING THE FLAME ALIVE -->
+    <div class="intim-flame">
+      <div class="flame-header">
+        <svg viewBox="0 0 32 42" aria-hidden="true">
+          <path class="flame" d="M16 38 Q4 28 8 16 Q10 22 12 20 Q12 8 16 2 Q20 8 20 20 Q22 22 24 16 Q28 28 16 38 Z"/>
+        </svg>
+        <h2>Keeping the Flame Alive</h2>
+        <svg viewBox="0 0 32 42" aria-hidden="true">
+          <path class="flame" d="M16 38 Q4 28 8 16 Q10 22 12 20 Q12 8 16 2 Q20 8 20 20 Q22 22 24 16 Q28 28 16 38 Z"/>
+        </svg>
+      </div>
+      <p class="flame-tag">Seven practices, drawn straight from the research, that translate theory into evenings.</p>
+      <p>Theory only matters if it changes how a Tuesday feels. The practices below come directly from the work above — Perel's paradox, Nagoski's brakes and accelerators, Aron's novelty, Mark &amp; Lasslo's synthesis. They are not romantic advice from a magazine. They are the operating manual that the science keeps pointing toward.</p>
+
+      <div class="practice">
+        <div class="pn-num">I</div>
+        <div class="pbody">
+          <h4>Engineer anticipation</h4>
+          <p>The hours before intimacy matter more than the minutes during. <strong>A message at lunch that lands in the chest. A glance across the room at dinner that says: later. A note left in a coat pocket.</strong> Perel's principle — that foreplay starts the morning after, not the minute before — points at this. Build anticipation as a deliberate practice, not a happy accident. The body shows up to a moment that has been prepared.</p>
+        </div>
+      </div>
+
+      <div class="practice">
+        <div class="pn-num">II</div>
+        <div class="pbody">
+          <h4>Release the brakes before adding to the accelerator</h4>
+          <p>Don't start with lingerie. Start with: <strong>what is on her plate today? What stress is on her body? What did the office take out of her? What is left undone in the house?</strong> The unwashed dishes, the work deadline, the conversation with her mother — these are not romance-killers in the abstract. They are literal neurological inhibitors. Nagoski's clearest practical advice: do whatever lifts those <em>before</em> reaching for accelerators. Sometimes the most erotic act of the evening is loading the dishwasher.</p>
+        </div>
+      </div>
+
+      <div class="practice">
+        <div class="pn-num">III</div>
+        <div class="pbody">
+          <h4>Build novelty into the calendar</h4>
+          <p>Aron's research is unambiguous: <strong>do one new thing together every two weeks.</strong> Not the same date night on a loop. A new city you've never visited. A dish neither of you has cooked. A walking route never taken. A class. A trip. A skill you both lack. The shared first-time becomes a recurring deposit in the relationship's energy account — and the partner becomes the person you grow with rather than the person you settle next to.</p>
+        </div>
+      </div>
+
+      <div class="practice">
+        <div class="pn-num">IV</div>
+        <div class="pbody">
+          <h4>Preserve privacy and otherness</h4>
+          <p>Perel's distinction is crucial: <strong>privacy is not secrecy.</strong> Have your own friends. Have your own pursuits. Have an inner life. Do not tell everything. Do not finish every sentence. The partner who remains slightly unknowable remains slightly desirable. The fully transparent partner — known down to every thought, fully merged — becomes harder to ardently want. Mystery isn't a strategy; it's a respect for the otherness of another person.</p>
+        </div>
+      </div>
+
+      <div class="practice">
+        <div class="pn-num">V</div>
+        <div class="pbody">
+          <h4>Treat sensuality as ambient, not scheduled</h4>
+          <p>The kitchen touch. The bath together that isn't "about" anything. The long hug at the door. The way you brush hair off her face. <strong>Couples who maintain desire over decades describe sensual contact as woven through the day, not switched on at bedtime.</strong> The body needs the slow build, not the sudden ask. Pleasure is not an event you initiate; it is an atmosphere you keep alive.</p>
+        </div>
+      </div>
+
+      <div class="practice">
+        <div class="pn-num">VI</div>
+        <div class="pbody">
+          <h4>Design the steamy evening as production, not availability</h4>
+          <p>Lighting matters. Music matters. Scent matters. Fresh sheets matter. <strong>No phones. No deadlines. No "we should."</strong> Treat it as a small piece of theatre you build together — anticipation, environment, slowness, attention. Decide on the playlist. Decide on the candles. Let the room itself remove the brakes. The body responds to the room before it responds to the partner.</p>
+        </div>
+      </div>
+
+      <div class="practice">
+        <div class="pn-num">VII</div>
+        <div class="pbody">
+          <h4>Talk about it outside the bedroom</h4>
+          <p>Not during sex — too high-stakes. Not after sex — too vulnerable. <strong>Over coffee. On a walk. In the car.</strong> The Mark &amp; Lasslo review found honest communication is one of the strongest predictors of maintained desire — and it almost never happens spontaneously. The conversation has to be designed too: low pressure, low judgement, real curiosity, real listening. Ask, don't assume.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTIMACY PROMPTS -->
+    <div class="prompts">
+      <h3>To talk about</h3>
+      <div class="q-block">
+        <p class="q-question">When you feel most wanted, what's actually happening — and what's not happening?</p>
+        <span class="q-label">A thought to bring</span>
+        <p class="q-thought">The research is clear: feeling wanted requires both stimulation (accelerator) and the absence of threat (brakes released). For most women in long-term relationships, <strong>the brake side is the bigger lever</strong> — and yet most partners spend all their energy on the accelerator. This question helps name what specifically lifts or lowers the brakes for you, beyond what's obvious to either of us.</p>
+        <span class="q-label">Ways in</span>
+        <ul class="q-ways">
+          <li>What does "in the mood" actually mean to you, sensorily and emotionally?</li>
+          <li>When you've felt most desired by me, what was different about the day, the room, or yourself?</li>
+          <li>What's something quiet that closes you, that I might not have noticed?</li>
+        </ul>
+      </div>
+      <div class="q-block">
+        <p class="q-question">What part of you do you want to keep slightly to yourself — and what part of me do you wish stayed slightly out of reach?</p>
+        <span class="q-label">A thought to bring</span>
+        <p class="q-thought">Perel's most counterintuitive finding: <strong>too much fusion smothers desire.</strong> A partner who is fully known and fully available stops being someone you can ardently want. The healthy version of this isn't secrecy — it's protected interiority for both people. The question is what we each want kept slightly mysterious, on purpose.</p>
+        <span class="q-label">Ways in</span>
+        <ul class="q-ways">
+          <li>Where do you feel most yourself when I'm not in the room?</li>
+          <li>When have you been most attracted to me, and what was I doing or being that made that the case?</li>
+          <li>What about us has become too predictable for either of our taste?</li>
+        </ul>
+      </div>
+      <span class="q-more-label">More to explore</span>
+      <ul class="q-more">
+        <li>What's one novel experience we should plan in the next month — something neither of us has done before?</li>
+        <li>Which of the seven practices above feels like the easiest to start, and which the most distant from where we are?</li>
+        <li>What's the difference, for you, between feeling close and feeling wanted?</li>
+        <li>Where in our daily life could sensuality become ambient rather than scheduled?</li>
+        <li>What would change about our evenings if we treated them as designed, not defaulted?</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="pfooter">
+  <p class="quiet">— end of Path Two —</p>
+  <a class="home-link" href="index.html"><span>←</span> Back to all paths</a>
+  <p class="credits">Photograph: Emma Swoboda · Unsplash</p>
+</footer>
+
+<script>
+
+  // reveal chapters on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{rootMargin:'0px 0px -10% 0px'});
+  document.querySelectorAll('.chapter, .part, .intim-part, .practice, .bgame-tier').forEach(el=>io.observe(el));
+
+</script>
+</body>
+</html>

@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Path Three · The Becoming</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f5f0e6; --paper-warm:#ede5d3; --vellum:#f1e6d2;
+    --ink:#2a1810; --ink-soft:#5a4a3e;
+    --plum:#6c3a5c; --plum-deep:#4e2945;
+    --gold:#b07b3e; --ember:#8a2a3a;
+    --moss:#5a6b4a;
+    --dark:#1a0e1c; --dark-wine:#2a1424;
+    --light-cream:#f4ead6;
+    --line:rgba(60,30,20,.12); --shadow:rgba(60,30,20,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  body{font-family:'Newsreader',Georgia,serif;font-size:18px;line-height:1.6;color:var(--ink);overflow-x:hidden}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+
+  /* universal back-to-home top bar */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 28px;
+    background:rgba(245,240,230,.85);backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    transition:transform .35s ease, background .35s ease, color .35s ease;
+  }
+  .topbar.hidden{transform:translateY(-100%)}
+  .topbar a.back{
+    font-family:'Fraunces',serif;font-size:.7rem;letter-spacing:.32em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:500;
+    display:inline-flex;align-items:center;gap:10px;
+    transition:color .2s ease, gap .25s ease;
+  }
+  .topbar a.back:hover{color:var(--plum);gap:14px}
+  .topbar .mark{
+    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.32em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:500;opacity:.7;
+  }
+
+  /* path hero — common */
+  .phero{
+    min-height:88vh;position:relative;overflow:hidden;
+    display:flex;align-items:flex-end;
+  }
+  .phero-image{position:absolute;inset:0;z-index:0}
+  .phero-image img{width:100%;height:100%;object-fit:cover}
+  .phero-image::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,.15) 50%, rgba(0,0,0,.55) 100%);
+  }
+  .phero-content{
+    position:relative;z-index:1;width:100%;
+    padding:0 28px 80px;max-width:1200px;margin:0 auto;
+  }
+  .phero .label{
+    font-family:'Fraunces',serif;font-size:.74rem;letter-spacing:.42em;
+    text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:600;
+    margin-bottom:24px;
+  }
+  .phero h1{
+    font-family:'Fraunces',serif;font-weight:400;
+    font-size:clamp(3rem,8.5vw,6.5rem);line-height:.96;letter-spacing:-.015em;
+    color:#fff;margin-bottom:24px;
+  }
+  .phero h1 em{font-style:italic;font-weight:300}
+  .phero .tagline{
+    font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.1rem,2.3vw,1.4rem);
+    color:rgba(255,255,255,.85);max-width:48ch;line-height:1.5;
+  }
+  .phero .scroll-down{
+    position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+    font-family:'Fraunces',serif;font-size:.62rem;letter-spacing:.32em;
+    text-transform:uppercase;color:rgba(255,255,255,.6);
+  }
+  .phero .scroll-down::after{
+    content:"";display:block;width:1px;height:34px;background:rgba(255,255,255,.4);
+    margin:14px auto 0;animation:lineGrow 3s ease infinite;
+  }
+  @keyframes lineGrow{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
+
+  /* common content wrap */
+  .wrap{max-width:760px;margin:0 auto;padding:0 28px}
+  @media (max-width:540px){.wrap{padding:0 22px}}
+
+  /* page footer */
+  .pfooter{
+    padding:80px 28px 60px;text-align:center;border-top:1px solid var(--line);
+    margin-top:80px;
+  }
+  .pfooter .quiet{
+    font-family:'Fraunces',serif;font-style:italic;color:var(--ink-soft);
+    font-size:1rem;margin-bottom:18px;
+  }
+  .pfooter a.home-link{
+    display:inline-flex;align-items:center;gap:12px;
+    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.32em;
+    text-transform:uppercase;color:var(--plum);font-weight:600;
+    padding:14px 0;border-bottom:1px solid var(--plum);
+    transition:gap .25s ease;
+  }
+  .pfooter a.home-link:hover{gap:16px}
+  .pfooter .credits{
+    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--ink-soft);opacity:.6;margin-top:28px;
+  }
+
+  body{
+    background:linear-gradient(180deg, var(--dark) 0%, var(--dark-wine) 50%, var(--dark) 100%);
+    color:var(--light-cream);
+    min-height:100vh;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(circle at 25% 30%, rgba(176,123,62,.13), transparent 45%),
+      radial-gradient(circle at 75% 60%, rgba(138,42,58,.15), transparent 50%),
+      radial-gradient(circle at 50% 90%, rgba(176,123,62,.08), transparent 55%);
+  }
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:
+      radial-gradient(circle at 12% 22%, rgba(255,200,140,.42) 0, transparent 2px),
+      radial-gradient(circle at 88% 38%, rgba(255,200,140,.32) 0, transparent 2px),
+      radial-gradient(circle at 22% 68%, rgba(255,200,140,.32) 0, transparent 2px),
+      radial-gradient(circle at 78% 82%, rgba(255,200,140,.38) 0, transparent 2px);
+    animation:flicker 4.5s ease-in-out infinite alternate;
+  }
+  @keyframes flicker{0%{opacity:.55}50%{opacity:.85}100%{opacity:.65}}
+
+  .topbar{
+    background:rgba(26,14,28,.7);border-bottom:1px solid rgba(244,234,214,.12);
+  }
+  .topbar a.back{color:rgba(244,234,214,.7)}
+  .topbar a.back:hover{color:#d49659}
+  .topbar .mark{color:rgba(244,234,214,.5)}
+
+  .wrap{position:relative;z-index:1}
+  .pfooter{background:transparent;border-top:1px solid rgba(244,234,214,.15)}
+  .pfooter .quiet{color:rgba(244,234,214,.7)}
+  .pfooter a.home-link{color:#d49659;border-bottom-color:#d49659}
+  .pfooter .credits{color:rgba(244,234,214,.5)}
+
+  /* bgame intro */
+  .bgame{padding:40px 0 30px;position:relative;z-index:1}
+  .bgame-intro{padding:30px 0 14px;border-bottom:1px solid rgba(244,234,214,.15);margin-bottom:30px}
+  .bgame-intro p{margin-bottom:16px;color:rgba(244,234,214,.78);font-size:1.05rem}
+  .bgame-intro p strong{color:var(--light-cream);font-weight:600}
+  .bgame-intro p em{font-style:italic;color:#d49659}
+  .bgame-intro .lead{
+    font-family:'Fraunces',serif;font-style:italic;font-size:1.32rem;
+    color:var(--light-cream);margin-bottom:22px;line-height:1.45;
+  }
+
+  .bgame-tiers{
+    display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:30px 0 10px;
+  }
+  @media (max-width:780px){.bgame-tiers{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:480px){.bgame-tiers{grid-template-columns:repeat(2,1fr)}}
+  .bgame-tier{
+    background:rgba(244,234,214,.06);border:1px solid rgba(244,234,214,.18);
+    border-radius:3px;padding:16px 12px;text-align:center;
+    transition:transform .3s ease, background .3s ease;
+    opacity:0;transform:translateY(20px);
+  }
+  .bgame-tier.in{opacity:1;transform:none;transition:opacity .7s ease, transform .7s ease, background .3s ease}
+  .bgame-tier:hover{transform:translateY(-2px);background:rgba(244,234,214,.1)}
+  .bgame-tier .t-num{
+    font-family:'Fraunces',serif;font-style:italic;color:#d49659;
+    font-size:1.4rem;line-height:1;margin-bottom:6px;
+  }
+  .bgame-tier .t-name{
+    font-family:'Fraunces',serif;font-size:.74rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--light-cream);font-weight:600;
+  }
+
+  .bgame-prep{
+    margin-top:36px;padding:28px 28px 22px;
+    background:rgba(244,234,214,.05);border:1px solid rgba(244,234,214,.18);
+    border-left:3px solid #d49659;border-radius:3px;
+  }
+  .bgame-prep h4{
+    font-family:'Fraunces',serif;font-size:.78rem;letter-spacing:.28em;
+    text-transform:uppercase;color:#d49659;font-weight:600;margin-bottom:14px;
+  }
+  .bgame-prep ul{list-style:none;padding:0;margin:0}
+  .bgame-prep li{
+    padding:8px 0 8px 22px;position:relative;color:rgba(244,234,214,.78);font-size:.98rem;
+    border-top:1px solid rgba(244,234,214,.15);
+  }
+  .bgame-prep li:first-of-type{border-top:none}
+  .bgame-prep li::before{
+    content:"\2726";position:absolute;left:0;color:#d49659;font-size:.78rem;top:11px;
+  }
+
+  .bgame-consent{
+    margin-top:28px;padding:22px 26px;
+    border:1px dashed rgba(244,234,214,.25);border-radius:3px;
+    font-family:'Fraunces',serif;font-style:italic;color:rgba(244,234,214,.78);
+    font-size:.98rem;line-height:1.6;
+  }
+  .bgame-consent strong{color:var(--light-cream);font-weight:600;font-style:normal}
+  .bgame-consent em{color:#d49659;font-style:italic}
+
+  .bgame-cta-wrap{position:relative;margin-top:48px;text-align:center}
+  .bgame-cta-wrap::before{
+    content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:320px;height:120px;
+    background:radial-gradient(ellipse, rgba(176,123,62,.3), transparent 60%);
+    pointer-events:none;
+  }
+  .bgame-begin{
+    position:relative;z-index:1;
+    font-family:'Fraunces',serif;font-size:.78rem;letter-spacing:.32em;
+    text-transform:uppercase;font-weight:600;color:#fff;
+    background:linear-gradient(135deg,#8a2a3a, #4e2945);
+    border:none;padding:20px 44px;border-radius:3px;cursor:pointer;
+    transition:transform .25s ease, box-shadow .25s ease;
+    box-shadow:0 8px 24px rgba(78,41,69,.4);
+  }
+  .bgame-begin:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(78,41,69,.55)}
+  .bgame-begin:active{transform:translateY(0)}
+
+  /* ============ GAME OVERLAY ============ */
+  .game-overlay{
+    position:fixed;inset:0;z-index:100;
+    background:radial-gradient(ellipse at center,#3a1e34 0%,#1a0d18 80%);
+    color:#f0e7d5;
+    display:none;flex-direction:column;overflow:hidden;
+  }
+  .game-overlay.active{display:flex;animation:fadeInGame .8s ease}
+  @keyframes fadeInGame{from{opacity:0}to{opacity:1}}
+  .game-overlay::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(176,123,62,.12), transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(138,42,58,.15), transparent 55%);
+  }
+  .go-top{display:flex;justify-content:space-between;align-items:center;padding:22px 28px;position:relative;z-index:2}
+  .go-tier{
+    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.32em;
+    text-transform:uppercase;color:#d49659;font-weight:600;
+  }
+  .go-exit{
+    background:transparent;border:1px solid rgba(240,231,213,.3);
+    color:#f0e7d5;font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.24em;
+    text-transform:uppercase;padding:9px 18px;border-radius:3px;cursor:pointer;
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .go-exit:hover{border-color:#d49659;background:rgba(176,123,62,.1)}
+  .go-intensity{height:3px;margin:0 28px;background:rgba(240,231,213,.12);border-radius:2px;overflow:hidden;position:relative;z-index:2}
+  .go-intensity .bar{
+    height:100%;background:linear-gradient(90deg,#d49659,#8a2a3a);
+    width:16.66%;transition:width .8s cubic-bezier(.4,0,.2,1);
+  }
+  .go-stage{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px;position:relative;z-index:2;overflow-y:auto}
+  .go-tier-intro{text-align:center;max-width:580px;animation:slideUp .6s ease}
+  @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+  .go-tier-intro .t-num{
+    font-family:'Fraunces',serif;font-style:italic;color:#d49659;
+    font-size:1.15rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px;
+  }
+  .go-tier-intro h2{
+    font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+    font-size:clamp(2.6rem,7.5vw,4rem);color:#f4ead6;line-height:1;margin-bottom:22px;
+  }
+  .go-tier-intro .t-sub{
+    font-family:'Fraunces',serif;font-size:1.15rem;font-style:italic;
+    color:rgba(244,234,214,.82);margin-bottom:30px;line-height:1.45;
+  }
+  .go-tier-intro .t-mood{
+    font-family:'Fraunces',serif;font-size:.96rem;color:rgba(244,234,214,.6);font-style:italic;
+    border-top:1px solid rgba(244,234,214,.18);border-bottom:1px solid rgba(244,234,214,.18);
+    padding:20px 0;margin-bottom:38px;
+  }
+  /* dice */
+  .dice-area{display:flex;gap:32px;justify-content:center;perspective:600px;margin:10px 0 30px;min-height:130px;align-items:center}
+  .die{width:96px;height:96px;position:relative;transform-style:preserve-3d;transition:transform 1.6s cubic-bezier(.34,1.2,.5,1)}
+  .die.rolling{transition:transform 1.4s cubic-bezier(.4,0,.2,1)}
+  .die-face{
+    position:absolute;inset:0;border-radius:14px;
+    display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);
+    padding:14%;backface-visibility:hidden;box-shadow:0 8px 20px rgba(0,0,0,.5);
+  }
+  .die.plum .die-face{background:linear-gradient(135deg,#f4ead6,#ede0c5);border:1px solid #6c3a5c}
+  .die.gold .die-face{background:linear-gradient(135deg,#f4ead6,#ede0c5);border:1px solid #b07b3e}
+  .die.plum .pip{background:#4e2945}
+  .die.gold .pip{background:#b07b3e}
+  .die-face.f1{transform:rotateY(0deg) translateZ(48px)}
+  .die-face.f2{transform:rotateY(-90deg) translateZ(48px)}
+  .die-face.f3{transform:rotateY(180deg) translateZ(48px)}
+  .die-face.f4{transform:rotateY(90deg) translateZ(48px)}
+  .die-face.f5{transform:rotateX(-90deg) translateZ(48px)}
+  .die-face.f6{transform:rotateX(90deg) translateZ(48px)}
+  .pip{width:14px;height:14px;border-radius:50%;align-self:center;justify-self:center}
+  .f1 .pip:nth-child(1){grid-area:2/2}
+  .f2 .pip:nth-child(1){grid-area:1/1}
+  .f2 .pip:nth-child(2){grid-area:3/3}
+  .f3 .pip:nth-child(1){grid-area:1/1}
+  .f3 .pip:nth-child(2){grid-area:2/2}
+  .f3 .pip:nth-child(3){grid-area:3/3}
+  .f4 .pip:nth-child(1){grid-area:1/1}
+  .f4 .pip:nth-child(2){grid-area:1/3}
+  .f4 .pip:nth-child(3){grid-area:3/1}
+  .f4 .pip:nth-child(4){grid-area:3/3}
+  .f5 .pip:nth-child(1){grid-area:1/1}
+  .f5 .pip:nth-child(2){grid-area:1/3}
+  .f5 .pip:nth-child(3){grid-area:2/2}
+  .f5 .pip:nth-child(4){grid-area:3/1}
+  .f5 .pip:nth-child(5){grid-area:3/3}
+  .f6 .pip:nth-child(1){grid-area:1/1}
+  .f6 .pip:nth-child(2){grid-area:1/3}
+  .f6 .pip:nth-child(3){grid-area:2/1}
+  .f6 .pip:nth-child(4){grid-area:2/3}
+  .f6 .pip:nth-child(5){grid-area:3/1}
+  .f6 .pip:nth-child(6){grid-area:3/3}
+  .die-labels{
+    display:flex;gap:32px;justify-content:center;margin-top:-18px;margin-bottom:32px;
+    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.3em;
+    text-transform:uppercase;color:rgba(240,231,213,.55);
+  }
+  .die-labels span{width:96px;text-align:center}
+  /* card */
+  .game-card{
+    max-width:580px;width:100%;min-height:240px;
+    background:linear-gradient(160deg,rgba(244,234,214,.96),rgba(237,225,205,.96));
+    color:#2a1810;border-radius:6px;padding:34px 32px 30px;
+    box-shadow:0 20px 50px rgba(0,0,0,.5);
+    position:relative;overflow:hidden;
+    opacity:0;transform:translateY(30px) scale(.96);
+    transition:opacity .6s ease,transform .6s cubic-bezier(.34,1.2,.5,1);
+  }
+  .game-card.visible{opacity:1;transform:none}
+  .game-card::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(circle at 90% 10%, rgba(176,123,62,.1), transparent 50%);
+  }
+  .gc-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px}
+  .gc-tier{
+    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.28em;
+    text-transform:uppercase;color:#b07b3e;font-weight:600;
+  }
+  .gc-direction{font-family:'Fraunces',serif;font-style:italic;font-size:.94rem;color:#4e2945}
+  .gc-direction .arrow{color:#b07b3e;font-style:normal;font-weight:600;margin:0 6px}
+  .gc-text{
+    font-family:'Fraunces',serif;font-size:1.2rem;line-height:1.46;
+    color:#2a1810;margin-bottom:18px;
+  }
+  .gc-mod{
+    background:rgba(108,58,92,.08);border:1px solid rgba(108,58,92,.2);
+    border-radius:3px;padding:14px 16px;margin-bottom:8px;
+  }
+  .gc-mod-label{
+    font-family:'Fraunces',serif;font-size:.62rem;letter-spacing:.26em;
+    text-transform:uppercase;color:#6c3a5c;font-weight:600;display:block;margin-bottom:4px;
+  }
+  .gc-mod-text{font-family:'Fraunces',serif;font-style:italic;color:#4e2945;font-size:.98rem}
+  /* buttons */
+  .go-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+  .gbtn{
+    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.28em;
+    text-transform:uppercase;font-weight:600;padding:15px 30px;border-radius:3px;cursor:pointer;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;border:none;
+  }
+  .gbtn.primary{
+    background:linear-gradient(135deg,#b07b3e,#8a2a3a);color:#fff;
+    box-shadow:0 4px 14px rgba(138,42,58,.4);
+  }
+  .gbtn.primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(138,42,58,.55)}
+  .gbtn.ghost{
+    background:transparent;color:rgba(240,231,213,.85);
+    border:1px solid rgba(240,231,213,.3);
+  }
+  .gbtn.ghost:hover{border-color:#d49659;color:#d49659;background:rgba(176,123,62,.08)}
+  .gbtn.solid-dark{background:rgba(240,231,213,.08);color:#f0e7d5;border:1px solid rgba(240,231,213,.18)}
+  .gbtn.solid-dark:hover{background:rgba(240,231,213,.15)}
+  /* breath pause */
+  .breath{text-align:center;max-width:540px;animation:slideUp .6s ease}
+  .breath h3{
+    font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+    font-size:clamp(1.7rem,5vw,2.4rem);color:#f4ead6;margin-bottom:18px;
+  }
+  .breath p{
+    font-family:'Fraunces',serif;font-style:italic;color:rgba(244,234,214,.78);
+    font-size:1.06rem;line-height:1.55;margin-bottom:30px;
+  }
+  .breath-circle{
+    width:140px;height:140px;border-radius:50%;margin:0 auto 30px;
+    border:1px solid rgba(176,123,62,.5);
+    animation:breathe 6s ease-in-out infinite;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-style:italic;color:rgba(240,231,213,.5);
+    font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;
+  }
+  @keyframes breathe{
+    0%,100%{transform:scale(.85);box-shadow:0 0 0 0 rgba(176,123,62,.4)}
+    50%{transform:scale(1);box-shadow:0 0 0 24px rgba(176,123,62,0)}
+  }
+  /* ending */
+  .ending{text-align:center;max-width:580px;animation:slideUp .8s ease}
+  .ending h2{
+    font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+    font-size:clamp(2.1rem,6vw,3rem);color:#f4ead6;line-height:1.1;margin-bottom:24px;
+  }
+  .ending p{
+    font-family:'Fraunces',serif;font-style:italic;color:rgba(244,234,214,.78);
+    font-size:1.1rem;line-height:1.55;margin-bottom:30px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar" id="topbar">
+  <a class="back" href="index.html"><span>←</span> All Paths</a>
+  <div class="mark">Path III · The Becoming</div>
+</nav>
+
+<header class="phero">
+  <div class="phero-image">
+    <img src="https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=2000&q=80&auto=format&fit=crop"
+         srcset="https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=1200&q=80&auto=format&fit=crop 1200w,
+                 https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=2000&q=80&auto=format&fit=crop 2000w,
+                 https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=2800&q=80&auto=format&fit=crop 2800w"
+         sizes="100vw"
+         alt="A single lit candle in the dark">
+  </div>
+  <div class="phero-content">
+    <div class="label">Path Three</div>
+    <h1>The <em>Becoming</em></h1>
+    <p class="tagline">An interactive dice-and-card game for two. Six tiers, two hundred and sixteen unique card-experiences, designed around consent and slowness. For one evening with no rush.</p>
+  </div>
+  <div class="scroll-down">Enter</div>
+</header>
+
+<main class="wrap">
+<section class="bgame" id="becoming">
+    <div class="pt">The Becoming</div>
+      <div class="pd">An interactive dice-and-card game for partners — six tiers, two dice, two hundred and sixteen possible card-experiences. Made for one steamy evening with no rush.</div>
+    </div>
+
+    <div class="bgame-intro">
+      <p class="lead">This is not a quiz, and not foreplay-by-numbers. It's a structure that holds the room while two people slow down and pay attention.</p>
+      <p>The game has <strong>six tiers</strong>, each more intimate than the last. You roll <strong>two dice</strong> at each tier: a plum die that picks the card, and a gold die that applies a modifier — blindfolded, in silence, twice, reversed, with sensation, or pure. That gives <strong>216 unique card-experiences</strong>, so no two evenings ever play out the same.</p>
+      <p>Either of you can advance a tier when you're both ready. Either of you can <em>stay</em> at a tier as long as you like. Either of you can stop the whole game at any moment, without explanation. <strong>The slower you go, the better it works.</strong> This is built on the research from <em>Path Two</em>: the brakes release first, the accelerators come second, the partner who remains slightly mysterious remains desirable.</p>
+
+      <div class="bgame-tiers">
+        <div class="bgame-tier"><div class="t-num">I</div><div class="t-name">Whisper</div></div>
+        <div class="bgame-tier"><div class="t-num">II</div><div class="t-name">Touch</div></div>
+        <div class="bgame-tier"><div class="t-num">III</div><div class="t-name">Tease</div></div>
+        <div class="bgame-tier"><div class="t-num">IV</div><div class="t-name">Reveal</div></div>
+        <div class="bgame-tier"><div class="t-num">V</div><div class="t-name">Surrender</div></div>
+        <div class="bgame-tier"><div class="t-num">VI</div><div class="t-name">Burn</div></div>
+      </div>
+
+      <div class="bgame-prep">
+        <h4>Before you begin — prepare the room</h4>
+        <ul>
+          <li>Block at least ninety minutes. Phones off, not silenced — off.</li>
+          <li>Lower the lights. Candles if you have them. Soft music if you both like.</li>
+          <li>Water within reach. A silk scarf or eye mask for the blindfold modifier.</li>
+          <li>Optional: ice in a small bowl, warm oil, a feather, anything that adds sensation.</li>
+          <li>No goal. No timer. No outcome expected. Slow is the point.</li>
+        </ul>
+      </div>
+
+      <div class="bgame-consent">
+        <strong>A word on consent and pacing.</strong> Every card has a Skip button. Either of you can press it without explanation. Either of you can stop the game entirely with the Exit button at any time. Staying at a tier is as valuable as advancing. The final tier's last card is simply: <em>"Forget the cards. Be with them."</em> The cards are the structure; you are the meaning.
+      </div>
+
+      <div class="bgame-cta-wrap">
+        <button class="bgame-begin" id="bgame-begin-btn">Enter the game</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="game-overlay" id="game-overlay" aria-hidden="true">
+    <div class="go-top">
+      <div class="go-tier" id="go-tier-label">Tier I · Whisper</div>
+      <button class="go-exit" id="go-exit-btn">Exit</button>
+    </div>
+    <div class="go-intensity"><div class="bar" id="go-intensity-bar"></div></div>
+    <div class="go-stage" id="go-stage"></div>
+  </div>
+
+<footer class="pfooter">
+  <p class="quiet">— end of Path Three —</p>
+  <a class="home-link" href="index.html"><span>←</span> Back to all paths</a>
+  <p class="credits">Photograph: Katharina Maria · Unsplash</p>
+</footer>
+
+<script>
+/* ============================================================
+     THE BECOMING — game engine
+     ============================================================ */
+  const TIERS = [
+    { id:1, roman:'I', name:'Whisper',
+      sub:'Words and eye contact only — no touch yet.',
+      mood:'The room learns the shape of anticipation.' },
+    { id:2, roman:'II', name:'Touch',
+      sub:'Clothed, slow, deliberate contact.',
+      mood:'The body waking, gently, before it knows where it is going.' },
+    { id:3, roman:'III', name:'Tease',
+      sub:'Lips, breath, edges — the blindfold appears.',
+      mood:'Sensation at the threshold of not-quite-yet.' },
+    { id:4, roman:'IV', name:'Reveal',
+      sub:'Clothing comes off; sight is taken, or focused.',
+      mood:'Being seen — and being seen seeing.' },
+    { id:5, roman:'V', name:'Surrender',
+      sub:'Whole bodies, mouths, slow turns at giving and receiving.',
+      mood:'Letting go of the steering wheel.' },
+    { id:6, roman:'VI', name:'Burn',
+      sub:'Final union — slow, eyes open, intentional.',
+      mood:'Nothing left between you.' }
+  ];
+
+  const CARDS = {
+    1:[
+      "Look into the giver's eyes for sixty seconds without speaking. The receiver may not look away.",
+      "Whisper into the receiver's ear three things you find beautiful about them tonight — slowly, with breath.",
+      "Sit one meter apart. The giver describes, in detail, the most beautiful moment they remember sharing with the receiver. No interruption.",
+      "The giver names one place on the receiver's body they want to touch later tonight. The receiver decides whether it will be allowed — but no touching yet.",
+      "The giver tells the receiver a fantasy they have had about them, in whatever detail feels right. No reaction is required.",
+      "The receiver chooses three words. The giver builds a one-minute description of what the night is going to be like — using only those words and their imagination."
+    ],
+    2:[
+      "The giver places one hand on the receiver's face. Holds it there for thirty seconds. Does not move.",
+      "The giver traces the receiver's jaw, neck and collarbone with a single fingertip. Does not skip ahead.",
+      "The giver stands behind the receiver and runs both hands down their arms from shoulder to wrist. Three times.",
+      "The giver brushes the receiver's hair away from their face — very slowly — tucks it behind their ear, lets the hand linger.",
+      "The giver presses the palm of one hand against the receiver's chest, over the heart. Holds it there until the pulse can be felt.",
+      "The giver wraps both arms around the receiver from behind, and holds them, without speaking, for two minutes."
+    ],
+    3:[
+      "Blindfold the receiver. The giver places three slow kisses anywhere they choose — but not on the mouth. The receiver guesses where each was.",
+      "The giver kisses the receiver everywhere except the mouth for two full minutes. The receiver may not initiate a mouth kiss.",
+      "The giver runs only their lips — no tongue — along the receiver's neck, ear and shoulder. Slowly.",
+      "The giver breathes against the receiver's skin in three places of their choosing. No touch. Just breath.",
+      "The giver bites — gently — the receiver's bottom lip, ear, and the side of their neck. One bite each, with full pauses between.",
+      "The receiver lies back. The giver kisses them deeply for one full minute. Then stops entirely. Then begins again."
+    ],
+    4:[
+      "The giver removes one piece of the receiver's clothing. Slowly. The receiver may not help.",
+      "Blindfold the giver. The receiver guides the giver's hands to three places on their body — anywhere they like.",
+      "The giver stands over the receiver and removes their own clothing — one piece — while the receiver watches in silence.",
+      "The receiver removes one piece of the giver's clothing using only their teeth and lips.",
+      "Both partners undress each other simultaneously, slowly, without breaking eye contact.",
+      "The receiver is fully undressed by the giver and laid down. The giver looks at them — just looks — for one full minute before any touch begins."
+    ],
+    5:[
+      "The giver uses only their mouth on the receiver's body for three minutes. The receiver chooses where to begin and may redirect at any time.",
+      "The receiver lies still. The giver may not be touched for five minutes — only give. The receiver speaks only to direct.",
+      "Blindfold the receiver. The giver explores their whole body slowly with hands, mouth and breath. No goal. No rush.",
+      "The giver presses the receiver into the bed with their weight. Holds them there, kissing them deeply, for as long as both want.",
+      "The receiver names one place on their body. The giver attends to that place — and only that place — for three minutes.",
+      "The giver works slowly from one end of the receiver to the other — kisses, breath, hands — making no part feel less wanted than another."
+    ],
+    6:[
+      "Begin slowly — or whatever the equivalent is for the two of you — and stay still for thirty full seconds. Eyes open.",
+      "The giver moves at exactly half the speed they think is right. Eyes open. Mouths open.",
+      "The receiver sets the pace, entirely. The giver follows. No suggestions.",
+      "Agree together on a single position. Stay in it. Slow. Deep. Quiet enough to hear each other breathe.",
+      "The giver pauses every thirty seconds. Looks at the receiver. Begins again.",
+      "Forget the cards. Be with them. As long as both of you want."
+    ]
+  };
+
+  const MODIFIERS = [
+    { name:'Blindfolded', text:'One of you wears the blindfold for the full duration of this card. The pair decides who.' },
+    { name:'In Silence',  text:'No words during this card — only breath, eyes and touch communicate. Sounds are allowed.' },
+    { name:'Twice',       text:'The action is performed, then immediately performed again — same card, no break between.' },
+    { name:'Reversed',    text:'Halfway through, the giver and receiver swap roles. Same card, opposite direction.' },
+    { name:'With Sensation', text:'Introduce a sensory element — ice, warm oil, silk, a feather. The giver chooses.' },
+    { name:'Pure',        text:'The card as written, with no modifier. The plainest version of the act.' }
+  ];
+
+  // game state
+  let state = {
+    tier:1, cardsThisTier:0, giverIsA:true, lastCardDie:0, lastModDie:0, active:false
+  };
+
+  const overlay = document.getElementById('game-overlay');
+  const stage = document.getElementById('go-stage');
+  const tierLabel = document.getElementById('go-tier-label');
+  const intensityBar = document.getElementById('go-intensity-bar');
+
+  function rollDie(){ return Math.floor(Math.random()*6)+1; }
+
+  // build a die element with 6 faces and pips for each
+  function buildDie(color){
+    const die = document.createElement('div');
+    die.className = 'die ' + color;
+    for(let f=1; f<=6; f++){
+      const face = document.createElement('div');
+      face.className = 'die-face f'+f;
+      for(let p=0; p<f; p++){
+        const pip = document.createElement('div');
+        pip.className = 'pip';
+        face.appendChild(pip);
+      }
+      die.appendChild(face);
+    }
+    return die;
+  }
+
+  // CSS rotation needed to bring face N forward
+  const faceRotations = {
+    1:'rotateX(0deg) rotateY(0deg)',
+    2:'rotateX(0deg) rotateY(90deg)',
+    3:'rotateX(0deg) rotateY(180deg)',
+    4:'rotateX(0deg) rotateY(-90deg)',
+    5:'rotateX(90deg) rotateY(0deg)',
+    6:'rotateX(-90deg) rotateY(0deg)'
+  };
+
+  function animateDie(die, targetFace){
+    // tumble a few times then settle on the target face
+    const extraSpinsX = (Math.floor(Math.random()*3)+2)*360;
+    const extraSpinsY = (Math.floor(Math.random()*3)+2)*360;
+    const base = faceRotations[targetFace].match(/rotateX\((-?\d+)deg\) rotateY\((-?\d+)deg\)/);
+    const targetX = parseInt(base[1],10);
+    const targetY = parseInt(base[2],10);
+    die.classList.add('rolling');
+    die.style.transform = 'rotateX('+(targetX+extraSpinsX)+'deg) rotateY('+(targetY+extraSpinsY)+'deg)';
+  }
+
+  function renderTierIntro(){
+    const t = TIERS[state.tier-1];
+    tierLabel.textContent = 'Tier ' + t.roman + ' · ' + t.name;
+    intensityBar.style.width = (state.tier * 16.66) + '%';
+    stage.innerHTML =
+      '<div class="go-tier-intro">' +
+        '<div class="t-num">Tier ' + t.roman + '</div>' +
+        '<h2>' + t.name + '</h2>' +
+        '<div class="t-sub">' + t.sub + '</div>' +
+        '<div class="t-mood">' + t.mood + '</div>' +
+        '<div class="go-actions">' +
+          '<button class="gbtn primary" id="roll-btn">Roll the dice</button>' +
+        '</div>' +
+      '</div>';
+    document.getElementById('roll-btn').addEventListener('click', renderDiceAndRoll);
+  }
+
+  function renderDiceAndRoll(){
+    const t = TIERS[state.tier-1];
+    stage.innerHTML =
+      '<div class="dice-area" id="dice-area"></div>' +
+      '<div class="die-labels"><span>Card</span><span>Modifier</span></div>';
+    const area = document.getElementById('dice-area');
+    const plumDie = buildDie('plum');
+    const goldDie = buildDie('gold');
+    area.appendChild(plumDie);
+    area.appendChild(goldDie);
+
+    // start at face 1 so the geometry resolves
+    plumDie.style.transform = faceRotations[1];
+    goldDie.style.transform = faceRotations[1];
+
+    // roll on next tick
+    requestAnimationFrame(()=>{
+      const cardN = rollDie();
+      const modN  = rollDie();
+      state.lastCardDie = cardN;
+      state.lastModDie = modN;
+      animateDie(plumDie, cardN);
+      animateDie(goldDie, modN);
+      setTimeout(()=>{ renderCard(cardN, modN); }, 1700);
+    });
+  }
+
+  function renderCard(cardN, modN){
+    const t = TIERS[state.tier-1];
+    const text = CARDS[state.tier][cardN-1];
+    const mod = MODIFIERS[modN-1];
+    const giver = state.giverIsA ? 'A' : 'B';
+    const receiver = state.giverIsA ? 'B' : 'A';
+
+    // keep dice visible but smaller; card appears below
+    stage.innerHTML =
+      '<div class="game-card" id="game-card">' +
+        '<div class="gc-header">' +
+          '<div class="gc-tier">Tier ' + t.roman + ' · ' + t.name + '</div>' +
+          '<div class="gc-direction">' +
+            'Giver: <strong>' + giver + '</strong> <span class="arrow">→</span> Receiver: <strong>' + receiver + '</strong>' +
+          '</div>' +
+        '</div>' +
+        '<div class="gc-text">' + text + '</div>' +
+        (mod.name !== 'Pure' ?
+          '<div class="gc-mod">' +
+            '<span class="gc-mod-label">Modifier · ' + mod.name + '</span>' +
+            '<span class="gc-mod-text">' + mod.text + '</span>' +
+          '</div>' : '') +
+      '</div>' +
+      '<div class="go-actions">' +
+        '<button class="gbtn primary" id="done-btn">Done</button>' +
+        '<button class="gbtn ghost" id="skip-btn">Skip</button>' +
+        (state.cardsThisTier >= 2 ?
+          '<button class="gbtn solid-dark" id="advance-btn">Advance tier ' +
+            (state.tier < 6 ? '→' : '· finale') + '</button>' : '') +
+      '</div>';
+    requestAnimationFrame(()=>{
+      document.getElementById('game-card').classList.add('visible');
+    });
+    document.getElementById('done-btn').addEventListener('click', nextCard);
+    document.getElementById('skip-btn').addEventListener('click', nextCard);
+    const adv = document.getElementById('advance-btn');
+    if (adv) adv.addEventListener('click', advanceTier);
+  }
+
+  function nextCard(){
+    state.cardsThisTier++;
+    state.giverIsA = !state.giverIsA;
+    renderDiceAndRoll();
+  }
+
+  function advanceTier(){
+    if (state.tier >= 6){ renderEnding(); return; }
+    state.tier++;
+    state.cardsThisTier = 0;
+    renderBreath();
+  }
+
+  function renderBreath(){
+    const t = TIERS[state.tier-1];
+    tierLabel.textContent = 'Tier ' + t.roman + ' · ' + t.name;
+    intensityBar.style.width = (state.tier * 16.66) + '%';
+    stage.innerHTML =
+      '<div class="breath">' +
+        '<div class="breath-circle">Breathe</div>' +
+        '<h3>Before we move on</h3>' +
+        '<p>Stay here for a moment. Look at them. Drink some water if you need it. The next tier begins when you are both ready.</p>' +
+        '<div class="go-actions">' +
+          '<button class="gbtn primary" id="continue-btn">Enter ' + t.name + '</button>' +
+          '<button class="gbtn ghost" id="stay-btn">Actually — stay at the last tier</button>' +
+        '</div>' +
+      '</div>';
+    document.getElementById('continue-btn').addEventListener('click', renderTierIntro);
+    document.getElementById('stay-btn').addEventListener('click', ()=>{
+      state.tier--;
+      tierLabel.textContent = 'Tier ' + TIERS[state.tier-1].roman + ' · ' + TIERS[state.tier-1].name;
+      intensityBar.style.width = (state.tier * 16.66) + '%';
+      renderDiceAndRoll();
+    });
+  }
+
+  function renderEnding(){
+    tierLabel.textContent = 'Becoming · complete';
+    intensityBar.style.width = '100%';
+    stage.innerHTML =
+      '<div class="ending">' +
+        '<h2>The cards are over.</h2>' +
+        '<p>What happens next belongs only to you. Stay with each other. Stay in the dark. Stay slow. There is nothing to perform and nowhere to be.</p>' +
+        '<p style="opacity:.55;font-size:.95rem">When you are ready to leave the room — and only then — the exit is at the top.</p>' +
+      '</div>';
+  }
+
+  function enterGame(){
+    state = { tier:1, cardsThisTier:0, giverIsA:true, lastCardDie:0, lastModDie:0, active:true };
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    renderTierIntro();
+  }
+
+  function exitGame(){
+    if (state.active && !confirm('Exit the game? Progress is not saved.')) return;
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    state.active = false;
+  }
+
+  document.getElementById('bgame-begin-btn').addEventListener('click', enterGame);
+  document.getElementById('go-exit-btn').addEventListener('click', exitGame);
+  document.addEventListener('keydown', (e)=>{
+    if (e.key === 'Escape' && state.active) exitGame();
+  });
+
+  // reveal chapters on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{rootMargin:'0px 0px -10% 0px'});
+  document.querySelectorAll('.chapter, .part, .intim-part, .practice, .bgame-tier').forEach(el=>io.observe(el));
+
+</script>
+</body>
+</html>

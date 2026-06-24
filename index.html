@@ -2,2506 +2,326 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Magnificent Midlife — Reading Companion</title>
-<meta name="description" content="A distilled reading companion to Kate Muir's How to Have a Magnificent Midlife Crisis — the substance of each chapter, made for reading together.">
+<title>For the Middle Years — A companion for couples in midlife</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Three companions for couples navigating midlife together: a book distilled, the science of desire, and an interactive game for two.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#241d28;
-    --ink-soft:#52485a;
-    --paper:#f3ecdf;
-    --paper-warm:#ece2d0;
-    --line:#d6c8b2;
+    --paper:#f5f0e6;
+    --paper-warm:#ede5d3;
+    --vellum:#f1e6d2;
+    --ink:#2a1810;
+    --ink-soft:#5a4a3e;
     --plum:#6c3a5c;
     --plum-deep:#4e2945;
-    --moss:#5a6b4f;
     --gold:#b07b3e;
-    --shadow:rgba(54,33,49,.14);
+    --ember:#8a2a3a;
+    --dark:#1a0e1c;
+    --dark-wine:#2a1424;
+    --light-cream:#f4ead6;
+    --line:rgba(60,30,20,.12);
+    --shadow:rgba(60,30,20,.08);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
   body{
     font-family:'Newsreader',Georgia,serif;
-    color:var(--ink);
     background:var(--paper);
-    line-height:1.62;
-    font-size:1.06rem;
-    -webkit-font-smoothing:antialiased;
+    color:var(--ink);
+    font-size:18px;line-height:1.6;
     overflow-x:hidden;
   }
-  /* faint paper texture */
-  body::before{
-    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+
+  /* tiny site mark */
+  .site-mark{
+    position:fixed;top:22px;left:28px;z-index:50;
+    font-family:'Fraunces',serif;font-size:.7rem;letter-spacing:.34em;
+    text-transform:uppercase;color:var(--plum);font-weight:500;
+    mix-blend-mode:multiply;
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+    padding:120px 28px 80px;text-align:center;position:relative;
+    background:var(--paper);
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
     background:
-      radial-gradient(circle at 18% 12%, rgba(176,123,62,.06), transparent 40%),
-      radial-gradient(circle at 82% 78%, rgba(108,58,92,.06), transparent 42%);
+      radial-gradient(ellipse 60% 50% at 80% 15%, rgba(176,123,62,.12), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 15% 85%, rgba(108,58,92,.08), transparent 60%);
   }
-  .progress{
-    position:fixed;top:0;left:0;height:3px;width:0%;
-    background:linear-gradient(90deg,var(--plum),var(--gold));
-    z-index:50;transition:width .1s linear;
-  }
-  .wrap{max-width:760px;margin:0 auto;padding:0 26px;position:relative;z-index:1}
-
-  /* ---------- HERO ---------- */
-  header.hero{
-    min-height:92vh;display:flex;flex-direction:column;justify-content:center;
-    padding:90px 0 70px;position:relative;
-  }
-  .kicker{
+  .hero-inner{position:relative;z-index:1;max-width:880px;width:100%}
+  .hero .kicker{
     font-family:'Fraunces',serif;font-size:.74rem;letter-spacing:.42em;
-    text-transform:uppercase;color:var(--plum);font-weight:600;margin-bottom:30px;
-  }
-  h1.title{
-    font-family:'Fraunces',serif;font-weight:500;
-    font-size:clamp(2.7rem,9vw,5.4rem);line-height:.98;letter-spacing:-.01em;
-    color:var(--ink);
-  }
-  h1.title em{font-style:italic;color:var(--plum-deep)}
-  .sub{
-    font-size:clamp(1.05rem,2.4vw,1.3rem);color:var(--ink-soft);
-    max-width:30ch;margin-top:34px;font-style:italic;
-  }
-  .byline{
-    margin-top:46px;font-family:'Fraunces',serif;font-size:.86rem;
-    letter-spacing:.04em;color:var(--ink-soft);
-  }
-  .byline strong{color:var(--ink);font-weight:600}
-  .scroll-cue{
-    margin-top:64px;font-family:'Fraunces',serif;font-size:.72rem;
-    letter-spacing:.3em;text-transform:uppercase;color:var(--gold);
-    display:flex;align-items:center;gap:12px;
-  }
-  .scroll-cue::after{content:"";width:46px;height:1px;background:var(--gold);
-    animation:pulse 2.4s ease-in-out infinite}
-  @keyframes pulse{0%,100%{opacity:.35;width:30px}50%{opacity:1;width:54px}}
-
-  /* ---------- INTRO NOTE ---------- */
-  .note{
-    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-    padding:44px 0;margin:30px 0 10px;
-  }
-  .note p{margin-bottom:16px;color:var(--ink-soft)}
-  .note p:last-child{margin-bottom:0}
-  .note .lead{font-family:'Fraunces',serif;font-size:1.18rem;color:var(--ink);font-style:italic}
-
-  /* ---------- SECTION DIVIDERS ---------- */
-  .part{
-    text-align:center;padding:80px 0 28px;
-  }
-  .part .pn{
-    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.4em;
-    text-transform:uppercase;color:var(--gold);
-  }
-  .part .pt{
-    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
-    font-size:clamp(2rem,6vw,3rem);color:var(--plum-deep);margin-top:8px;
-  }
-  .part .pd{color:var(--ink-soft);max-width:34ch;margin:14px auto 0;font-size:.98rem}
-
-  /* ---------- CHAPTER ---------- */
-  .chapter{
-    padding:38px 0;border-bottom:1px solid var(--line);
-    opacity:0;transform:translateY(24px);
-    transition:opacity .7s ease,transform .7s ease;
-  }
-  .chapter.in{opacity:1;transform:none}
-  .chapter .num{
-    font-family:'Fraunces',serif;font-size:.78rem;letter-spacing:.3em;
     text-transform:uppercase;color:var(--plum);font-weight:600;
+    margin-bottom:30px;opacity:0;animation:fadeUp 1.4s ease .2s forwards;
   }
-  .chapter h2{
-    font-family:'Fraunces',serif;font-weight:500;
-    font-size:clamp(1.7rem,5vw,2.5rem);line-height:1.04;letter-spacing:-.01em;
-    margin:8px 0 18px;color:var(--ink);
+  .hero h1{
+    font-family:'Fraunces',serif;font-weight:400;
+    font-size:clamp(3.5rem,11vw,8rem);line-height:.92;letter-spacing:-.02em;
+    color:var(--ink);margin-bottom:36px;
+    opacity:0;animation:fadeUp 1.6s ease .35s forwards;
   }
-  .chapter .tag{
-    display:inline-block;font-family:'Fraunces',serif;font-style:italic;
-    font-size:1.06rem;color:var(--moss);margin-bottom:20px;
+  .hero h1 em{font-style:italic;font-weight:300;color:var(--plum-deep)}
+  .hero .sub{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+    font-size:clamp(1.15rem,2.6vw,1.55rem);color:var(--ink-soft);
+    max-width:36ch;margin:0 auto 30px;line-height:1.45;
+    opacity:0;animation:fadeUp 1.4s ease .5s forwards;
   }
-  .chapter p{margin-bottom:16px}
-  .chapter strong{font-weight:600;color:var(--plum-deep)}
-  .pull{
-    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
-    font-size:clamp(1.3rem,3.6vw,1.7rem);line-height:1.28;color:var(--plum-deep);
-    border-left:3px solid var(--gold);padding:6px 0 6px 22px;margin:26px 0;
+  .hero-ornament{
+    margin:0 auto 50px;opacity:0;animation:fadeUp 1.4s ease .65s forwards;
   }
-  /* discussion prompts */
-  .prompts{
-    margin-top:24px;background:var(--paper-warm);
-    border:1px solid var(--line);border-radius:3px;padding:20px 22px 22px;
+  .hero-ornament line,.hero-ornament path{stroke:var(--gold);stroke-width:1;fill:none}
+  .hero-ornament circle{fill:var(--gold)}
+  .hero-cue{
+    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.36em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:500;
+    opacity:0;animation:fadeUp 1.4s ease .8s forwards;
   }
-  .prompts h3{
-    font-family:'Fraunces',serif;font-size:.74rem;letter-spacing:.26em;
-    text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px;
-    display:flex;align-items:center;gap:10px;
+  .hero-cue::after{
+    content:"";display:block;width:1px;height:48px;background:var(--ink-soft);
+    margin:18px auto 0;animation:lineGrow 3s ease infinite;
   }
-  .prompts h3::before{content:"✦";color:var(--gold);font-size:.9rem}
-  .prompts li{
-    list-style:none;padding:10px 0;border-top:1px solid var(--line);
-    font-style:italic;color:var(--ink-soft);
-  }
-  .prompts li:first-of-type{border-top:none;padding-top:2px}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+  @keyframes lineGrow{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
 
-  /* expanded inline prompts inside .prompts boxes */
-  .prompts .q-block{
-    padding:18px 0 8px;border-top:1px dashed var(--line);
+  /* ============ FEATURE BLOCKS ============ */
+  .feature{
+    display:grid;grid-template-columns:1fr 1fr;min-height:88vh;
+    position:relative;overflow:hidden;
   }
-  .prompts .q-block:first-of-type{border-top:none;padding-top:6px}
-  .prompts .q-block .q-question{
-    font-family:'Fraunces',serif;font-style:italic;font-weight:500;
-    font-size:1.06rem;color:var(--plum-deep);margin-bottom:6px;line-height:1.32;
+  .feature.reverse{direction:rtl}
+  .feature.reverse > *{direction:ltr}
+  .feat-image{
+    position:relative;overflow:hidden;
   }
-  .prompts .q-block .q-label{
-    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.24em;
-    text-transform:uppercase;color:var(--gold);font-weight:600;
-    display:block;margin:12px 0 6px;
+  .feat-image img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform 1.4s cubic-bezier(.16,1,.3,1);
   }
-  .prompts .q-block .q-thought{
-    color:var(--ink-soft);font-style:normal;font-size:.96rem;
-    line-height:1.55;margin-bottom:2px;
+  .feature:hover .feat-image img{transform:scale(1.04)}
+  .feat-image::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(45deg, rgba(0,0,0,.1), transparent 40%);
   }
-  .prompts .q-block .q-thought strong{color:var(--plum-deep);font-weight:600}
-  .prompts .q-block .q-ways{margin-top:2px;list-style:none;padding:0}
-  .prompts .q-block .q-ways li{
-    list-style:none;padding:6px 0 6px 14px;border-top:none;
-    font-style:italic;color:var(--ink-soft);font-size:.94rem;
+  .feat-content{
+    display:flex;flex-direction:column;justify-content:center;
+    padding:80px clamp(40px,7vw,100px);
     position:relative;
   }
-  .prompts .q-block .q-ways li::before{
-    content:"·";position:absolute;left:0;color:var(--gold);
-    font-weight:700;font-style:normal;
-  }
-  .prompts .q-more-label{
-    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.24em;
-    text-transform:uppercase;color:var(--gold);font-weight:600;
-    display:block;margin:22px 0 4px;
-  }
-  .prompts .q-more{list-style:none;padding:0;margin:0}
-  .prompts .q-more li{
-    list-style:none;padding:9px 0;border-top:1px solid var(--line);
-    font-style:italic;color:var(--ink-soft);font-size:.98rem;
-  }
-  .prompts .q-more li:first-of-type{border-top:none;padding-top:2px}
-
-  /* ---------- PATHWAY SELECTOR ---------- */
-  .pathways{padding:30px 0 60px}
-  .pathways-kicker{
-    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.4em;
-    text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:8px;
-  }
-  .pathways-title{
-    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
-    font-size:clamp(1.55rem,4.2vw,2rem);color:var(--plum-deep);
-    text-align:center;margin-bottom:34px;line-height:1.18;
-  }
-  .pathway-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
-  @media (max-width:780px){.pathway-cards{grid-template-columns:1fr}}
-  .pathway-card{
-    display:block;text-decoration:none;color:inherit;
-    background:var(--paper-warm);border:1px solid var(--line);border-radius:3px;
-    padding:28px 26px 24px;
-    transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
-  }
-  .pathway-card:hover{
-    transform:translateY(-3px);border-color:var(--plum);
-    box-shadow:0 8px 24px var(--shadow);
-  }
-  .pathway-card.crisis{border-left:3px solid var(--plum)}
-  .pathway-card.intim{border-left:3px solid var(--gold)}
-  .pathway-card.ember{border-left:3px solid #8a2a3a}
-  .pathway-card .pw-label{
-    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.3em;
-    text-transform:uppercase;color:var(--plum);font-weight:600;
-  }
-  .pathway-card.intim .pw-label{color:var(--gold)}
-  .pathway-card.ember .pw-label{color:#8a2a3a}
-  .pathway-card .pw-title{
-    font-family:'Fraunces',serif;font-weight:500;
-    font-size:1.45rem;line-height:1.16;color:var(--ink);margin:10px 0;
-  }
-  .pathway-card .pw-sub{color:var(--ink-soft);font-size:.96rem;line-height:1.5;margin-bottom:18px}
-  .pathway-card .pw-arrow{
-    font-family:'Fraunces',serif;font-size:.7rem;letter-spacing:.28em;
-    text-transform:uppercase;color:var(--plum);font-weight:600;
-    display:flex;align-items:center;gap:10px;
-  }
-  .pathway-card.intim .pw-arrow{color:var(--gold)}
-  .pathway-card.ember .pw-arrow{color:#8a2a3a}
-  .pathway-card .pw-arrow::after{content:"→";font-size:1rem;transition:transform .25s ease}
-  .pathway-card:hover .pw-arrow::after{transform:translateX(4px)}
-
-  /* ---------- INTIMACY SECTION ---------- */
-  .intimacy{padding:90px 0 30px;border-top:1px solid var(--line);margin-top:50px}
-  .intim-header{padding-bottom:18px;text-align:center}
-  .intim-header .pn{
-    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.4em;
-    text-transform:uppercase;color:var(--gold);
-  }
-  .intim-header .pt{
-    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
-    font-size:clamp(2.1rem,6vw,3.2rem);color:var(--plum-deep);
-    margin-top:10px;letter-spacing:-.01em;line-height:1.04;
-  }
-  .intim-header .pd{
-    color:var(--ink-soft);max-width:42ch;margin:16px auto 0;font-size:1rem;
-  }
-  .intim-intro{padding:30px 0 14px;border-bottom:1px solid var(--line);margin-bottom:20px}
-  .intim-intro p{margin-bottom:16px;color:var(--ink-soft)}
-  .intim-intro p:last-child{margin-bottom:0}
-  .intim-intro .lead{font-family:'Fraunces',serif;font-style:italic;font-size:1.15rem;color:var(--ink)}
-  .intim-part{padding:36px 0;border-bottom:1px solid var(--line)}
-  .intim-part .pnum{
-    font-family:'Fraunces',serif;font-size:.78rem;letter-spacing:.3em;
-    text-transform:uppercase;color:var(--gold);font-weight:600;
-  }
-  .intim-part h3{
-    font-family:'Fraunces',serif;font-weight:500;
-    font-size:clamp(1.45rem,4.2vw,2rem);line-height:1.1;color:var(--ink);
-    margin:8px 0 14px;
-  }
-  .intim-part .tag{
-    display:inline-block;font-family:'Fraunces',serif;font-style:italic;
-    font-size:1.02rem;color:var(--moss);margin-bottom:18px;
-  }
-  .intim-part p{margin-bottom:14px}
-  .intim-part strong{color:var(--plum-deep);font-weight:600}
-  .intim-part ul.factors{list-style:none;padding:6px 0 0;margin:10px 0 6px}
-  .intim-part ul.factors li{
-    padding:6px 0 6px 18px;position:relative;color:var(--ink-soft);font-size:.98rem;
-  }
-  .intim-part ul.factors li::before{
-    content:"·";position:absolute;left:4px;color:var(--gold);font-weight:700;
-  }
-  .intim-flame{padding:60px 0 30px}
-  .intim-flame h2{
-    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
-    font-size:clamp(1.9rem,5.4vw,2.6rem);line-height:1.1;color:var(--plum-deep);
-    margin-bottom:10px;text-align:center;
-  }
-  .intim-flame .flame-tag{
-    font-family:'Fraunces',serif;font-style:italic;color:var(--moss);
-    text-align:center;margin-bottom:26px;font-size:1.04rem;
-  }
-  .intim-flame > p{margin-bottom:30px;color:var(--ink-soft)}
-  .practice{
-    margin:18px 0;padding:22px 24px 20px;
-    background:var(--paper-warm);border:1px solid var(--line);border-radius:3px;
-    display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;
-  }
-  .practice .pn-num{
-    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
-    font-size:2.1rem;color:var(--gold);line-height:1;padding-top:2px;
-  }
-  .practice .pbody h4{
-    font-family:'Fraunces',serif;font-weight:600;
-    font-size:1.1rem;color:var(--plum-deep);margin-bottom:8px;
-  }
-  .practice .pbody p{margin:0;color:var(--ink-soft);font-size:.97rem;line-height:1.55}
-  .practice .pbody strong{color:var(--plum-deep);font-weight:600}
-
-  /* ---------- BECOMING (GAME) INTRO ---------- */
-  .bgame{padding:90px 0 30px;border-top:1px solid var(--line);margin-top:50px}
-  .bgame-header{padding-bottom:18px;text-align:center}
-  .bgame-header .pn{
-    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.4em;
-    text-transform:uppercase;color:#8a2a3a;
-  }
-  .bgame-header .pt{
-    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
-    font-size:clamp(2.1rem,6vw,3.2rem);color:var(--plum-deep);
-    margin-top:10px;letter-spacing:-.01em;line-height:1.04;
-  }
-  .bgame-header .pd{color:var(--ink-soft);max-width:42ch;margin:16px auto 0;font-size:1rem}
-  .bgame-intro{padding:30px 0;border-bottom:1px solid var(--line)}
-  .bgame-intro p{margin-bottom:16px;color:var(--ink-soft)}
-  .bgame-intro .lead{font-family:'Fraunces',serif;font-style:italic;font-size:1.15rem;color:var(--ink)}
-  .bgame-tiers{
-    display:grid;grid-template-columns:repeat(6,1fr);gap:8px;
-    margin:30px 0 10px;
-  }
-  @media (max-width:780px){.bgame-tiers{grid-template-columns:repeat(3,1fr)}}
-  @media (max-width:480px){.bgame-tiers{grid-template-columns:repeat(2,1fr)}}
-  .bgame-tier{
-    background:var(--paper-warm);border:1px solid var(--line);border-radius:3px;
-    padding:14px 12px;text-align:center;
-  }
-  .bgame-tier .t-num{
-    font-family:'Fraunces',serif;font-style:italic;color:#8a2a3a;
-    font-size:1.4rem;line-height:1;margin-bottom:4px;
-  }
-  .bgame-tier .t-name{
-    font-family:'Fraunces',serif;font-size:.78rem;letter-spacing:.18em;
-    text-transform:uppercase;color:var(--ink);font-weight:600;
-  }
-  .bgame-prep{
-    margin-top:36px;padding:26px 26px 22px;
-    background:var(--paper-warm);border:1px solid var(--line);border-radius:3px;
-    border-left:3px solid #8a2a3a;
-  }
-  .bgame-prep h4{
-    font-family:'Fraunces',serif;font-size:.78rem;letter-spacing:.26em;
-    text-transform:uppercase;color:#8a2a3a;font-weight:600;margin-bottom:12px;
-  }
-  .bgame-prep ul{list-style:none;padding:0;margin:0}
-  .bgame-prep li{
-    padding:7px 0 7px 22px;position:relative;color:var(--ink-soft);font-size:.96rem;
-    border-top:1px solid var(--line);
-  }
-  .bgame-prep li:first-of-type{border-top:none}
-  .bgame-prep li::before{
-    content:"✦";position:absolute;left:0;color:#8a2a3a;font-size:.78rem;top:11px;
-  }
-  .bgame-consent{
-    margin-top:24px;padding:20px 24px;
-    border:1px dashed var(--line);border-radius:3px;
-    font-style:italic;color:var(--ink-soft);font-size:.95rem;line-height:1.55;
-  }
-  .bgame-consent strong{color:var(--plum-deep);font-weight:600;font-style:normal}
-  .bgame-begin{
-    margin:40px auto 0;display:block;width:fit-content;
-    font-family:'Fraunces',serif;font-size:.78rem;letter-spacing:.3em;
-    text-transform:uppercase;font-weight:600;color:#fff;
-    background:linear-gradient(135deg,#8a2a3a,var(--plum-deep));
-    border:none;padding:18px 38px;border-radius:3px;cursor:pointer;
-    transition:transform .25s ease,box-shadow .25s ease;
-    box-shadow:0 6px 20px rgba(78,41,69,.3);
-  }
-  .bgame-begin:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(78,41,69,.45)}
-  .bgame-begin:active{transform:translateY(0)}
-
-  /* ---------- GAME OVERLAY ---------- */
-  .game-overlay{
-    position:fixed;inset:0;z-index:100;
-    background:radial-gradient(ellipse at center,#3a1e34 0%,#1a0d18 80%);
-    color:#f0e7d5;
-    display:none;flex-direction:column;
-    overflow:hidden;
-  }
-  .game-overlay.active{display:flex;animation:fadeInGame .8s ease}
-  @keyframes fadeInGame{from{opacity:0}to{opacity:1}}
-  .game-overlay::before{
+  .feat-content::before{
     content:"";position:absolute;inset:0;pointer-events:none;
-    background:
-      radial-gradient(circle at 20% 20%, rgba(176,123,62,.12), transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(138,42,58,.15), transparent 55%);
   }
-  .go-top{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:20px 24px;position:relative;z-index:2;
-  }
-  .go-tier{
-    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.32em;
-    text-transform:uppercase;color:var(--gold);font-weight:600;
-  }
-  .go-exit{
-    background:transparent;border:1px solid rgba(240,231,213,.3);
-    color:#f0e7d5;font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.24em;
-    text-transform:uppercase;padding:8px 16px;border-radius:3px;cursor:pointer;
-    transition:border-color .2s ease,background .2s ease;
-  }
-  .go-exit:hover{border-color:var(--gold);background:rgba(176,123,62,.1)}
-  .go-intensity{
-    height:3px;margin:0 24px;background:rgba(240,231,213,.12);
-    border-radius:2px;overflow:hidden;position:relative;z-index:2;
-  }
-  .go-intensity .bar{
-    height:100%;background:linear-gradient(90deg,var(--gold),#8a2a3a);
-    width:16.66%;transition:width .8s cubic-bezier(.4,0,.2,1);
-  }
-  .go-stage{
-    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    padding:24px;position:relative;z-index:2;
-    overflow-y:auto;
-  }
-  .go-tier-intro{
-    text-align:center;max-width:560px;
-    animation:slideUp .6s ease;
-  }
-  @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-  .go-tier-intro .t-num{
-    font-family:'Fraunces',serif;font-style:italic;color:var(--gold);
-    font-size:1.1rem;letter-spacing:.18em;text-transform:uppercase;
-    margin-bottom:14px;
-  }
-  .go-tier-intro h2{
-    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
-    font-size:clamp(2.4rem,7vw,3.8rem);color:#f0e7d5;line-height:1.04;
-    margin-bottom:18px;
-  }
-  .go-tier-intro .t-sub{
-    font-family:'Fraunces',serif;font-size:1.1rem;font-style:italic;
-    color:rgba(240,231,213,.78);margin-bottom:30px;line-height:1.45;
-  }
-  .go-tier-intro .t-mood{
-    font-family:'Fraunces',serif;font-size:.94rem;
-    color:rgba(240,231,213,.6);font-style:italic;
-    border-top:1px solid rgba(240,231,213,.18);
-    border-bottom:1px solid rgba(240,231,213,.18);
-    padding:18px 0;margin-bottom:36px;
-  }
-  /* dice */
-  .dice-area{
-    display:flex;gap:30px;justify-content:center;perspective:600px;
-    margin:10px 0 30px;min-height:120px;align-items:center;
-  }
-  .die{
-    width:90px;height:90px;position:relative;transform-style:preserve-3d;
-    transition:transform 1.6s cubic-bezier(.34,1.2,.5,1);
-  }
-  .die.rolling{transition:transform 1.4s cubic-bezier(.4,0,.2,1)}
-  .die-face{
-    position:absolute;inset:0;border-radius:14px;
-    display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);
-    padding:14%;backface-visibility:hidden;
-    box-shadow:0 6px 16px rgba(0,0,0,.4);
-  }
-  .die.plum .die-face{background:linear-gradient(135deg,#f3ecdf,#ece2d0);border:1px solid #6c3a5c}
-  .die.gold .die-face{background:linear-gradient(135deg,#f3ecdf,#ece2d0);border:1px solid #b07b3e}
-  .die.plum .pip{background:var(--plum-deep)}
-  .die.gold .pip{background:#b07b3e}
-  .die-face.f1{transform:rotateY(0deg) translateZ(45px)}
-  .die-face.f2{transform:rotateY(-90deg) translateZ(45px)}
-  .die-face.f3{transform:rotateY(180deg) translateZ(45px)}
-  .die-face.f4{transform:rotateY(90deg) translateZ(45px)}
-  .die-face.f5{transform:rotateX(-90deg) translateZ(45px)}
-  .die-face.f6{transform:rotateX(90deg) translateZ(45px)}
-  .pip{width:14px;height:14px;border-radius:50%;align-self:center;justify-self:center}
-  /* pip positions per face */
-  .f1 .pip:nth-child(1){grid-area:2/2}
-  .f2 .pip:nth-child(1){grid-area:1/1}
-  .f2 .pip:nth-child(2){grid-area:3/3}
-  .f3 .pip:nth-child(1){grid-area:1/1}
-  .f3 .pip:nth-child(2){grid-area:2/2}
-  .f3 .pip:nth-child(3){grid-area:3/3}
-  .f4 .pip:nth-child(1){grid-area:1/1}
-  .f4 .pip:nth-child(2){grid-area:1/3}
-  .f4 .pip:nth-child(3){grid-area:3/1}
-  .f4 .pip:nth-child(4){grid-area:3/3}
-  .f5 .pip:nth-child(1){grid-area:1/1}
-  .f5 .pip:nth-child(2){grid-area:1/3}
-  .f5 .pip:nth-child(3){grid-area:2/2}
-  .f5 .pip:nth-child(4){grid-area:3/1}
-  .f5 .pip:nth-child(5){grid-area:3/3}
-  .f6 .pip:nth-child(1){grid-area:1/1}
-  .f6 .pip:nth-child(2){grid-area:1/3}
-  .f6 .pip:nth-child(3){grid-area:2/1}
-  .f6 .pip:nth-child(4){grid-area:2/3}
-  .f6 .pip:nth-child(5){grid-area:3/1}
-  .f6 .pip:nth-child(6){grid-area:3/3}
-  .die-labels{
-    display:flex;gap:30px;justify-content:center;margin-top:-18px;margin-bottom:30px;
-    font-family:'Fraunces',serif;font-size:.64rem;letter-spacing:.3em;
-    text-transform:uppercase;color:rgba(240,231,213,.5);
-  }
-  .die-labels span{width:90px;text-align:center}
-  /* card */
-  .game-card{
-    max-width:560px;width:100%;min-height:240px;
-    background:linear-gradient(160deg,rgba(243,236,223,.96),rgba(236,226,208,.96));
-    color:var(--ink);border-radius:6px;padding:34px 32px 30px;
-    box-shadow:0 18px 48px rgba(0,0,0,.45);
-    position:relative;overflow:hidden;
-    opacity:0;transform:translateY(30px) scale(.96);
-    transition:opacity .6s ease,transform .6s cubic-bezier(.34,1.2,.5,1);
-  }
-  .game-card.visible{opacity:1;transform:none}
-  .game-card::before{
-    content:"";position:absolute;inset:0;pointer-events:none;
-    background:radial-gradient(circle at 90% 10%, rgba(176,123,62,.1), transparent 50%);
-  }
-  .gc-header{
-    display:flex;justify-content:space-between;align-items:baseline;
-    margin-bottom:18px;
-  }
-  .gc-tier{
-    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.28em;
-    text-transform:uppercase;color:var(--gold);font-weight:600;
-  }
-  .gc-direction{
-    font-family:'Fraunces',serif;font-style:italic;font-size:.92rem;
-    color:var(--plum-deep);
-  }
-  .gc-direction .arrow{color:var(--gold);font-style:normal;font-weight:600;margin:0 6px}
-  .gc-text{
-    font-family:'Fraunces',serif;font-size:1.18rem;line-height:1.45;
-    color:var(--ink);margin-bottom:18px;
-  }
-  .gc-mod{
-    background:rgba(108,58,92,.08);border:1px solid rgba(108,58,92,.2);
-    border-radius:3px;padding:12px 14px;margin-bottom:8px;
-  }
-  .gc-mod-label{
-    font-family:'Fraunces',serif;font-size:.62rem;letter-spacing:.26em;
-    text-transform:uppercase;color:var(--plum);font-weight:600;display:block;margin-bottom:4px;
-  }
-  .gc-mod-text{font-family:'Fraunces',serif;font-style:italic;color:var(--plum-deep);font-size:.96rem}
-  /* buttons */
-  .go-actions{
-    display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
-    margin-top:24px;
-  }
-  .gbtn{
-    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.28em;
-    text-transform:uppercase;font-weight:600;
-    padding:14px 28px;border-radius:3px;cursor:pointer;
-    transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
-    border:none;
-  }
-  .gbtn.primary{
-    background:linear-gradient(135deg,var(--gold),#8a2a3a);color:#fff;
-    box-shadow:0 4px 14px rgba(138,42,58,.4);
-  }
-  .gbtn.primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(138,42,58,.55)}
-  .gbtn.ghost{
-    background:transparent;color:rgba(240,231,213,.85);
-    border:1px solid rgba(240,231,213,.3);
-  }
-  .gbtn.ghost:hover{border-color:var(--gold);color:var(--gold);background:rgba(176,123,62,.08)}
-  .gbtn.solid-dark{
-    background:rgba(240,231,213,.08);color:#f0e7d5;
-    border:1px solid rgba(240,231,213,.18);
-  }
-  .gbtn.solid-dark:hover{background:rgba(240,231,213,.15)}
-  /* breath pause between tiers */
-  .breath{
-    text-align:center;max-width:520px;animation:slideUp .6s ease;
-  }
-  .breath h3{
-    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
-    font-size:clamp(1.6rem,5vw,2.4rem);color:#f0e7d5;margin-bottom:18px;
-  }
-  .breath p{
-    font-family:'Fraunces',serif;font-style:italic;
-    color:rgba(240,231,213,.78);font-size:1.04rem;line-height:1.55;margin-bottom:28px;
-  }
-  .breath-circle{
-    width:140px;height:140px;border-radius:50%;margin:0 auto 30px;
-    border:1px solid rgba(176,123,62,.5);
-    animation:breathe 6s ease-in-out infinite;
-    display:flex;align-items:center;justify-content:center;
-    font-family:'Fraunces',serif;font-style:italic;color:rgba(240,231,213,.5);
-    font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;
-  }
-  @keyframes breathe{
-    0%,100%{transform:scale(.85);box-shadow:0 0 0 0 rgba(176,123,62,.4)}
-    50%{transform:scale(1);box-shadow:0 0 0 24px rgba(176,123,62,0)}
-  }
-  /* ending */
-  .ending{text-align:center;max-width:560px;animation:slideUp .8s ease}
-  .ending h2{
-    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
-    font-size:clamp(2rem,6vw,3rem);color:#f0e7d5;line-height:1.1;margin-bottom:24px;
-  }
-  .ending p{
-    font-family:'Fraunces',serif;font-style:italic;color:rgba(240,231,213,.78);
-    font-size:1.1rem;line-height:1.5;margin-bottom:30px;
-  }
-
-  /* ==========================================================
-     ZONE SYSTEM — separate visual environments per path
-     ========================================================== */
-  body{background:var(--paper)}
-  .zone{position:relative;overflow:hidden}
-  .zone > .wrap{position:relative;z-index:1}
-  .zone::before{
-    content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
-  }
-
-  /* Zone: pathway selector (still on paper, but with a soft transition divider above) */
-  .zone-paths{
-    background:var(--paper);
-    border-top:1px solid var(--line);
-  }
-
-  /* Zone One: book companion — paper with a barely-there plum wash */
-  .zone-one{background:var(--paper)}
-  .zone-one::before{
-    background:
-      radial-gradient(ellipse at 80% 0%, rgba(108,58,92,.05), transparent 60%),
-      radial-gradient(ellipse at 20% 100%, rgba(176,123,62,.04), transparent 55%);
-  }
-
-  /* Zone Two: improved intimacy — warm vellum, slightly blush, scholarly */
-  .zone-two{
-    background:linear-gradient(180deg,
-      var(--paper) 0%,
-      #f1e6d2 60px,
-      #efe1c8 50%,
-      #f1e6d2 calc(100% - 60px),
-      var(--paper) 100%);
-    color:var(--ink);
-  }
-  .zone-two::before{
-    background:
-      radial-gradient(circle at 85% 15%, rgba(176,123,62,.10), transparent 50%),
-      radial-gradient(circle at 15% 65%, rgba(108,58,92,.07), transparent 50%),
-      radial-gradient(circle at 90% 85%, rgba(176,123,62,.08), transparent 45%);
-  }
-
-  /* Zone Three: the becoming — dark candlelit threshold */
-  .zone-three{
-    background:linear-gradient(180deg,
-      var(--paper) 0%,
-      #4a2540 120px,
-      #2a1424 22%,
-      #1a0e1c 50%,
-      #1a0e1c 100%);
-    color:#f0e7d5;
-  }
-  .zone-three::before{
-    background:
-      radial-gradient(circle at 25% 30%, rgba(176,123,62,.16), transparent 45%),
-      radial-gradient(circle at 75% 60%, rgba(138,42,58,.18), transparent 50%),
-      radial-gradient(circle at 50% 90%, rgba(176,123,62,.10), transparent 55%);
-  }
-  /* small "candle flicker" decorative dots — purely decorative */
-  .zone-three::after{
-    content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
-    background-image:
-      radial-gradient(circle at 12% 22%, rgba(255,200,140,.45) 0, transparent 2px),
-      radial-gradient(circle at 88% 38%, rgba(255,200,140,.35) 0, transparent 2px),
-      radial-gradient(circle at 22% 68%, rgba(255,200,140,.35) 0, transparent 2px),
-      radial-gradient(circle at 78% 82%, rgba(255,200,140,.4) 0, transparent 2px);
-    animation:flicker 4.5s ease-in-out infinite alternate;
-  }
-  @keyframes flicker{
-    0%{opacity:.55}
-    50%{opacity:.85}
-    100%{opacity:.65}
-  }
-
-  /* Close zone returns to paper */
-  .zone-close{background:var(--paper)}
-
-  /* ---------- PATH OPENER (the title block at the start of each zone) ---------- */
-  .path-opener{
-    text-align:center;padding:110px 0 60px;position:relative;
-  }
-  .path-opener .label{
-    font-family:'Fraunces',serif;font-size:.74rem;letter-spacing:.42em;
-    text-transform:uppercase;font-weight:600;margin-bottom:18px;
-  }
-  .path-opener .rule{
-    width:80px;height:1px;margin:0 auto 22px;
-  }
-  .path-opener .title{
-    font-family:'Fraunces',serif;font-weight:500;
-    font-size:clamp(2.8rem,9vw,5rem);line-height:.98;letter-spacing:-.012em;
+  .feat-num{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+    font-size:5rem;line-height:1;color:currentColor;opacity:.18;
     margin-bottom:24px;
   }
-  .path-opener .title em{font-style:italic}
-  .path-opener .sub{
-    font-family:'Fraunces',serif;font-style:italic;
-    font-size:clamp(1.05rem,2.4vw,1.25rem);max-width:36ch;
-    margin:0 auto;line-height:1.5;
+  .feat-label{
+    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.4em;
+    text-transform:uppercase;font-weight:600;margin-bottom:18px;
   }
-  /* Zone-specific opener treatments */
-  .zone-one .path-opener .label{color:var(--plum)}
-  .zone-one .path-opener .rule{background:var(--plum)}
-  .zone-one .path-opener .title{color:var(--ink)}
-  .zone-one .path-opener .title em{color:var(--plum-deep)}
-  .zone-one .path-opener .sub{color:var(--ink-soft)}
+  .feat-title{
+    font-family:'Fraunces',serif;font-weight:400;
+    font-size:clamp(2.4rem,5vw,4rem);line-height:.98;letter-spacing:-.015em;
+    margin-bottom:24px;
+  }
+  .feat-title em{font-style:italic;font-weight:300}
+  .feat-desc{
+    font-family:'Newsreader',serif;font-size:1.08rem;line-height:1.6;
+    margin-bottom:36px;max-width:46ch;
+  }
+  .feat-desc em{font-style:italic}
+  .feat-cta{
+    display:inline-flex;align-items:center;gap:14px;width:fit-content;
+    font-family:'Fraunces',serif;font-size:.74rem;letter-spacing:.32em;
+    text-transform:uppercase;font-weight:600;
+    padding:18px 0;border-bottom:1px solid currentColor;
+    transition:gap .3s ease;
+  }
+  .feat-cta:hover{gap:22px}
+  .feat-cta .arr{font-size:1.1rem;letter-spacing:0}
 
-  .zone-two .path-opener .label{color:var(--gold)}
-  .zone-two .path-opener .rule{background:var(--gold)}
-  .zone-two .path-opener .title{color:var(--plum-deep)}
-  .zone-two .path-opener .title em{color:var(--gold)}
-  .zone-two .path-opener .sub{color:var(--ink-soft)}
+  /* PATH ONE — cream paper, plum accents */
+  .feat-one{background:var(--paper)}
+  .feat-one .feat-content{color:var(--ink)}
+  .feat-one .feat-label{color:var(--plum)}
+  .feat-one .feat-title em{color:var(--plum-deep)}
+  .feat-one .feat-cta{color:var(--plum)}
 
-  .zone-three .path-opener{padding-top:140px}
-  .zone-three .path-opener .label{color:#d49659}
-  .zone-three .path-opener .rule{background:#d49659}
-  .zone-three .path-opener .title{color:#f4ead6}
-  .zone-three .path-opener .title em{color:#d49659}
-  .zone-three .path-opener .sub{color:rgba(244,234,214,.78)}
-
-  /* ---------- ZONE THREE DARK OVERRIDES ---------- */
-  .zone-three .bgame{border-top:none;margin-top:0;padding-top:20px}
-  .zone-three .bgame-header{display:none} /* opener replaces it */
-  .zone-three .bgame-intro{border-bottom:1px solid rgba(244,234,214,.15)}
-  .zone-three .bgame-intro p{color:rgba(244,234,214,.78)}
-  .zone-three .bgame-intro p strong{color:#f4ead6}
-  .zone-three .bgame-intro .lead{color:#f4ead6;font-style:italic}
-  .zone-three .bgame-tier{
-    background:rgba(244,234,214,.06);
-    border:1px solid rgba(244,234,214,.18);
-    backdrop-filter:blur(2px);
-  }
-  .zone-three .bgame-tier .t-num{color:#d49659}
-  .zone-three .bgame-tier .t-name{color:#f4ead6}
-  .zone-three .bgame-prep{
-    background:rgba(244,234,214,.05);
-    border:1px solid rgba(244,234,214,.18);
-    border-left:3px solid #d49659;
-  }
-  .zone-three .bgame-prep h4{color:#d49659}
-  .zone-three .bgame-prep li{
-    color:rgba(244,234,214,.78);border-top-color:rgba(244,234,214,.15);
-  }
-  .zone-three .bgame-prep li::before{color:#d49659}
-  .zone-three .bgame-consent{
-    color:rgba(244,234,214,.78);
-    border-color:rgba(244,234,214,.25);
-  }
-  .zone-three .bgame-consent strong{color:#f4ead6}
-
-  /* Zone-two opener spacing tweak */
-  .zone-two .intim-header{display:none} /* opener replaces it */
-  .zone-two .intimacy{padding-top:0;border-top:none;margin-top:0}
-  .zone-two .intim-intro{padding-top:10px}
-
-  /* Path opener for Path One (since the original intro lives below it) */
-  .zone-one .path-opener{padding-bottom:30px}
-  .zone-one .note{border-top:none;padding-top:24px}
-  .zone-one .note .lead{font-size:1.22rem}
-
-  /* ---------- ZONE TRANSITION ORNAMENT ---------- */
-  .zone-orn{
-    text-align:center;padding:50px 0 30px;
-    font-family:'Fraunces',serif;font-style:italic;font-size:1.6rem;
-    color:var(--gold);letter-spacing:.6em;
-  }
-  .zone-orn::before{content:"❦"}
-  .zone-three .zone-orn{color:#d49659}
-
-  /* Make hero shorter — reduce empty space before path selector */
-  header.hero{min-height:78vh;padding:80px 0 50px}
-
-  /* ---------- PATHWAY SELECTOR — make it more striking ---------- */
-  .pathways{padding:60px 0 80px}
-  .pathways-kicker{
-    font-family:'Fraunces',serif;font-size:.74rem;letter-spacing:.42em;
-    text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:12px;
-  }
-  .pathways-title{
-    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
-    font-size:clamp(1.7rem,4.4vw,2.3rem);color:var(--plum-deep);
-    text-align:center;margin-bottom:14px;line-height:1.18;
-  }
-  .pathways-sub{
-    text-align:center;color:var(--ink-soft);max-width:38ch;margin:0 auto 36px;
-    font-size:.98rem;line-height:1.5;
-  }
-  .pathway-card{
-    display:block;text-decoration:none;color:inherit;
-    background:var(--paper-warm);border:1px solid var(--line);border-radius:3px;
-    padding:30px 26px 26px;
-    transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease,background .3s ease;
-    position:relative;overflow:hidden;
-  }
-  .pathway-card::after{
-    content:"";position:absolute;top:0;left:0;right:0;height:3px;
-    background:linear-gradient(90deg,transparent,currentColor,transparent);
-    opacity:.2;transition:opacity .3s ease;
-  }
-  .pathway-card.crisis{color:var(--plum)}
-  .pathway-card.intim{color:var(--gold)}
-  .pathway-card.ember{color:#8a2a3a}
-  .pathway-card:hover::after{opacity:1}
-  .pathway-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px var(--shadow)}
-
-  /* Override media query for path cards so 3 still fit on tablet */
-  @media (max-width:780px){.pathway-cards{grid-template-columns:1fr;gap:14px}}
-
-  /* ==========================================================
-     CUSTOM SVG ILLUSTRATIONS + ATMOSPHERIC VISUAL LANGUAGE
-     ========================================================== */
-
-  /* hero ornament — central art-deco flourish */
-  .hero-ornament{
-    display:block;margin:34px auto 30px;
-    opacity:0;animation:fadeInOrn 1.6s ease .4s forwards;
-  }
-  @keyframes fadeInOrn{to{opacity:1}}
-  .hero-ornament .o-line,.hero-ornament .o-shape{stroke:var(--gold);stroke-width:1;fill:none}
-  .hero-ornament .o-dot{fill:var(--gold)}
-
-  /* pathway card icons */
-  .pw-icon-wrap{
-    width:100%;height:80px;display:flex;align-items:center;justify-content:center;
-    margin-bottom:18px;border-bottom:1px solid var(--line);padding-bottom:18px;
-    transition:opacity .3s ease;
-  }
-  .pw-icon{width:90px;height:70px;color:currentColor;opacity:.75;transition:opacity .3s ease,transform .5s ease}
-  .pathway-card:hover .pw-icon{opacity:1;transform:scale(1.06)}
-  .pw-icon line,.pw-icon path:not(.flame):not(.fill),.pw-icon rect,.pw-icon circle{
-    stroke:currentColor;fill:none;
-  }
-  .pw-icon .fill{fill:currentColor}
-  /* candle flame animation on the third card */
-  .candle-icon .flame{
-    fill:currentColor;
-    transform-origin:30px 32px;
-    animation:flicker-flame 1.8s ease-in-out infinite alternate;
-  }
-  @keyframes flicker-flame{
-    0%{transform:scaleY(1) scaleX(1);opacity:.85}
-    30%{transform:scaleY(.92) scaleX(1.06);opacity:1}
-    60%{transform:scaleY(1.05) scaleX(.95);opacity:.75}
-    100%{transform:scaleY(.98) scaleX(1.02);opacity:.9}
-  }
-
-  /* path opener ornamental rule (replaces simple line) */
-  .path-opener .rule-orn{
-    display:block;margin:0 auto 24px;height:14px;
-  }
-  .path-opener .rule-orn line,.path-opener .rule-orn circle{
-    stroke:currentColor;fill:none;stroke-width:1;
-  }
-  .path-opener .rule-orn .dot{fill:currentColor;stroke:none}
-
-  /* PATH TWO — silk-flow atmospheric visual after opener */
-  .silk-flow{
-    display:block;width:100%;height:80px;margin:10px 0 50px;
-    opacity:.85;
-  }
-  .silk-flow path{stroke:var(--gold);fill:none;stroke-width:1}
-
-  /* PATH TWO — practice cards: add a beautiful Roman numeral treatment */
-  .practice{position:relative;overflow:hidden}
-  .practice::before{
-    content:"";position:absolute;top:0;right:0;width:120px;height:120px;
-    background:radial-gradient(circle at top right, rgba(176,123,62,.18), transparent 60%);
-    pointer-events:none;
-  }
-  .practice .pn-num{position:relative;z-index:1}
-
-  /* PATH TWO — research section: add elegant Roman numeral motif */
-  .intim-part{position:relative}
-  .intim-part .pnum::before{
-    content:"";display:inline-block;width:14px;height:1px;
-    background:var(--gold);vertical-align:middle;margin-right:10px;
-  }
-
-  /* PATH TWO — "Keeping the flame" section header with flame motif */
-  .flame-header{
-    display:flex;align-items:center;justify-content:center;gap:24px;
-    margin-bottom:14px;
-  }
-  .flame-header svg{width:32px;height:42px;color:#8a2a3a}
-  .flame-header svg .flame{
-    fill:currentColor;transform-origin:16px 30px;
-    animation:flicker-flame 2.1s ease-in-out infinite alternate;
-  }
-  .flame-header h2{margin-bottom:0!important}
-
-  /* PATH THREE — candlelight scene under opener */
-  .candle-scene{
-    display:block;margin:0 auto 30px;width:100%;max-width:520px;height:220px;
-    opacity:0;animation:fadeInOrn 2s ease .6s forwards;
-  }
-  .candle-scene .body{stroke:#f4ead6;stroke-width:1;fill:rgba(244,234,214,.04)}
-  .candle-scene .wick{stroke:#f4ead6;stroke-width:.5}
-  .candle-scene .flame{fill:#f4b860;transform-origin:center bottom;animation:flicker-flame 2.4s ease-in-out infinite alternate}
-  .candle-scene .glow{fill:#f4b860}
-  .candle-scene .flame-2{animation-delay:.4s;animation-duration:1.9s}
-  .candle-scene .flame-3{animation-delay:.8s;animation-duration:2.6s}
-
-  /* PATH THREE — tier preview cards: stronger Roman numerals with subtle illustration */
-  .zone-three .bgame-tier{
-    transition:transform .3s ease,background .3s ease;
-  }
-  .zone-three .bgame-tier:hover{
-    transform:translateY(-2px);
-    background:rgba(244,234,214,.1);
-  }
-
-  /* PATH THREE — Enter button area: add ambient flame glow */
-  .bgame-cta-wrap{
-    position:relative;margin-top:40px;text-align:center;
-  }
-  .bgame-cta-wrap::before{
-    content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-    width:300px;height:100px;
-    background:radial-gradient(ellipse, rgba(176,123,62,.25), transparent 60%);
-    pointer-events:none;z-index:0;
-  }
-  .bgame-begin{position:relative;z-index:1}
-
-  /* section ornaments between Mind/Body/Spirit parts */
-  .part .pn-orn{
-    display:block;margin:0 auto 10px;width:60px;
-  }
-  .part .pn-orn line{stroke:var(--gold);stroke-width:1}
-  .part .pn-orn circle{fill:var(--gold);stroke:none}
-
-  /* refined hover on pathway cards */
-  .pathway-card{cursor:pointer}
-  .pathway-card .pw-arrow::before{
-    content:"";display:inline-block;width:24px;height:1px;background:currentColor;
-    margin-right:10px;transition:width .3s ease;
-  }
-  .pathway-card:hover .pw-arrow::before{width:40px}
-  /* tiny decorative element top-right of pathway cards */
-  .pathway-card .pw-corner{
-    position:absolute;top:14px;right:18px;
-    font-family:'Fraunces',serif;font-style:italic;color:currentColor;
-    opacity:.4;font-size:1.4rem;line-height:1;
-  }
-
-  /* image-replacing utility: refined "intimacy section pull-image-feel" — gradient block */
-  .visual-pause{
-    margin:50px -26px;height:240px;
+  /* PATH TWO — warm vellum, gold accents */
+  .feat-two{background:var(--vellum)}
+  .feat-two .feat-content{color:var(--ink)}
+  .feat-two .feat-content::before{
     background:
-      radial-gradient(ellipse at 30% 50%, rgba(176,123,62,.4), transparent 55%),
-      radial-gradient(ellipse at 75% 60%, rgba(108,58,92,.35), transparent 50%),
-      linear-gradient(135deg, #1a0e1c 0%, #3a1e34 60%, #4a2540 100%);
-    position:relative;overflow:hidden;border-radius:3px;
+      radial-gradient(circle at 70% 30%, rgba(176,123,62,.12), transparent 50%),
+      radial-gradient(circle at 30% 70%, rgba(108,58,92,.08), transparent 55%);
   }
-  .visual-pause::before{
-    content:"";position:absolute;inset:0;
-    background-image:
-      radial-gradient(circle at 25% 50%, rgba(244,184,96,.7) 0, transparent 3px),
-      radial-gradient(circle at 50% 45%, rgba(244,184,96,.5) 0, transparent 2px),
-      radial-gradient(circle at 75% 50%, rgba(244,184,96,.8) 0, transparent 3px);
-    animation:flicker 5s ease-in-out infinite alternate;
+  .feat-two .feat-label{color:var(--gold)}
+  .feat-two .feat-title em{color:var(--gold)}
+  .feat-two .feat-cta{color:var(--gold)}
+
+  /* PATH THREE — dark wine, ember accents */
+  .feat-three{
+    background:linear-gradient(135deg,var(--dark-wine),var(--dark));
+    color:var(--light-cream);
   }
-  .visual-pause-quote{
-    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-    font-family:'Fraunces',serif;font-style:italic;color:rgba(244,234,214,.9);
-    font-size:clamp(1.1rem,3vw,1.5rem);text-align:center;max-width:80%;
-    line-height:1.4;letter-spacing:.005em;
+  .feat-three .feat-content{color:var(--light-cream)}
+  .feat-three .feat-content::before{
+    background:
+      radial-gradient(circle at 70% 30%, rgba(176,123,62,.22), transparent 50%),
+      radial-gradient(circle at 30% 70%, rgba(138,42,58,.2), transparent 55%);
   }
-  .visual-pause-quote::before,.visual-pause-quote::after{
-    content:"";display:block;width:30px;height:1px;background:#d49659;
-    margin:14px auto;opacity:.8;
-  }
-  @media (max-width:600px){
-    .visual-pause{margin:40px -20px;height:200px}
+  .feat-three .feat-label{color:#d49659}
+  .feat-three .feat-title em{color:#d49659}
+  .feat-three .feat-desc{color:rgba(244,234,214,.8)}
+  .feat-three .feat-desc em{color:#d49659;font-style:italic}
+  .feat-three .feat-cta{color:#d49659;border-bottom-color:rgba(212,150,89,.5)}
+  .feat-three .feat-num{color:#d49659}
+
+  /* divider between features */
+  .feature + .feature::before{
+    content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+    width:60px;height:1px;background:currentColor;opacity:.15;z-index:2;
   }
 
-  /* improved scroll cue in hero */
-  .scroll-cue{padding:8px 0;transition:opacity .3s ease}
-  .scroll-cue:hover{opacity:.7}
-
-  /* mobile UX polish */
-  @media (max-width:600px){
-    .path-opener{padding:80px 0 40px}
-    .zone-three .path-opener{padding-top:100px}
-    .pathways{padding:40px 0 60px}
-    .pw-icon-wrap{height:64px}
-    .pw-icon{width:74px;height:58px}
-  }
-
-  /* ---------- CLOSE ---------- */
-  .close{padding:70px 0 30px;text-align:center}
-  .close .ig{
-    font-family:'Fraunces',serif;font-style:italic;
-    font-size:clamp(1.5rem,4.4vw,2.1rem);color:var(--plum-deep);line-height:1.22;
-  }
-  .close .src{color:var(--ink-soft);margin-top:22px;font-size:.92rem}
+  /* ============ FOOTER ============ */
   footer{
-    text-align:center;padding:40px 0 70px;color:var(--ink-soft);
-    font-family:'Fraunces',serif;font-size:.78rem;letter-spacing:.04em;
+    background:var(--paper);
+    padding:80px 28px 60px;text-align:center;
+    border-top:1px solid var(--line);
   }
-  footer a{color:var(--plum);text-decoration:none;border-bottom:1px solid var(--line)}
+  footer .quiet{
+    font-family:'Fraunces',serif;font-style:italic;color:var(--ink-soft);
+    font-size:1rem;margin-bottom:18px;
+  }
+  footer .credits{
+    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--ink-soft);opacity:.65;
+  }
+  footer .credits a{
+    color:var(--plum);border-bottom:1px solid var(--line);
+    transition:color .2s ease;
+  }
+  footer .credits a:hover{color:var(--gold)}
 
-  @media (max-width:520px){
-    body{font-size:1.02rem}
-    .wrap{padding:0 20px}
-    .pull{font-size:1.2rem;padding-left:16px}
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px){
+    .feature{grid-template-columns:1fr;min-height:auto}
+    .feature.reverse{direction:ltr}
+    .feat-image{height:55vh;min-height:380px}
+    .feat-content{padding:60px 32px}
+    .feat-num{font-size:3.5rem;margin-bottom:14px}
   }
-  @media (prefers-reduced-motion:reduce){
+  @media (max-width: 540px){
+    .site-mark{top:16px;left:18px;font-size:.62rem}
+    .hero{padding:100px 22px 60px}
+    .feat-content{padding:50px 24px}
+    .feat-image{height:50vh;min-height:320px}
+  }
+  @media (prefers-reduced-motion: reduce){
     *{animation:none!important;transition:none!important}
-    .chapter{opacity:1;transform:none}
-    html{scroll-behavior:auto}
   }
+
+  /* image loading skeleton */
+  .feat-image{background:linear-gradient(120deg,#e8ddc8 0%,#d8c9ad 50%,#e8ddc8 100%)}
 </style>
 </head>
 <body>
-<div class="progress" id="bar"></div>
 
+<div class="site-mark">Midlife · Together</div>
+
+<!-- ============ HERO ============ -->
 <header class="hero">
-  <div class="wrap">
-    <div class="kicker">A reading companion</div>
-    <h1 class="title">How to Have a<br><em>Magnificent</em><br>Midlife Crisis</h1>
-    <p class="sub">Not a time of decline, but of transformation — if you meet it with knowledge instead of fear.</p>
-    <svg class="hero-ornament" viewBox="0 0 100 130" width="34" height="44" aria-hidden="true">
-      <line class="o-line" x1="50" y1="0" x2="50" y2="38"/>
-      <path class="o-shape" d="M50 38 L62 50 L50 62 L38 50 Z"/>
-      <circle class="o-dot" cx="50" cy="74" r="2"/>
-      <path class="o-shape" d="M50 86 L62 98 L50 110 L38 98 Z"/>
-      <line class="o-line" x1="50" y1="110" x2="50" y2="130"/>
+  <div class="hero-inner">
+    <div class="kicker">A companion for couples · in midlife</div>
+    <h1>For the<br><em>Middle</em><br>Years</h1>
+    <p class="sub">Three rooms. A book, the science, an evening. Choose any door.</p>
+    <svg class="hero-ornament" viewBox="0 0 100 130" width="36" height="46" aria-hidden="true">
+      <line x1="50" y1="0" x2="50" y2="38"/>
+      <path d="M50 38 L62 50 L50 62 L38 50 Z"/>
+      <circle cx="50" cy="74" r="2"/>
+      <path d="M50 86 L62 98 L50 110 L38 98 Z"/>
+      <line x1="50" y1="110" x2="50" y2="130"/>
     </svg>
-    <div class="byline">The distilled substance of <strong>Kate Muir's</strong> book — chapter by chapter, made for reading together.</div>
-    <div class="scroll-cue">Begin</div>
+    <div class="hero-cue">Begin below</div>
   </div>
 </header>
 
-<!-- ============ ZONE: PATHWAYS ============ -->
-<div class="zone zone-paths">
-  <div class="wrap">
-
-  <div class="pathways">
-    <div class="pathways-kicker">Choose your path</div>
-    <div class="pathways-title">Three readings of the same midlife terrain</div>
-    <p class="pathways-sub">Three environments, in one place. Read the book. Read the science. Or step into the room.</p>
-    <div class="pathway-cards">
-      <a class="pathway-card crisis" href="#midlife">
-        <span class="pw-corner">I</span>
-        <div class="pw-icon-wrap">
-          <svg class="pw-icon" viewBox="0 0 100 70" aria-hidden="true">
-            <path d="M10 15 L50 10 L90 15 L90 60 L50 55 L10 60 Z" stroke-width="1.2"/>
-            <line x1="50" y1="10" x2="50" y2="55"/>
-            <line x1="20" y1="25" x2="42" y2="22" opacity=".55" stroke-width=".7"/>
-            <line x1="20" y1="32" x2="42" y2="29" opacity=".55" stroke-width=".7"/>
-            <line x1="20" y1="39" x2="42" y2="36" opacity=".55" stroke-width=".7"/>
-            <line x1="20" y1="46" x2="38" y2="44" opacity=".55" stroke-width=".7"/>
-            <line x1="58" y1="22" x2="80" y2="25" opacity=".55" stroke-width=".7"/>
-            <line x1="58" y1="29" x2="80" y2="32" opacity=".55" stroke-width=".7"/>
-            <line x1="58" y1="36" x2="80" y2="39" opacity=".55" stroke-width=".7"/>
-            <line x1="62" y1="43" x2="80" y2="46" opacity=".55" stroke-width=".7"/>
-          </svg>
-        </div>
-        <div class="pw-label">Path One</div>
-        <div class="pw-title">The Midlife Crisis</div>
-        <p class="pw-sub">Kate Muir's full book distilled — eighteen chapters on the hormonal, neurological and psychological weather of midlife, with questions to read together.</p>
-        <div class="pw-arrow">Begin the book companion</div>
-      </a>
-      <a class="pathway-card intim" href="#intimacy">
-        <span class="pw-corner">II</span>
-        <div class="pw-icon-wrap">
-          <svg class="pw-icon" viewBox="0 0 100 70" aria-hidden="true">
-            <circle cx="30" cy="35" r="14" opacity=".55" stroke-width=".8"/>
-            <circle cx="70" cy="35" r="14" opacity=".55" stroke-width=".8"/>
-            <circle cx="50" cy="20" r="14" opacity=".55" stroke-width=".8"/>
-            <circle cx="50" cy="50" r="14" opacity=".55" stroke-width=".8"/>
-            <circle cx="40" cy="28" r="9" stroke-width=".9"/>
-            <circle cx="60" cy="28" r="9" stroke-width=".9"/>
-            <circle cx="40" cy="42" r="9" stroke-width=".9"/>
-            <circle cx="60" cy="42" r="9" stroke-width=".9"/>
-            <circle class="fill" cx="50" cy="35" r="2.5"/>
-          </svg>
-        </div>
-        <div class="pw-label">Path Two</div>
-        <div class="pw-title">Improved Intimacy</div>
-        <p class="pw-sub">The science of desire that lasts — Perel, Nagoski, Aron, Mark & Lasslo — and seven practices to keep the flame alive against the gravity of routine.</p>
-        <div class="pw-arrow">Begin the intimacy path</div>
-      </a>
-      <a class="pathway-card ember" href="#becoming">
-        <span class="pw-corner">III</span>
-        <div class="pw-icon-wrap">
-          <svg class="pw-icon candle-icon" viewBox="0 0 60 90" aria-hidden="true">
-            <rect x="22" y="42" width="16" height="42" stroke-width="1.2"/>
-            <line x1="30" y1="42" x2="30" y2="34" stroke-width=".6"/>
-            <path class="flame fill" d="M30 34 Q21 22 30 6 Q39 22 30 34 Z"/>
-            <line x1="22" y1="50" x2="38" y2="50" opacity=".4" stroke-width=".5"/>
-            <line x1="22" y1="56" x2="38" y2="56" opacity=".4" stroke-width=".5"/>
-          </svg>
-        </div>
-        <div class="pw-label">Path Three</div>
-        <div class="pw-title">The Becoming</div>
-        <p class="pw-sub">An interactive dice-and-card game for partners — six tiers of gradually deepening intimacy, designed around science and consent. Made for a steamy evening with no rush.</p>
-        <div class="pw-arrow">Enter the game</div>
-      </a>
-    </div>
+<!-- ============ PATH ONE ============ -->
+<section class="feature feat-one">
+  <div class="feat-image">
+    <img src="https://images.unsplash.com/photo-1757175461743-97f5dc343c58?w=1400&q=80&auto=format&fit=crop"
+         srcset="https://images.unsplash.com/photo-1757175461743-97f5dc343c58?w=800&q=80&auto=format&fit=crop 800w,
+                 https://images.unsplash.com/photo-1757175461743-97f5dc343c58?w=1400&q=80&auto=format&fit=crop 1400w,
+                 https://images.unsplash.com/photo-1757175461743-97f5dc343c58?w=2000&q=80&auto=format&fit=crop 2000w"
+         sizes="(max-width: 900px) 100vw, 50vw"
+         alt="An open book with pages illuminated by soft light"
+         loading="lazy">
   </div>
+  <div class="feat-content">
+    <div class="feat-num">I</div>
+    <div class="feat-label">Path One</div>
+    <h2 class="feat-title">The <em>Midlife</em> Crisis</h2>
+    <p class="feat-desc">Kate Muir's <em>How to Have a Magnificent Midlife Crisis</em>, distilled. Eighteen chapters on the hormonal, neurological and psychological weather of midlife — Mind, Body, Spirit — each with the wheat of the chapter and questions designed to read together.</p>
+    <a href="path-one.html" class="feat-cta">Begin reading <span class="arr">→</span></a>
   </div>
-</div>
+</section>
 
-<!-- ============ ZONE ONE: THE MIDLIFE CRISIS ============ -->
-<div class="zone zone-one">
-  <div class="wrap">
-
-  <div class="path-opener">
-    <div class="label">Path One</div>
-    <svg class="rule-orn" viewBox="0 0 80 14" width="80" height="14" aria-hidden="true">
-      <line x1="0" y1="7" x2="32" y2="7"/>
-      <circle cx="40" cy="7" r="3"/>
-      <circle class="dot" cx="40" cy="7" r="1"/>
-      <line x1="48" y1="7" x2="80" y2="7"/>
-    </svg>
-    <div class="title">The <em>Midlife</em> Crisis</div>
-    <p class="sub">Kate Muir's book distilled — eighteen chapters on the hormonal, neurological and psychological weather of midlife, made for reading together.</p>
+<!-- ============ PATH TWO ============ -->
+<section class="feature feat-two reverse">
+  <div class="feat-image">
+    <img src="https://images.unsplash.com/photo-1751929412521-e3078bd4af3b?w=1400&q=80&auto=format&fit=crop"
+         srcset="https://images.unsplash.com/photo-1751929412521-e3078bd4af3b?w=800&q=80&auto=format&fit=crop 800w,
+                 https://images.unsplash.com/photo-1751929412521-e3078bd4af3b?w=1400&q=80&auto=format&fit=crop 1400w,
+                 https://images.unsplash.com/photo-1751929412521-e3078bd4af3b?w=2000&q=80&auto=format&fit=crop 2000w"
+         sizes="(max-width: 900px) 100vw, 50vw"
+         alt="A close-up of a pink peony blossom"
+         loading="lazy">
   </div>
-
-  <div class="note" id="midlife">
-    <p class="lead">This isn't the book. It's the wheat — the ideas worth carrying out of each chapter, with the anecdotes left behind.</p>
-    <p>Muir's argument runs through three parts: <strong>Mind</strong>, <strong>Body</strong>, <strong>Spirit</strong>. Her central reframe is that midlife is less a crisis to survive than a turning point you get to <em>steer</em>. She borrows a way of dividing a long life into quarters — Grow (to 25), Achieve (to 50), <em>Becoming</em> (to 75), Harvesting (to 100) — and the whole book lives in that word: becoming.</p>
-    <p>Each chapter below carries a one-line essence, the core ideas, and a few prompts to talk through together.</p>
+  <div class="feat-content">
+    <div class="feat-num">II</div>
+    <div class="feat-label">Path Two</div>
+    <h2 class="feat-title"><em>Improved</em> Intimacy</h2>
+    <p class="feat-desc">The science of desire that lasts. Esther Perel on the paradox at the heart, Emily Nagoski on the brakes and accelerators of arousal, Arthur Aron on novelty and self-expansion, Mark &amp; Lasslo on every factor that maintains long-term desire — and seven practices that translate the research into evenings.</p>
+    <a href="path-two.html" class="feat-cta">Begin reading <span class="arr">→</span></a>
   </div>
+</section>
 
-  <!-- ================= MIND ================= -->
-  <div class="part">
-    <div class="pn">Part One</div>
-    <div class="pt">Mind</div>
-    <div class="pd">The hormonal, neurological and psychological weather of midlife — and what it's actually doing to the brain.</div>
+<!-- ============ PATH THREE ============ -->
+<section class="feature feat-three">
+  <div class="feat-image">
+    <img src="https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=1400&q=80&auto=format&fit=crop"
+         srcset="https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=800&q=80&auto=format&fit=crop 800w,
+                 https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=1400&q=80&auto=format&fit=crop 1400w,
+                 https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=2000&q=80&auto=format&fit=crop 2000w"
+         sizes="(max-width: 900px) 100vw, 50vw"
+         alt="A single lit candle glowing in the dark"
+         loading="lazy">
   </div>
-
-  <section class="chapter">
-    <div class="num">Chapter 1</div>
-    <h2>Navigating the Mental Health Maelstrom</h2>
-    <div class="tag">Hormones do much of their work in the brain — not just the ovaries.</div>
-    <p>The calm surface of a midlife can hide a whirlpool underneath: unresolved grief, resentment, trauma. Perimenopause is a real and under-recognised driver of <strong>first-time anxiety, depression and rage</strong> — not merely "life stress." Estrogen, progesterone and testosterone regulate serotonin, dopamine and the calming GABA system, so when they fall, mood and cognition can fall with them.</p>
-    <p>The trap: antidepressants are often prescribed when the missing link is hormonal — or a combination of both. The official diagnostic manual still doesn't list perimenopausal depression. The fix is to <strong>see the whole woman</strong>, track symptoms, and consider hormones alongside therapy.</p>
-    <div class="pull">Don't make big decisions in the first year of grieving a parent.</div>
-    <p>Trauma resurfaces in midlife when life finally goes quiet — but so does the possibility of <strong>post-traumatic growth</strong>. The brain is malleable; people don't just survive what they thought would break them, they sometimes grow from it.</p>
-    <div class="prompts">
-      <h3>To talk about</h3>
-            <div class="q-block">
-              <p class="q-question">What's been "glassy on the surface, wild underneath" for each of us lately?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The book's image of a sea calm on top with a whirlpool underneath — that's how a lot of midlife runs. Composed on the surface, with grief, fatigue, anger or doubt circling beneath. <strong>Naming what's underneath is half the work;</strong> the other half is letting someone witness it.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What have you been holding together by sheer effort that you'd love to put down?</li>
-                <li>Is there a feeling you've been carrying that hasn't yet found words?</li>
-                <li>When was the last time you let the surface crack — and who got to see it?</li>
-              </ul>
-            </div>
-            <div class="q-block">
-              <p class="q-question">Where might we be reaching for a solution to something we haven't actually named yet?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The chapter notes how often people reach for antidepressants, alcohol, affairs or distractions to soothe something they haven't named. <strong>The right intervention often starts with the right diagnosis</strong> — and that means honesty before fixes.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What habits or fixes are we leaning on without quite knowing why?</li>
-                <li>Where is the symptom obvious and the cause still hidden?</li>
-              </ul>
-            </div>
-            <span class="q-more-label">More to explore</span>
-            <ul class="q-more">
-              <li>What did the women in your family model about handling hard times — and what would you do differently?</li>
-              <li>Trauma can resurface in midlife when life finally goes quiet. What's something old making itself known again?</li>
-              <li>Where do you most need someone to "just be there" — and where can I be that?</li>
-              <li>The book calls journaling "recycling for the brain." What private practice — writing, walking, riding — helps you process?</li>
-              <li>Post-traumatic growth, not just stress: what have you grown from that you thought would break you?</li>
-            </ul>
-    </div>
-  </section>
-
-  <section class="chapter">
-    <div class="num">Chapter 2</div>
-    <h2>The Midlife Brain Reboot</h2>
-    <div class="tag">The female brain rewires three times — and the third is the most radical.</div>
-    <p>Puberty, pregnancy, perimenopause: three times the brain restructures, all kickstarted by hormones. Perimenopause is the biggest renovation — grey matter drops during the chaos, then makes a <strong>comeback, sometimes to higher levels than before.</strong> "Brain fog" is real and measurable (a roughly 30% dip in brain energy across the transition), but it's a transitional state, not a permanent loss.</p>
-    <div class="pull">You will be a different person — so how are you going to embrace that?</div>
-    <p>The encouraging part: the science finally confirms what women have reported for decades. The disruption is real, the destination often sharper. Lifestyle (Mediterranean diet, exercise, meditation) and, for some, HRT all support the rebuild.</p>
-    <div class="prompts">
-      <h3>To talk about</h3>
-            <div class="q-block">
-              <p class="q-question">If the "renovation" leaves us as different people, who do we each want to become?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The book frames perimenopause as a third puberty — the brain genuinely rewires, and who emerges may be sharper, leaner, more honest. The question is whether <strong>we steer the renovation or let it happen to us.</strong></p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>If we look back from ten years on, what kind of person do you want to have become?</li>
-                <li>What part of who you've been so far would you like to keep — and what would you let go?</li>
-                <li>Which parts of yourself have you been quietly outgrowing?</li>
-              </ul>
-            </div>
-            <div class="q-block">
-              <p class="q-question">What would it change to treat brain fog as scaffolding rather than decline?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">If brain fog is the brain switching fuel from glucose to blood flow during the rewire, it's not a sign of decline — it's <strong>the dust during the build</strong>. The relief is real: this is temporary scaffolding, not the finished house.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What would change about your day if you trusted this was rebuilding, not breaking?</li>
-                <li>How can I make space for the fog days without making them feel like a failure?</li>
-              </ul>
-            </div>
-            <span class="q-more-label">More to explore</span>
-            <ul class="q-more">
-              <li>Which of the three rewires — puberty, pregnancy, perimenopause — felt the most disorienting in real time?</li>
-              <li>What new ability or insight has shown up that wasn't there before?</li>
-              <li>What would you want me to know about the days when nothing's coming through clearly?</li>
-              <li>If postmenopausal zest is real, what would you want to use it for?</li>
-              <li>Where could lifestyle — diet, exercise, sleep, meditation — actually support the rebuild?</li>
-            </ul>
-    </div>
-  </section>
-
-  <section class="chapter">
-    <div class="num">Chapter 3</div>
-    <h2>Could I Be Neurodivergent?</h2>
-    <div class="tag">A late diagnosis can be a liberating lightbulb, not a label to fear.</div>
-    <p>Autism and ADHD diagnoses are surging in midlife women because the original screening tools were built on <strong>male presentation</strong> — so girls who masked, or were "shy and anxious," slipped through. Hormonal change in midlife can unmask or amplify traits, hitting hard just when life is most demanding.</p>
-    <p>A diagnosis at this stage often works as <strong>"retroactive backgammon"</strong> — re-reading a whole life and seeing why the moves played out as they did. It can be both relief and grief. The black-and-white, "whistleblower" honesty common in neurodivergent people is a genuine strength society misreads as "being difficult."</p>
-    <div class="prompts">
-      <h3>To talk about</h3>
-            <div class="q-block">
-              <p class="q-question">Are there patterns in either of our lives that might read differently with more self-knowledge?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The book makes the case that late diagnoses often work as <strong>"retroactive backgammon"</strong> — a whole life suddenly making sense in a new light. You don't need a formal diagnosis for the same effect; honest reflection on patterns can also reframe.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What's a pattern that's repeated through your life that you've only recently started to see?</li>
-                <li>Has anything about yourself ever felt "wrong" that might actually just be different?</li>
-              </ul>
-            </div>
-            <div class="q-block">
-              <p class="q-question">Where do we mask — and what does the masking cost?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">Masking — performing the version of yourself the room expects — is exhausting work most women have been doing since girlhood. The cost isn't just energy; <strong>it's the slow erosion of knowing what you actually feel.</strong></p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>Where do you have to be a different version of yourself to get through the day?</li>
-                <li>When are you most fully who you are — and who's around you when that happens?</li>
-              </ul>
-            </div>
-            <span class="q-more-label">More to explore</span>
-            <ul class="q-more">
-              <li>What would you do or say if you stopped editing yourself for one week?</li>
-              <li>Whose approval are you still seeking that you don't even want anymore?</li>
-              <li>Where have you been told you're "too much" when you were just being honest?</li>
-              <li>What does it cost to be the calm one, the organised one, the one who manages?</li>
-              <li>Which of our daughters' generation will inherit the masking, and how can we break it earlier?</li>
-            </ul>
-    </div>
-  </section>
-
-  <section class="chapter">
-    <div class="num">Chapter 4</div>
-    <h2>How Not to Disappear at Work</h2>
-    <div class="tag">Being forced out can force a metamorphosis.</div>
-    <p>Women "disappear" from midlife work through a triple bind — <strong>menopause, ageism, gender bias</strong> — often quietly: going part-time, not seeking promotion, leaving. Sometimes the exit is silenced by an NDA. But honesty about menopause at work can, paradoxically, <em>advance</em> a career by building trust.</p>
-    <div class="pull">Your shit is your superpower.</div>
-    <p>Leaving a role isn't the end of the road. Decades of resilience and a deep network are assets. The reinvention question: if not now, when?</p>
-    <div class="prompts">
-      <h3>To talk about</h3>
-            <div class="q-block">
-              <p class="q-question">What would each of us do with a "second or third career"?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The book argues midlife is when reinvention finally becomes possible — children older, expertise deep, less to lose by being honest. <strong>The cliché "if not now, when?" is the right question.</strong></p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>If you could redesign your work life around what you actually want, what would shift?</li>
-                <li>What skills do you have that nobody has ever asked you to use?</li>
-                <li>What would the third career look like if you started planting it now?</li>
-              </ul>
-            </div>
-            <div class="q-block">
-              <p class="q-question">Where are we self-censoring at work to avoid looking "weak"?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The book names the silent cost: hiding fatigue, brain fog, the harder days — and in doing so, hiding the real self. <strong>Honesty about menopause at work, paradoxically, often advances careers</strong> by building trust.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What would change if you stopped pretending you were fine on the days you weren't?</li>
-                <li>Where does silence cost you more than honesty would?</li>
-              </ul>
-            </div>
-            <span class="q-more-label">More to explore</span>
-            <ul class="q-more">
-              <li>One in ten women leave jobs due to menopause symptoms. What does your workplace actually understand about this?</li>
-              <li>What's the most useful thing a manager could do for women in midlife — and have you ever had one who did it?</li>
-              <li>If money weren't the constraint, what work would you choose?</li>
-              <li>What part of your identity is tied to your job, and what happens if it changes?</li>
-              <li>Who in your career do you wish you'd told the truth to, when it mattered?</li>
-            </ul>
-    </div>
-  </section>
-
-  <section class="chapter">
-    <div class="num">Chapter 5</div>
-    <h2>How to Dodge Dementia</h2>
-    <div class="tag">Midlife is the prevention window — not too early to act.</div>
-    <p>Perimenopause is "Alzheimer's ground zero": the hormonal fall is when plaques and tangles can begin, long before symptoms. Two-thirds of Alzheimer's patients are women. The hopeful flip side: this is the <strong>first generation with the knowledge to act early</strong>.</p>
-    <p>The toolkit: HRT (started in the window of perimenopause/early menopause), <strong>resistance training and HIIT</strong>, a Mediterranean diet, good sleep, and treating hot flushes and night sweats (which correlate with more plaques). Vascular dementia is largely about keeping blood flowing — diet, not smoking, lowering blood pressure. Prevention beats the weak, expensive "cures."</p>
-    <div class="prompts">
-      <h3>To talk about</h3>
-            <div class="q-block">
-              <p class="q-question">What's one preventive habit each of us could start this month and actually keep?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The encouraging message is that <strong>midlife is the prevention window</strong> — not too late, not too early. One habit, started and kept, beats five intended and dropped.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>Where do you already have a habit that's working — and what would it take to add one more?</li>
-                <li>What's a small thing we could do together that would actually stick?</li>
-              </ul>
-            </div>
-            <div class="q-block">
-              <p class="q-question">What did we watch our own parents go through, and what do we want to do differently?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">Watching a parent decline reshapes how you think about your own ageing. The book argues this generation has the knowledge and tools earlier ones didn't — <strong>and using them honours what we watched.</strong></p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What do you wish someone had done for your parents that wasn't done?</li>
-                <li>What conversations with our daughters about ageing do you want to have early?</li>
-              </ul>
-            </div>
-            <span class="q-more-label">More to explore</span>
-            <ul class="q-more">
-              <li>HRT in the early window can roughly halve Alzheimer's risk, the book says. Where do you stand on that, and what's holding you back if anything?</li>
-              <li>What's the single most important hour of your week for brain and body — and how protected is it?</li>
-              <li>Sleep, hot flushes, night sweats: how honestly are you tracking what your body is doing?</li>
-              <li>Mediterranean diet, resistance training, treating hot flushes — which one feels most doable, and which least?</li>
-              <li>What would "ageing on purpose" look like for the two of us, ten years from now?</li>
-            </ul>
-    </div>
-  </section>
-
-  <section class="chapter">
-    <div class="num">Chapter 6</div>
-    <h2>The Power of Wild Swimming</h2>
-    <div class="tag">It's impossible to grieve in icy water.</div>
-    <p>Cold-water immersion delivers a serotonin and dopamine surge, builds <strong>stress resilience</strong> — the "this too shall pass" skill of being calm while uncomfortable — boosts immunity and brown-fat metabolism, and may be neuroprotective. Two minutes is enough to switch on the brown-fat response.</p>
-    <div class="pull">There's no ego in the cold.</div>
-    <p>Beyond the biology, it's <strong>community and eccentricity</strong> — odd costumes at odd hours by odd people — and a small daily proof that you can face the worst and keep walking.</p>
-    <div class="prompts">
-      <h3>To talk about</h3>
-            <div class="q-block">
-              <p class="q-question">What's our version of the cold plunge — the thing that resets us?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">Cold water works because it <strong>forces presence</strong> — you can't worry about email when your body is on fire from the cold. Everyone has some version of this, and they tend to be physical and uncomplicated.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What's the thing that, after twenty minutes of doing it, makes everything quieter inside?</li>
-                <li>When did you last feel completely present — and what were you doing?</li>
-              </ul>
-            </div>
-            <div class="q-block">
-              <p class="q-question">Where could a small dose of "good stress" build our tolerance for the big kind?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The book calls it <strong>hormesis</strong> — a controlled small stress that makes the system more resilient to bigger ones. Riding, training, a cold shower, public speaking — all the same family.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>Where do you already do this without naming it?</li>
-                <li>What's one small uncomfortable thing you could add this month?</li>
-              </ul>
-            </div>
-            <span class="q-more-label">More to explore</span>
-            <ul class="q-more">
-              <li>What community do you find by accident — the people doing the same odd thing at the same odd hour?</li>
-              <li>The book says "there's no ego in the cold." Where else does ego just dissolve for you?</li>
-              <li>What's something physically hard you do that builds the rest of your life?</li>
-              <li>What would it take to add a daily reset — even five minutes — to your routine?</li>
-              <li>If we built a small ritual together — cold dip, walk before sunrise, anything — what would actually fit our lives?</li>
-            </ul>
-    </div>
-  </section>
-
-  <!-- ================= BODY ================= -->
-  <div class="part">
-    <div class="pn">Part Two</div>
-    <div class="pt">Body</div>
-    <div class="pd">The science the medical world has been slow to share — hormones, longevity, and reclaiming what's ours.</div>
+  <div class="feat-content">
+    <div class="feat-num">III</div>
+    <div class="feat-label">Path Three</div>
+    <h2 class="feat-title">The <em>Becoming</em></h2>
+    <p class="feat-desc">An interactive dice-and-card game for two. Six tiers — <em>Whisper · Touch · Tease · Reveal · Surrender · Burn</em>. Two dice, two hundred and sixteen unique card-experiences, designed around the science of consent and slowness. For one evening with no rush.</p>
+    <a href="path-three.html" class="feat-cta">Enter the room <span class="arr">→</span></a>
   </div>
+</section>
 
-  <section class="chapter">
-    <div class="num">Chapter 7</div>
-    <h2>Ageproof Yourself with HRT</h2>
-    <div class="tag">Nothing is more natural than topping up your own hormones.</div>
-    <p>The 2002 scare attached to the <em>old, synthetic</em> HRT. Modern <strong>body-identical HRT</strong> — molecular copies of your own estrogen, progesterone and testosterone — is far safer, and it does two things: crushes symptoms, and extends <strong>healthspan</strong> (protecting heart, bones, brain, even eyes). The "I'll take the natural route" framing is backwards.</p>
-    <div class="pull">The most dangerous thing we did to women was tell them that something their body naturally makes will kill them.</div>
-    <p>The practical path: track your symptoms, walk in informed, ask for transdermal estrogen plus micronised progesterone, and adjust the dose — it's not a lifetime commitment to try. Beware "menopause-friendly" marketing that sells everything except the actual hormones.</p>
-    <div class="prompts">
-      <h3>To talk about</h3>
-            <div class="q-block">
-              <p class="q-question">What have we each absorbed about HRT, and where did that belief come from?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The 2002 scare lodged in a generation's mind and never fully left, even though it concerned a different, older formulation. <strong>Most of what we "know" about HRT is the cultural residue of that headline</strong>, not the current science.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What did your mother, your friends, your colleagues believe — and how did it shape what you believe?</li>
-                <li>What would you actually want to know before deciding?</li>
-              </ul>
-            </div>
-            <div class="q-block">
-              <p class="q-question">How do we tell medical fact from cultural story on this?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The book's practical answer: <strong>track your own symptoms, walk in informed, ask for transdermal estrogen plus micronised progesterone, and adjust.</strong> It's not a lifetime commitment to try.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>Who would be the right specialist to actually have this conversation with?</li>
-                <li>What questions would you bring to that appointment?</li>
-              </ul>
-            </div>
-            <span class="q-more-label">More to explore</span>
-            <ul class="q-more">
-              <li>The book lists over twenty symptoms HRT can address. How many do you have in a typical week?</li>
-              <li>Where are you "managing through" something that doesn't need to be managed?</li>
-              <li>What's the difference between symptom relief and longevity benefit, in your reading?</li>
-              <li>If a friend asked you what you thought of HRT today, what would you honestly say?</li>
-              <li>What would it mean to consult a menopause specialist this year — not to commit, just to know?</li>
-            </ul>
-    </div>
-  </section>
+<!-- ============ FOOTER ============ -->
+<footer>
+  <p class="quiet">A private companion. Made for couples in midlife.</p>
+  <p class="credits">Photography: Liana S · Emma Swoboda · Katharina Maria · <a href="https://unsplash.com/license" target="_blank" rel="noopener">Unsplash</a></p>
+</footer>
 
-  <section class="chapter">
-    <div class="num">Chapter 8</div>
-    <h2>Reclaiming Testosterone</h2>
-    <div class="tag">It's not a male hormone. Stop gendering hormones.</div>
-    <p>Testosterone is the hormone women make in the <strong>largest quantity</strong> (outside pregnancy) — the receptor is even encoded on the X chromosome. Topping it back up to natural female levels can restore libido, cognition, mood, energy, muscle and bone. Yet women face huge barriers to access while men are prescribed ten times the dose freely.</p>
-    <div class="pull">Men literally get the receptor from women.</div>
-    <p>Emerging research points to protective effects for brain, heart and bone. The resistance is less about science than about <strong>gender destabilisation</strong> — and, Muir suspects, discomfort at older women holding renewed power.</p>
-    <div class="prompts">
-      <h3>To talk about</h3>
-            <div class="q-block">
-              <p class="q-question">Why does the same hormone get celebrated in men and feared in women?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">Testosterone is the hormone women produce most (outside pregnancy), but a century of gendering hormones has buried the science. <strong>The fear is cultural, not biological.</strong></p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>Where else do we carry "men have this, women don't" thinking that's actually wrong?</li>
-                <li>What do you think it would change to top this hormone up, if your doctor agreed?</li>
-              </ul>
-            </div>
-            <div class="q-block">
-              <p class="q-question">What would "living in hope rather than fear" look like for our own health choices?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">Hope-based decisions look forward: <strong>what do I want to be able to do at seventy?</strong> Fear-based decisions look at what might go wrong. The book argues we have enough evidence now to plan ahead.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What are you choosing now because of fear rather than what you actually want?</li>
-                <li>What's a decision you'd make differently if you assumed the science would be on your side?</li>
-              </ul>
-            </div>
-            <span class="q-more-label">More to explore</span>
-            <ul class="q-more">
-              <li>Libido, energy, mood, cognition, muscle, bone — which would you most want back if you could choose one?</li>
-              <li>Where do you feel most yourself in a physical sense, and where do you feel the loss?</li>
-              <li>The book says testosterone may protect brain, heart and bone. What would that mean for the next thirty years?</li>
-              <li>What's the most useful conversation you've ever had with a doctor about your own hormones?</li>
-              <li>If older women holding renewed power makes the system uncomfortable, what does that tell us?</li>
-            </ul>
-    </div>
-  </section>
-
-  <section class="chapter">
-    <div class="num">Chapter 9</div>
-    <h2>The Importance of Being Cliterate</h2>
-    <div class="tag">Pleasure is the measure of a sexual encounter — not orgasm, not penetration.</div>
-    <p>Sex changes in midlife, but doesn't have to end — there may be half a century of pleasure ahead. The blockers are physical (vaginal dryness, hormone loss) and psychological, and they're addressable: <strong>vaginal estrogen, testosterone, lube, toys, and above all communication.</strong> Most women can't orgasm from penetration alone, yet many think they're broken.</p>
-    <div class="pull">If you are waiting for someone else to change in order for you to be happy, you might be waiting a long time.</div>
-    <p>Midlife can be a sexual reinvention — including fluidity and exploration. The work is often learning to <strong>ask for what you want</strong> after a lifetime of people-pleasing.</p>
-    <div class="prompts">
-      <h3>To talk about</h3>
-            <div class="q-block">
-              <p class="q-question">What have we never quite said out loud to each other that we could?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The chapter's quietest point is that <strong>most couples don't actually talk about sex</strong>, even after years together. The book's central premise is that pleasure — not orgasm, not penetration — is the measure. That's a conversation, not a performance.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What would help you feel safer telling me what works and what doesn't?</li>
-                <li>What's something you've always wanted me to know but never quite said?</li>
-                <li>What words do you wish we both used more comfortably?</li>
-              </ul>
-            </div>
-            <div class="q-block">
-              <p class="q-question">Where have we been "playing an old role" rather than meeting who we are now?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The "old role" is the script we inherited — what good sex was supposed to look like, what we were supposed to want, how often. <strong>Midlife is the chance to put the script down and write the actual one.</strong></p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What did you believe about sex when you were younger that no longer fits?</li>
-                <li>Where have we been performing rather than being?</li>
-              </ul>
-            </div>
-            <span class="q-more-label">More to explore</span>
-            <ul class="q-more">
-              <li>The book says fewer than one in four women orgasm from penetration alone. How does that fact land for you?</li>
-              <li>What's the difference between feeling close and feeling safe — and which do you need more?</li>
-              <li>Privacy, time, no pressure, foreplay — which one matters most right now?</li>
-              <li>What does a beautiful, unhurried evening of intimacy actually look like to you?</li>
-              <li>Where in our intimate life would you want me to lead less and follow more?</li>
-            </ul>
-    </div>
-  </section>
-
-  <section class="chapter">
-    <div class="num">Chapter 10</div>
-    <h2>Viva la Vulva</h2>
-    <div class="tag">Preventable suffering, hiding in plain sight.</div>
-    <p>The vaginal microbiome — the "vagibiome" — protects against infection. As estrogen falls, the protective bacteria give way and UTIs surge. <strong>Low-dose vaginal estrogen halves UTIs</strong>, plumps the tissue, and is safe even for most breast-cancer survivors — yet it's wildly under-prescribed. In older women, a UTI can cascade into delirium, falls, sepsis, even permanent decline.</p>
-    <div class="pull">We have so much data. The problem is that nobody's talking about it.</div>
-    <p>Probiotics, hydration and a vegetable-rich diet help too. The theme: a whole generation has suffered in silence over something simple and treatable.</p>
-    <div class="prompts">
-      <h3>To talk about</h3>
-            <div class="q-block">
-              <p class="q-question">Who in our lives — a mother, an aunt — might this knowledge actually help?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The book is full of <strong>preventable suffering</strong> — UTIs that turned into hospital stays, dryness that ended sex lives, all addressed by something as simple as low-dose vaginal estrogen. Knowledge is genuinely shareable here.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>Which older woman in your life would benefit most from this chapter?</li>
-                <li>How comfortable do you feel sharing this knowledge with the women around you?</li>
-              </ul>
-            </div>
-            <div class="q-block">
-              <p class="q-question">What other "just getting old" problems might really be preventable?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The book's whole project is unpicking <strong>what's ageing and what's actually a treatable hormone deficiency</strong>. The line between them moves every decade.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What discomforts have you been told to accept that you suspect aren't normal?</li>
-                <li>Where do you see your own mother's pattern in yourself, and where do you want to break it?</li>
-              </ul>
-            </div>
-            <span class="q-more-label">More to explore</span>
-            <ul class="q-more">
-              <li>What did you grow up being told about the female body that turned out to be wrong?</li>
-              <li>How much of women's health is private suffering that doesn't need to be?</li>
-              <li>What would change in healthcare if doctors actually learned the vulva properly?</li>
-              <li>Whose mother — yours or someone you know — is suffering from something simple that nobody's named?</li>
-              <li>What's the message you'd want Tiffany and Chloe to grow up hearing about all this?</li>
-            </ul>
-    </div>
-  </section>
-
-  <section class="chapter">
-    <div class="num">Chapter 11</div>
-    <h2>Pumping Up Your Muscle and Bone</h2>
-    <div class="tag">Bones are silent until they break. And then they scream.</div>
-    <p>One in two women over 50 will fracture due to osteoporosis. The two defences: <strong>resistance training — lift heavy, not "namby-pamby pink weights"</strong> — plus protein, Vitamin D and calcium; and HRT to slow loss and rebuild. Used together they're stronger still. Catch it at the <em>osteopenia</em> stage, before the break.</p>
-    <div class="pull">Muscle is the organ of longevity.</div>
-    <p>Low muscle mass is the first sign of low bone density. Building muscle isn't masculine vanity — it's the single thing that protects independence, metabolism, bones, balance and brain resilience as you age.</p>
-    <div class="prompts">
-      <h3>To talk about</h3>
-            <div class="q-block">
-              <p class="q-question">What's our honest relationship with strength training right now?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The book is uncompromising: <strong>"namby-pamby pink weights" don't build bone.</strong> Real strength training does. The question is whether we've been doing it or just performing it.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What does "training hard" actually mean to you, on a normal day?</li>
-                <li>Where could you push more — and where are you already at the edge?</li>
-              </ul>
-            </div>
-            <div class="q-block">
-              <p class="q-question">Could we make lifting something we do together?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">Training together changes the habit — and <strong>it makes the harder days easier because someone else is showing up too</strong>. It's also a sneakily intimate thing to do.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What would a weekly session together look like that we'd both actually keep?</li>
-                <li>What would you want me to learn so I could train smarter with you?</li>
-              </ul>
-            </div>
-            <span class="q-more-label">More to explore</span>
-            <ul class="q-more">
-              <li>Bone density loss starts in perimenopause. How recently have you checked yours?</li>
-              <li>"Muscle is the organ of longevity," the book says. What does longevity actually look like for you?</li>
-              <li>What sport or movement would you take up if intimidation weren't part of it?</li>
-              <li>How much protein are you eating per day, honestly?</li>
-              <li>If your independence at eighty depends on muscle today, what changes this week?</li>
-            </ul>
-    </div>
-  </section>
-
-  <section class="chapter">
-    <div class="num">Chapter 12</div>
-    <h2>Avoiding the Midlife Muffin Top</h2>
-    <div class="tag">Ask "will it make me strong?" — not "will it make me fat?"</div>
-    <p>Body composition shifts in midlife because of <strong>hormones, not willpower</strong>: as estradiol falls, fat redistributes around the middle and insulin resistance rises. Calorie-counting tends to fail. What works: protein, fibre, ~30 plants a week, steady blood glucose (eat veg first, sweet things last), and <strong>building muscle</strong>.</p>
-    <div class="pull">We can blame our hormones, not our habits — and use that as a reason to act, not to panic.</div>
-    <p>Semaglutides (Ozempic and kin) can help, but risk muscle and bone loss — so pair them with weight training and, where suitable, HRT. The deeper shift is from a lifetime of food-as-guilt to food-as-fuel.</p>
-    <div class="prompts">
-      <h3>To talk about</h3>
-            <div class="q-block">
-              <p class="q-question">What food stories from our younger years are we still carrying?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">We all grew up with a food story — <strong>what was virtuous, what was greedy, what was for women, what was for men</strong>. The book argues midlife is when those stories visibly stop serving us.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What did food mean in your house growing up?</li>
-                <li>What's the loudest old voice about food still in your head?</li>
-              </ul>
-            </div>
-            <div class="q-block">
-              <p class="q-question">How would meals change if "strong" replaced "thin" as the goal?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">"Strong" changes everything: what you eat, when, how much, what it's for. <strong>It's a goal that grows with you instead of shrinking you.</strong></p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>If strength were the only goal, what would breakfast look like?</li>
-                <li>What do you eat that fuels you, and what just fills you?</li>
-              </ul>
-            </div>
-            <span class="q-more-label">More to explore</span>
-            <ul class="q-more">
-              <li>The book talks about eating veg first, sweet things last. What small change would you try?</li>
-              <li>Thirty plants a week — where are you currently, and where do you want to be?</li>
-              <li>What food do you reach for when you're tired or stressed, and what is it really doing for you?</li>
-              <li>Semaglutides are everywhere now. Where do you stand on them?</li>
-              <li>What would change about meals in your house if you cooked for the woman you're becoming, not the one you were?</li>
-            </ul>
-    </div>
-  </section>
-
-  <!-- ================= SPIRIT ================= -->
-  <div class="part">
-    <div class="pn">Part Three</div>
-    <div class="pt">Spirit</div>
-    <div class="pd">Habits, relationships and reinvention — the shift from role to soul.</div>
-  </div>
-
-  <section class="chapter">
-    <div class="num">Chapter 13</div>
-    <h2>Women and Wine</h2>
-    <div class="tag">Don't ask why the addiction — ask why the pain.</div>
-    <p>Aging bodies process alcohol worse, just as "Mummy Wine Time" culture normalises daily self-medication. In midlife, drink stops being a release and becomes a burden — and more than two units a day raises breast-cancer risk by 20%. Many find that <strong>drinking less or stopping clears skin, sleep and mood</strong>, with little regret.</p>
-    <div class="pull">When I got sober, I thought I was saying goodbye to all the fun and sparkle — and it turned out to be the opposite.</div>
-    <p>For those who struggle, addiction is "a normal response to trauma," and recovery runs on <strong>community and honesty</strong> — twelve-step, Smart Recovery, therapy. The chapter's gift is simply permission to look hard at a habit hardwired into every social ritual.</p>
-    <div class="prompts">
-      <h3>To talk about</h3>
-            <div class="q-block">
-              <p class="q-question">What does each drink actually do for us — and is it still doing it?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The book's diagnostic question: <strong>don't ask why the addiction, ask why the pain.</strong> Most drinks at midlife are anaesthetic — and that's worth knowing, not judging.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What feeling are you usually trying to soften when you reach for a drink?</li>
-                <li>What does the first drink change, and what does the third?</li>
-              </ul>
-            </div>
-            <div class="q-block">
-              <p class="q-question">What would "sober-curious" change about how we spend evenings together?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">Cutting back doesn't have to mean cutting out — and the book makes the case <strong>the upside is real: sleep, skin, mood, presence</strong>. The evenings just feel different, often better.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What would change about our weekends if we drank half?</li>
-                <li>What would we replace the ritual with — tea, a walk, music, something else?</li>
-              </ul>
-            </div>
-            <span class="q-more-label">More to explore</span>
-            <ul class="q-more">
-              <li>Over two units a day raises breast cancer risk by 20%. How much have you actually had in the last week?</li>
-              <li>What was modelled for you about drinking growing up?</li>
-              <li>Where is alcohol still attached to celebration, friendship or coping in your life?</li>
-              <li>When do you drink because you want to, and when because you're supposed to?</li>
-              <li>What's the smallest experiment with cutting back that you'd actually do?</li>
-            </ul>
-    </div>
-  </section>
-
-  <section class="chapter">
-    <div class="num">Chapter 14</div>
-    <h2>Digital Detox</h2>
-    <div class="tag">Aim for daily digital health, not a one-off detox.</div>
-    <p>Phones cannibalise the brain's <strong>"default mode network"</strong> — the daydreaming, mind-wandering downtime where we plan, remember, and build the self. Constant notifications keep us in low-grade fight-or-flight; "continuous partial attention" means we never fully concentrate or fully rest.</p>
-    <div class="pull">The brain that doesn't feed itself eats itself.</div>
-    <p>The practical fixes are small and firm: no phone in bed (get a real alarm clock), batch emails, carry a notebook, protect attention, and — crucially — <strong>model good behaviour</strong> for the people who look to you. Use tech for connection, not as ultra-processed mental food.</p>
-    <div class="prompts">
-      <h3>To talk about</h3>
-            <div class="q-block">
-              <p class="q-question">Where is the phone stealing presence we'd rather give each other?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The book names <strong>"continuous partial attention"</strong> — phones keep us never fully here and never fully resting. Presence is the thing relationships need most and the thing screens steal most easily.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>When did you last spend a whole evening without your phone in reach?</li>
-                <li>What do our girls' future relationships with phones look like, and who's modelling that?</li>
-              </ul>
-            </div>
-            <div class="q-block">
-              <p class="q-question">What's one boundary we could set — and actually hold?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">Boundaries fail when they're vague. <strong>"No phones at dinner" is a boundary; "we should use them less" isn't.</strong> Specific is the only kind that holds.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What's one specific phone-free moment we could commit to?</li>
-                <li>What would make it easy to keep, not a struggle?</li>
-              </ul>
-            </div>
-            <span class="q-more-label">More to explore</span>
-            <ul class="q-more">
-              <li>The book says phones eat the "default mode network" — the daydreaming part of the brain. When do you actually let your mind wander?</li>
-              <li>What apps make you feel worse afterwards, and why are they still on your phone?</li>
-              <li>What did you used to do with the time the phone now takes?</li>
-              <li>Where do you use the phone for connection, and where for escape?</li>
-              <li>What would it take to put the phone in another room overnight, every night?</li>
-            </ul>
-    </div>
-  </section>
-
-  <section class="chapter">
-    <div class="num">Chapter 15</div>
-    <h2>Divorce, the Moneypause and the Couplepause</h2>
-    <div class="tag">Relationships, like cars, need regular MOTs.</div>
-    <p>Divorce peaks in perimenopause (average age 44); two-thirds are initiated by women — often not for someone new, but for <strong>time and selfhood</strong>. Hormonal dysregulation can even sabotage divorce <em>outcomes</em> ("Moneypause"). But losing the softening hormones also lets women see clearly the compromises their caring instincts had masked.</p>
-    <div class="pull">If only women knew what went on in the heads of their husbands.</div>
-    <p>The hopeful thread is the <strong>"couplepause"</strong>: get therapy early, before conflict becomes unbearable; communicate; see your partner's burden (men carry their own mental load and hear "I don't trust you" as "you are not enough"). Affairs take energy out of a relationship — but couples who repair often come back stronger.</p>
-    <div class="prompts">
-      <h3>To talk about</h3>
-            <div class="q-block">
-              <p class="q-question">What does each of us carry that the other might not fully see?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The book's central observation about couples: <strong>women feel the domestic and emotional weight; men carry financial and silent worry; both feel unseen by the other.</strong> The fix is making the invisible visible.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What's a weight you carry that I underestimate?</li>
-                <li>What's something you do for me that I take for granted?</li>
-                <li>What's a fear or worry you've never said out loud to me?</li>
-              </ul>
-            </div>
-            <div class="q-block">
-              <p class="q-question">What would a regular "relationship MOT" look like for us?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">"Relationships, like cars, need regular MOTs," the book says. Most couples wait until something breaks. <strong>The book argues for proactive maintenance — a scheduled conversation, not just emergency repair.</strong></p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>How often should we sit down and check in honestly?</li>
-                <li>What questions belong in that check-in, every time?</li>
-              </ul>
-            </div>
-            <span class="q-more-label">More to explore</span>
-            <ul class="q-more">
-              <li>When one of us goes quiet after conflict — what's really happening underneath?</li>
-              <li>Divorce peaks at perimenopause central. What protects a relationship through this period, in your view?</li>
-              <li>The book says men often leave for someone new while women often leave just for time and selfhood. What does that distinction mean for you?</li>
-              <li>What would you want me to know about how perimenopause changes how you receive — and give — love?</li>
-              <li>What does "growing together rather than apart" look like for us in the next five years?</li>
-            </ul>
-    </div>
-  </section>
-
-  <section class="chapter">
-    <div class="num">Chapter 16</div>
-    <h2>Renovating Relationships</h2>
-    <div class="tag">Is this person a radiator or a drain?</div>
-    <p>Friendships need rebuilding in midlife, especially after a rupture like divorce or leaving a job. Some friends are <strong>for a season, not forever</strong> — and treasuring them for what they were beats mourning what they're not. Protect finite energy; it's fine to walk away from a drain, and to work hard on the friends-for-life who make your world bigger.</p>
-    <div class="pull">Just be there.</div>
-    <p>Against isolation, Muir surveys the alternatives: <strong>online dating</strong> (treat it as an anthropology experiment, cast wide), co-housing and "intentional communities," even van life. Humans were built for small groups sharing resources and company — not for living alone.</p>
-    <div class="prompts">
-      <h3>To talk about</h3>
-            <div class="q-block">
-              <p class="q-question">Which friendships warm us, and which quietly drain us?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The book frames friendships as either <strong>radiators (warm, restorative) or drains (depleting)</strong>. Midlife is when you finally have permission to choose.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>Who do you leave time with feeling fuller?</li>
-                <li>Who do you leave time with feeling smaller — and why are they still there?</li>
-              </ul>
-            </div>
-            <div class="q-block">
-              <p class="q-question">What kind of community do we want around us in twenty years?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The book surveys co-housing, "intentional communities," even van life. <strong>Humans were built for small groups sharing resources and time.</strong> Isolation in old age isn't inevitable; it's a default we can refuse.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>Who would be in your "co-living chapter" if you wrote it now?</li>
-                <li>What would proximity to the right people change about the next twenty years?</li>
-              </ul>
-            </div>
-            <span class="q-more-label">More to explore</span>
-            <ul class="q-more">
-              <li>The book says some friendships are for a season, not forever. Which are you holding onto out of habit?</li>
-              <li>Which friend has earned the right to know everything about you?</li>
-              <li>If our daughters needed a circle around them at fifty, what would you want that to look like?</li>
-              <li>What community have you been part of that taught you how to be in one?</li>
-              <li>Who haven't you seen in a year that you should call this month?</li>
-            </ul>
-    </div>
-  </section>
-
-  <section class="chapter">
-    <div class="num">Chapter 17</div>
-    <h2>Creative Awakening</h2>
-    <div class="tag">A shift from role to soul.</div>
-    <p>Midlife creativity is less about art than about letting the <strong>authentic, questioning self</strong> resurface after years of duty. The examples span a journalist who became a photographer, a therapist who became a climate activist, a teacher who became a celebrated designer — each "possessed by a need" more than making a choice.</p>
-    <div class="pull">Creativity is not about creating a painting or a house, but creating yourself.</div>
-    <p>Often the trigger is rock bottom; often the freedom comes from no longer caring what anyone thinks. "Age is a privilege." The renaissance is a vision of your place in the wider world.</p>
-    <div class="prompts">
-      <h3>To talk about</h3>
-            <div class="q-block">
-              <p class="q-question">What's the quiet pull each of us keeps not quite following?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The book describes midlife creators as <strong>"possessed by a need" more than choosing</strong> — the pull was always there, finally loud enough to follow. The work is paying attention to the pull.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What's the thing you keep coming back to in private?</li>
-                <li>What would you make or do if no one ever saw it?</li>
-                <li>What did young you love that adult you abandoned?</li>
-              </ul>
-            </div>
-            <div class="q-block">
-              <p class="q-question">If we cared less about success and failure, what would we make or do?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The freedom the book points to is the freedom of <strong>no longer caring how it looks</strong>. "Age is a privilege" — and the privilege is permission to be visibly imperfect.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What would you do if "failing" lost its meaning?</li>
-                <li>Whose opinion are you still secretly trying to win?</li>
-              </ul>
-            </div>
-            <span class="q-more-label">More to explore</span>
-            <ul class="q-more">
-              <li>The book says "creativity is creating yourself, not a painting." Where are you the creator of your own life — and where the consumer?</li>
-              <li>What would the girls say you actually love doing — and would they be right?</li>
-              <li>What would you do in a year set aside to be uncomfortable and curious?</li>
-              <li>When did you last make something — anything — for the joy of it?</li>
-              <li>What's the version of you that you've been avoiding letting out?</li>
-            </ul>
-    </div>
-  </section>
-
-  <section class="chapter">
-    <div class="num">Chapter 18</div>
-    <h2>The Psychedelic Adventure</h2>
-    <div class="tag">Five years of therapy in one night.</div>
-    <p>Muir's journey ends with a guided, high-dose psilocybin experience — and real science now backs psychedelics for depression and end-of-life distress (psilocybin's structure mirrors serotonin's). <strong>Set, setting, integration, and a trusted facilitator are everything</strong>; this is not recreational use.</p>
-    <div class="pull">I realised, as I should have from the beginning, that I am in control of this trip.</div>
-    <p>The trip surfaced <strong>self-compassion over self-criticism</strong>, and a buried, loving memory of her mother — reconnection rather than analysis. The wider point: physical changes send psychological waves, and the search they trigger can lead somewhere better — toward soul and essence.</p>
-    <div class="prompts">
-      <h3>To talk about</h3>
-            <div class="q-block">
-              <p class="q-question">Setting aside the method — what would each of us want to heal or understand?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The book treats psilocybin as a tool, not a fix — and the real work is the question it forces: <strong>what would you actually want to heal, if the path were clear?</strong> The healing is mostly about reconnection, not analysis.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>If you had a single afternoon of total clarity, what would you want to see clearly?</li>
-                <li>Who would you want to forgive, or be forgiven by?</li>
-                <li>What memory do you keep at a distance that might want to come closer?</li>
-              </ul>
-            </div>
-            <div class="q-block">
-              <p class="q-question">Where do we choose self-criticism when self-compassion is available?</p>
-              <span class="q-label">A thought to bring</span>
-              <p class="q-thought">The book's deepest line is about <strong>replacing self-criticism with self-compassion</strong> — and noticing how often we choose the former when the latter is right there.</p>
-              <span class="q-label">Ways in</span>
-              <ul class="q-ways">
-                <li>What would you say to yourself if you spoke the way you speak to your best friend?</li>
-                <li>Where is harshness still standing in for honesty?</li>
-              </ul>
-            </div>
-            <span class="q-more-label">More to explore</span>
-            <ul class="q-more">
-              <li>The book describes "five years of therapy in one night." What would you want a year of therapy to do for you?</li>
-              <li>What's a love or memory you've kept hidden that deserves more light?</li>
-              <li>Where in your life is set, setting and integration already happening without the psychedelic?</li>
-              <li>Soul, essence, becoming — which of these words means most to you right now?</li>
-              <li>If you could send a message to yourself ten years from now, what would it say?</li>
-            </ul>
-    </div>
-  </section>
-
-  </div>
-</div>
-
-<!-- ============ ZONE TWO: IMPROVED INTIMACY ============ -->
-<div class="zone zone-two">
-  <div class="wrap">
-
-  <div class="path-opener">
-    <div class="label">Path Two</div>
-    <svg class="rule-orn" viewBox="0 0 80 14" width="80" height="14" aria-hidden="true">
-      <line x1="0" y1="7" x2="32" y2="7"/>
-      <circle cx="40" cy="7" r="3"/>
-      <circle class="dot" cx="40" cy="7" r="1"/>
-      <line x1="48" y1="7" x2="80" y2="7"/>
-    </svg>
-    <div class="title"><em>Improved</em> Intimacy</div>
-    <p class="sub">The science of desire that lasts — Perel, Nagoski, Aron, Mark &amp; Lasslo — and seven practices to keep the flame alive against the gravity of routine.</p>
-  </div>
-
-  <svg class="silk-flow" viewBox="0 0 800 80" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0 30 Q200 5 400 30 T800 30" opacity=".55"/>
-    <path d="M0 42 Q200 12 400 42 T800 42" opacity=".45"/>
-    <path d="M0 54 Q200 22 400 54 T800 54" opacity=".35"/>
-    <path d="M0 66 Q200 36 400 66 T800 66" opacity=".22"/>
-  </svg>
-
-  <!-- ================= IMPROVED INTIMACY ================= -->
-  <section class="intimacy" id="intimacy">
-    <div class="intim-header">
-      <div class="pn">Path Two</div>
-      <div class="pt">Improved Intimacy</div>
-      <div class="pd">The science of desire that lasts — and the daily practice that keeps it alive.</div>
-    </div>
-
-    <div class="intim-intro">
-      <p class="lead">This isn't Muir's path. It's the extension of it.</p>
-      <p>Where the book companion maps the hormonal and medical terrain of midlife intimacy, this section answers a harder question: what does the current research actually say keeps two people wanting each other across years and decades — and what, in daily practice, prevents the slow erosion into routine, roommates, and quietly separate lives?</p>
-      <p>The findings are clearer than most couples ever hear. They come from decades of work by therapists like <strong>Esther Perel</strong>, sex researchers like <strong>Emily Nagoski</strong>, relationship scientists like <strong>Arthur Aron</strong>, and meta-analysts like <strong>Kristen Mark</strong>. The verdict: long-term desire does not survive on autopilot — but it is entirely possible to maintain, and even deepen, with the right understanding and a few specific practices. The science first; then the practice.</p>
-    </div>
-
-    <!-- THE RESEARCH -->
-    <div class="intim-part">
-      <div class="pnum">I · The Paradox at the Heart</div>
-      <h3>Esther Perel — Love and Desire on Different Fuels</h3>
-      <div class="tag">Closeness builds love. Distance builds desire. Both are needed.</div>
-      <p>The Belgian psychotherapist Esther Perel — whose <em>Mating in Captivity</em> was re-released in 2025 as <em>In Search of Erotic Intelligence</em> — argues that love and desire run on opposing logics, and that the very things that build one can quietly extinguish the other.</p>
-      <p><strong>Love thrives on closeness, predictability, security. Desire thrives on distance, mystery, novelty.</strong> A couple who shares everything — schedules, finances, secrets, screens, even moods — can find themselves intimately bonded but no longer attracted. Perel calls this <em>fusion</em>: the well-intentioned merging that erases the otherness desire needs to keep burning.</p>
-      <p>Her distinction between <strong>secrecy</strong> (destructive) and <strong>privacy</strong> (necessary) is central. Partners need interior lives. They need parts of themselves that belong only to them. The pursuit, the anticipation, the thrill of not quite knowing — these don't survive total transparency. The partner who remains slightly inaccessible remains desirable; the partner fully possessed becomes invisible.</p>
-      <div class="pull">Love seeks to know. Desire cannot live without mystery.</div>
-      <p>Perel's most quoted practical line: <strong>foreplay does not start five minutes before sex. It starts immediately after the previous time.</strong> Desire is built in the hours and days between, not the minutes leading up.</p>
-    </div>
-
-    <div class="intim-part">
-      <div class="pnum">II · The Mechanics</div>
-      <h3>Emily Nagoski — Accelerators and Brakes</h3>
-      <div class="tag">Most long-term desire problems aren't a weak accelerator — they're a stuck brake.</div>
-      <p>Where Perel works in metaphor, Emily Nagoski works in neuroscience. Her bestselling <em>Come As You Are</em> (2015) and the follow-up <em>Come Together</em> (2024) translate the <strong>Dual Control Model</strong> — developed by Kinsey Institute researchers John Bancroft and Erick Janssen — into a framework that has reshaped how clinicians talk to couples about desire.</p>
-      <p>The model: the brain has a sexual <strong>accelerator</strong> (the Sexual Excitation System) that responds to anything coded as erotic, and a sexual <strong>brake</strong> (the Sexual Inhibition System) that responds to anything coded as threat — stress, unfinished arguments, unwashed dishes, body shame, work pressure, the children awake in the next room, the unanswered email. Most long-term desire problems are not about a weak accelerator. <strong>They are about a brake that won't release.</strong></p>
-      <p>This reframes everything. Lingerie, candles, more frequency, exotic locations — these are all accelerator-targeted interventions. They rarely work in long-term relationships because the brakes are the bottleneck. Reducing perceived threat — emotional, physical, environmental — is where the real work lives.</p>
-      <div class="pull">Desire doesn't happen in a vacuum. It happens in context.</div>
-      <p>Nagoski also rescues women in particular from a damaging cultural myth. Roughly <strong>85% of women experience <em>responsive</em> desire</strong>, not spontaneous. Arousal arrives <em>after</em> the context is right, not before. Waiting to feel "in the mood" before stepping into a sensual context is waiting for the wrong thing in the wrong order. The mood is built; it doesn't arrive on its own.</p>
-    </div>
-
-    <div class="intim-part">
-      <div class="pnum">III · The Growth</div>
-      <h3>Arthur Aron — Self-Expansion and Novelty</h3>
-      <div class="tag">The partner becomes associated with the growth — or with the rut.</div>
-      <p>For decades, Arthur Aron and colleagues at Stony Brook University have studied a different angle: what actually keeps couples alive to each other beyond the first years? Their answer is the <strong>self-expansion model</strong> — the finding that humans seek experiences that grow the self, and we associate that growth with whoever helps us achieve it.</p>
-      <p>The most famous study (Aron, Norman, Aron, McKenna & Heyman, 2000) randomly assigned couples to either <em>novel and arousing</em> activities or mundane ones. The couples doing the novel activities reported significantly more relationship satisfaction and closeness afterwards. A 16-year longitudinal follow-up confirmed the basic finding: <strong>less boredom and more shared exciting activities at year 7 predicted substantially higher satisfaction at year 16</strong>, even after controlling for satisfaction at year 7.</p>
-      <p>The mechanism: when a couple learns something new together, faces a slightly uncomfortable experience together, travels somewhere new together, the partner becomes associated with the growth — and the relationship is re-anchored to expansion rather than maintenance. The 2024 Coffey vacation study and a 2025 virtual-reality replication continue to confirm the effect. <strong>Routine flattens; novelty rebuilds.</strong></p>
-      <div class="pull">Couples who do exciting things together at year seven are still in love at year sixteen.</div>
-    </div>
-
-    <div class="intim-part">
-      <div class="pnum">IV · The Synthesis</div>
-      <h3>Mark &amp; Lasslo — What Actually Maintains Desire</h3>
-      <div class="tag">A systematic review of every major study, in one model.</div>
-      <p>In 2018, University of Kentucky researchers Kristen Mark and Julie Lasslo published a landmark systematic review in <em>The Journal of Sex Research</em> — analysing 64 articles spanning more than twenty years of research on maintaining sexual desire in long-term relationships.</p>
-      <p>The integrated model they built identifies the factors with the most consistent evidence behind them:</p>
-      <ul class="factors">
-        <li><strong>Individual autonomy</strong> — a robust self outside the relationship</li>
-        <li><strong>Continued attraction to the partner</strong> — physical, intellectual, emotional</li>
-        <li><strong>Stress management and mental wellbeing</strong></li>
-        <li><strong>Honest, regular communication about sex itself</strong></li>
-        <li><strong>Intentional intimate behaviours beyond intercourse</strong> — touch, presence, attention</li>
-        <li><strong>Conscious prioritisation</strong> — treating intimacy as worth scheduling, not something that "should just happen"</li>
-        <li><strong>Sexual exploration and openness to change</strong></li>
-        <li><strong>Effective conflict resolution</strong></li>
-      </ul>
-      <p>The thread connecting them: long-term desire is not a passive resource that exists or doesn't. <strong>It is a renewable practice that responds to specific, learnable inputs.</strong> Low or shifting desire is not a verdict on the relationship; it is a signal about what needs attention.</p>
-    </div>
-
-    <!-- atmospheric break between the research and the practice -->
-    <div class="visual-pause" aria-hidden="true">
-      <div class="visual-pause-quote">Foreplay does not start five minutes before. It starts immediately after the previous time.</div>
-    </div>
-
-    <!-- KEEPING THE FLAME ALIVE -->
-    <div class="intim-flame">
-      <div class="flame-header">
-        <svg viewBox="0 0 32 42" aria-hidden="true">
-          <path class="flame" d="M16 38 Q4 28 8 16 Q10 22 12 20 Q12 8 16 2 Q20 8 20 20 Q22 22 24 16 Q28 28 16 38 Z"/>
-        </svg>
-        <h2>Keeping the Flame Alive</h2>
-        <svg viewBox="0 0 32 42" aria-hidden="true">
-          <path class="flame" d="M16 38 Q4 28 8 16 Q10 22 12 20 Q12 8 16 2 Q20 8 20 20 Q22 22 24 16 Q28 28 16 38 Z"/>
-        </svg>
-      </div>
-      <p class="flame-tag">Seven practices, drawn straight from the research, that translate theory into evenings.</p>
-      <p>Theory only matters if it changes how a Tuesday feels. The practices below come directly from the work above — Perel's paradox, Nagoski's brakes and accelerators, Aron's novelty, Mark &amp; Lasslo's synthesis. They are not romantic advice from a magazine. They are the operating manual that the science keeps pointing toward.</p>
-
-      <div class="practice">
-        <div class="pn-num">I</div>
-        <div class="pbody">
-          <h4>Engineer anticipation</h4>
-          <p>The hours before intimacy matter more than the minutes during. <strong>A message at lunch that lands in the chest. A glance across the room at dinner that says: later. A note left in a coat pocket.</strong> Perel's principle — that foreplay starts the morning after, not the minute before — points at this. Build anticipation as a deliberate practice, not a happy accident. The body shows up to a moment that has been prepared.</p>
-        </div>
-      </div>
-
-      <div class="practice">
-        <div class="pn-num">II</div>
-        <div class="pbody">
-          <h4>Release the brakes before adding to the accelerator</h4>
-          <p>Don't start with lingerie. Start with: <strong>what is on her plate today? What stress is on her body? What did the office take out of her? What is left undone in the house?</strong> The unwashed dishes, the work deadline, the conversation with her mother — these are not romance-killers in the abstract. They are literal neurological inhibitors. Nagoski's clearest practical advice: do whatever lifts those <em>before</em> reaching for accelerators. Sometimes the most erotic act of the evening is loading the dishwasher.</p>
-        </div>
-      </div>
-
-      <div class="practice">
-        <div class="pn-num">III</div>
-        <div class="pbody">
-          <h4>Build novelty into the calendar</h4>
-          <p>Aron's research is unambiguous: <strong>do one new thing together every two weeks.</strong> Not the same date night on a loop. A new city you've never visited. A dish neither of you has cooked. A walking route never taken. A class. A trip. A skill you both lack. The shared first-time becomes a recurring deposit in the relationship's energy account — and the partner becomes the person you grow with rather than the person you settle next to.</p>
-        </div>
-      </div>
-
-      <div class="practice">
-        <div class="pn-num">IV</div>
-        <div class="pbody">
-          <h4>Preserve privacy and otherness</h4>
-          <p>Perel's distinction is crucial: <strong>privacy is not secrecy.</strong> Have your own friends. Have your own pursuits. Have an inner life. Do not tell everything. Do not finish every sentence. The partner who remains slightly unknowable remains slightly desirable. The fully transparent partner — known down to every thought, fully merged — becomes harder to ardently want. Mystery isn't a strategy; it's a respect for the otherness of another person.</p>
-        </div>
-      </div>
-
-      <div class="practice">
-        <div class="pn-num">V</div>
-        <div class="pbody">
-          <h4>Treat sensuality as ambient, not scheduled</h4>
-          <p>The kitchen touch. The bath together that isn't "about" anything. The long hug at the door. The way you brush hair off her face. <strong>Couples who maintain desire over decades describe sensual contact as woven through the day, not switched on at bedtime.</strong> The body needs the slow build, not the sudden ask. Pleasure is not an event you initiate; it is an atmosphere you keep alive.</p>
-        </div>
-      </div>
-
-      <div class="practice">
-        <div class="pn-num">VI</div>
-        <div class="pbody">
-          <h4>Design the steamy evening as production, not availability</h4>
-          <p>Lighting matters. Music matters. Scent matters. Fresh sheets matter. <strong>No phones. No deadlines. No "we should."</strong> Treat it as a small piece of theatre you build together — anticipation, environment, slowness, attention. Decide on the playlist. Decide on the candles. Let the room itself remove the brakes. The body responds to the room before it responds to the partner.</p>
-        </div>
-      </div>
-
-      <div class="practice">
-        <div class="pn-num">VII</div>
-        <div class="pbody">
-          <h4>Talk about it outside the bedroom</h4>
-          <p>Not during sex — too high-stakes. Not after sex — too vulnerable. <strong>Over coffee. On a walk. In the car.</strong> The Mark &amp; Lasslo review found honest communication is one of the strongest predictors of maintained desire — and it almost never happens spontaneously. The conversation has to be designed too: low pressure, low judgement, real curiosity, real listening. Ask, don't assume.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- INTIMACY PROMPTS -->
-    <div class="prompts">
-      <h3>To talk about</h3>
-      <div class="q-block">
-        <p class="q-question">When you feel most wanted, what's actually happening — and what's not happening?</p>
-        <span class="q-label">A thought to bring</span>
-        <p class="q-thought">The research is clear: feeling wanted requires both stimulation (accelerator) and the absence of threat (brakes released). For most women in long-term relationships, <strong>the brake side is the bigger lever</strong> — and yet most partners spend all their energy on the accelerator. This question helps name what specifically lifts or lowers the brakes for you, beyond what's obvious to either of us.</p>
-        <span class="q-label">Ways in</span>
-        <ul class="q-ways">
-          <li>What does "in the mood" actually mean to you, sensorily and emotionally?</li>
-          <li>When you've felt most desired by me, what was different about the day, the room, or yourself?</li>
-          <li>What's something quiet that closes you, that I might not have noticed?</li>
-        </ul>
-      </div>
-      <div class="q-block">
-        <p class="q-question">What part of you do you want to keep slightly to yourself — and what part of me do you wish stayed slightly out of reach?</p>
-        <span class="q-label">A thought to bring</span>
-        <p class="q-thought">Perel's most counterintuitive finding: <strong>too much fusion smothers desire.</strong> A partner who is fully known and fully available stops being someone you can ardently want. The healthy version of this isn't secrecy — it's protected interiority for both people. The question is what we each want kept slightly mysterious, on purpose.</p>
-        <span class="q-label">Ways in</span>
-        <ul class="q-ways">
-          <li>Where do you feel most yourself when I'm not in the room?</li>
-          <li>When have you been most attracted to me, and what was I doing or being that made that the case?</li>
-          <li>What about us has become too predictable for either of our taste?</li>
-        </ul>
-      </div>
-      <span class="q-more-label">More to explore</span>
-      <ul class="q-more">
-        <li>What's one novel experience we should plan in the next month — something neither of us has done before?</li>
-        <li>Which of the seven practices above feels like the easiest to start, and which the most distant from where we are?</li>
-        <li>What's the difference, for you, between feeling close and feeling wanted?</li>
-        <li>Where in our daily life could sensuality become ambient rather than scheduled?</li>
-        <li>What would change about our evenings if we treated them as designed, not defaulted?</li>
-      </ul>
-    </div>
-  </section>
-
-  </div>
-</div>
-
-<!-- ============ ZONE THREE: THE BECOMING ============ -->
-<div class="zone zone-three">
-  <div class="wrap">
-
-  <div class="path-opener">
-    <div class="label">Path Three</div>
-    <svg class="rule-orn" viewBox="0 0 80 14" width="80" height="14" aria-hidden="true">
-      <line x1="0" y1="7" x2="32" y2="7"/>
-      <circle cx="40" cy="7" r="3"/>
-      <circle class="dot" cx="40" cy="7" r="1"/>
-      <line x1="48" y1="7" x2="80" y2="7"/>
-    </svg>
-    <div class="title">The <em>Becoming</em></div>
-    <p class="sub">An interactive dice-and-card game for two — six tiers, two hundred and sixteen unique card-experiences, designed around science and consent. For one steamy evening, with no rush.</p>
-  </div>
-
-  <svg class="candle-scene" viewBox="0 0 520 220" aria-hidden="true">
-    <!-- left short candle -->
-    <g transform="translate(120,0)">
-      <ellipse class="glow" cx="0" cy="70" rx="50" ry="60" opacity=".22"/>
-      <rect class="body" x="-12" y="100" width="24" height="100" rx="1"/>
-      <line class="wick" x1="0" y1="100" x2="0" y2="90"/>
-      <path class="flame flame-2" d="M0 90 Q-10 76 0 56 Q10 76 0 90 Z"/>
-    </g>
-    <!-- center tall candle -->
-    <g transform="translate(260,0)">
-      <ellipse class="glow" cx="0" cy="50" rx="60" ry="72" opacity=".28"/>
-      <rect class="body" x="-14" y="70" width="28" height="130" rx="1"/>
-      <line class="wick" x1="0" y1="70" x2="0" y2="58"/>
-      <path class="flame" d="M0 58 Q-12 40 0 16 Q12 40 0 58 Z"/>
-    </g>
-    <!-- right medium candle -->
-    <g transform="translate(400,0)">
-      <ellipse class="glow" cx="0" cy="60" rx="54" ry="64" opacity=".24"/>
-      <rect class="body" x="-13" y="86" width="26" height="114" rx="1"/>
-      <line class="wick" x1="0" y1="86" x2="0" y2="74"/>
-      <path class="flame flame-3" d="M0 74 Q-11 58 0 36 Q11 58 0 74 Z"/>
-    </g>
-  </svg>
-
-  <!-- ================= THE BECOMING (GAME) ================= -->
-  <section class="bgame" id="becoming">
-    <div class="bgame-header">
-      <div class="pn">Path Three</div>
-      <div class="pt">The Becoming</div>
-      <div class="pd">An interactive dice-and-card game for partners — six tiers, two dice, two hundred and sixteen possible card-experiences. Made for one steamy evening with no rush.</div>
-    </div>
-
-    <div class="bgame-intro">
-      <p class="lead">This is not a quiz, and not foreplay-by-numbers. It's a structure that holds the room while two people slow down and pay attention.</p>
-      <p>The game has <strong>six tiers</strong>, each more intimate than the last. You roll <strong>two dice</strong> at each tier: a plum die that picks the card, and a gold die that applies a modifier — blindfolded, in silence, twice, reversed, with sensation, or pure. That gives <strong>216 unique card-experiences</strong>, so no two evenings ever play out the same.</p>
-      <p>Either of you can advance a tier when you're both ready. Either of you can <em>stay</em> at a tier as long as you like. Either of you can stop the whole game at any moment, without explanation. <strong>The slower you go, the better it works.</strong> This is built on the research from <em>Path Two</em>: the brakes release first, the accelerators come second, the partner who remains slightly mysterious remains desirable.</p>
-
-      <div class="bgame-tiers">
-        <div class="bgame-tier"><div class="t-num">I</div><div class="t-name">Whisper</div></div>
-        <div class="bgame-tier"><div class="t-num">II</div><div class="t-name">Touch</div></div>
-        <div class="bgame-tier"><div class="t-num">III</div><div class="t-name">Tease</div></div>
-        <div class="bgame-tier"><div class="t-num">IV</div><div class="t-name">Reveal</div></div>
-        <div class="bgame-tier"><div class="t-num">V</div><div class="t-name">Surrender</div></div>
-        <div class="bgame-tier"><div class="t-num">VI</div><div class="t-name">Burn</div></div>
-      </div>
-
-      <div class="bgame-prep">
-        <h4>Before you begin — prepare the room</h4>
-        <ul>
-          <li>Block at least ninety minutes. Phones off, not silenced — off.</li>
-          <li>Lower the lights. Candles if you have them. Soft music if you both like.</li>
-          <li>Water within reach. A silk scarf or eye mask for the blindfold modifier.</li>
-          <li>Optional: ice in a small bowl, warm oil, a feather, anything that adds sensation.</li>
-          <li>No goal. No timer. No outcome expected. Slow is the point.</li>
-        </ul>
-      </div>
-
-      <div class="bgame-consent">
-        <strong>A word on consent and pacing.</strong> Every card has a Skip button. Either of you can press it without explanation. Either of you can stop the game entirely with the Exit button at any time. Staying at a tier is as valuable as advancing. The final tier's last card is simply: <em>"Forget the cards. Be with them."</em> The cards are the structure; you are the meaning.
-      </div>
-
-      <div class="bgame-cta-wrap">
-        <button class="bgame-begin" id="bgame-begin-btn">Enter the game</button>
-      </div>
-    </div>
-  </section>
-
-  </div>
-</div>
-
-<!-- ============ GAME OVERLAY (fixed, lives outside zones) ============ -->
-  <!-- ================= GAME OVERLAY ================= -->
-  <div class="game-overlay" id="game-overlay" aria-hidden="true">
-    <div class="go-top">
-      <div class="go-tier" id="go-tier-label">Tier I · Whisper</div>
-      <button class="go-exit" id="go-exit-btn">Exit</button>
-    </div>
-    <div class="go-intensity"><div class="bar" id="go-intensity-bar"></div></div>
-    <div class="go-stage" id="go-stage"></div>
-  </div>
-
-<!-- ============ ZONE: CLOSE ============ -->
-<div class="zone zone-close">
-  <div class="wrap">
-
-  <!-- ================= CLOSE ================= -->
-  <div class="close">
-    <p class="ig"><em>Ikigai</em> — your reason for being: what you love, what you're good at, what you can be paid for, and what the world needs.</p>
-    <p class="src">This next stage isn't retirement. It's <em>becoming</em>. Leap before you look — you are not alone.</p>
-  </div>
-
-  <footer>
-    A reading companion to <em>How to Have a Magnificent Midlife Crisis</em> by Kate Muir.<br>
-    Distilled for reading together. The full book holds the stories this leaves behind.
-  </footer>
-
-  </div>
-</div>
-
-<script>
-  // scroll progress
-  const bar = document.getElementById('bar');
-  function onScroll(){
-    const h = document.documentElement;
-    const max = h.scrollHeight - h.clientHeight;
-    bar.style.width = (max>0 ? (h.scrollTop/max)*100 : 0) + '%';
-  }
-  document.addEventListener('scroll', onScroll, {passive:true});
-  onScroll();
-
-  // reveal chapters
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-  },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
-  document.querySelectorAll('.chapter').forEach(c=>io.observe(c));
-
-  // smooth "begin" cue — scrolls to the path selector
-  document.querySelector('.scroll-cue').addEventListener('click',()=>{
-    document.querySelector('.pathways').scrollIntoView({behavior:'smooth'});
-  });
-  document.querySelector('.scroll-cue').style.cursor='pointer';
-
-  /* ============================================================
-     THE BECOMING — game engine
-     ============================================================ */
-  const TIERS = [
-    { id:1, roman:'I', name:'Whisper',
-      sub:'Words and eye contact only — no touch yet.',
-      mood:'The room learns the shape of anticipation.' },
-    { id:2, roman:'II', name:'Touch',
-      sub:'Clothed, slow, deliberate contact.',
-      mood:'The body waking, gently, before it knows where it is going.' },
-    { id:3, roman:'III', name:'Tease',
-      sub:'Lips, breath, edges — the blindfold appears.',
-      mood:'Sensation at the threshold of not-quite-yet.' },
-    { id:4, roman:'IV', name:'Reveal',
-      sub:'Clothing comes off; sight is taken, or focused.',
-      mood:'Being seen — and being seen seeing.' },
-    { id:5, roman:'V', name:'Surrender',
-      sub:'Whole bodies, mouths, slow turns at giving and receiving.',
-      mood:'Letting go of the steering wheel.' },
-    { id:6, roman:'VI', name:'Burn',
-      sub:'Final union — slow, eyes open, intentional.',
-      mood:'Nothing left between you.' }
-  ];
-
-  const CARDS = {
-    1:[
-      "Look into the giver's eyes for sixty seconds without speaking. The receiver may not look away.",
-      "Whisper into the receiver's ear three things you find beautiful about them tonight — slowly, with breath.",
-      "Sit one meter apart. The giver describes, in detail, the most beautiful moment they remember sharing with the receiver. No interruption.",
-      "The giver names one place on the receiver's body they want to touch later tonight. The receiver decides whether it will be allowed — but no touching yet.",
-      "The giver tells the receiver a fantasy they have had about them, in whatever detail feels right. No reaction is required.",
-      "The receiver chooses three words. The giver builds a one-minute description of what the night is going to be like — using only those words and their imagination."
-    ],
-    2:[
-      "The giver places one hand on the receiver's face. Holds it there for thirty seconds. Does not move.",
-      "The giver traces the receiver's jaw, neck and collarbone with a single fingertip. Does not skip ahead.",
-      "The giver stands behind the receiver and runs both hands down their arms from shoulder to wrist. Three times.",
-      "The giver brushes the receiver's hair away from their face — very slowly — tucks it behind their ear, lets the hand linger.",
-      "The giver presses the palm of one hand against the receiver's chest, over the heart. Holds it there until the pulse can be felt.",
-      "The giver wraps both arms around the receiver from behind, and holds them, without speaking, for two minutes."
-    ],
-    3:[
-      "Blindfold the receiver. The giver places three slow kisses anywhere they choose — but not on the mouth. The receiver guesses where each was.",
-      "The giver kisses the receiver everywhere except the mouth for two full minutes. The receiver may not initiate a mouth kiss.",
-      "The giver runs only their lips — no tongue — along the receiver's neck, ear and shoulder. Slowly.",
-      "The giver breathes against the receiver's skin in three places of their choosing. No touch. Just breath.",
-      "The giver bites — gently — the receiver's bottom lip, ear, and the side of their neck. One bite each, with full pauses between.",
-      "The receiver lies back. The giver kisses them deeply for one full minute. Then stops entirely. Then begins again."
-    ],
-    4:[
-      "The giver removes one piece of the receiver's clothing. Slowly. The receiver may not help.",
-      "Blindfold the giver. The receiver guides the giver's hands to three places on their body — anywhere they like.",
-      "The giver stands over the receiver and removes their own clothing — one piece — while the receiver watches in silence.",
-      "The receiver removes one piece of the giver's clothing using only their teeth and lips.",
-      "Both partners undress each other simultaneously, slowly, without breaking eye contact.",
-      "The receiver is fully undressed by the giver and laid down. The giver looks at them — just looks — for one full minute before any touch begins."
-    ],
-    5:[
-      "The giver uses only their mouth on the receiver's body for three minutes. The receiver chooses where to begin and may redirect at any time.",
-      "The receiver lies still. The giver may not be touched for five minutes — only give. The receiver speaks only to direct.",
-      "Blindfold the receiver. The giver explores their whole body slowly with hands, mouth and breath. No goal. No rush.",
-      "The giver presses the receiver into the bed with their weight. Holds them there, kissing them deeply, for as long as both want.",
-      "The receiver names one place on their body. The giver attends to that place — and only that place — for three minutes.",
-      "The giver works slowly from one end of the receiver to the other — kisses, breath, hands — making no part feel less wanted than another."
-    ],
-    6:[
-      "Begin slowly — or whatever the equivalent is for the two of you — and stay still for thirty full seconds. Eyes open.",
-      "The giver moves at exactly half the speed they think is right. Eyes open. Mouths open.",
-      "The receiver sets the pace, entirely. The giver follows. No suggestions.",
-      "Agree together on a single position. Stay in it. Slow. Deep. Quiet enough to hear each other breathe.",
-      "The giver pauses every thirty seconds. Looks at the receiver. Begins again.",
-      "Forget the cards. Be with them. As long as both of you want."
-    ]
-  };
-
-  const MODIFIERS = [
-    { name:'Blindfolded', text:'One of you wears the blindfold for the full duration of this card. The pair decides who.' },
-    { name:'In Silence',  text:'No words during this card — only breath, eyes and touch communicate. Sounds are allowed.' },
-    { name:'Twice',       text:'The action is performed, then immediately performed again — same card, no break between.' },
-    { name:'Reversed',    text:'Halfway through, the giver and receiver swap roles. Same card, opposite direction.' },
-    { name:'With Sensation', text:'Introduce a sensory element — ice, warm oil, silk, a feather. The giver chooses.' },
-    { name:'Pure',        text:'The card as written, with no modifier. The plainest version of the act.' }
-  ];
-
-  // game state
-  let state = {
-    tier:1, cardsThisTier:0, giverIsA:true, lastCardDie:0, lastModDie:0, active:false
-  };
-
-  const overlay = document.getElementById('game-overlay');
-  const stage = document.getElementById('go-stage');
-  const tierLabel = document.getElementById('go-tier-label');
-  const intensityBar = document.getElementById('go-intensity-bar');
-
-  function rollDie(){ return Math.floor(Math.random()*6)+1; }
-
-  // build a die element with 6 faces and pips for each
-  function buildDie(color){
-    const die = document.createElement('div');
-    die.className = 'die ' + color;
-    for(let f=1; f<=6; f++){
-      const face = document.createElement('div');
-      face.className = 'die-face f'+f;
-      for(let p=0; p<f; p++){
-        const pip = document.createElement('div');
-        pip.className = 'pip';
-        face.appendChild(pip);
-      }
-      die.appendChild(face);
-    }
-    return die;
-  }
-
-  // CSS rotation needed to bring face N forward
-  const faceRotations = {
-    1:'rotateX(0deg) rotateY(0deg)',
-    2:'rotateX(0deg) rotateY(90deg)',
-    3:'rotateX(0deg) rotateY(180deg)',
-    4:'rotateX(0deg) rotateY(-90deg)',
-    5:'rotateX(90deg) rotateY(0deg)',
-    6:'rotateX(-90deg) rotateY(0deg)'
-  };
-
-  function animateDie(die, targetFace){
-    // tumble a few times then settle on the target face
-    const extraSpinsX = (Math.floor(Math.random()*3)+2)*360;
-    const extraSpinsY = (Math.floor(Math.random()*3)+2)*360;
-    const base = faceRotations[targetFace].match(/rotateX\((-?\d+)deg\) rotateY\((-?\d+)deg\)/);
-    const targetX = parseInt(base[1],10);
-    const targetY = parseInt(base[2],10);
-    die.classList.add('rolling');
-    die.style.transform = 'rotateX('+(targetX+extraSpinsX)+'deg) rotateY('+(targetY+extraSpinsY)+'deg)';
-  }
-
-  function renderTierIntro(){
-    const t = TIERS[state.tier-1];
-    tierLabel.textContent = 'Tier ' + t.roman + ' · ' + t.name;
-    intensityBar.style.width = (state.tier * 16.66) + '%';
-    stage.innerHTML =
-      '<div class="go-tier-intro">' +
-        '<div class="t-num">Tier ' + t.roman + '</div>' +
-        '<h2>' + t.name + '</h2>' +
-        '<div class="t-sub">' + t.sub + '</div>' +
-        '<div class="t-mood">' + t.mood + '</div>' +
-        '<div class="go-actions">' +
-          '<button class="gbtn primary" id="roll-btn">Roll the dice</button>' +
-        '</div>' +
-      '</div>';
-    document.getElementById('roll-btn').addEventListener('click', renderDiceAndRoll);
-  }
-
-  function renderDiceAndRoll(){
-    const t = TIERS[state.tier-1];
-    stage.innerHTML =
-      '<div class="dice-area" id="dice-area"></div>' +
-      '<div class="die-labels"><span>Card</span><span>Modifier</span></div>';
-    const area = document.getElementById('dice-area');
-    const plumDie = buildDie('plum');
-    const goldDie = buildDie('gold');
-    area.appendChild(plumDie);
-    area.appendChild(goldDie);
-
-    // start at face 1 so the geometry resolves
-    plumDie.style.transform = faceRotations[1];
-    goldDie.style.transform = faceRotations[1];
-
-    // roll on next tick
-    requestAnimationFrame(()=>{
-      const cardN = rollDie();
-      const modN  = rollDie();
-      state.lastCardDie = cardN;
-      state.lastModDie = modN;
-      animateDie(plumDie, cardN);
-      animateDie(goldDie, modN);
-      setTimeout(()=>{ renderCard(cardN, modN); }, 1700);
-    });
-  }
-
-  function renderCard(cardN, modN){
-    const t = TIERS[state.tier-1];
-    const text = CARDS[state.tier][cardN-1];
-    const mod = MODIFIERS[modN-1];
-    const giver = state.giverIsA ? 'A' : 'B';
-    const receiver = state.giverIsA ? 'B' : 'A';
-
-    // keep dice visible but smaller; card appears below
-    stage.innerHTML =
-      '<div class="game-card" id="game-card">' +
-        '<div class="gc-header">' +
-          '<div class="gc-tier">Tier ' + t.roman + ' · ' + t.name + '</div>' +
-          '<div class="gc-direction">' +
-            'Giver: <strong>' + giver + '</strong> <span class="arrow">→</span> Receiver: <strong>' + receiver + '</strong>' +
-          '</div>' +
-        '</div>' +
-        '<div class="gc-text">' + text + '</div>' +
-        (mod.name !== 'Pure' ?
-          '<div class="gc-mod">' +
-            '<span class="gc-mod-label">Modifier · ' + mod.name + '</span>' +
-            '<span class="gc-mod-text">' + mod.text + '</span>' +
-          '</div>' : '') +
-      '</div>' +
-      '<div class="go-actions">' +
-        '<button class="gbtn primary" id="done-btn">Done</button>' +
-        '<button class="gbtn ghost" id="skip-btn">Skip</button>' +
-        (state.cardsThisTier >= 2 ?
-          '<button class="gbtn solid-dark" id="advance-btn">Advance tier ' +
-            (state.tier < 6 ? '→' : '· finale') + '</button>' : '') +
-      '</div>';
-    requestAnimationFrame(()=>{
-      document.getElementById('game-card').classList.add('visible');
-    });
-    document.getElementById('done-btn').addEventListener('click', nextCard);
-    document.getElementById('skip-btn').addEventListener('click', nextCard);
-    const adv = document.getElementById('advance-btn');
-    if (adv) adv.addEventListener('click', advanceTier);
-  }
-
-  function nextCard(){
-    state.cardsThisTier++;
-    state.giverIsA = !state.giverIsA;
-    renderDiceAndRoll();
-  }
-
-  function advanceTier(){
-    if (state.tier >= 6){ renderEnding(); return; }
-    state.tier++;
-    state.cardsThisTier = 0;
-    renderBreath();
-  }
-
-  function renderBreath(){
-    const t = TIERS[state.tier-1];
-    tierLabel.textContent = 'Tier ' + t.roman + ' · ' + t.name;
-    intensityBar.style.width = (state.tier * 16.66) + '%';
-    stage.innerHTML =
-      '<div class="breath">' +
-        '<div class="breath-circle">Breathe</div>' +
-        '<h3>Before we move on</h3>' +
-        '<p>Stay here for a moment. Look at them. Drink some water if you need it. The next tier begins when you are both ready.</p>' +
-        '<div class="go-actions">' +
-          '<button class="gbtn primary" id="continue-btn">Enter ' + t.name + '</button>' +
-          '<button class="gbtn ghost" id="stay-btn">Actually — stay at the last tier</button>' +
-        '</div>' +
-      '</div>';
-    document.getElementById('continue-btn').addEventListener('click', renderTierIntro);
-    document.getElementById('stay-btn').addEventListener('click', ()=>{
-      state.tier--;
-      tierLabel.textContent = 'Tier ' + TIERS[state.tier-1].roman + ' · ' + TIERS[state.tier-1].name;
-      intensityBar.style.width = (state.tier * 16.66) + '%';
-      renderDiceAndRoll();
-    });
-  }
-
-  function renderEnding(){
-    tierLabel.textContent = 'Becoming · complete';
-    intensityBar.style.width = '100%';
-    stage.innerHTML =
-      '<div class="ending">' +
-        '<h2>The cards are over.</h2>' +
-        '<p>What happens next belongs only to you. Stay with each other. Stay in the dark. Stay slow. There is nothing to perform and nowhere to be.</p>' +
-        '<p style="opacity:.55;font-size:.95rem">When you are ready to leave the room — and only then — the exit is at the top.</p>' +
-      '</div>';
-  }
-
-  function enterGame(){
-    state = { tier:1, cardsThisTier:0, giverIsA:true, lastCardDie:0, lastModDie:0, active:true };
-    overlay.classList.add('active');
-    overlay.setAttribute('aria-hidden','false');
-    document.body.style.overflow = 'hidden';
-    renderTierIntro();
-  }
-
-  function exitGame(){
-    if (state.active && !confirm('Exit the game? Progress is not saved.')) return;
-    overlay.classList.remove('active');
-    overlay.setAttribute('aria-hidden','true');
-    document.body.style.overflow = '';
-    state.active = false;
-  }
-
-  document.getElementById('bgame-begin-btn').addEventListener('click', enterGame);
-  document.getElementById('go-exit-btn').addEventListener('click', exitGame);
-  document.addEventListener('keydown', (e)=>{
-    if (e.key === 'Escape' && state.active) exitGame();
-  });
-</script>
 </body>
 </html>
