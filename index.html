@@ -146,68 +146,46 @@
   }
   .prompts li:first-of-type{border-top:none;padding-top:2px}
 
-  /* ---------- FOR US ---------- */
-  .forus{padding:80px 0 30px}
-  .forus .pn{
-    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.4em;
-    text-transform:uppercase;color:var(--gold);text-align:center;
+  /* expanded inline prompts inside .prompts boxes */
+  .prompts .q-block{
+    padding:18px 0 8px;border-top:1px dashed var(--line);
   }
-  .forus .pt{
-    font-family:'Fraunces',serif;font-weight:500;font-style:italic;
-    font-size:clamp(2rem,6vw,3rem);color:var(--plum-deep);
-    text-align:center;margin-top:8px;
+  .prompts .q-block:first-of-type{border-top:none;padding-top:6px}
+  .prompts .q-block .q-question{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:500;
+    font-size:1.06rem;color:var(--plum-deep);margin-bottom:6px;line-height:1.32;
   }
-  .forus .pd{
-    color:var(--ink-soft);max-width:36ch;margin:14px auto 50px;
-    text-align:center;font-size:.98rem;
-  }
-  .q-prepared{
-    margin:30px 0;padding:32px 28px 26px;
-    background:var(--paper-warm);
-    border:1px solid var(--line);border-left:3px solid var(--plum);
-    border-radius:3px;
-    opacity:0;transform:translateY(20px);
-    transition:opacity .7s ease,transform .7s ease;
-  }
-  .q-prepared.in{opacity:1;transform:none}
-  .q-prepared .qnum{
-    font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.3em;
-    text-transform:uppercase;color:var(--plum);font-weight:600;
-  }
-  .q-prepared .qtext{
-    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
-    font-size:clamp(1.2rem,3vw,1.5rem);line-height:1.3;
-    color:var(--ink);margin:10px 0 22px;
-  }
-  .q-prepared .label{
-    font-family:'Fraunces',serif;font-size:.68rem;letter-spacing:.28em;
+  .prompts .q-block .q-label{
+    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.24em;
     text-transform:uppercase;color:var(--gold);font-weight:600;
-    margin:18px 0 8px;display:flex;align-items:center;gap:10px;
+    display:block;margin:12px 0 6px;
   }
-  .q-prepared .label::before{content:"✦";color:var(--gold);font-size:.8rem}
-  .q-prepared .thought{color:var(--ink-soft);margin-bottom:4px}
-  .q-prepared .thought strong{color:var(--plum-deep);font-weight:600}
-  .q-prepared .ways li{
-    list-style:none;padding:8px 0;border-top:1px solid var(--line);
-    font-style:italic;color:var(--ink-soft);
+  .prompts .q-block .q-thought{
+    color:var(--ink-soft);font-style:normal;font-size:.96rem;
+    line-height:1.55;margin-bottom:2px;
   }
-  .q-prepared .ways li:first-of-type{border-top:none;padding-top:2px}
-  .q-open{
-    margin:22px 0;padding:22px 24px;
-    border-top:1px solid var(--line);
-    opacity:0;transform:translateY(16px);
-    transition:opacity .7s ease,transform .7s ease;
+  .prompts .q-block .q-thought strong{color:var(--plum-deep);font-weight:600}
+  .prompts .q-block .q-ways{margin-top:2px;list-style:none;padding:0}
+  .prompts .q-block .q-ways li{
+    list-style:none;padding:6px 0 6px 14px;border-top:none;
+    font-style:italic;color:var(--ink-soft);font-size:.94rem;
+    position:relative;
   }
-  .q-open.in{opacity:1;transform:none}
-  .q-open .qnum{
-    font-family:'Fraunces',serif;font-size:.7rem;letter-spacing:.3em;
-    text-transform:uppercase;color:var(--plum);font-weight:600;
+  .prompts .q-block .q-ways li::before{
+    content:"·";position:absolute;left:0;color:var(--gold);
+    font-weight:700;font-style:normal;
   }
-  .q-open .qtext{
-    font-family:'Fraunces',serif;font-style:italic;
-    font-size:clamp(1.1rem,2.6vw,1.3rem);line-height:1.32;
-    color:var(--ink);margin-top:8px;
+  .prompts .q-more-label{
+    font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--gold);font-weight:600;
+    display:block;margin:22px 0 4px;
   }
+  .prompts .q-more{list-style:none;padding:0;margin:0}
+  .prompts .q-more li{
+    list-style:none;padding:9px 0;border-top:1px solid var(--line);
+    font-style:italic;color:var(--ink-soft);font-size:.98rem;
+  }
+  .prompts .q-more li:first-of-type{border-top:none;padding-top:2px}
 
   /* ---------- CLOSE ---------- */
   .close{padding:70px 0 30px;text-align:center}
@@ -272,10 +250,35 @@
     <p>Trauma resurfaces in midlife when life finally goes quiet — but so does the possibility of <strong>post-traumatic growth</strong>. The brain is malleable; people don't just survive what they thought would break them, they sometimes grow from it.</p>
     <div class="prompts">
       <h3>To talk about</h3>
-      <ul>
-        <li>What's been "glassy on the surface, wild underneath" for each of us lately?</li>
-        <li>Where might we be reaching for a solution to something we haven't actually named yet?</li>
-      </ul>
+            <div class="q-block">
+              <p class="q-question">What's been "glassy on the surface, wild underneath" for each of us lately?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The book's image of a sea calm on top with a whirlpool underneath — that's how a lot of midlife runs. Composed on the surface, with grief, fatigue, anger or doubt circling beneath. <strong>Naming what's underneath is half the work;</strong> the other half is letting someone witness it.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What have you been holding together by sheer effort that you'd love to put down?</li>
+                <li>Is there a feeling you've been carrying that hasn't yet found words?</li>
+                <li>When was the last time you let the surface crack — and who got to see it?</li>
+              </ul>
+            </div>
+            <div class="q-block">
+              <p class="q-question">Where might we be reaching for a solution to something we haven't actually named yet?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The chapter notes how often people reach for antidepressants, alcohol, affairs or distractions to soothe something they haven't named. <strong>The right intervention often starts with the right diagnosis</strong> — and that means honesty before fixes.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What habits or fixes are we leaning on without quite knowing why?</li>
+                <li>Where is the symptom obvious and the cause still hidden?</li>
+              </ul>
+            </div>
+            <span class="q-more-label">More to explore</span>
+            <ul class="q-more">
+              <li>What did the women in your family model about handling hard times — and what would you do differently?</li>
+              <li>Trauma can resurface in midlife when life finally goes quiet. What's something old making itself known again?</li>
+              <li>Where do you most need someone to "just be there" — and where can I be that?</li>
+              <li>The book calls journaling "recycling for the brain." What private practice — writing, walking, riding — helps you process?</li>
+              <li>Post-traumatic growth, not just stress: what have you grown from that you thought would break you?</li>
+            </ul>
     </div>
   </section>
 
@@ -288,10 +291,35 @@
     <p>The encouraging part: the science finally confirms what women have reported for decades. The disruption is real, the destination often sharper. Lifestyle (Mediterranean diet, exercise, meditation) and, for some, HRT all support the rebuild.</p>
     <div class="prompts">
       <h3>To talk about</h3>
-      <ul>
-        <li>If the "renovation" leaves us as different people, who do we each want to become?</li>
-        <li>What would it change to treat brain fog as scaffolding rather than decline?</li>
-      </ul>
+            <div class="q-block">
+              <p class="q-question">If the "renovation" leaves us as different people, who do we each want to become?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The book frames perimenopause as a third puberty — the brain genuinely rewires, and who emerges may be sharper, leaner, more honest. The question is whether <strong>we steer the renovation or let it happen to us.</strong></p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>If we look back from ten years on, what kind of person do you want to have become?</li>
+                <li>What part of who you've been so far would you like to keep — and what would you let go?</li>
+                <li>Which parts of yourself have you been quietly outgrowing?</li>
+              </ul>
+            </div>
+            <div class="q-block">
+              <p class="q-question">What would it change to treat brain fog as scaffolding rather than decline?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">If brain fog is the brain switching fuel from glucose to blood flow during the rewire, it's not a sign of decline — it's <strong>the dust during the build</strong>. The relief is real: this is temporary scaffolding, not the finished house.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What would change about your day if you trusted this was rebuilding, not breaking?</li>
+                <li>How can I make space for the fog days without making them feel like a failure?</li>
+              </ul>
+            </div>
+            <span class="q-more-label">More to explore</span>
+            <ul class="q-more">
+              <li>Which of the three rewires — puberty, pregnancy, perimenopause — felt the most disorienting in real time?</li>
+              <li>What new ability or insight has shown up that wasn't there before?</li>
+              <li>What would you want me to know about the days when nothing's coming through clearly?</li>
+              <li>If postmenopausal zest is real, what would you want to use it for?</li>
+              <li>Where could lifestyle — diet, exercise, sleep, meditation — actually support the rebuild?</li>
+            </ul>
     </div>
   </section>
 
@@ -303,10 +331,34 @@
     <p>A diagnosis at this stage often works as <strong>"retroactive backgammon"</strong> — re-reading a whole life and seeing why the moves played out as they did. It can be both relief and grief. The black-and-white, "whistleblower" honesty common in neurodivergent people is a genuine strength society misreads as "being difficult."</p>
     <div class="prompts">
       <h3>To talk about</h3>
-      <ul>
-        <li>Are there patterns in either of our lives that might read differently with more self-knowledge?</li>
-        <li>Where do we mask — and what does the masking cost?</li>
-      </ul>
+            <div class="q-block">
+              <p class="q-question">Are there patterns in either of our lives that might read differently with more self-knowledge?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The book makes the case that late diagnoses often work as <strong>"retroactive backgammon"</strong> — a whole life suddenly making sense in a new light. You don't need a formal diagnosis for the same effect; honest reflection on patterns can also reframe.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What's a pattern that's repeated through your life that you've only recently started to see?</li>
+                <li>Has anything about yourself ever felt "wrong" that might actually just be different?</li>
+              </ul>
+            </div>
+            <div class="q-block">
+              <p class="q-question">Where do we mask — and what does the masking cost?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">Masking — performing the version of yourself the room expects — is exhausting work most women have been doing since girlhood. The cost isn't just energy; <strong>it's the slow erosion of knowing what you actually feel.</strong></p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>Where do you have to be a different version of yourself to get through the day?</li>
+                <li>When are you most fully who you are — and who's around you when that happens?</li>
+              </ul>
+            </div>
+            <span class="q-more-label">More to explore</span>
+            <ul class="q-more">
+              <li>What would you do or say if you stopped editing yourself for one week?</li>
+              <li>Whose approval are you still seeking that you don't even want anymore?</li>
+              <li>Where have you been told you're "too much" when you were just being honest?</li>
+              <li>What does it cost to be the calm one, the organised one, the one who manages?</li>
+              <li>Which of our daughters' generation will inherit the masking, and how can we break it earlier?</li>
+            </ul>
     </div>
   </section>
 
@@ -319,10 +371,35 @@
     <p>Leaving a role isn't the end of the road. Decades of resilience and a deep network are assets. The reinvention question: if not now, when?</p>
     <div class="prompts">
       <h3>To talk about</h3>
-      <ul>
-        <li>What would each of us do with a "second or third career"?</li>
-        <li>Where are we self-censoring at work to avoid looking "weak"?</li>
-      </ul>
+            <div class="q-block">
+              <p class="q-question">What would each of us do with a "second or third career"?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The book argues midlife is when reinvention finally becomes possible — children older, expertise deep, less to lose by being honest. <strong>The cliché "if not now, when?" is the right question.</strong></p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>If you could redesign your work life around what you actually want, what would shift?</li>
+                <li>What skills do you have that nobody has ever asked you to use?</li>
+                <li>What would the third career look like if you started planting it now?</li>
+              </ul>
+            </div>
+            <div class="q-block">
+              <p class="q-question">Where are we self-censoring at work to avoid looking "weak"?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The book names the silent cost: hiding fatigue, brain fog, the harder days — and in doing so, hiding the real self. <strong>Honesty about menopause at work, paradoxically, often advances careers</strong> by building trust.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What would change if you stopped pretending you were fine on the days you weren't?</li>
+                <li>Where does silence cost you more than honesty would?</li>
+              </ul>
+            </div>
+            <span class="q-more-label">More to explore</span>
+            <ul class="q-more">
+              <li>One in ten women leave jobs due to menopause symptoms. What does your workplace actually understand about this?</li>
+              <li>What's the most useful thing a manager could do for women in midlife — and have you ever had one who did it?</li>
+              <li>If money weren't the constraint, what work would you choose?</li>
+              <li>What part of your identity is tied to your job, and what happens if it changes?</li>
+              <li>Who in your career do you wish you'd told the truth to, when it mattered?</li>
+            </ul>
     </div>
   </section>
 
@@ -334,10 +411,34 @@
     <p>The toolkit: HRT (started in the window of perimenopause/early menopause), <strong>resistance training and HIIT</strong>, a Mediterranean diet, good sleep, and treating hot flushes and night sweats (which correlate with more plaques). Vascular dementia is largely about keeping blood flowing — diet, not smoking, lowering blood pressure. Prevention beats the weak, expensive "cures."</p>
     <div class="prompts">
       <h3>To talk about</h3>
-      <ul>
-        <li>What's one preventive habit each of us could start this month and actually keep?</li>
-        <li>What did we watch our own parents go through, and what do we want to do differently?</li>
-      </ul>
+            <div class="q-block">
+              <p class="q-question">What's one preventive habit each of us could start this month and actually keep?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The encouraging message is that <strong>midlife is the prevention window</strong> — not too late, not too early. One habit, started and kept, beats five intended and dropped.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>Where do you already have a habit that's working — and what would it take to add one more?</li>
+                <li>What's a small thing we could do together that would actually stick?</li>
+              </ul>
+            </div>
+            <div class="q-block">
+              <p class="q-question">What did we watch our own parents go through, and what do we want to do differently?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">Watching a parent decline reshapes how you think about your own ageing. The book argues this generation has the knowledge and tools earlier ones didn't — <strong>and using them honours what we watched.</strong></p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What do you wish someone had done for your parents that wasn't done?</li>
+                <li>What conversations with our daughters about ageing do you want to have early?</li>
+              </ul>
+            </div>
+            <span class="q-more-label">More to explore</span>
+            <ul class="q-more">
+              <li>HRT in the early window can roughly halve Alzheimer's risk, the book says. Where do you stand on that, and what's holding you back if anything?</li>
+              <li>What's the single most important hour of your week for brain and body — and how protected is it?</li>
+              <li>Sleep, hot flushes, night sweats: how honestly are you tracking what your body is doing?</li>
+              <li>Mediterranean diet, resistance training, treating hot flushes — which one feels most doable, and which least?</li>
+              <li>What would "ageing on purpose" look like for the two of us, ten years from now?</li>
+            </ul>
     </div>
   </section>
 
@@ -350,10 +451,34 @@
     <p>Beyond the biology, it's <strong>community and eccentricity</strong> — odd costumes at odd hours by odd people — and a small daily proof that you can face the worst and keep walking.</p>
     <div class="prompts">
       <h3>To talk about</h3>
-      <ul>
-        <li>What's our version of the cold plunge — the thing that resets us?</li>
-        <li>Where could a small dose of "good stress" build our tolerance for the big kind?</li>
-      </ul>
+            <div class="q-block">
+              <p class="q-question">What's our version of the cold plunge — the thing that resets us?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">Cold water works because it <strong>forces presence</strong> — you can't worry about email when your body is on fire from the cold. Everyone has some version of this, and they tend to be physical and uncomplicated.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What's the thing that, after twenty minutes of doing it, makes everything quieter inside?</li>
+                <li>When did you last feel completely present — and what were you doing?</li>
+              </ul>
+            </div>
+            <div class="q-block">
+              <p class="q-question">Where could a small dose of "good stress" build our tolerance for the big kind?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The book calls it <strong>hormesis</strong> — a controlled small stress that makes the system more resilient to bigger ones. Riding, training, a cold shower, public speaking — all the same family.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>Where do you already do this without naming it?</li>
+                <li>What's one small uncomfortable thing you could add this month?</li>
+              </ul>
+            </div>
+            <span class="q-more-label">More to explore</span>
+            <ul class="q-more">
+              <li>What community do you find by accident — the people doing the same odd thing at the same odd hour?</li>
+              <li>The book says "there's no ego in the cold." Where else does ego just dissolve for you?</li>
+              <li>What's something physically hard you do that builds the rest of your life?</li>
+              <li>What would it take to add a daily reset — even five minutes — to your routine?</li>
+              <li>If we built a small ritual together — cold dip, walk before sunrise, anything — what would actually fit our lives?</li>
+            </ul>
     </div>
   </section>
 
@@ -373,10 +498,34 @@
     <p>The practical path: track your symptoms, walk in informed, ask for transdermal estrogen plus micronised progesterone, and adjust the dose — it's not a lifetime commitment to try. Beware "menopause-friendly" marketing that sells everything except the actual hormones.</p>
     <div class="prompts">
       <h3>To talk about</h3>
-      <ul>
-        <li>What have we each absorbed about HRT, and where did that belief come from?</li>
-        <li>How do we tell medical fact from cultural story on this?</li>
-      </ul>
+            <div class="q-block">
+              <p class="q-question">What have we each absorbed about HRT, and where did that belief come from?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The 2002 scare lodged in a generation's mind and never fully left, even though it concerned a different, older formulation. <strong>Most of what we "know" about HRT is the cultural residue of that headline</strong>, not the current science.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What did your mother, your friends, your colleagues believe — and how did it shape what you believe?</li>
+                <li>What would you actually want to know before deciding?</li>
+              </ul>
+            </div>
+            <div class="q-block">
+              <p class="q-question">How do we tell medical fact from cultural story on this?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The book's practical answer: <strong>track your own symptoms, walk in informed, ask for transdermal estrogen plus micronised progesterone, and adjust.</strong> It's not a lifetime commitment to try.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>Who would be the right specialist to actually have this conversation with?</li>
+                <li>What questions would you bring to that appointment?</li>
+              </ul>
+            </div>
+            <span class="q-more-label">More to explore</span>
+            <ul class="q-more">
+              <li>The book lists over twenty symptoms HRT can address. How many do you have in a typical week?</li>
+              <li>Where are you "managing through" something that doesn't need to be managed?</li>
+              <li>What's the difference between symptom relief and longevity benefit, in your reading?</li>
+              <li>If a friend asked you what you thought of HRT today, what would you honestly say?</li>
+              <li>What would it mean to consult a menopause specialist this year — not to commit, just to know?</li>
+            </ul>
     </div>
   </section>
 
@@ -389,10 +538,34 @@
     <p>Emerging research points to protective effects for brain, heart and bone. The resistance is less about science than about <strong>gender destabilisation</strong> — and, Muir suspects, discomfort at older women holding renewed power.</p>
     <div class="prompts">
       <h3>To talk about</h3>
-      <ul>
-        <li>Why does the same hormone get celebrated in men and feared in women?</li>
-        <li>What would "living in hope rather than fear" look like for our own health choices?</li>
-      </ul>
+            <div class="q-block">
+              <p class="q-question">Why does the same hormone get celebrated in men and feared in women?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">Testosterone is the hormone women produce most (outside pregnancy), but a century of gendering hormones has buried the science. <strong>The fear is cultural, not biological.</strong></p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>Where else do we carry "men have this, women don't" thinking that's actually wrong?</li>
+                <li>What do you think it would change to top this hormone up, if your doctor agreed?</li>
+              </ul>
+            </div>
+            <div class="q-block">
+              <p class="q-question">What would "living in hope rather than fear" look like for our own health choices?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">Hope-based decisions look forward: <strong>what do I want to be able to do at seventy?</strong> Fear-based decisions look at what might go wrong. The book argues we have enough evidence now to plan ahead.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What are you choosing now because of fear rather than what you actually want?</li>
+                <li>What's a decision you'd make differently if you assumed the science would be on your side?</li>
+              </ul>
+            </div>
+            <span class="q-more-label">More to explore</span>
+            <ul class="q-more">
+              <li>Libido, energy, mood, cognition, muscle, bone — which would you most want back if you could choose one?</li>
+              <li>Where do you feel most yourself in a physical sense, and where do you feel the loss?</li>
+              <li>The book says testosterone may protect brain, heart and bone. What would that mean for the next thirty years?</li>
+              <li>What's the most useful conversation you've ever had with a doctor about your own hormones?</li>
+              <li>If older women holding renewed power makes the system uncomfortable, what does that tell us?</li>
+            </ul>
     </div>
   </section>
 
@@ -405,10 +578,35 @@
     <p>Midlife can be a sexual reinvention — including fluidity and exploration. The work is often learning to <strong>ask for what you want</strong> after a lifetime of people-pleasing.</p>
     <div class="prompts">
       <h3>To talk about</h3>
-      <ul>
-        <li>What have we never quite said out loud to each other that we could?</li>
-        <li>Where have we been "playing an old role" rather than meeting who we are now?</li>
-      </ul>
+            <div class="q-block">
+              <p class="q-question">What have we never quite said out loud to each other that we could?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The chapter's quietest point is that <strong>most couples don't actually talk about sex</strong>, even after years together. The book's central premise is that pleasure — not orgasm, not penetration — is the measure. That's a conversation, not a performance.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What would help you feel safer telling me what works and what doesn't?</li>
+                <li>What's something you've always wanted me to know but never quite said?</li>
+                <li>What words do you wish we both used more comfortably?</li>
+              </ul>
+            </div>
+            <div class="q-block">
+              <p class="q-question">Where have we been "playing an old role" rather than meeting who we are now?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The "old role" is the script we inherited — what good sex was supposed to look like, what we were supposed to want, how often. <strong>Midlife is the chance to put the script down and write the actual one.</strong></p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What did you believe about sex when you were younger that no longer fits?</li>
+                <li>Where have we been performing rather than being?</li>
+              </ul>
+            </div>
+            <span class="q-more-label">More to explore</span>
+            <ul class="q-more">
+              <li>The book says fewer than one in four women orgasm from penetration alone. How does that fact land for you?</li>
+              <li>What's the difference between feeling close and feeling safe — and which do you need more?</li>
+              <li>Privacy, time, no pressure, foreplay — which one matters most right now?</li>
+              <li>What does a beautiful, unhurried evening of intimacy actually look like to you?</li>
+              <li>Where in our intimate life would you want me to lead less and follow more?</li>
+            </ul>
     </div>
   </section>
 
@@ -421,10 +619,34 @@
     <p>Probiotics, hydration and a vegetable-rich diet help too. The theme: a whole generation has suffered in silence over something simple and treatable.</p>
     <div class="prompts">
       <h3>To talk about</h3>
-      <ul>
-        <li>Who in our lives — a mother, an aunt — might this knowledge actually help?</li>
-        <li>What other "just getting old" problems might really be preventable?</li>
-      </ul>
+            <div class="q-block">
+              <p class="q-question">Who in our lives — a mother, an aunt — might this knowledge actually help?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The book is full of <strong>preventable suffering</strong> — UTIs that turned into hospital stays, dryness that ended sex lives, all addressed by something as simple as low-dose vaginal estrogen. Knowledge is genuinely shareable here.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>Which older woman in your life would benefit most from this chapter?</li>
+                <li>How comfortable do you feel sharing this knowledge with the women around you?</li>
+              </ul>
+            </div>
+            <div class="q-block">
+              <p class="q-question">What other "just getting old" problems might really be preventable?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The book's whole project is unpicking <strong>what's ageing and what's actually a treatable hormone deficiency</strong>. The line between them moves every decade.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What discomforts have you been told to accept that you suspect aren't normal?</li>
+                <li>Where do you see your own mother's pattern in yourself, and where do you want to break it?</li>
+              </ul>
+            </div>
+            <span class="q-more-label">More to explore</span>
+            <ul class="q-more">
+              <li>What did you grow up being told about the female body that turned out to be wrong?</li>
+              <li>How much of women's health is private suffering that doesn't need to be?</li>
+              <li>What would change in healthcare if doctors actually learned the vulva properly?</li>
+              <li>Whose mother — yours or someone you know — is suffering from something simple that nobody's named?</li>
+              <li>What's the message you'd want Tiffany and Chloe to grow up hearing about all this?</li>
+            </ul>
     </div>
   </section>
 
@@ -437,10 +659,34 @@
     <p>Low muscle mass is the first sign of low bone density. Building muscle isn't masculine vanity — it's the single thing that protects independence, metabolism, bones, balance and brain resilience as you age.</p>
     <div class="prompts">
       <h3>To talk about</h3>
-      <ul>
-        <li>What's our honest relationship with strength training right now?</li>
-        <li>Could we make lifting something we do together?</li>
-      </ul>
+            <div class="q-block">
+              <p class="q-question">What's our honest relationship with strength training right now?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The book is uncompromising: <strong>"namby-pamby pink weights" don't build bone.</strong> Real strength training does. The question is whether we've been doing it or just performing it.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What does "training hard" actually mean to you, on a normal day?</li>
+                <li>Where could you push more — and where are you already at the edge?</li>
+              </ul>
+            </div>
+            <div class="q-block">
+              <p class="q-question">Could we make lifting something we do together?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">Training together changes the habit — and <strong>it makes the harder days easier because someone else is showing up too</strong>. It's also a sneakily intimate thing to do.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What would a weekly session together look like that we'd both actually keep?</li>
+                <li>What would you want me to learn so I could train smarter with you?</li>
+              </ul>
+            </div>
+            <span class="q-more-label">More to explore</span>
+            <ul class="q-more">
+              <li>Bone density loss starts in perimenopause. How recently have you checked yours?</li>
+              <li>"Muscle is the organ of longevity," the book says. What does longevity actually look like for you?</li>
+              <li>What sport or movement would you take up if intimidation weren't part of it?</li>
+              <li>How much protein are you eating per day, honestly?</li>
+              <li>If your independence at eighty depends on muscle today, what changes this week?</li>
+            </ul>
     </div>
   </section>
 
@@ -453,10 +699,34 @@
     <p>Semaglutides (Ozempic and kin) can help, but risk muscle and bone loss — so pair them with weight training and, where suitable, HRT. The deeper shift is from a lifetime of food-as-guilt to food-as-fuel.</p>
     <div class="prompts">
       <h3>To talk about</h3>
-      <ul>
-        <li>What food stories from our younger years are we still carrying?</li>
-        <li>How would meals change if "strong" replaced "thin" as the goal?</li>
-      </ul>
+            <div class="q-block">
+              <p class="q-question">What food stories from our younger years are we still carrying?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">We all grew up with a food story — <strong>what was virtuous, what was greedy, what was for women, what was for men</strong>. The book argues midlife is when those stories visibly stop serving us.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What did food mean in your house growing up?</li>
+                <li>What's the loudest old voice about food still in your head?</li>
+              </ul>
+            </div>
+            <div class="q-block">
+              <p class="q-question">How would meals change if "strong" replaced "thin" as the goal?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">"Strong" changes everything: what you eat, when, how much, what it's for. <strong>It's a goal that grows with you instead of shrinking you.</strong></p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>If strength were the only goal, what would breakfast look like?</li>
+                <li>What do you eat that fuels you, and what just fills you?</li>
+              </ul>
+            </div>
+            <span class="q-more-label">More to explore</span>
+            <ul class="q-more">
+              <li>The book talks about eating veg first, sweet things last. What small change would you try?</li>
+              <li>Thirty plants a week — where are you currently, and where do you want to be?</li>
+              <li>What food do you reach for when you're tired or stressed, and what is it really doing for you?</li>
+              <li>Semaglutides are everywhere now. Where do you stand on them?</li>
+              <li>What would change about meals in your house if you cooked for the woman you're becoming, not the one you were?</li>
+            </ul>
     </div>
   </section>
 
@@ -476,10 +746,34 @@
     <p>For those who struggle, addiction is "a normal response to trauma," and recovery runs on <strong>community and honesty</strong> — twelve-step, Smart Recovery, therapy. The chapter's gift is simply permission to look hard at a habit hardwired into every social ritual.</p>
     <div class="prompts">
       <h3>To talk about</h3>
-      <ul>
-        <li>What does each drink actually do for us — and is it still doing it?</li>
-        <li>What would "sober-curious" change about how we spend evenings together?</li>
-      </ul>
+            <div class="q-block">
+              <p class="q-question">What does each drink actually do for us — and is it still doing it?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The book's diagnostic question: <strong>don't ask why the addiction, ask why the pain.</strong> Most drinks at midlife are anaesthetic — and that's worth knowing, not judging.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What feeling are you usually trying to soften when you reach for a drink?</li>
+                <li>What does the first drink change, and what does the third?</li>
+              </ul>
+            </div>
+            <div class="q-block">
+              <p class="q-question">What would "sober-curious" change about how we spend evenings together?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">Cutting back doesn't have to mean cutting out — and the book makes the case <strong>the upside is real: sleep, skin, mood, presence</strong>. The evenings just feel different, often better.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What would change about our weekends if we drank half?</li>
+                <li>What would we replace the ritual with — tea, a walk, music, something else?</li>
+              </ul>
+            </div>
+            <span class="q-more-label">More to explore</span>
+            <ul class="q-more">
+              <li>Over two units a day raises breast cancer risk by 20%. How much have you actually had in the last week?</li>
+              <li>What was modelled for you about drinking growing up?</li>
+              <li>Where is alcohol still attached to celebration, friendship or coping in your life?</li>
+              <li>When do you drink because you want to, and when because you're supposed to?</li>
+              <li>What's the smallest experiment with cutting back that you'd actually do?</li>
+            </ul>
     </div>
   </section>
 
@@ -492,10 +786,34 @@
     <p>The practical fixes are small and firm: no phone in bed (get a real alarm clock), batch emails, carry a notebook, protect attention, and — crucially — <strong>model good behaviour</strong> for the people who look to you. Use tech for connection, not as ultra-processed mental food.</p>
     <div class="prompts">
       <h3>To talk about</h3>
-      <ul>
-        <li>Where is the phone stealing presence we'd rather give each other?</li>
-        <li>What's one boundary we could set — and actually hold?</li>
-      </ul>
+            <div class="q-block">
+              <p class="q-question">Where is the phone stealing presence we'd rather give each other?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The book names <strong>"continuous partial attention"</strong> — phones keep us never fully here and never fully resting. Presence is the thing relationships need most and the thing screens steal most easily.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>When did you last spend a whole evening without your phone in reach?</li>
+                <li>What do our girls' future relationships with phones look like, and who's modelling that?</li>
+              </ul>
+            </div>
+            <div class="q-block">
+              <p class="q-question">What's one boundary we could set — and actually hold?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">Boundaries fail when they're vague. <strong>"No phones at dinner" is a boundary; "we should use them less" isn't.</strong> Specific is the only kind that holds.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What's one specific phone-free moment we could commit to?</li>
+                <li>What would make it easy to keep, not a struggle?</li>
+              </ul>
+            </div>
+            <span class="q-more-label">More to explore</span>
+            <ul class="q-more">
+              <li>The book says phones eat the "default mode network" — the daydreaming part of the brain. When do you actually let your mind wander?</li>
+              <li>What apps make you feel worse afterwards, and why are they still on your phone?</li>
+              <li>What did you used to do with the time the phone now takes?</li>
+              <li>Where do you use the phone for connection, and where for escape?</li>
+              <li>What would it take to put the phone in another room overnight, every night?</li>
+            </ul>
     </div>
   </section>
 
@@ -508,11 +826,35 @@
     <p>The hopeful thread is the <strong>"couplepause"</strong>: get therapy early, before conflict becomes unbearable; communicate; see your partner's burden (men carry their own mental load and hear "I don't trust you" as "you are not enough"). Affairs take energy out of a relationship — but couples who repair often come back stronger.</p>
     <div class="prompts">
       <h3>To talk about</h3>
-      <ul>
-        <li>What does each of us carry that the other might not fully see?</li>
-        <li>What would a regular "relationship MOT" look like for us?</li>
-        <li>When one of us goes quiet after conflict — what's really happening underneath?</li>
-      </ul>
+            <div class="q-block">
+              <p class="q-question">What does each of us carry that the other might not fully see?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The book's central observation about couples: <strong>women feel the domestic and emotional weight; men carry financial and silent worry; both feel unseen by the other.</strong> The fix is making the invisible visible.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What's a weight you carry that I underestimate?</li>
+                <li>What's something you do for me that I take for granted?</li>
+                <li>What's a fear or worry you've never said out loud to me?</li>
+              </ul>
+            </div>
+            <div class="q-block">
+              <p class="q-question">What would a regular "relationship MOT" look like for us?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">"Relationships, like cars, need regular MOTs," the book says. Most couples wait until something breaks. <strong>The book argues for proactive maintenance — a scheduled conversation, not just emergency repair.</strong></p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>How often should we sit down and check in honestly?</li>
+                <li>What questions belong in that check-in, every time?</li>
+              </ul>
+            </div>
+            <span class="q-more-label">More to explore</span>
+            <ul class="q-more">
+              <li>When one of us goes quiet after conflict — what's really happening underneath?</li>
+              <li>Divorce peaks at perimenopause central. What protects a relationship through this period, in your view?</li>
+              <li>The book says men often leave for someone new while women often leave just for time and selfhood. What does that distinction mean for you?</li>
+              <li>What would you want me to know about how perimenopause changes how you receive — and give — love?</li>
+              <li>What does "growing together rather than apart" look like for us in the next five years?</li>
+            </ul>
     </div>
   </section>
 
@@ -525,10 +867,34 @@
     <p>Against isolation, Muir surveys the alternatives: <strong>online dating</strong> (treat it as an anthropology experiment, cast wide), co-housing and "intentional communities," even van life. Humans were built for small groups sharing resources and company — not for living alone.</p>
     <div class="prompts">
       <h3>To talk about</h3>
-      <ul>
-        <li>Which friendships warm us, and which quietly drain us?</li>
-        <li>What kind of community do we want around us in twenty years?</li>
-      </ul>
+            <div class="q-block">
+              <p class="q-question">Which friendships warm us, and which quietly drain us?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The book frames friendships as either <strong>radiators (warm, restorative) or drains (depleting)</strong>. Midlife is when you finally have permission to choose.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>Who do you leave time with feeling fuller?</li>
+                <li>Who do you leave time with feeling smaller — and why are they still there?</li>
+              </ul>
+            </div>
+            <div class="q-block">
+              <p class="q-question">What kind of community do we want around us in twenty years?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The book surveys co-housing, "intentional communities," even van life. <strong>Humans were built for small groups sharing resources and time.</strong> Isolation in old age isn't inevitable; it's a default we can refuse.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>Who would be in your "co-living chapter" if you wrote it now?</li>
+                <li>What would proximity to the right people change about the next twenty years?</li>
+              </ul>
+            </div>
+            <span class="q-more-label">More to explore</span>
+            <ul class="q-more">
+              <li>The book says some friendships are for a season, not forever. Which are you holding onto out of habit?</li>
+              <li>Which friend has earned the right to know everything about you?</li>
+              <li>If our daughters needed a circle around them at fifty, what would you want that to look like?</li>
+              <li>What community have you been part of that taught you how to be in one?</li>
+              <li>Who haven't you seen in a year that you should call this month?</li>
+            </ul>
     </div>
   </section>
 
@@ -541,10 +907,35 @@
     <p>Often the trigger is rock bottom; often the freedom comes from no longer caring what anyone thinks. "Age is a privilege." The renaissance is a vision of your place in the wider world.</p>
     <div class="prompts">
       <h3>To talk about</h3>
-      <ul>
-        <li>What's the quiet pull each of us keeps not quite following?</li>
-        <li>If we cared less about success and failure, what would we make or do?</li>
-      </ul>
+            <div class="q-block">
+              <p class="q-question">What's the quiet pull each of us keeps not quite following?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The book describes midlife creators as <strong>"possessed by a need" more than choosing</strong> — the pull was always there, finally loud enough to follow. The work is paying attention to the pull.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What's the thing you keep coming back to in private?</li>
+                <li>What would you make or do if no one ever saw it?</li>
+                <li>What did young you love that adult you abandoned?</li>
+              </ul>
+            </div>
+            <div class="q-block">
+              <p class="q-question">If we cared less about success and failure, what would we make or do?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The freedom the book points to is the freedom of <strong>no longer caring how it looks</strong>. "Age is a privilege" — and the privilege is permission to be visibly imperfect.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What would you do if "failing" lost its meaning?</li>
+                <li>Whose opinion are you still secretly trying to win?</li>
+              </ul>
+            </div>
+            <span class="q-more-label">More to explore</span>
+            <ul class="q-more">
+              <li>The book says "creativity is creating yourself, not a painting." Where are you the creator of your own life — and where the consumer?</li>
+              <li>What would the girls say you actually love doing — and would they be right?</li>
+              <li>What would you do in a year set aside to be uncomfortable and curious?</li>
+              <li>When did you last make something — anything — for the joy of it?</li>
+              <li>What's the version of you that you've been avoiding letting out?</li>
+            </ul>
     </div>
   </section>
 
@@ -557,67 +948,37 @@
     <p>The trip surfaced <strong>self-compassion over self-criticism</strong>, and a buried, loving memory of her mother — reconnection rather than analysis. The wider point: physical changes send psychological waves, and the search they trigger can lead somewhere better — toward soul and essence.</p>
     <div class="prompts">
       <h3>To talk about</h3>
-      <ul>
-        <li>Setting aside the method — what would each of us want to heal or understand?</li>
-        <li>Where do we choose self-criticism when self-compassion is available?</li>
-      </ul>
+            <div class="q-block">
+              <p class="q-question">Setting aside the method — what would each of us want to heal or understand?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The book treats psilocybin as a tool, not a fix — and the real work is the question it forces: <strong>what would you actually want to heal, if the path were clear?</strong> The healing is mostly about reconnection, not analysis.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>If you had a single afternoon of total clarity, what would you want to see clearly?</li>
+                <li>Who would you want to forgive, or be forgiven by?</li>
+                <li>What memory do you keep at a distance that might want to come closer?</li>
+              </ul>
+            </div>
+            <div class="q-block">
+              <p class="q-question">Where do we choose self-criticism when self-compassion is available?</p>
+              <span class="q-label">A thought to bring</span>
+              <p class="q-thought">The book's deepest line is about <strong>replacing self-criticism with self-compassion</strong> — and noticing how often we choose the former when the latter is right there.</p>
+              <span class="q-label">Ways in</span>
+              <ul class="q-ways">
+                <li>What would you say to yourself if you spoke the way you speak to your best friend?</li>
+                <li>Where is harshness still standing in for honesty?</li>
+              </ul>
+            </div>
+            <span class="q-more-label">More to explore</span>
+            <ul class="q-more">
+              <li>The book describes "five years of therapy in one night." What would you want a year of therapy to do for you?</li>
+              <li>What's a love or memory you've kept hidden that deserves more light?</li>
+              <li>Where in your life is set, setting and integration already happening without the psychedelic?</li>
+              <li>Soul, essence, becoming — which of these words means most to you right now?</li>
+              <li>If you could send a message to yourself ten years from now, what would it say?</li>
+            </ul>
     </div>
   </section>
-
-  <!-- ================= FOR US ================= -->
-  <div class="forus">
-    <div class="pn">For Us</div>
-    <div class="pt">A conversation</div>
-    <div class="pd">Six questions to carry into the next quiet evening. The first two come with what's already been thought — the rest, only with you.</div>
-
-    <div class="q-prepared">
-      <div class="qnum">Question One · prepared</div>
-      <p class="qtext">What does it mean — really — when you say you want to "just be yourself, not someone's mom"?</p>
-      <div class="label">A thought to bring</div>
-      <p class="thought">This is the central question of the entire book. Midlife, for a woman, is the moment the roles built over decades — daughter, partner, mother, professional — stop fitting, and the self underneath starts asking to be let out again. Your exhaustion isn't about loving the girls or me any less. It's about <strong>always being someone's something</strong>. I want to understand what it would look like to give that underneath-self more room — not just an hour stolen here and there, but space that's actually yours by design.</p>
-      <div class="label">Ways in</div>
-      <ul class="ways">
-        <li>When in your life did you last feel most like yourself — and what made that possible?</li>
-        <li>What part of you do Tiffany and Chloe never get to see? What part does the office never see?</li>
-        <li>If you had one weekend a month that was nobody's but yours — no daughter, no Grace, no partner — what would you actually do with it?</li>
-        <li>What can I carry so that you carry less?</li>
-      </ul>
-    </div>
-
-    <div class="q-prepared">
-      <div class="qnum">Question Two · prepared</div>
-      <p class="qtext">Where am I adding weight to your life — and where am I lightening it?</p>
-      <div class="label">A thought to bring</div>
-      <p class="thought">I want to be the part that makes your life lighter, never heavier. But intention isn't enough — only you can tell me how it actually lands. The book calls this the <strong>couplepause</strong>: the place where two people, both changing, either learn to see each other clearly or quietly drift. I'd rather hear an honest answer that stings than a kind one that doesn't.</p>
-      <div class="label">Ways in</div>
-      <ul class="ways">
-        <li>When have I been "too much" — too intense, too fast, too soon — even when I meant well?</li>
-        <li>When have I been "just right" — the kind of presence that lets you breathe rather than brace?</li>
-        <li>What's something I do that you wish I did more of? Less of?</li>
-        <li>What would you ask of me if you knew I'd take it seriously and not flinch?</li>
-      </ul>
-    </div>
-
-    <div class="q-open">
-      <div class="qnum">Question Three · open</div>
-      <p class="qtext">What does "private and safe" mean to you — not only in bed, but in the rest of our life together?</p>
-    </div>
-
-    <div class="q-open">
-      <div class="qnum">Question Four · open</div>
-      <p class="qtext">Of all the women in this book — Rachael, Karen, Fiona, Muir herself — who did you most recognise yourself in, and which part of her story?</p>
-    </div>
-
-    <div class="q-open">
-      <div class="qnum">Question Five · open</div>
-      <p class="qtext">What's the hardest thing about this current life period that's hard to say in the moment — but easier to write, or to point at on a page?</p>
-    </div>
-
-    <div class="q-open">
-      <div class="qnum">Question Six · open</div>
-      <p class="qtext">If we let go of how any of this looks from the outside — to friends, to the girls, to the world — what would we change about how we spend our time together?</p>
-    </div>
-  </div>
 
   <!-- ================= CLOSE ================= -->
   <div class="close">
@@ -647,7 +1008,7 @@
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
-  document.querySelectorAll('.chapter, .q-prepared, .q-open').forEach(c=>io.observe(c));
+  document.querySelectorAll('.chapter').forEach(c=>io.observe(c));
 
   // smooth "begin" cue
   document.querySelector('.scroll-cue').addEventListener('click',()=>{
