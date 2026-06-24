@@ -482,8 +482,8 @@
   .wheel{position:relative;width:260px;height:260px;border-radius:50%;border:3px solid rgba(244,234,214,.18);
     box-shadow:0 18px 50px rgba(0,0,0,.55),inset 0 0 0 8px rgba(26,13,24,.35);transform:rotate(0deg)}
   .wheel-labels{position:absolute;inset:0}
-  .wheel-label{position:absolute;top:50%;left:50%;transform-origin:0 0;font-family:'Fraunces',serif;
-    font-size:.84rem;font-weight:600;color:#241018;white-space:nowrap;margin:-8px 0 0 -4px}
+  .wheel-label{position:absolute;top:50%;left:50%;transform-origin:0 0;margin:-9px 0 0 -4px}
+  .wl-txt{display:inline-block;font-family:'Fraunces',serif;font-size:.82rem;font-weight:600;white-space:nowrap;transform-origin:center;text-shadow:0 1px 2px rgba(0,0,0,.18)}
   .wheel-hub{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:74px;height:74px;border-radius:50%;
     background:#1a0d18;color:var(--game-accent);border:2px solid var(--game-accent);cursor:pointer;
     font-family:'Fraunces',serif;font-weight:700;letter-spacing:.1em;font-size:.9rem;z-index:2;
@@ -989,7 +989,7 @@
           "{Gs} says one thing directly into {Rp} ear, low, and lets it land before moving.",
           "{Gs} tells {Ro} a fantasy in {Rp} own words, lights low, no apology.",
           "{Gs} narrates what {gs} wants while keeping {Gp} hands completely still." ]},
-        { key:'Press', color:'#a06aba', prompts:[
+        { key:'Press', color:'#7f5494', prompts:[
           "{Gs} presses {Ro} to the wall with one hand on the chest and just holds {Ro} there.",
           "{Gs} pulls {Ro} into {Gp} lap, wraps both arms around {Ro}, and stays still for thirty seconds.",
           "{Gs} presses {Ro} into the bed with {Gp} weight and kisses {Ro} slow and deep." ]},
@@ -1019,25 +1019,25 @@
           "{Gs} holds {Rp} wrists down and will not let {Ro} move until {Rs} says please.",
           "{Rs} is not allowed to be touched for five minutes \u2014 only to give. {Gs} receives, fully.",
           "Blindfold {Ro}. {Gs} decides everything; {Rs} only directs with one word at a time." ]},
-        { key:'Power', color:'#ba3a6a', prompts:[
+        { key:'Power', color:'#a8345f', prompts:[
           "{Rs} pulls {Go} in by the hips, sets the pace, then changes it, then changes it again.",
           "{Gs} takes {Ro} from behind \u2014 clothed or not \u2014 and holds {Ro} there, kissing the neck.",
           "{Rs} decides: lead, or be led. Whatever {rs} chooses, {Gs} gives it completely." ]},
-        { key:'Edge', color:'#ca3a5a', prompts:[
-          "{Gs} brings {Ro} close, then stops, then brings {Ro} close again \u2014 three times before more.",
-          "{Gs} moves at half the speed {gs} thinks is right, then half of that, pausing every thirty seconds.",
+        { key:'Edge', color:'#b8344f', prompts:[
+          "{Gs} builds {Ro} up, then stops just short, then builds {Ro} up again \u2014 three times before letting {Ro} go further.",
+          "Whatever the two of you are already doing, {Gs} slows it to half speed, then half of that, pausing every thirty seconds.",
           "{Rs} must stay completely still and quiet while {Gs} does whatever {gs} likes for two minutes." ]},
         { key:'Confess', color:'#c0356a', prompts:[
           "{Gs} tells {Ro} the boldest thing {gs} has wanted to do and never said. {Rs} only listens.",
           "{Rs} describes, out loud, exactly what {rs} wants right now \u2014 no softening.",
           "Each names one thing they want to try that they have never asked for. No reaction required." ]},
         { key:'Union', color:'#b03a8a', prompts:[
-          "Agree on one position. Stay in it. Slow. Deep. Quiet enough to hear each other breathe.",
-          "Begin, then go completely still for thirty seconds, eyes open, before moving.",
-          "{Gs} stays still inside, looks at {Ro}, begins again, and repeats for as long as both want." ]},
+          "If you have moved on to making love: choose one position together, stay in it, slow and quiet enough to hear each other breathe.",
+          "If you are making love: pause completely for thirty seconds, eyes open on each other, before either of you moves again.",
+          "If you are making love: {Gs} goes completely still, holds {Rp} gaze, then begins again \u2014 repeating for as long as you both want." ]},
         { key:'Surrender', color:'#9a2faa', prompts:[
           "Forget the wheel. Take what you want, give what they want, stay until you cannot stay.",
-          "Both stop, look at each other, and say one true thing before continuing.",
+          "Both of you stop whatever you are doing, look at each other, and each say one true thing before going on.",
           "{Rs} leads completely; {Gs} does nothing that is not asked for." ]}
       ]
     }
@@ -1366,6 +1366,16 @@
     openOverlay('Spin the Wheel', WHEEL_LEVELS.soft.accent);
     renderWheel();
   }
+  let wheelRotation = 0;
+  // pick readable text colour for a given segment background
+  function textOn(hex){
+    // pick whichever of dark/light text has the higher WCAG contrast on this segment
+    function lum(hx){const h=hx.replace('#','');const c=[0,2,4].map(i=>parseInt(h.slice(i,i+2),16)/255)
+      .map(v=>v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4));
+      return 0.2126*c[0]+0.7152*c[1]+0.0722*c[2];}
+    function cr(a,b){const la=lum(a),lb=lum(b),hi=Math.max(la,lb),lo=Math.min(la,lb);return (hi+0.05)/(lo+0.05);}
+    return cr('#241018',hex) >= cr('#f7eedd',hex) ? '#241018' : '#f7eedd';
+  }
   function renderWheel(){
     const lvl = WHEEL_LEVELS[wheelLevel];
     document.documentElement.style.setProperty('--game-accent', lvl.accent);
@@ -1376,9 +1386,12 @@
     let labels = '';
     for (let i=0;i<n;i++){
       const a = seg*i;
-      labels += '<div class="wheel-label" style="transform:rotate('+a+'deg) translateY(-104px) rotate('+(-a)+'deg)">'+slices[i].key+'</div>';
+      const col = textOn(slices[i].color);
+      // position the label at angle a; inner span counter-rotates to stay upright
+      labels += '<div class="wheel-label" style="transform:rotate('+a+'deg) translateY(-100px) rotate('+(-a)+'deg)">' +
+                  '<span class="wl-txt" style="color:'+col+'">'+slices[i].key+'</span>' +
+                '</div>';
     }
-    // level tabs
     let tabs = '<div class="wheel-levels">';
     for (const k of ['soft','spicy','wild']){
       tabs += '<button class="wlevel'+(k===wheelLevel?' active':'')+'" data-lvl="'+k+'" style="--wl:'+WHEEL_LEVELS[k].accent+'">'+WHEEL_LEVELS[k].label+'</button>';
@@ -1390,19 +1403,24 @@
       '<div class="wheel-wrap">' +
         '<div class="wheel-pointer"></div>' +
         '<div class="wheel" id="wheel" style="background:'+ring+'">' +
-          '<div class="wheel-labels">'+labels+'</div>' +
+          '<div class="wheel-labels" id="wheel-labels">'+labels+'</div>' +
           '<button class="wheel-hub" id="wheel-hub">SPIN</button>' +
         '</div>' +
         '<div class="wheel-out" id="wheel-out"></div>' +
       '</div>' +
       '<div class="go-actions"><button class="gbtn ghost" id="wheel-back">Back to the Playroom</button></div>';
-    // tab handlers
     stage.querySelectorAll('.wlevel').forEach(b=>b.addEventListener('click',()=>{
       wheelLevel = b.getAttribute('data-lvl');
+      wheelRotation = 0;
       renderWheel();
     }));
     document.getElementById('wheel-back').addEventListener('click', backToHub);
     const wheel = document.getElementById('wheel');
+    const txts = stage.querySelectorAll('.wl-txt');
+    // reset to upright at rest
+    wheel.style.transition = 'none';
+    wheel.style.transform = 'rotate('+wheelRotation+'deg)';
+    txts.forEach(t=>{ t.style.transition='none'; t.style.transform='rotate('+(-wheelRotation)+'deg)'; });
     let spinning = false;
     document.getElementById('wheel-hub').addEventListener('click', ()=>{
       if (spinning) return;
@@ -1410,10 +1428,18 @@
       document.getElementById('wheel-out').innerHTML = '';
       const pick = Math.floor(Math.random()*n);
       const turns = 4 + Math.floor(Math.random()*3);
-      const targetCenter = seg*pick;
-      const rot = turns*360 + (360 - targetCenter);
-      wheel.style.transition = 'transform 3.6s cubic-bezier(.15,.85,.2,1)';
-      wheel.style.transform = 'rotate('+rot+'deg)';
+      // land segment `pick` centre under the top pointer, always spinning forward
+      const targetMod = (360 - seg*pick) % 360;
+      const currentMod = ((wheelRotation % 360) + 360) % 360;
+      let delta = (targetMod - currentMod + 360) % 360;
+      wheelRotation += turns*360 + delta;
+      const EASE = 'transform 3.8s cubic-bezier(.15,.85,.2,1)';
+      // spin wheel and counter-spin the text in lockstep so labels stay upright
+      requestAnimationFrame(()=>{
+        wheel.style.transition = EASE;
+        wheel.style.transform = 'rotate('+wheelRotation+'deg)';
+        txts.forEach(t=>{ t.style.transition = EASE; t.style.transform = 'rotate('+(-wheelRotation)+'deg)'; });
+      });
       setTimeout(()=>{
         const cat = slices[pick];
         const prompt = cat.prompts[Math.floor(Math.random()*cat.prompts.length)];
@@ -1429,10 +1455,9 @@
         document.getElementById('wheel-again').addEventListener('click', ()=>{
           wheelLeadIsHer = !wheelLeadIsHer;
           spinning = false;
-          wheel.style.transition = 'none';
-          // keep current rotation; allow next spin
+          document.getElementById('wheel-out').innerHTML = '';
         });
-      }, 3700);
+      }, 3900);
     });
   }
 
