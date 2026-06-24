@@ -2,8 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Path One · The Midlife Crisis</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Path One · The Midlife Companion</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="A chapter-by-chapter companion to the midlife years — distilled, warm, and built for reading together.">
+  <meta name="theme-color" content="#f5f0e6">
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Path One · The Midlife Companion">
+  <meta property="og:description" content="A chapter-by-chapter companion to the midlife years — distilled, warm, and built for reading together.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
@@ -13,7 +19,7 @@
     --paper:#f5f0e6; --paper-warm:#ede5d3; --vellum:#f1e6d2;
     --ink:#2a1810; --ink-soft:#5a4a3e;
     --plum:#6c3a5c; --plum-deep:#4e2945;
-    --gold:#b07b3e; --ember:#8a2a3a;
+    --gold:#b07b3e; --gold-ink:#8a5a24; --ember:#8a2a3a;
     --moss:#5a6b4a;
     --dark:#1a0e1c; --dark-wine:#2a1424;
     --light-cream:#f4ead6;
@@ -135,7 +141,7 @@
   }
   .part .pn{
     font-family:'Fraunces',serif;font-size:.72rem;letter-spacing:.42em;
-    text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px;
+    text-transform:uppercase;color:var(--gold-ink);font-weight:600;margin-bottom:14px;
   }
   .part .pt{
     font-family:'Fraunces',serif;font-weight:400;font-style:italic;
@@ -198,7 +204,7 @@
   }
   .q-label{
     display:inline-block;font-family:'Fraunces',serif;font-size:.6rem;letter-spacing:.26em;
-    text-transform:uppercase;color:var(--gold);font-weight:600;margin-top:6px;margin-bottom:8px;
+    text-transform:uppercase;color:var(--gold-ink);font-weight:600;margin-top:6px;margin-bottom:8px;
   }
   .q-thought{font-size:.97rem;color:var(--ink-soft);margin-bottom:14px;line-height:1.55}
   .q-thought strong{color:var(--ink);font-weight:600}
@@ -210,7 +216,7 @@
   .q-ways li::before{content:"—";position:absolute;left:0;color:var(--gold)}
   .q-more-label{
     display:block;font-family:'Fraunces',serif;font-size:.6rem;letter-spacing:.26em;
-    text-transform:uppercase;color:var(--gold);font-weight:600;margin:12px 0 10px;
+    text-transform:uppercase;color:var(--gold-ink);font-weight:600;margin:12px 0 10px;
   }
   .q-more{list-style:none;padding:0;margin:0}
   .q-more li{
@@ -221,6 +227,28 @@
 
   /* phero override for Path One */
   .phero{background:#1a1410}
+
+  /* ====== accessibility: respect reduced-motion ====== */
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{
+      animation-duration:.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.001ms !important;
+      scroll-behavior:auto !important;
+    }
+  }
+  /* ====== accessibility: visible keyboard focus ====== */
+  a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+  /* ====== polish: selection + tap highlight ====== */
+  ::selection{background:rgba(176,123,62,.28);color:inherit}
+  *{-webkit-tap-highlight-color:transparent}
+  /* anchored headings shouldn't hide under sticky bars */
+  h1,h2,h3,h4{scroll-margin-top:84px}
+
 </style>
 </head>
 <body>
@@ -232,7 +260,7 @@
 
 <header class="phero">
   <div class="phero-image">
-    <img src="https://images.unsplash.com/photo-1757175461743-97f5dc343c58?w=2000&q=80&auto=format&fit=crop"
+    <img decoding="async" fetchpriority="high" src="https://images.unsplash.com/photo-1757175461743-97f5dc343c58?w=2000&q=80&auto=format&fit=crop"
          srcset="https://images.unsplash.com/photo-1757175461743-97f5dc343c58?w=1200&q=80&auto=format&fit=crop 1200w,
                  https://images.unsplash.com/photo-1757175461743-97f5dc343c58?w=2000&q=80&auto=format&fit=crop 2000w,
                  https://images.unsplash.com/photo-1757175461743-97f5dc343c58?w=2800&q=80&auto=format&fit=crop 2800w"

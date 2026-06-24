@@ -2,8 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Path Three · The Becoming</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Path Three · The Playroom</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="A private collection of unhurried games for two — built around consent, slowness, and choosing each other on purpose.">
+  <meta name="theme-color" content="#1a0e1c">
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Path Three · The Playroom">
+  <meta property="og:description" content="A private collection of unhurried games for two — built around consent, slowness, and choosing each other on purpose.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
@@ -13,7 +19,7 @@
     --paper:#f5f0e6; --paper-warm:#ede5d3; --vellum:#f1e6d2;
     --ink:#2a1810; --ink-soft:#5a4a3e;
     --plum:#6c3a5c; --plum-deep:#4e2945;
-    --gold:#b07b3e; --ember:#8a2a3a;
+    --gold:#b07b3e; --gold-ink:#8a5a24; --ember:#8a2a3a;
     --moss:#5a6b4a;
     --dark:#1a0e1c; --dark-wine:#2a1424;
     --light-cream:#f4ead6;
@@ -520,6 +526,28 @@
     font-family:'Fraunces',serif;font-style:italic;font-size:1.24rem;line-height:1.5;color:var(--game-accent)}
   .slot-result.show{opacity:1;transform:none}
 
+
+  /* ====== accessibility: respect reduced-motion ====== */
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{
+      animation-duration:.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.001ms !important;
+      scroll-behavior:auto !important;
+    }
+  }
+  /* ====== accessibility: visible keyboard focus ====== */
+  a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+  /* ====== polish: selection + tap highlight ====== */
+  ::selection{background:rgba(176,123,62,.28);color:inherit}
+  *{-webkit-tap-highlight-color:transparent}
+  /* anchored headings shouldn't hide under sticky bars */
+  h1,h2,h3,h4{scroll-margin-top:84px}
+
 </style>
 </head>
 <body>
@@ -531,7 +559,7 @@
 
 <header class="phero">
   <div class="phero-image">
-    <img src="https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=2000&q=80&auto=format&fit=crop"
+    <img decoding="async" fetchpriority="high" src="https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=2000&q=80&auto=format&fit=crop"
          srcset="https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=1200&q=80&auto=format&fit=crop 1200w,
                  https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=2000&q=80&auto=format&fit=crop 2000w,
                  https://images.unsplash.com/photo-1667512503380-c3b127f5c1a4?w=2800&q=80&auto=format&fit=crop 2800w"

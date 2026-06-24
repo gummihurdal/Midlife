@@ -5,6 +5,10 @@
 <title>For the Middle Years — A companion for couples in midlife</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Three companions for couples navigating midlife together: a book distilled, the science of desire, and an interactive game for two.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="For the Middle Years — A companion for couples in midlife">
+  <meta property="og:description" content="Three companions for couples navigating midlife together.">
 <meta name="theme-color" content="#f5f0e6">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +23,7 @@
     --ink-soft:#5a4a3e;
     --plum:#6c3a5c;
     --plum-deep:#4e2945;
-    --gold:#b07b3e;
+    --gold:#b07b3e; --gold-ink:#8a5a24;
     --ember:#8a2a3a;
     --dark:#1a0e1c;
     --dark-wine:#2a1424;
@@ -110,7 +114,7 @@
   .paths-header{text-align:center;max-width:640px;margin:0 auto 50px}
   .paths-kicker{
     font-family:'Fraunces',serif;font-size:.7rem;letter-spacing:.42em;
-    text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px;
+    text-transform:uppercase;color:var(--gold-ink);font-weight:600;margin-bottom:14px;
   }
   .paths-title{
     font-family:'Fraunces',serif;font-weight:400;font-style:italic;
@@ -242,6 +246,10 @@
   @supports(padding:max(0px)){
     .site-mark{left:max(20px, env(safe-area-inset-left));}
   }
+
+  a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+  ::selection{background:rgba(176,123,62,.28);color:inherit}
+  *{-webkit-tap-highlight-color:transparent}
 </style>
 </head>
 <body>
