@@ -571,6 +571,29 @@
   .wheel-blurb{text-align:center;font-family:'Fraunces',serif;font-style:italic;
     color:rgba(244,234,214,.66);font-size:.95rem;margin:0 auto 14px;max-width:34ch;line-height:1.45}
 
+  /* heat meter — builds across the session */
+  .heat-meter{position:relative;width:200px;height:8px;margin:0 auto 20px;border-radius:999px;
+    background:rgba(244,234,214,.1);overflow:hidden}
+  .heat-fill{height:100%;border-radius:999px;
+    background:linear-gradient(90deg,#c98a3c,#b53a4a 60%,#7a2f8a);
+    transition:width .9s cubic-bezier(.4,0,.2,1)}
+  .heat-label{position:absolute;top:12px;left:0;right:0;text-align:center;
+    font-family:'Fraunces',serif;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;
+    color:rgba(244,234,214,.5);font-weight:600}
+
+  /* wild card star on the wheel */
+  .wl-star{font-size:1.1rem !important;text-shadow:0 0 8px rgba(231,184,74,.9)}
+
+  /* bonus result gets a gold frame + glow */
+  .wheel-result.is-bonus{
+    background:linear-gradient(160deg,#fbf3df,#f4e6c4);
+    box-shadow:0 0 0 2px #e7b84a, 0 16px 44px rgba(231,184,74,.35), 0 16px 40px rgba(0,0,0,.4)}
+  .wheel-result.is-bonus .wr-title{color:#7a4a12}
+
+  /* level-up nudge under a result */
+  .wr-nudge{font-family:'Fraunces',serif;font-style:italic;font-size:.9rem;
+    color:var(--game-accent);margin:2px 0 18px;opacity:.9}
+
 </style>
 </head>
 <body>
@@ -943,78 +966,93 @@
       blurb:'Words, looks, the lightest touch. Brakes-off, nothing rushed.',
       slices:[
         { key:'Senses', color:'#9db4d8', prompts:[
-          ["Blind textures","Close your eyes. {Gs} brings three textures to {Rp} skin, one at a time, and {Rs} names each."],
-          ["Breathe you in","{Gs} describes, slowly, {Gp} favourite thing about the way {Rs} smells \u2014 then breathes it in for real."],
-          ["Just listen","Both close their eyes and, for one full minute, only listen \u2014 to the room, to each other breathing."] ]},
+          ["Blind textures","Close your eyes. {Gs} brings three things to {Rp} skin — something soft, something cool, something warm — and {Rs} guesses each."],
+          ["Breathe you in","{Gs} presses {Gp} face to {Rp} neck, breathes {Ro} in slowly, and says out loud exactly what {Rs} smells like to {Go}."],
+          ["Just listen","Lights off. For one full minute you only listen — to the room, to each other's breathing, to what isn't said."],
+          ["Goosebumps","{Gs} runs a single fingertip down {Rp} spine, barely touching, until {Rs} shivers."],
+          ["Taste test","{Gs} feeds {Ro} one slow bite of something with {Rp} eyes closed — fingers included."] ]},
         { key:'Talk', color:'#a9c0e2', prompts:[
-          ["The first time","{Gs} finishes this out loud, slowly: \u201cThe first time I wanted you, it was because\u2026\u201d"],
-          ["The unsaid","{Gs} tells {Ro} one small thing {gs} has never said and has always meant."],
-          ["The brave question","{Rs} asks one question {rs} has been a little afraid to ask. {Gs} answers honestly."] ]},
+          ["The first time","{Gs} finishes this out loud, slowly: 'The first time I wanted you, it was…'"],
+          ["The unsaid","{Gs} tells {Ro} one thing {gs} has wanted to say for a while and never quite has."],
+          ["The brave question","{Rs} asks the one question {rs} has been a little afraid to ask. {Gs} answers honestly."],
+          ["What I noticed","{Gs} tells {Ro} the exact moment today {gs} thought about {Ro} — and what {gs} was thinking."],
+          ["Two truths","Each of you says one thing you love, and one thing you secretly want more of."] ]},
         { key:'Praise', color:'#b9a9e0', prompts:[
-          ["Three beautiful things","{Gs} names three things {gs} finds beautiful about {Ro} tonight \u2014 specific, not general."],
-          ["Your face","{Gs} tells {Ro} the part of {Rp} face {gs} loves most, and why."],
-          ["One true sentence","{Gs} says, slowly and without irony, the most flattering true sentence {gs} can about {Ro}."] ]},
+          ["Three beautiful things","{Gs} names three things {gs} finds beautiful about {Ro} right now — specific, not general."],
+          ["Your favourite part","{Gs} tells {Ro} the part of {Rp} body {gs} thinks about most when they are apart, and why."],
+          ["One true sentence","{Gs} says, slowly and without a trace of irony, the most flattering true thing {gs} can about {Ro}."],
+          ["Out loud","{Gs} describes, in detail, the last time {Rs} took {Gp} breath away."] ]},
         { key:'Touch', color:'#e0b6c8', prompts:[
-          ["One fingertip","{Gs} traces {Rp} jaw, neck and collarbone with one fingertip, and does not skip ahead."],
-          ["Fingertip by fingertip","{Gs} holds {Rp} hand and kisses each fingertip, slowly, one at a time."],
-          ["Breathe together","{Gs} places both palms flat on {Rp} back and breathes in time with {Ro} for a full minute."] ]},
+          ["One fingertip","{Gs} traces {Rp} jaw, neck and collarbone with a single fingertip and does not skip ahead."],
+          ["Fingertip by fingertip","{Gs} kisses each of {Rp} fingertips, then the palm, then the inside of the wrist."],
+          ["Breathe together","{Gs} lays both palms flat on {Rp} back and breathes in time with {Ro} for a full minute."],
+          ["Hair","{Gs} runs {Gp} hands slowly through {Rp} hair and down the back of {Rp} neck until {Rs} closes {Rp} eyes."] ]},
         { key:'Move', color:'#f0c98e', prompts:[
-          ["One slow song","Put on one slow song. {Gs} leads {Ro} in a slow dance until it ends \u2014 no talking."],
-          ["Forehead to forehead","{Gs} pulls {Ro} close by the hips and they simply sway, foreheads touching, for one minute."],
-          ["The slow approach","{Rs} sits. {Gs} crosses the room slowly, eyes locked, and does not look away."] ]},
+          ["One slow song","Put on one slow song. {Gs} leads {Ro} in a slow dance, bodies close, until it ends — no talking."],
+          ["Forehead to forehead","{Gs} pulls {Ro} close by the hips and you simply sway, foreheads touching, for one minute."],
+          ["The slow approach","{Rs} sits still. {Gs} crosses the room as slowly as possible, eyes locked, and never looks away."],
+          ["Into my lap","{Gs} sits and pulls {Ro} into {Gp} lap, face to face, and just holds {Ro} there."] ]},
         { key:'Memory', color:'#f0c46a', prompts:[
-          ["The best night","{Gs} describes, in detail, the best night the two of them have ever spent together."],
-          ["The moment I knew","{Gs} recalls the exact moment {gs} knew this was different, and tells {Ro} every detail."],
-          ["Never forget","Both name, in turn, one memory of the other they never want to forget."] ]},
+          ["The best night","{Gs} describes, in detail, the hottest night the two of you have ever had."],
+          ["The moment I knew","{Gs} recalls the exact moment {gs} knew {gs} wanted {Ro}, and tells {Ro} everything."],
+          ["Never forget","Each of you names one memory of the other you never want to lose."],
+          ["First impression","{Gs} confesses what {gs} actually thought the first time {gs} saw {Ro} undressed."] ]},
         { key:'Dream', color:'#e6a9c0', prompts:[
           ["Take you there","{Gs} describes a place {gs} wants to take {Ro} someday, slowly, until {Rs} can see it."],
-          ["A year from now","{Gs} tells {Ro} one thing {gs} wants for the two of them a year from now."],
-          ["The day not yet lived","{Gs} describes a perfect day with {Ro} that hasn\u2019t happened yet."],
-          ["Learn it together","Pick one new skill or hobby the two of you would love to learn side by side \u2014 and name the first step."],
-          ["Run away for a weekend","Plan it out loud together: a city you'd slip away to for two nights, and the first thing you'd do there."] ]},
+          ["A year from now","{Gs} tells {Ro} one thing {gs} wants for the two of you a year from now."],
+          ["The day not yet lived","{Gs} describes a perfect day — and night — with {Ro} that hasn't happened yet."],
+          ["Learn it together","Pick one new thing the two of you would love to learn side by side, and name the first step."],
+          ["Run away","Plan it out loud: a city you'd slip away to for two nights, and the first thing you'd do in the room."] ]},
         { key:'Laugh', color:'#c9a9e0', prompts:[
-          ["How we met","{Gs} does the worst possible impression of how they first met. {Rs} may not help."],
-          ["No words","{Gs} tries to make {Ro} laugh in thirty seconds using only {Gp} face. No words."],
-          ["Embarrassing confessions","Both confess, in turn, the most embarrassing thing they once did to seem attractive."] ]}
-      ]
+          ["How we met","{Gs} does the worst possible re-enactment of how you two met. {Rs} may not help."],
+          ["No words","{Gs} has thirty seconds to make {Ro} laugh using only {Gp} face."],
+          ["Confessions","Each of you admits the most embarrassing thing you once did to seem attractive."],
+          ["Worst line","{Gs} tries to seduce {Ro} with the worst pickup line {gs} can invent on the spot."] ]} ]
     },
     spicy: {
       label:'Spicy', accent:'#b53a4a',
       blurb:'Hands, mouths, clothes still mostly on. Warmer, slower, hungrier.',
       slices:[
         { key:'Neck', color:'#d98a6a', prompts:[
-          ["The side you like","{Gs} kisses {Rp} neck on the side {rs} likes, then breathes against it, then does it again."],
-          ["Lips only","{Gs} runs {Gp} lips \u2014 no hands \u2014 from {Rp} ear to {Rp} collarbone, slowly."],
-          ["Until you pull me in","{Gs} holds {Ro} by the back of the neck and kisses {Ro} until {Rs} pulls {Go} closer."] ]},
+          ["The side you like","{Gs} kisses {Rp} neck on the side {rs} likes, breathes against it, then does it again — slower."],
+          ["Lips only","{Gs} runs only {Gp} lips — no hands, no tongue — from {Rp} ear to {Rp} collarbone."],
+          ["Until you pull me in","{Gs} holds {Ro} by the back of the neck and kisses {Ro} until {Rs} can't help pulling {Go} closer."],
+          ["Mark me","{Gs} kisses one spot on {Rp} neck long enough that {Rs} will still feel it tomorrow."] ]},
         { key:'Hands', color:'#e0a06a', prompts:[
-          ["Stop and return","{Gs} runs one hand from {Rp} collarbone down to just above the waistband. Stops. Returns."],
-          ["Two inches short","{Gs} slides a hand up the inside of {Rp} thigh and stops two inches short. Holds."],
-          ["Bare skin","{Gs} runs both hands up the back of {Rp} shirt and spreads the fingers across bare skin."] ]},
+          ["Stop and return","{Gs} runs one hand from {Rp} collarbone down to the waistband. Stops. Then starts again, lower."],
+          ["Two inches short","{Gs} slides a hand up the inside of {Rp} thigh and stops two inches short of where {Rs} wants it. Holds."],
+          ["Bare skin","{Gs} slips both hands under {Rp} clothes and spreads {Gp} fingers across bare skin, slowly."],
+          ["Guided","{Rs} takes {Gp} hand and puts it exactly where {rs} wants it. {Gs} stays right there."] ]},
         { key:'Tease', color:'#d06a8a', prompts:[
-          ["A breath away","{Gs} leans in to kiss {Ro}, stops a breath away, and waits until {Rs} closes the gap."],
-          ["Later","{Gs} tells {Ro}, in detail, one thing {gs} is going to do later \u2014 then changes the subject."],
-          ["Everywhere but the mouth","{Gs} kisses everywhere except {Rp} mouth for two minutes. {Rs} may not initiate."] ]},
+          ["A breath away","{Gs} leans in to kiss {Ro}, stops a breath short, and makes {Ro} close the gap."],
+          ["Later","{Gs} whispers, in detail, one thing {gs} is going to do to {Ro} later — then changes the subject."],
+          ["Everywhere but","{Gs} kisses everywhere except {Rp} mouth for two full minutes. {Rs} may not initiate."],
+          ["Almost","{Gs} brings {Ro} right to the edge of a kiss three times before finally giving it."] ]},
         { key:'Undress', color:'#c06a9a', prompts:[
-          ["One piece","{Gs} removes exactly one piece of {Rp} clothing, slowly, and kisses the place it leaves."],
+          ["One piece","{Gs} removes exactly one piece of {Rp} clothing, slowly, and kisses the skin it leaves."],
           ["Teeth and lips","{Rs} removes one piece of {Gp} clothing using only {Rp} teeth and lips."],
-          ["Made to wait","{Gs} undresses {Ro} to one fewer layer, then makes {Ro} wait, fully, before anything more."] ]},
+          ["Made to wait","{Gs} undresses {Ro} one layer fewer, then makes {Ro} wait, fully, before anything more."],
+          ["Watch","{Gs} undresses slowly while {Rs} watches — and is not allowed to touch, yet."] ]},
         { key:'Whisper', color:'#b06aaa', prompts:[
-          ["One thing, low","{Gs} says one thing directly into {Rp} ear, low, and lets it land before moving."],
-          ["No apology","{Gs} tells {Ro} a fantasy in {Rp} own words, lights low, no apology."],
-          ["Words, no hands","{Gs} narrates what {gs} wants while keeping {Gp} hands completely still."] ]},
+          ["One thing, low","{Gs} says one filthy thing directly into {Rp} ear, low, and lets it land before moving."],
+          ["No apology","{Gs} tells {Ro} a fantasy in {Rp} own words, lights low, leaving nothing out."],
+          ["Words, no hands","{Gs} describes exactly what {gs} wants to do while keeping {Gp} hands completely still."],
+          ["Beg a little","{Gs} makes {Ro} ask out loud for the next thing — and waits until {Rs} does."] ]},
         { key:'Press', color:'#7f5494', prompts:[
-          ["Against the wall","{Gs} presses {Ro} to the wall with one hand on the chest and just holds {Ro} there."],
+          ["Against the wall","{Gs} presses {Ro} to the wall, one hand on the chest, and holds {Ro} there, close — not kissing, yet."],
           ["Into my lap","{Gs} pulls {Ro} into {Gp} lap, wraps both arms around {Ro}, and stays still for thirty seconds."],
-          ["Pinned and kissed","{Gs} presses {Ro} into the bed with {Gp} weight and kisses {Ro} slow and deep."] ]},
+          ["Pinned","{Gs} presses {Ro} down with {Gp} full weight and kisses {Ro} slow and deep."],
+          ["Hips","{Gs} takes {Ro} by the hips, pulls {Ro} hard against {Gp} body, and holds."] ]},
         { key:'Taste', color:'#9a7aca', prompts:[
-          ["The quiet places","{Gs} uses only {Gp} mouth on the inside of {Rp} wrist, the hip, the place behind the knee."],
-          ["A gentle bite","{Gs} bites \u2014 gently \u2014 {Rp} bottom lip, holds it, releases, repeats slower."],
-          ["Just below","{Gs} kisses just below the waistband over clothing, looks up, says nothing, returns to the mouth."] ]},
+          ["The quiet places","{Gs} uses only {Gp} mouth on the inside of {Rp} wrist, the hip, behind the knee."],
+          ["A gentle bite","{Gs} bites — gently — {Rp} bottom lip, holds it, releases, and repeats slower."],
+          ["Just below","{Gs} kisses just below the waistband over clothing, looks up, says nothing, and returns to the mouth."],
+          ["Slow trail","{Gs} kisses a slow line from {Rp} mouth down to {Rp} stomach, and back up."] ]},
         { key:'Lead', color:'#8a8ada', prompts:[
-          ["You set the pace","{Rs} sets the pace for two minutes. {Gs} follows exactly, no suggestions."],
+          ["You set the pace","{Rs} sets the pace for two minutes. {Gs} follows exactly — no more, no less."],
           ["Wrists held","{Gs} pins {Rp} wrists above {Rp} head and kisses {Ro} until {Rs} asks for more."],
-          ["Eyes closed, I decide","{Rs} closes {Rp} eyes and {Gs} decides everything for the next ninety seconds."] ]}
-      ]
+          ["Eyes closed, I decide","{Rs} closes {Rp} eyes and {Gs} decides everything for the next ninety seconds."],
+          ["Hands off","{Rs} is not allowed to use {Rp} hands at all until {Gs} says so."] ]} ]
     },
     wild: {
       label:'Wild', accent:'#7a2f8a',
@@ -1022,39 +1060,57 @@
       slices:[
         { key:'Strip', color:'#8a3a9a', prompts:[
           ["All the way","{Gs} undresses {Ro} completely, slowly, kissing each newly bared place before the next."],
-          ["Watched in silence","{Rs} undresses while {Gs} watches in silence, sitting, not touching, not speaking."],
-          ["Eyes unbroken","They undress each other at once, eye contact unbroken; whoever looks away first owes a minute of stillness."] ]},
+          ["Watched","{Rs} strips while {Gs} watches in total silence, sitting, allowed to look but not touch."],
+          ["Eyes unbroken","You undress each other at once — whoever breaks eye contact first owes the other a minute of stillness, anywhere {rs} chooses."],
+          ["Leave one thing","{Gs} undresses {Ro} down to one last piece — and leaves it on, for now."] ]},
         { key:'Worship', color:'#9a3a8a', prompts:[
-          ["All the way down","{Gs} works slowly from {Rp} mouth down \u2014 neck, chest, stomach \u2014 staying at each place too long."],
-          ["One place, three minutes","{Rs} names one place and {Gs} attends to it, only it, with mouth and hands, for three minutes."],
-          ["No goal, no rush","{Gs} explores all of {Ro} slowly with mouth and hands. No goal, no rush, no hesitation."] ]},
+          ["All the way down","{Gs} works slowly from {Rp} mouth down — neck, chest, stomach — staying at each place longer than {Rs} expects."],
+          ["One place, three minutes","{Rs} names one place. {Gs} uses mouth and hands there, and only there, for three minutes."],
+          ["No goal, no rush","{Gs} explores all of {Ro} with mouth and hands — no goal, no rush, no part left out."],
+          ["Slow descent","{Gs} kisses {Ro} slowly from the navel down, taking {Gp} time, until {Rs} asks for more."] ]},
         { key:'Restrain', color:'#aa3a7a', prompts:[
-          ["Until you say please","{Gs} holds {Rp} wrists down and will not let {Ro} move until {Rs} says please."],
-          ["Only to give","{Rs} is not allowed to be touched for five minutes \u2014 only to give. {Gs} receives, fully."],
-          ["Blindfolded","Blindfold {Ro}. {Gs} decides everything; {Rs} only directs with one word at a time."] ]},
-        { key:'Power', color:'#a8345f', prompts:[
-          "{Rs} pulls {Go} in by the hips, sets the pace, then changes it, then changes it again.",
-          ["From behind","{Gs} takes {Ro} from behind \u2014 clothed or not \u2014 and holds {Ro} there, kissing the neck."],
-          ["Lead or be led","{Rs} decides: lead, or be led. Whatever {rs} chooses, {Gs} gives it completely."] ]},
+          ["Until you say please","{Gs} holds {Rp} wrists down and won't let {Ro} move until {Rs} says please."],
+          ["Only to give","For five minutes {Rs} may not be touched — only give. {Gs} receives, completely."],
+          ["Blindfolded","Blindfold {Ro}. {Gs} decides everything; {Rs} guides only with one word at a time."],
+          ["Hands above","{Rs} keeps both hands above {Rp} head, not allowed to move them, while {Gs} does as {gs} likes."] ]},
+        { key:'Power', color:'#ba3a6a', prompts:[
+          ["You drive","{Rs} pulls {Go} in by the hips, sets the pace, then changes it, then changes it again."],
+          ["From behind","{Gs} takes {Ro} from behind — clothed or not — holds {Ro} there, and kisses the back of {Rp} neck."],
+          ["Lead or be led","{Rs} decides: lead, or be led. Whatever {rs} picks, {Gs} gives it completely."],
+          ["Take what you want","{Gs} takes exactly what {gs} wants for two minutes — {Rs} only has to want it too."] ]},
         { key:'Edge', color:'#b8344f', prompts:[
-          ["Three times to the edge","{Gs} builds {Ro} up, then stops just short, then builds {Ro} up again \u2014 three times before letting {Ro} go further."],
-          ["Half, then half again","Whatever the two of you are already doing, {Gs} slows it to half speed, then half of that, pausing every thirty seconds."],
-          ["Still and quiet","{Rs} must stay completely still and quiet while {Gs} does whatever {gs} likes for two minutes."] ]},
+          ["Three to the edge","{Gs} builds {Ro} right to the edge, stops, then builds {Ro} up again — three times before letting {Ro} go further."],
+          ["Half, then half again","Whatever you're already doing, {Gs} slows it to half speed, then half of that, pausing every thirty seconds."],
+          ["Still and quiet","{Rs} must stay completely still and silent while {Gs} does whatever {gs} likes for two minutes."],
+          ["Made to wait","{Gs} keeps {Ro} right on the edge and won't let {Ro} go over until {Rs} asks for it out loud."] ]},
         { key:'Confess', color:'#c0356a', prompts:[
-          ["The boldest thing","{Gs} tells {Ro} the boldest thing {gs} has wanted to do and never said. {Rs} only listens."],
-          ["Say it plainly","{Rs} describes, out loud, exactly what {rs} wants right now \u2014 no softening."],
-          ["Never asked for","Each names one thing they want to try that they have never asked for. No reaction required."] ]},
+          ["The boldest thing","{Gs} tells {Ro} the boldest thing {gs} has ever wanted to do to {Ro} and never said. {Rs} only listens."],
+          ["Say it plainly","{Rs} says out loud, with no softening at all, exactly what {rs} wants right now."],
+          ["Never asked for","Each of you names one thing you've always wanted to try and never asked for. No reaction required — yet."],
+          ["The opening scene","{Gs} acts out the first thirty seconds of a fantasy {gs} has never admitted to."] ]},
         { key:'Union', color:'#b03a8a', prompts:[
-          ["One position","If you have moved on to making love: choose one position together, stay in it, slow and quiet enough to hear each other breathe."],
-          ["Thirty still seconds","If you are making love: pause completely for thirty seconds, eyes open on each other, before either of you moves again."],
-          ["Still, then begin again","If you are making love: {Gs} goes completely still, holds {Rp} gaze, then begins again \u2014 repeating for as long as you both want."] ]},
+          ["One position","If you have moved on to making love: choose one position together and stay in it — slow, quiet enough to hear each other breathe."],
+          ["Thirty still seconds","If you are making love: stop completely for thirty seconds, eyes open on each other, before either of you moves."],
+          ["Still, then again","If you are making love: {Gs} goes completely still, holds {Rp} gaze, then begins again — for as long as you both want."],
+          ["As slow as you can","If you are making love: go as slowly as the two of you possibly can, for as long as you can stand it."] ]},
         { key:'Surrender', color:'#9a2faa', prompts:[
-          ["Forget the wheel","Forget the wheel. Take what you want, give what they want, stay until you cannot stay."],
-          ["One true thing","Both of you stop whatever you are doing, look at each other, and each say one true thing before going on."],
-          ["Nothing unasked","{Rs} leads completely; {Gs} does nothing that is not asked for."] ]}
-      ]
+          ["Forget the wheel","Forget the wheel. Take what you want, give what {Rs} wants, and stay until you can't."],
+          ["One true thing","Stop, look at each other, and each say one true thing before going on."],
+          ["Nothing unasked","{Rs} leads completely; {Gs} does nothing that isn't asked for."],
+          ["Anything","{Rs} gets to ask for anything at all. {Gs} says yes if {gs} can."] ]} ]
     }
   };
+  const WHEEL_BONUS = [
+    ["Winner's choice","Ask for anything you want, right now — and it happens."],
+    ["Trade","Each of you removes one thing the other is wearing. Their pick."],
+    ["Two minutes, all yours","{Gs} does absolutely anything {gs} wants for two minutes. {Rs} only has to say yes."],
+    ["Truth","{Rs} confesses the filthiest thought {rs} has had about {Go} today — in detail."],
+    ["Slow motion","Whatever you were about to do, do it in complete slow motion for one full minute."],
+    ["Role swap","{Rs} is in charge now — for the next three spins, or until the safeword."],
+    ["Double down","Spin twice more and do both, back to back."],
+    ["Dealer's choice","{Gs} picks any card, from any level, and you both do it."],
+    ["Kiss timer","Set a two-minute timer and kiss until it goes off. No stopping, no talking."],
+    ["Strip flip","Quick coin flip, best of three. Each loss costs one piece of clothing."] ];
   let wheelLevel = 'soft';
 
   // ---- SCRATCH CARDS : pool of small surprises for one evening ----
@@ -1374,45 +1430,70 @@
   }
 
   let wheelLeadIsHer = true;
+  let wheelRotation = 0;
+  let wheelSpins = 0;          // heat builds across the session
+  let wheelLeadStreak = 0;     // for the "role swap for 3 spins" bonus
+
   function enterWheel(){
     wheelLevel = 'soft';
+    wheelRotation = 0;
+    wheelSpins = 0;
     openOverlay('Spin the Wheel', WHEEL_LEVELS.soft.accent);
     renderWheel();
   }
-  let wheelRotation = 0;
-  // pick readable text colour for a given segment background
+
+  // readable text colour for a segment background
   function textOn(hex){
-    // pick whichever of dark/light text has the higher WCAG contrast on this segment
     function lum(hx){const h=hx.replace('#','');const c=[0,2,4].map(i=>parseInt(h.slice(i,i+2),16)/255)
       .map(v=>v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4));
       return 0.2126*c[0]+0.7152*c[1]+0.0722*c[2];}
     function cr(a,b){const la=lum(a),lb=lum(b),hi=Math.max(la,lb),lo=Math.min(la,lb);return (hi+0.05)/(lo+0.05);}
     return cr('#241018',hex) >= cr('#f7eedd',hex) ? '#241018' : '#f7eedd';
   }
+
+  function heatLabel(){
+    const s = wheelSpins;
+    if (s <= 1) return {t:'Warming up', pct:12};
+    if (s <= 3) return {t:'Getting warm', pct:32};
+    if (s <= 5) return {t:'Hot', pct:55};
+    if (s <= 8) return {t:'On fire', pct:78};
+    return {t:'Unstoppable', pct:100};
+  }
+  function levelNudge(){
+    if (wheelLevel==='soft'  && wheelSpins>=4) return "The wheel wants to heat up — try Spicy.";
+    if (wheelLevel==='spicy' && wheelSpins>=6) return "Feeling brave? Wild is right there.";
+    return '';
+  }
+
   function renderWheel(){
     const lvl = WHEEL_LEVELS[wheelLevel];
     document.documentElement.style.setProperty('--game-accent', lvl.accent);
-    const slices = lvl.slices, n = slices.length, seg = 360/n;
+    // build display slices: the level's categories + one Wild Card (bonus) slice
+    const slices = lvl.slices.concat([{ key:'★', color:'#e7b84a', bonus:true }]);
+    const n = slices.length, seg = 360/n;
     let stops = [];
     for (let i=0;i<n;i++){ stops.push(slices[i].color+' '+(seg*i)+'deg '+(seg*(i+1))+'deg'); }
     const ring = 'conic-gradient(from -' + (seg/2) + 'deg,' + stops.join(',') + ')';
     let labels = '';
     for (let i=0;i<n;i++){
-      const a = seg*i;
-      const col = textOn(slices[i].color);
-      // position the label at angle a; inner span counter-rotates to stay upright
+      const a = seg*i, col = textOn(slices[i].color);
+      const cls = slices[i].bonus ? 'wl-txt wl-star' : 'wl-txt';
       labels += '<div class="wheel-label" style="transform:rotate('+a+'deg) translateY(-100px) rotate('+(-a)+'deg)">' +
-                  '<span class="wl-txt" style="color:'+col+'">'+slices[i].key+'</span>' +
-                '</div>';
+                  '<span class="'+cls+'" style="color:'+col+'">'+slices[i].key+'</span></div>';
     }
     let tabs = '<div class="wheel-levels">';
     for (const k of ['soft','spicy','wild']){
       tabs += '<button class="wlevel'+(k===wheelLevel?' active':'')+'" data-lvl="'+k+'" style="--wl:'+WHEEL_LEVELS[k].accent+'">'+WHEEL_LEVELS[k].label+'</button>';
     }
     tabs += '</div>';
+    const heat = heatLabel();
     stage.innerHTML =
       tabs +
       '<p class="wheel-blurb">'+lvl.blurb+'</p>' +
+      '<div class="heat-meter" id="heat-meter">' +
+        '<div class="heat-fill" id="heat-fill" style="width:'+heat.pct+'%"></div>' +
+        '<span class="heat-label" id="heat-label">'+heat.t+'</span>' +
+      '</div>' +
       '<div class="wheel-wrap">' +
         '<div class="wheel-pointer"></div>' +
         '<div class="wheel" id="wheel" style="background:'+ring+'">' +
@@ -1430,7 +1511,6 @@
     document.getElementById('wheel-back').addEventListener('click', backToHub);
     const wheel = document.getElementById('wheel');
     const txts = stage.querySelectorAll('.wl-txt');
-    // reset to upright at rest
     wheel.style.transition = 'none';
     wheel.style.transform = 'rotate('+wheelRotation+'deg)';
     txts.forEach(t=>{ t.style.transition='none'; t.style.transform='rotate('+(-wheelRotation)+'deg)'; });
@@ -1441,13 +1521,11 @@
       document.getElementById('wheel-out').innerHTML = '';
       const pick = Math.floor(Math.random()*n);
       const turns = 4 + Math.floor(Math.random()*3);
-      // land segment `pick` centre under the top pointer, always spinning forward
       const targetMod = (360 - seg*pick) % 360;
       const currentMod = ((wheelRotation % 360) + 360) % 360;
       let delta = (targetMod - currentMod + 360) % 360;
       wheelRotation += turns*360 + delta;
       const EASE = 'transform 3.8s cubic-bezier(.15,.85,.2,1)';
-      // spin wheel and counter-spin the text in lockstep so labels stay upright
       requestAnimationFrame(()=>{
         wheel.style.transition = EASE;
         wheel.style.transform = 'rotate('+wheelRotation+'deg)';
@@ -1455,17 +1533,29 @@
       });
       setTimeout(()=>{
         const cat = slices[pick];
-        const entry = cat.prompts[Math.floor(Math.random()*cat.prompts.length)];
-        const title = Array.isArray(entry) ? entry[0] : '';
-        const body  = Array.isArray(entry) ? entry[1] : entry;
+        let title, body, kicker, kcol;
+        if (cat.bonus){
+          const e = WHEEL_BONUS[Math.floor(Math.random()*WHEEL_BONUS.length)];
+          title = e[0]; body = e[1]; kicker = 'WILD CARD'; kcol = '#e7b84a';
+        } else {
+          const e = cat.prompts[Math.floor(Math.random()*cat.prompts.length)];
+          title = e[0]; body = e[1]; kicker = cat.key; kcol = cat.color;
+        }
+        // heat builds
+        wheelSpins++;
+        const heat = heatLabel();
+        const hf = document.getElementById('heat-fill'); if(hf) hf.style.width = heat.pct+'%';
+        const hl = document.getElementById('heat-label'); if(hl) hl.textContent = heat.t;
         const lead = wheelLeadIsHer ? 'Her' : 'His';
+        const nudge = levelNudge();
         document.getElementById('wheel-out').innerHTML =
-          '<div class="wheel-result" id="wheel-result">' +
-            '<div class="wr-kicker" style="color:'+cat.color+'">'+cat.key+'</div>' +
-            (title ? '<div class="wr-title">'+title+'</div>' : '') +
+          '<div class="wheel-result'+(cat.bonus?' is-bonus':'')+'" id="wheel-result">' +
+            '<div class="wr-kicker" style="color:'+kcol+'">'+kicker+'</div>' +
+            '<div class="wr-title">'+title+'</div>' +
             '<div class="wr-lead"><span class="gc-lead-dot"></span>'+lead+' turn to lead</div>' +
             '<div class="wr-text">'+fillCard(body, wheelLeadIsHer)+'</div>' +
-            '<div class="wr-aloud">Read it aloud, then take it on \u2014 now, or later tonight.</div>' +
+            '<div class="wr-aloud">Read it aloud, then take it on — now, or later tonight.</div>' +
+            (nudge ? '<div class="wr-nudge">'+nudge+'</div>' : '') +
             '<div class="go-actions"><button class="gbtn primary" id="wheel-again">Spin again</button></div>' +
           '</div>';
         requestAnimationFrame(()=>document.getElementById('wheel-result').classList.add('show'));
