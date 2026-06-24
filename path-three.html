@@ -416,6 +416,40 @@
     font-family:'Fraunces',serif;font-style:italic;color:rgba(244,234,214,.78);
     font-size:1.1rem;line-height:1.55;margin-bottom:30px;
   }
+
+  /* ====== game accent (set per theme) ====== */
+  :root{ --game-accent:#b07b3e; }
+
+  /* ====== Theme picker ====== */
+  .theme-picker{width:100%;max-width:560px;margin:0 auto;padding:30px 20px 20px;color:var(--light-cream)}
+  .tp-heading{text-align:center;margin-bottom:30px}
+  .tp-kicker{font-family:'Fraunces',serif;font-size:.66rem;letter-spacing:.42em;text-transform:uppercase;color:#d49659;font-weight:600;margin-bottom:14px}
+  .theme-picker h2{font-family:'Fraunces',serif;font-weight:400;font-style:italic;font-size:clamp(2rem,5.5vw,2.8rem);line-height:1.05;color:var(--light-cream);letter-spacing:-.01em;margin-bottom:14px}
+  .theme-picker h2 em{color:#d49659;font-weight:300;font-style:italic}
+  .tp-intro{font-family:'Fraunces',serif;font-style:italic;color:rgba(244,234,214,.78);font-size:1.02rem;max-width:44ch;margin:0 auto;line-height:1.5}
+  .tp-options{display:flex;flex-direction:column;gap:13px;margin:0 0 26px}
+  .tp-option{--tp-accent:#d49659;appearance:none;background:rgba(255,255,255,.04);border:1px solid rgba(244,234,214,.16);border-left:3px solid var(--tp-accent);border-radius:4px;padding:19px 22px;text-align:left;cursor:pointer;color:var(--light-cream);font:inherit;transition:background .25s,border-color .25s,box-shadow .25s,transform .15s}
+  .tp-option:hover{background:rgba(255,255,255,.07);border-color:rgba(244,234,214,.3);transform:translateY(-1px)}
+  .tp-option.selected{background:rgba(255,255,255,.10);border:1px solid var(--tp-accent);border-left:3px solid var(--tp-accent);box-shadow:0 0 0 1px var(--tp-accent),0 8px 28px rgba(0,0,0,.45)}
+  .tp-name{font-family:'Fraunces',serif;font-weight:500;font-size:1.3rem;color:var(--light-cream);margin-bottom:5px;letter-spacing:-.005em}
+  .tp-option.selected .tp-name{color:var(--tp-accent)}
+  .tp-tag{font-family:'Fraunces',serif;font-style:italic;color:rgba(244,234,214,.72);font-size:.97rem;line-height:1.45}
+  .tp-cta{display:flex;justify-content:center}
+  .tp-cta .gbtn[disabled]{opacity:.4;cursor:not-allowed}
+  @media (max-width:540px){.theme-picker{padding:24px 16px 16px}.tp-option{padding:17px 18px}.tp-name{font-size:1.18rem}}
+
+  /* ====== accent-driven runtime elements ====== */
+  #go-intensity-bar.bar, .go-intensity .bar{ background:var(--game-accent) !important; transition:width .8s ease, background .5s ease }
+  .gc-lead-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--game-accent);margin-right:9px;vertical-align:middle;box-shadow:0 0 8px var(--game-accent)}
+  .game-card{ border-color:color-mix(in srgb, var(--game-accent) 45%, transparent) !important }
+  .gc-direction{ color:rgba(244,234,214,.82) !important; font-style:normal !important }
+
+  /* ====== slow card-text reveal (forced slowness) ====== */
+  .game-card .gc-text{opacity:0;transform:translateY(8px);transition:opacity 2.4s ease,transform 2.4s ease}
+  .game-card.visible .gc-text{opacity:1;transform:none}
+  .game-card .gc-mod{opacity:0;transition:opacity 1.6s ease 1.2s}
+  .game-card.visible .gc-mod{opacity:1}
+
 </style>
 </head>
 <body>
@@ -437,7 +471,7 @@
   <div class="phero-content">
     <div class="label">Path Three</div>
     <h1>The <em>Becoming</em></h1>
-    <p class="tagline">An interactive dice-and-card game for two. Six tiers, two hundred and sixteen unique card-experiences, designed around consent and slowness. For one evening with no rush.</p>
+    <p class="tagline">An interactive dice-and-card game for two. Choose a mood, then move through six tiers and hundreds of card-experiences \u2014 designed around consent and slowness. For one evening with no rush.</p>
   </div>
   <div class="scroll-down">Enter</div>
 </header>
@@ -445,7 +479,7 @@
 <main class="wrap">
 <section class="bgame" id="becoming">
     <div class="pt">The Becoming</div>
-      <div class="pd">An interactive dice-and-card game for partners — six tiers, two dice, two hundred and sixteen possible card-experiences. Made for one steamy evening with no rush.</div>
+      <div class="pd">An interactive dice-and-card game for partners \u2014 choose a mood, then six tiers, two dice, and hundreds of possible card-experiences. Made for one evening with no rush.</div>
     </div>
 
     <div class="bgame-intro">
@@ -525,69 +559,249 @@
   ];
 
   const CARDS = {
-    1:[
-      "Look into the giver's eyes for sixty seconds without speaking. The receiver may not look away.",
-      "Whisper into the receiver's ear three things you find beautiful about them tonight — slowly, with breath.",
-      "Sit one meter apart. The giver describes, in detail, the most beautiful moment they remember sharing with the receiver. No interruption.",
-      "The giver names one place on the receiver's body they want to touch later tonight. The receiver decides whether it will be allowed — but no touching yet.",
-      "The giver tells the receiver a fantasy they have had about them, in whatever detail feels right. No reaction is required.",
-      "The receiver chooses three words. The giver builds a one-minute description of what the night is going to be like — using only those words and their imagination."
-    ],
-    2:[
-      "The giver places one hand on the receiver's face. Holds it there for thirty seconds. Does not move.",
-      "The giver traces the receiver's jaw, neck and collarbone with a single fingertip. Does not skip ahead.",
-      "The giver stands behind the receiver and runs both hands down their arms from shoulder to wrist. Three times.",
-      "The giver brushes the receiver's hair away from their face — very slowly — tucks it behind their ear, lets the hand linger.",
-      "The giver presses the palm of one hand against the receiver's chest, over the heart. Holds it there until the pulse can be felt.",
-      "The giver wraps both arms around the receiver from behind, and holds them, without speaking, for two minutes."
-    ],
-    3:[
-      "Blindfold the receiver. The giver places three slow kisses anywhere they choose — but not on the mouth. The receiver guesses where each was.",
-      "The giver kisses the receiver everywhere except the mouth for two full minutes. The receiver may not initiate a mouth kiss.",
-      "The giver runs only their lips — no tongue — along the receiver's neck, ear and shoulder. Slowly.",
-      "The giver breathes against the receiver's skin in three places of their choosing. No touch. Just breath.",
-      "The giver bites — gently — the receiver's bottom lip, ear, and the side of their neck. One bite each, with full pauses between.",
-      "The receiver lies back. The giver kisses them deeply for one full minute. Then stops entirely. Then begins again."
-    ],
-    4:[
-      "The giver removes one piece of the receiver's clothing. Slowly. The receiver may not help.",
-      "Blindfold the giver. The receiver guides the giver's hands to three places on their body — anywhere they like.",
-      "The giver stands over the receiver and removes their own clothing — one piece — while the receiver watches in silence.",
-      "The receiver removes one piece of the giver's clothing using only their teeth and lips.",
-      "Both partners undress each other simultaneously, slowly, without breaking eye contact.",
-      "The receiver is fully undressed by the giver and laid down. The giver looks at them — just looks — for one full minute before any touch begins."
-    ],
-    5:[
-      "The giver uses only their mouth on the receiver's body for three minutes. The receiver chooses where to begin and may redirect at any time.",
-      "The receiver lies still. The giver may not be touched for five minutes — only give. The receiver speaks only to direct.",
-      "Blindfold the receiver. The giver explores their whole body slowly with hands, mouth and breath. No goal. No rush.",
-      "The giver presses the receiver into the bed with their weight. Holds them there, kissing them deeply, for as long as both want.",
-      "The receiver names one place on their body. The giver attends to that place — and only that place — for three minutes.",
-      "The giver works slowly from one end of the receiver to the other — kisses, breath, hands — making no part feel less wanted than another."
-    ],
-    6:[
-      "Begin slowly — or whatever the equivalent is for the two of you — and stay still for thirty full seconds. Eyes open.",
-      "The giver moves at exactly half the speed they think is right. Eyes open. Mouths open.",
-      "The receiver sets the pace, entirely. The giver follows. No suggestions.",
-      "Agree together on a single position. Stay in it. Slow. Deep. Quiet enough to hear each other breathe.",
-      "The giver pauses every thirty seconds. Looks at the receiver. Begins again.",
-      "Forget the cards. Be with them. As long as both of you want."
-    ]
+
+    // ============ TENDER ============
+    tender: {
+      1:[
+        "{Gs} takes {Ro} hands and, slowly, tells {Ro} the moment {gs} first knew {gs} loved {Ro}. Taking all the time {gs} needs to find the words.",
+        "{Gs} names three things about {Ro} that {gs} has never said aloud — small, true things {gs} has noticed and kept.",
+        "{Gs} holds {Rp} face in both hands and looks into {Rp} eyes for one full minute. Neither of them speaks until the minute is over.",
+        "{Gs} places one hand over {Rp} heart and tells {Ro}, slowly, something {gs} would never say to anyone else.",
+        "{Gs} tells {Ro} one thing {gs} is grateful for in being {Rp} — something that has nothing to do with the body. Specific.",
+        "{Gs} whispers, slowly, the most beautiful thing {gs} has noticed about {Rp} body this week. Not in general — this week."
+      ],
+      2:[
+        "{Gs} holds {Rp} face in both hands and kisses {Rp} forehead, staying there, lips pressed to skin, for thirty full seconds.",
+        "{Gs} brushes {Rp} hair away from {Rp} face, very slowly, tucks it behind {Rp} ear, and traces the edge of it with one fingertip.",
+        "{Gs} stands behind {Ro}, places both palms flat against {Rp} back, and breathes in time with {Ro} for one full minute.",
+        "{Gs} takes {Rp} hand in both of {Gp} own and traces every line on {Rp} palm, slowly, as if reading it.",
+        "{Gs} kisses each of {Rp} fingertips, one at a time, then the palm, then the soft inside of the wrist.",
+        "{Gs} lays {Gp} head on {Rp} chest, listens to {Rp} heart, and stays there until their breathing matches."
+      ],
+      3:[
+        "{Gs} kisses every part of {Rp} face — forehead, eyelids, cheekbones, jaw — before reaching the mouth. The mouth comes last.",
+        "{Rs} closes {Rp} eyes. {Gs} kisses {Ro} in three places {gs} has never kissed before, anywhere on the body.",
+        "{Gs} runs the backs of {Gp} fingers down {Rp} cheek, neck and collarbone. Three times. Slowly.",
+        "{Gs} places one finger under {Rp} chin, lifts {Rp} face, holds it there, and looks at {Ro} for a long moment before any kiss.",
+        "{Gs} kisses the inside of {Rp} wrist, then the elbow, then the shoulder, then the neck — slowly, in order.",
+        "{Gs} lies beside {Ro}, not touching, and traces the air half an inch above {Rp} skin, from forehead to feet."
+      ],
+      4:[
+        "{Gs} removes one piece of {Rp} clothing and kisses the place that has been revealed, staying there a moment before moving on.",
+        "{Gs} undresses {Ro} one piece at a time, kissing each newly bared place before continuing to the next.",
+        "{Rs} stands. {Gs} kneels and removes {Rp} clothing from below, slowly, looking up at {Ro} the whole time.",
+        "Once {rs} is undressed, {Gs} holds {Rp} face in both hands and just looks — touching nowhere else — for one full minute.",
+        "{Gs} undresses while {Rs} watches, and with each piece that comes off, {gs} tells {Ro} one true thing.",
+        "They undress each other at the same time, slowly, without breaking eye contact, hands staying only on what is being removed."
+      ],
+      5:[
+        "{Rs} lies back. {Gs} places one hand on {Rp} chest and the other on {Rp} hip and stays there a full minute before moving.",
+        "{Gs} explores {Rp} body slowly with hands, mouth and breath. No goal. No rush. {Rs} only has to be received.",
+        "{Rs} names one place. {Gs} attends to that place — and only that place — for three full minutes, with reverence.",
+        "{Gs} lies down and lets {Ro} lie fully on top, no space between them, breathing together for two minutes before anything else.",
+        "{Rs} closes {Rp} eyes. {Gs} kisses every part of {Rp} body, in order, from forehead to feet. Slowly.",
+        "{Gs} moves {Ro} into a position {rs} loves — gently, with both hands — holds {Ro} there, looks at {Ro}, then begins."
+      ],
+      6:[
+        "Before beginning, {Gs} holds {Rp} face and tells {Ro} one specific thing, beginning only after {rs} has answered with {Rp} eyes.",
+        "Eyes open the entire time. Whenever {Rs} closes {Rp} eyes, {Gs} pauses until they open again.",
+        "{Gs} begins so slowly that for the first thirty seconds nothing is moving at all — just being there, just looking.",
+        "{Gs} holds {Ro} fully — chest to chest, mouth to neck — for as long as either wants, before beginning.",
+        "{Gs} moves at half the speed {gs} thinks is right, then half of that, {Gp} eyes never leaving {Rp} face.",
+        "Forget the cards. Stay together, stay slow, stay close enough to hear each other breathe."
+      ]
+    },
+
+    // ============ PLAYFUL ============
+    playful: {
+      1:[
+        "{Gs} tells {Ro} three lies about what {gs} is planning tonight. {Rs} has to guess which one is true.",
+        "They sit a meter apart. {Gs} lists five compliments without smiling. If {Gs} smiles first, {Rs} picks the prize.",
+        "{Gs} makes up a name no one has ever called {Ro} and whispers it into {Rp} ear with total conviction.",
+        "{Gs} whispers one slightly embarrassing memory of the first time they met — the more awkward the detail, the better.",
+        "{Gs} writes one word on {Rp} palm with a fingertip. {Rs} gets three guesses; if {rs} fails, {rs} owes {Go} the word's meaning.",
+        "{Gs} tells {Ro} about the last dream {gs} had about {Ro}. If {gs} can't think of one, {gs} invents a better one."
+      ],
+      2:[
+        "{Gs} races {Gp} fingertips along {Rp} arm from shoulder to wrist. If {gs} reaches the wrist, {Rs} picks the prize.",
+        "{Gs} tickles {Ro} — gently — in three places {rs} would not expect. {Rs} may not tickle back yet.",
+        "{Gs} pretends to be a tailor taking {Rp} measurements, by touch only, slowly, improvising the units.",
+        "{Rs} stands still while {Gs} brushes {Rp} hair the way it has not been brushed since childhood.",
+        "{Gs} chooses one item of {Rp} clothing and adjusts it — straightens it, smooths it — for one full minute.",
+        "{Rs} closes {Rp} eyes. {Gs} presses {Gp} nose against three places on {Rp} body and {Rs} guesses where each was."
+      ],
+      3:[
+        "{Gs} kisses {Ro} only on the cheek, forehead, chin and nose. The mouth is off limits for two full minutes.",
+        "{Gs} leans in to kiss {Ro}, stops half an inch away, says 'I changed my mind,' and does this two more times.",
+        "{Gs} chooses three places to kiss — but {Rs} gets to veto one. They negotiate the other two.",
+        "{Gs} narrates, slowly, what {gs} plans to do — but cannot touch until {Rs} says one specific word {gs} chooses first.",
+        "{Gs} blindfolds {Ro} and presses three different things — soft, cold, warm — against {Rp} skin. {Rs} guesses each.",
+        "{Gs} wraps {Gp} arms around {Ro} and refuses to let go until {rs} says please. Then they negotiate the terms."
+      ],
+      4:[
+        "{Rs} chooses one piece of {Rp} own clothing to take off. {Gs} chooses where in the room it lands.",
+        "They strip together — but each piece removed is handed to the other person, who keeps it for the night.",
+        "{Gs} undresses {Ro} while pretending to be very bad at it. {Rs} is not allowed to help.",
+        "The lights go down. {Rs} removes {Rp} own clothes in shadow while {Gs} guesses what {rs} is doing.",
+        "Stop-and-start: {Gs} narrates what {gs} wants to remove, and {Rs} answers yes, no, or 'later.' Six times.",
+        "Once both are undressed, {Gs} has to make {Ro} laugh. {Rs} decides what it took."
+      ],
+      5:[
+        "{Rs} lies back. {Gs} kisses anywhere {gs} chooses while {Rs} says 'warmer' or 'colder' as {gs} moves.",
+        "{Gs} holds both of {Rp} wrists above {Rp} head. {Rs} tries to escape. But not really.",
+        "A coin is flipped. Heads: {Rs} gives directions for two minutes. Tails: {Gs} does whatever {gs} wants.",
+        "{Rs} chooses one place. {Gs} attends to it for three minutes — but {Rs} must keep one foot flat on the floor throughout.",
+        "They agree on an ordinary word. Whoever says it first owes the other ninety seconds of whatever they ask.",
+        "{Gs} takes {Ro} from behind — clothed or not — and just holds {Ro}, kissing the back of the neck, until one of them laughs."
+      ],
+      6:[
+        "They begin slowly. Whoever stays serious longest wins, and the loser owes the winner.",
+        "Eyes open the whole time. The first to laugh has to do whatever the other asks tomorrow night.",
+        "They decide the position together — by drawing it on each other's skin with a fingertip.",
+        "They stay in one position for two full minutes without speaking, looking only at each other, then resume — or do not.",
+        "They take turns leading, two minutes each. Whoever leads first chooses what happens last.",
+        "Forget the cards. Be with each other. Laugh if you laugh."
+      ]
+    },
+
+    // ============ CREATIVE ============
+    creative: {
+      1:[
+        "{Gs} tells {Ro} a three-sentence story about two strangers meeting tonight. They are the strangers.",
+        "They pretend they have never met. {Rs} is at a bar; {Gs} approaches and begins.",
+        "{Gs} makes up a name for tonight's version of {Go} and tells it to {Ro}, then asks for {Rp} name.",
+        "{Gs} describes a place — real or invented — {gs} is taking {Ro} to in the imagination, in detail, for one full minute.",
+        "{Rs} chooses three words. {Gs} builds a one-paragraph story about {Ro} using only those ideas.",
+        "{Gs} tells {Ro} about a parallel life {gs} has imagined for {Ro} — a profession, a country, a name. Detailed."
+      ],
+      2:[
+        "{Gs} becomes a stranger giving {Ro} a hand massage, staying in character, making small talk.",
+        "{Rs} lies face down. {Gs} becomes a sculptor and arranges {Rp} body into three positions, slowly, by touch.",
+        "{Gs} becomes a fortune-teller, reading {Rp} body — palm, neck, the small of the back — and telling {Rp} fortune aloud.",
+        "{Rs} is a painter's muse. {Gs}, the painter, adjusts {Ro}, frames {Ro}, studies {Ro} — slowly.",
+        "{Rs} becomes a statue. {Gs} discovers {Ro} in a museum and touches the marble, slowly, finding it warm.",
+        "{Gs} becomes a doctor doing a thorough, gentle examination. {Rs} pretends not to notice {rs} is being seduced."
+      ],
+      3:[
+        "{Gs} reads aloud from a book — but the book is {Rp} body. Whatever {gs} touches, {gs} reads.",
+        "Both take on accents from a country neither has visited, stay in them, and begin to kiss.",
+        "{Rs} is a captive and {Gs} the captor — a kind one. They negotiate the terms with words and touch.",
+        "They pretend they do not share a language, communicating everything with sound, gesture and breath.",
+        "{Gs} is a thief who has broken in; {Rs} has caught {Go}. They negotiate the punishment, with touch.",
+        "They pretend they have not seen each other in ten years. The reunion begins in the doorway."
+      ],
+      4:[
+        "{Rs} is the audience. {Gs} performs a slow, theatrical one-person scene of removing {Gp} own clothes.",
+        "They are characters in someone else's story. {Gs} narrates, in third person, what {gs} watches them do as they undress each other.",
+        "{Gs} becomes a tailor at a final fitting, removing {Rp} clothes pin by pin, adjusting, pausing, considering.",
+        "They are travellers in a foreign hotel at the end of a long journey, undressing each other with the gratitude of finally arriving.",
+        "{Rs} is royalty. {Gs} is the courtier preparing {Ro} for bed — slowly, with reverence.",
+        "{Rs} is the artist; {Gs} is the model, posing as {Rs} directs."
+      ],
+      5:[
+        "They pretend they have never seen each other's bodies, exploring everything slowly, narrating what they notice, in wonder.",
+        "{Gs} writes a sentence on {Rp} skin with a fingertip, letter by letter, that {Rs} must guess. Slowly.",
+        "They pretend a camera is in the corner and a director is calling action. They stay in character.",
+        "{Rs} is a deity being worshipped. {Gs} moves slowly from feet to head, paying homage at every part.",
+        "{Gs} pretends {Rs} has never been touched before and introduces {Ro}, slowly, to each kind of touch {gs} knows.",
+        "{Gs} becomes the interpreter of {Rp} body, listening to what each part says and acting on what {gs} hears."
+      ],
+      6:[
+        "They have just been reunited after a long absence. They begin slowly and stay quiet; the story is in the silence.",
+        "It is the first night of an arranged marriage — no shame, no expectation, two people meeting like this for the first time.",
+        "They have eloped in secret, and tonight is the wedding night. They treat it as such.",
+        "Staying in eye contact, they tell each other, in turn, what year it is in their story and what has happened in their invented history.",
+        "Both pretend to be writing this scene, in their heads, for a book they will never publish.",
+        "Forget the story. Forget the cards. Be each other. Stay slow."
+      ]
+    },
+
+    // ============ LUSTY ============
+    lusty: {
+      1:[
+        "{Gs} tells {Ro}, in detail, one thing {gs} wants to do tonight. {Gs} does not ask permission yet.",
+        "{Gs} whispers, slowly, what {gs} has been thinking about all day. {Rs} may not interrupt.",
+        "{Rs} names one place on {Rp} body. {Gs} describes, slowly, what {gs} wants to do there.",
+        "{Gs} tells {Ro} a fantasy — without apologising, without softening it. {Rs} listens and says nothing.",
+        "{Gs} puts one hand high on {Rp} thigh and tells {Ro}, slowly, what {gs} is not going to do for at least an hour.",
+        "{Gs} tells {Ro} to pick a safeword. When {Rs} says it tonight, {Gs} stops. Otherwise {gs} does not."
+      ],
+      2:[
+        "{Gs} runs one hand from {Rp} collarbone, down the center of {Rp} chest, to just above the waistband. Stops. Returns.",
+        "{Gs} puts both hands on {Rp} hips and pulls {Ro}, slowly, against {Gp} body, holding {Ro} there.",
+        "{Gs} runs a hand up the inside of {Rp} thigh — slowly — stopping two inches short of where {rs} wants it. And holds.",
+        "{Gs} presses {Ro} against the wall, holding {Ro} there with one hand on the chest. No kiss. Just holding.",
+        "{Gs} pulls {Ro} into {Gp} lap, wraps both arms around {Ro}, stays still for thirty seconds, then begins kissing the neck.",
+        "{Gs} runs a hand up the back of {Rp} shirt or dress, spreads {Gp} fingers across the bare back, and stays."
+      ],
+      3:[
+        "{Gs} kisses {Ro} hard. Stops. Walks two steps away. Looks at {Ro}. Comes back. Kisses {Ro} hard again.",
+        "{Gs} bites — gently — {Rp} bottom lip, holds it, releases, and does it again, then a third time, slower.",
+        "{Gs} tells {Ro}: 'I am going to kiss you for thirty seconds and you may not touch me.' Then begins.",
+        "{Gs} kisses {Rp} neck, slowly, on the side {rs} likes, then breathes against it, then does it again.",
+        "{Gs} kisses just below the waistband, over clothing, once — looks up, says nothing, and returns to the mouth.",
+        "{Gs} runs a hand up under {Rp} shirt while kissing {Ro}, stopping just before the skin beneath it. And stays."
+      ],
+      4:[
+        "{Gs} pulls {Rp} shirt or dress off quickly — then slows everything completely, no rushing for ten minutes after.",
+        "{Rs} removes {Rp} own clothing while {Gs} watches in silence, sitting, not touching, not speaking.",
+        "{Gs} undresses {Ro} with {Gp} teeth — at least one piece. Slowly.",
+        "They undress each other in eye contact. Whoever breaks it first owes the other one minute of stillness.",
+        "{Gs} lays {Ro} back and just looks — fully, for one full minute — before any touch. {Gs} ends with one word.",
+        "{Rs} stands; {Gs} kneels and removes {Rp} clothes from below, not standing up until {gs} is finished."
+      ],
+      5:[
+        "{Gs} pins both of {Rp} wrists above {Rp} head, holds them there, and kisses {Ro} hard. {Rs} may not move.",
+        "{Rs} is not allowed to be touched for five minutes — only to give. {Gs} receives, fully.",
+        "{Gs} explores {Rp} body slowly with mouth and hands. No goal, no rush — but no hesitation either.",
+        "{Rs} names one place. {Gs} attends to it with mouth and hands for three minutes. {Rs} may not redirect.",
+        "{Gs} presses {Ro} into the bed with {Gp} weight, holds {Ro} there, and kisses {Ro} deep and slow, not letting {Ro} move.",
+        "{Gs} works slowly from {Rp} mouth down the neck, the chest, the stomach, the inside of the thighs — staying at each place too long."
+      ],
+      6:[
+        "They begin slowly and stay completely still for thirty seconds, eyes open, then begin.",
+        "{Gs} moves at half the speed {gs} thinks is right, then half of that. Eyes locked. Mouth open.",
+        "{Rs} pulls {Go} in by the hips, sets the pace, then changes it, then changes it again.",
+        "They agree on one position, stay in it, stay slow, stay deep, quiet enough to hear each other breathe.",
+        "{Gs} pauses every thirty seconds, stays still, looks at {Ro}, and begins again — for as long as both want.",
+        "Forget the cards. Take what you want, give what they want, stay until you cannot stay anymore."
+      ]
+    }
+
   };
 
   const MODIFIERS = [
     { name:'Blindfolded', text:'One of you wears the blindfold for the full duration of this card. The pair decides who.' },
     { name:'In Silence',  text:'No words during this card — only breath, eyes and touch communicate. Sounds are allowed.' },
     { name:'Twice',       text:'The action is performed, then immediately performed again — same card, no break between.' },
-    { name:'Reversed',    text:'Halfway through, the giver and receiver swap roles. Same card, opposite direction.' },
-    { name:'With Sensation', text:'Introduce a sensory element — ice, warm oil, silk, a feather. The giver chooses.' },
+    { name:'Reversed',    text:'Halfway through, the two of you swap roles. Same card, opposite direction.' },
+    { name:'With Sensation', text:'Introduce a sensory element — ice, warm oil, silk, a feather. Whoever is leading chooses.' },
     { name:'Pure',        text:'The card as written, with no modifier. The plainest version of the act.' }
   ];
 
-  // game state
+  // game state — leadIsHer toggles each card so giving/receiving stays equal.
+  // "Him" = the man, "Her" = the woman. Pronouns derive from who is leading.
   let state = {
-    tier:1, cardsThisTier:0, giverIsA:true, lastCardDie:0, lastModDie:0, active:false
+    tier:1, cardsThisTier:0, leadIsHer:true, lastCardDie:0, lastModDie:0, active:false, theme:null
   };
+
+  const THEMES = {
+    tender:   { name:'Tender',   tag:'Slow, reverent, the words mattering. For when closeness is the whole point.', accent:'#a25c86' },
+    playful:  { name:'Playful',  tag:'Smiling, teasing, light. Laughter allowed, lightness on purpose.',            accent:'#c98a3c' },
+    creative: { name:'Creative', tag:'Imagination and scenarios. Be someone slightly other for an hour.',           accent:'#6f9a72' },
+    lusty:    { name:'Lusty',    tag:'Direct, hungry, less restraint. For when wanting is loud.',                   accent:'#b53a4a' }
+  };
+
+  // Pronoun fill. Lead (giver) this round is her or him; the other receives.
+  function pronouns(leadIsHer){
+    return leadIsHer
+      ? { Gs:'She', gs:'she', Go:'her', Gp:'her', Rs:'He', rs:'he', Ro:'him', Rp:'his' }
+      : { Gs:'He',  gs:'he',  Go:'him', Gp:'his', Rs:'She', rs:'she', Ro:'her', Rp:'her' };
+  }
+  function fillCard(text, leadIsHer){
+    const p = pronouns(leadIsHer);
+    return text.replace(/\{(Gs|gs|Go|Gp|Rs|rs|Ro|Rp)\}/g, (_,k)=>p[k]);
+  }
 
   const overlay = document.getElementById('game-overlay');
   const stage = document.getElementById('go-stage');
@@ -636,8 +850,9 @@
 
   function renderTierIntro(){
     const t = TIERS[state.tier-1];
-    tierLabel.textContent = 'Tier ' + t.roman + ' · ' + t.name;
+    tierLabel.textContent = 'Tier ' + t.roman + ' \u00b7 ' + t.name + (state.theme ? ' \u00b7 ' + THEMES[state.theme].name : '');
     intensityBar.style.width = (state.tier * 16.66) + '%';
+    applyAccent();
     stage.innerHTML =
       '<div class="go-tier-intro">' +
         '<div class="t-num">Tier ' + t.roman + '</div>' +
@@ -680,25 +895,22 @@
 
   function renderCard(cardN, modN){
     const t = TIERS[state.tier-1];
-    const text = CARDS[state.tier][cardN-1];
+    const rawText = CARDS[state.theme][state.tier][cardN-1];
+    const text = fillCard(rawText, state.leadIsHer);
     const mod = MODIFIERS[modN-1];
-    const giver = state.giverIsA ? 'A' : 'B';
-    const receiver = state.giverIsA ? 'B' : 'A';
+    const lead = state.leadIsHer ? 'Her' : 'His';
 
-    // keep dice visible but smaller; card appears below
     stage.innerHTML =
       '<div class="game-card" id="game-card">' +
         '<div class="gc-header">' +
-          '<div class="gc-tier">Tier ' + t.roman + ' · ' + t.name + '</div>' +
-          '<div class="gc-direction">' +
-            'Giver: <strong>' + giver + '</strong> <span class="arrow">→</span> Receiver: <strong>' + receiver + '</strong>' +
-          '</div>' +
+          '<div class="gc-tier">Tier ' + t.roman + ' \u00b7 ' + t.name + ' \u00b7 ' + THEMES[state.theme].name + '</div>' +
+          '<div class="gc-direction"><span class="gc-lead-dot"></span>' + lead + ' turn to lead</div>' +
         '</div>' +
         '<div class="gc-text">' + text + '</div>' +
         (mod.name !== 'Pure' ?
           '<div class="gc-mod">' +
-            '<span class="gc-mod-label">Modifier · ' + mod.name + '</span>' +
-            '<span class="gc-mod-text">' + mod.text + '</span>' +
+            '<span class="gc-mod-label">Modifier \u00b7 ' + mod.name + '</span>' +
+            '<span class="gc-mod-text">' + fillCard(mod.text, state.leadIsHer) + '</span>' +
           '</div>' : '') +
       '</div>' +
       '<div class="go-actions">' +
@@ -706,7 +918,7 @@
         '<button class="gbtn ghost" id="skip-btn">Skip</button>' +
         (state.cardsThisTier >= 2 ?
           '<button class="gbtn solid-dark" id="advance-btn">Advance tier ' +
-            (state.tier < 6 ? '→' : '· finale') + '</button>' : '') +
+            (state.tier < 6 ? '\u2192' : '\u00b7 finale') + '</button>' : '') +
       '</div>';
     requestAnimationFrame(()=>{
       document.getElementById('game-card').classList.add('visible');
@@ -719,7 +931,7 @@
 
   function nextCard(){
     state.cardsThisTier++;
-    state.giverIsA = !state.giverIsA;
+    state.leadIsHer = !state.leadIsHer;
     renderDiceAndRoll();
   }
 
@@ -732,7 +944,7 @@
 
   function renderBreath(){
     const t = TIERS[state.tier-1];
-    tierLabel.textContent = 'Tier ' + t.roman + ' · ' + t.name;
+    tierLabel.textContent = 'Tier ' + t.roman + ' \u00b7 ' + t.name + (state.theme ? ' \u00b7 ' + THEMES[state.theme].name : '');
     intensityBar.style.width = (state.tier * 16.66) + '%';
     stage.innerHTML =
       '<div class="breath">' +
@@ -747,7 +959,7 @@
     document.getElementById('continue-btn').addEventListener('click', renderTierIntro);
     document.getElementById('stay-btn').addEventListener('click', ()=>{
       state.tier--;
-      tierLabel.textContent = 'Tier ' + TIERS[state.tier-1].roman + ' · ' + TIERS[state.tier-1].name;
+      tierLabel.textContent = 'Tier ' + TIERS[state.tier-1].roman + ' \u00b7 ' + TIERS[state.tier-1].name + (state.theme ? ' \u00b7 ' + THEMES[state.theme].name : '');
       intensityBar.style.width = (state.tier * 16.66) + '%';
       renderDiceAndRoll();
     });
@@ -765,11 +977,47 @@
   }
 
   function enterGame(){
-    state = { tier:1, cardsThisTier:0, giverIsA:true, lastCardDie:0, lastModDie:0, active:true };
+    state = { tier:1, cardsThisTier:0, leadIsHer:true, lastCardDie:0, lastModDie:0, active:true, theme:null };
     overlay.classList.add('active');
     overlay.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
-    renderTierIntro();
+    renderThemePicker();
+  }
+
+  function applyAccent(){
+    const accent = state.theme ? THEMES[state.theme].accent : '#b07b3e';
+    document.documentElement.style.setProperty('--game-accent', accent);
+  }
+
+  function renderThemePicker(){
+    tierLabel.textContent = 'Choose tonight\u2019s mood';
+    intensityBar.style.width = '0%';
+    document.documentElement.style.setProperty('--game-accent', '#b07b3e');
+    let h = '<div class="theme-picker">' +
+      '<div class="tp-heading">' +
+        '<div class="tp-kicker">Before you begin</div>' +
+        '<h2>Choose tonight\u2019s <em>mood</em></h2>' +
+        '<p class="tp-intro">The cards take their tone from this. The dice and the six tiers stay the same \u2014 pick the lane that fits the evening you are in.</p>' +
+      '</div><div class="tp-options">';
+    for (const k of Object.keys(THEMES)){
+      const t = THEMES[k];
+      h += '<button class="tp-option" data-theme="'+k+'" style="--tp-accent:'+t.accent+'">' +
+        '<div class="tp-name">'+t.name+'</div><div class="tp-tag">'+t.tag+'</div></button>';
+    }
+    h += '</div><div class="tp-cta"><button class="gbtn primary" id="tp-begin-btn" disabled>Begin</button></div></div>';
+    stage.innerHTML = h;
+    const opts = stage.querySelectorAll('.tp-option');
+    opts.forEach(b => b.addEventListener('click', ()=>{
+      opts.forEach(x=>x.classList.remove('selected'));
+      b.classList.add('selected');
+      state.theme = b.getAttribute('data-theme');
+      applyAccent();
+      document.getElementById('tp-begin-btn').disabled = false;
+    }));
+    document.getElementById('tp-begin-btn').addEventListener('click', ()=>{
+      if(!state.theme) return;
+      renderTierIntro();
+    });
   }
 
   function exitGame(){
