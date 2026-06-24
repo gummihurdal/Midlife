@@ -485,6 +485,82 @@
     font-style:normal;font-size:.78rem;top:14px;
   }
 
+
+  /* ====== ON WANTING — embodied/sensual section ====== */
+  .on-wanting{
+    margin:60px -28px;padding:70px clamp(28px,5vw,50px) 60px;
+    background:linear-gradient(135deg,var(--dark) 0%,var(--dark-wine) 60%,#3a1e34 100%);
+    color:#f4ead6;position:relative;overflow:hidden;
+  }
+  .on-wanting::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 80% 25%, rgba(176,123,62,.16), transparent 50%),
+      radial-gradient(circle at 20% 75%, rgba(138,42,58,.18), transparent 55%),
+      radial-gradient(circle at 60% 90%, rgba(176,123,62,.10), transparent 45%);
+  }
+  .on-wanting::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:
+      radial-gradient(circle at 15% 25%, rgba(255,200,140,.45) 0, transparent 2px),
+      radial-gradient(circle at 85% 35%, rgba(255,200,140,.35) 0, transparent 2px),
+      radial-gradient(circle at 30% 75%, rgba(255,200,140,.4) 0, transparent 2px),
+      radial-gradient(circle at 75% 80%, rgba(255,200,140,.45) 0, transparent 2px);
+    animation:flicker 6s ease-in-out infinite alternate;
+  }
+  .on-wanting > *{position:relative;z-index:1}
+  .on-wanting .ow-heading{text-align:center;margin-bottom:36px}
+  .on-wanting .ow-kicker{
+    font-family:'Fraunces',serif;font-size:.7rem;letter-spacing:.42em;
+    text-transform:uppercase;color:#d49659;font-weight:600;margin-bottom:14px;
+  }
+  .on-wanting h2{
+    font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+    font-size:clamp(2rem,5vw,3rem);line-height:1.04;color:#f4ead6;
+    letter-spacing:-.01em;margin-bottom:14px;
+  }
+  .on-wanting h2 em{color:#d49659;font-style:italic;font-weight:300}
+  .on-wanting .ow-sub{
+    font-family:'Fraunces',serif;font-style:italic;
+    color:rgba(244,234,214,.78);font-size:1.04rem;max-width:44ch;
+    margin:0 auto;line-height:1.5;
+  }
+  .on-wanting .lead-2{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+    font-size:clamp(1.18rem,2.8vw,1.42rem);line-height:1.5;
+    color:#f4ead6;margin-bottom:26px;max-width:62ch;
+  }
+  .on-wanting p{
+    font-family:'Newsreader',serif;font-size:1.06rem;line-height:1.68;
+    color:rgba(244,234,214,.86);margin-bottom:20px;max-width:64ch;
+  }
+  .on-wanting p strong{color:#f4ead6;font-weight:600}
+  .on-wanting p em{font-style:italic;color:#d49659}
+  .on-wanting .pull-dark{
+    font-family:'Fraunces',serif;font-style:italic;
+    font-size:clamp(1.3rem,3.2vw,1.7rem);color:#d49659;text-align:center;
+    margin:38px auto 10px;padding-top:30px;
+    border-top:1px solid rgba(212,150,89,.3);line-height:1.4;
+    max-width:38ch;
+  }
+  @media (max-width:600px){
+    .on-wanting{margin:50px -22px;padding:50px 26px 44px}
+  }
+
+  /* steamy topic variant — slightly different border colour for the body/unsaid topics */
+  .topic.intimate{border-left-color:var(--ember)}
+  .topic.intimate .topic-num,
+  .topic.intimate ul li::before{color:var(--ember)}
+  .topic.intimate h4{color:#6b1d2a}
+  .topic-warn{
+    font-family:'Fraunces',serif;font-style:italic;
+    font-size:.94rem;color:var(--ember);margin-bottom:16px;
+    padding:10px 14px;background:rgba(138,42,58,.06);
+    border:1px solid rgba(138,42,58,.18);border-radius:3px;
+    line-height:1.5;
+  }
+  .topic-warn strong{color:var(--ember);font-weight:600;font-style:normal}
+
   /* second visual pause variant */
   .visual-pause.alt{
     background:
@@ -746,6 +822,27 @@
       </div>
     </div>
 
+    <!-- ON WANTING — the embodied/sensual interlude -->
+    <div class="on-wanting">
+      <div class="ow-heading">
+        <div class="ow-kicker">On wanting</div>
+        <h2>The <em>specific hunger</em> of midlife</h2>
+        <p class="ow-sub">What desire actually feels like, once you stop trying to recover the version it was before.</p>
+      </div>
+
+      <p class="lead-2">There are sentences that name what desire actually is. The catch of breath when a known body is suddenly seen again. The slow heat that builds along the inside of an arm while she reads. The way pleasure asks for time and darkness and the specific texture of one person's skin.</p>
+
+      <p>This is what midlife intimacy actually offers, once you stop trying to recover the version it was at twenty-five. <strong>Slower wanting. Deeper noticing.</strong> The specific hunger that knows exactly what it wants — and finally has the patience to wait for it.</p>
+
+      <p>The body in midlife is not less; it is <em>more particular</em>. What used to be loud and indiscriminate has become quiet and precise. Touch in the right place, at the right pressure, after the right number of minutes — and the whole body remembers itself. Touch in the wrong place, too soon, and the brake closes a door that takes hours to reopen.</p>
+
+      <p>This is the gift, properly received: <strong>the body is now a teacher, not a tool.</strong> If you slow down enough to learn what it is actually saying, midlife intimacy becomes more erotic than it ever was when both of you were too young to know.</p>
+
+      <p>The practical question is not <em>how do we get back what we had.</em> It is the harder, better question: <strong>what specifically do we want now — and do we have the courage to ask each other?</strong></p>
+
+      <div class="pull-dark">Anticipation is its own pleasure. Build it like a fire — slowly, deliberately, watching it catch.</div>
+    </div>
+
     <!-- KEEPING THE FLAME ALIVE -->
     <div class="intim-flame">
       <div class="flame-header">
@@ -904,7 +1001,7 @@
     <!-- THE DISCUSSION GUIDE — major -->
     <div class="section-heading">
       <div class="sh-kicker">The discussion guide</div>
-      <h2>Seven <em>topics</em>, thirty-five questions</h2>
+      <h2>Nine <em>topics</em>, fifty questions</h2>
       <p class="sh-sub">Pick one topic per evening. Don't try them all at once. The slow version is the only version that works.</p>
     </div>
 
@@ -998,6 +1095,39 @@
           <li>What would "improved" look like to you one year from now?</li>
           <li>What's something brave we could try — small or large — in the next season?</li>
           <li>What would you want our intimacy to feel like five years from now?</li>
+        </ul>
+      </div>
+
+      <div class="topic intimate">
+        <div class="topic-num">VIII</div>
+        <h4>On bodies, specifically</h4>
+        <p class="topic-tag">Specifics, slowly. No shame in any answer. Ask one question and let it breathe before the next.</p>
+        <ul>
+          <li>Where on your body are you most sensitive that I might be missing — or rushing past?</li>
+          <li>What kind of touch — pressure, speed, place — makes you forget time?</li>
+          <li>What do you think about during sex that you've never told me?</li>
+          <li>What position has felt good lately, and what's worth retiring?</li>
+          <li>If we had a whole afternoon together, no interruptions, no goals — what would happen, slowly, first?</li>
+          <li>What does pleasure feel like in your body — describe the actual sensation, not the word for it?</li>
+          <li>What's a sound, a word, a phrase that makes you want?</li>
+          <li>What's a smell or a texture that puts you in the room?</li>
+          <li>Where in your body do you carry desire — chest, hips, the back of the neck, somewhere else?</li>
+        </ul>
+      </div>
+
+      <div class="topic intimate">
+        <div class="topic-num">IX</div>
+        <h4>The unsaid</h4>
+        <p class="topic-tag">The slowest topic of all. Approach as if approaching a deer.</p>
+        <p class="topic-warn"><strong>A note before you begin.</strong> Whatever they share here, your reaction in the first five seconds determines whether they ever share anything else. Receive what they say without surprise, without judgement, without any need to act on it tonight. <em>Curiosity, not assessment.</em></p>
+        <ul>
+          <li>What's a fantasy you've had for years and never spoken aloud?</li>
+          <li>What's something you'd want me to do that feels too vulnerable to request directly?</li>
+          <li>Where would you let me lead that you've never let anyone lead?</li>
+          <li>What's a sexual thought about us that you've kept private?</li>
+          <li>What do you want done to you that you don't know how to ask for?</li>
+          <li>What's something you used to want, that you've stopped wanting — and do you miss it?</li>
+          <li>What's a piece of you, sexually, that you'd want me to know exists — even if we never act on it?</li>
         </ul>
       </div>
 
