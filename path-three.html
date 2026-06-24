@@ -502,6 +502,8 @@
 
   /* ====== SCRATCH CARDS ====== */
   .scratch-wrap{width:100%;max-width:520px;margin:0 auto;padding:6px 0;text-align:center}
+  .scratch-streak{font-family:'Fraunces',serif;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;
+    color:rgba(244,234,214,.5);text-align:center;margin:0 0 16px;font-weight:600}
   .scratch-intro{font-family:'Fraunces',serif;font-style:italic;color:rgba(244,234,214,.82);font-size:1.04rem;line-height:1.5;margin-bottom:22px}
   .scratch-choices{display:flex;gap:10px;justify-content:center;margin-bottom:22px}
   .sc-choice{appearance:none;cursor:pointer;font:inherit;font-family:'Fraunces',serif;font-size:.66rem;
@@ -513,15 +515,21 @@
   .scratch-stage{min-height:10px}
   .scratch-card{position:relative;width:100%;max-width:420px;margin:0 auto;aspect-ratio:5/3;
     border-radius:12px;overflow:hidden;background:linear-gradient(160deg,#f4ead6,#ede1cd);
-    box-shadow:0 16px 40px rgba(0,0,0,.45)}
-  .sc-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-    padding:26px;text-align:center;font-family:'Fraunces',serif;font-size:1.12rem;line-height:1.45;color:#2a1810}
+    box-shadow:0 16px 40px rgba(0,0,0,.45);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 26px;text-align:center}
+  .sc-kicker{font-family:'Fraunces',serif;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;
+    font-weight:600;color:#8a5a12;margin-bottom:6px}
+  .sc-title{font-family:'Fraunces',serif;font-style:italic;font-size:1.5rem;line-height:1.1;color:#3a2018;margin-bottom:10px}
+  .sc-text{font-family:'Fraunces',serif;font-size:1.04rem;line-height:1.4;color:#2a1810}
+  .scratch-card.is-gold{background:linear-gradient(160deg,#fcf2d2,#f3df9f);
+    box-shadow:0 0 0 2px #e7b84a,0 16px 44px rgba(231,184,74,.45),0 16px 40px rgba(0,0,0,.4)}
+  .scratch-card.is-gold .sc-title{color:#7a4a12}
   .sc-canvas{position:absolute;inset:0;cursor:grab;touch-action:none;border-radius:12px}
   .sc-hint{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);pointer-events:none;
     font-family:'Fraunces',serif;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;
-    color:rgba(220,235,235,.7);transition:opacity .3s ease}
+    color:rgba(245,238,222,.82);transition:opacity .3s ease}
   .sc-controls{display:flex;gap:12px;justify-content:center;margin-top:22px}
-  @media (max-width:480px){.sc-text{font-size:1rem;padding:20px}}
+  @media (max-width:480px){.sc-title{font-size:1.3rem}.sc-text{font-size:.96rem}}
   /* ====== LOVESLOTS ====== */
   .slots-wrap{width:100%;max-width:520px;margin:0 auto;padding:10px 0;text-align:center}
   .slots-intro{font-family:'Fraunces',serif;font-style:italic;color:rgba(244,234,214,.8);font-size:1.02rem;margin-bottom:22px}
@@ -1114,18 +1122,47 @@
   let wheelLevel = 'soft';
 
   // ---- SCRATCH CARDS : pool of small surprises for one evening ----
-  const SCRATCH = [
-    "A kiss, anywhere {Rs} chooses, that lasts a full sixty seconds.",
-    "{Gs} gives {Ro} a five-minute shoulder rub, slowly, asking nothing in return.",
-    "One honest compliment, whispered, about something {Gs} has never mentioned before.",
-    "{Gs} draws a slow bath or pours a drink — {Rp} choice — and brings it to {Ro}.",
-    "Three minutes of being held from behind, in silence, no agenda.",
-    "{Gs} undresses {Ro} of exactly one item, slowly, and kisses the place it leaves.",
-    "{Rs} names a place to be kissed; {Gs} stays there twice as long as expected.",
-    "A two-minute kiss with a thirty-second pause in the middle, just looking.",
-    "{Gs} tells {Ro} a fantasy, in {Rp} own words, with the lights low.",
-    "Free choice: {Rs} asks for anything, and {Gs} says yes if {gs} can."
-  ];
+  const SCRATCH_LEVELS = {
+    soft:  { label:'Soft',  accent:'#c98a3c', cover1:'#caa15a', cover2:'#9a7636', cards:[
+      ["A long kiss","A kiss, anywhere {Rs} chooses, that lasts a full sixty seconds — no hands."],
+      ["Slow hands","{Gs} gives {Ro} a five-minute massage, slowly, asking nothing in return."],
+      ["The unsaid compliment","{Gs} whispers one true thing about {Ro} {gs} has never said out loud before."],
+      ["Drawn for you","{Gs} draws a bath or pours a drink — {Rp} pick — and brings it to {Ro}."],
+      ["Held","Three minutes of being held from behind, in silence, no agenda."],
+      ["One button","{Gs} undoes exactly one button or strap, slowly, and kisses the skin it leaves."],
+      ["Your spot","{Rs} names a place to be kissed; {Gs} stays there twice as long as expected."],
+      ["Eyes only","One full minute of eye contact, foreheads close, no looking away, no laughing."],
+      ["The first time","{Gs} describes, in detail, the first time {gs} ever wanted {Ro}."] ] },
+    spicy: { label:'Spicy', accent:'#b53a4a', cover1:'#b5556a', cover2:'#7a2f3f', cards:[
+      ["Two inches short","{Gs} runs a hand up the inside of {Rp} thigh and stops two inches short. Holds, until {Rs} asks."],
+      ["Marked","{Gs} kisses one spot on {Rp} neck long enough that {Rs} will feel it tomorrow."],
+      ["Made to wait","{Gs} undresses {Ro} one layer fewer, then makes {Ro} wait, fully, before anything more."],
+      ["In your ear","{Gs} says one filthy thing directly into {Rp} ear, low, and lets it land before moving."],
+      ["Everywhere but","{Gs} kisses everywhere except {Rp} mouth for two minutes. {Rs} may not initiate."],
+      ["Pinned","{Gs} presses {Ro} to the wall, one hand on the chest, and holds {Ro} there — close, not kissing, yet."],
+      ["Teeth","{Gs} bites — gently — {Rp} bottom lip, holds it, releases, and repeats slower."],
+      ["Beg a little","{Gs} makes {Ro} ask out loud for the next thing — and waits until {Rs} does."],
+      ["Guided","{Rs} takes {Gp} hand and puts it exactly where {rs} wants it. {Gs} stays right there."] ] },
+    wild:  { label:'Wild',  accent:'#7a2f8a', cover1:'#8a4f9a', cover2:'#4e1f5a', cards:[
+      ["All the way down","{Gs} works slowly from {Rp} mouth down — neck, chest, stomach — staying longer than {Rs} expects."],
+      ["Until you say please","{Gs} holds {Rp} wrists down and won't let {Ro} move until {Rs} says please."],
+      ["Only to give","For five minutes {Rs} may not be touched — only give. {Gs} receives, completely."],
+      ["Blindfolded","Blindfold {Ro}. {Gs} decides everything; {Rs} guides only with one word at a time."],
+      ["From behind","{Gs} takes {Ro} from behind — clothed or not — holds {Ro} there, and kisses the back of {Rp} neck."],
+      ["Three to the edge","{Gs} builds {Ro} to the edge, stops, then again — three times before letting {Ro} go further."],
+      ["Say it plainly","{Rs} says out loud, with no softening at all, exactly what {rs} wants right now."],
+      ["Take what you want","{Gs} takes exactly what {gs} wants for two minutes — {Rs} only has to want it too."],
+      ["Nothing unasked","{Rs} leads completely; {Gs} does nothing that isn't asked for."] ] }
+  };
+  const SCRATCH_JACKPOT = [
+    ["Winner takes all","Ask for anything you want, right now. It happens — no negotiation."],
+      ["All yours","{Gs} does absolutely anything {gs} wants for five minutes. {Rs} only says yes."],
+      ["Role reversal","{Rs} is in charge until the safeword. Starting now."],
+      ["Truth, in full","{Rs} confesses the filthiest thing {rs} has imagined doing to {Go} — every detail."],
+      ["Dealer's choice","{Gs} names any card from any level and you both do it."],
+      ["Double gold","Scratch two more cards and do both, back to back."] ];
+  let scratchLevel = 'soft';
+  let scratchStreak = 0;
 
   // ---- LOVESLOTS : three reels compose one instruction ----
   const SLOT_WAY = ["Slowly","With your eyes closed","In total silence","Without using your hands","Whispering the whole time","As slowly as you possibly can"];
@@ -1573,18 +1610,44 @@
   // ============================================================
   let scratchLeadIsHer = true;
   function enterScratch(){
-    openOverlay('Scratch Cards', '#5a9aa0');
+    scratchLevel = 'soft';
+    scratchStreak = 0;
+    openOverlay('Scratch Cards', SCRATCH_LEVELS.soft.accent);
     renderScratch();
   }
+
+  function scratchStreakLabel(){
+    const s = scratchStreak;
+    if (s <= 0) return 'No cards opened yet';
+    if (s === 1) return '1 card opened';
+    if (s <= 3) return s + ' opened — keep going';
+    if (s <= 5) return s + ' opened — on a roll';
+    return s + ' opened — unstoppable';
+  }
+
   function renderScratch(){
-    // choose three distinct surprises; show as three choices, scratch one open
-    const pool = SCRATCH.slice();
+    const lvl = SCRATCH_LEVELS[scratchLevel];
+    document.documentElement.style.setProperty('--game-accent', lvl.accent);
+    // pick three distinct cards from this level; ~1 in 5 chance one slot is a GOLD jackpot
+    const pool = lvl.cards.slice();
     for (let i=pool.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [pool[i],pool[j]]=[pool[j],pool[i]]; }
-    const three = pool.slice(0,3).map(t=>fillCard(t, scratchLeadIsHer));
+    let three = pool.slice(0,3).map(c=>({title:c[0], text:c[1], gold:false}));
+    if (Math.random() < 0.2){
+      const jp = SCRATCH_JACKPOT[Math.floor(Math.random()*SCRATCH_JACKPOT.length)];
+      const slot = Math.floor(Math.random()*3);
+      three[slot] = {title:jp[0], text:jp[1], gold:true};
+    }
     const lead = scratchLeadIsHer ? 'Her' : 'His';
+    let tabs = '<div class="wheel-levels">';
+    for (const k of ['soft','spicy','wild']){
+      tabs += '<button class="wlevel'+(k===scratchLevel?' active':'')+'" data-lvl="'+k+'" style="--wl:'+SCRATCH_LEVELS[k].accent+'">'+SCRATCH_LEVELS[k].label+'</button>';
+    }
+    tabs += '</div>';
     stage.innerHTML =
       '<div class="scratch-wrap">' +
-        '<p class="scratch-intro"><span class="gc-lead-dot"></span>'+lead+' turn to lead. Pick a card, then scratch it open with a finger \u2014 or tap Reveal.</p>' +
+        tabs +
+        '<div class="scratch-streak" id="scratch-streak">'+scratchStreakLabel()+'</div>' +
+        '<p class="scratch-intro"><span class="gc-lead-dot"></span>'+lead+' turn to lead. Pick a card and scratch it open \u2014 one might be gold.</p>' +
         '<div class="scratch-choices" id="scratch-choices">' +
           '<button class="sc-choice" data-i="0">Card I</button>' +
           '<button class="sc-choice" data-i="1">Card II</button>' +
@@ -1593,6 +1656,9 @@
         '<div class="scratch-stage" id="scratch-stage"></div>' +
         '<div class="go-actions" id="scratch-actions"><button class="gbtn ghost" id="scratch-back">Back to the Playroom</button></div>' +
       '</div>';
+    stage.querySelectorAll('.wlevel').forEach(b=>b.addEventListener('click',()=>{
+      scratchLevel = b.getAttribute('data-lvl'); renderScratch();
+    }));
     const choices = stage.querySelectorAll('.sc-choice');
     choices.forEach(btn=>btn.addEventListener('click', ()=>{
       choices.forEach(b=>b.classList.remove('active'));
@@ -1602,13 +1668,17 @@
     document.getElementById('scratch-back').addEventListener('click', backToHub);
   }
 
-  function openScratchCard(text){
+  function openScratchCard(entry){
+    const lvl = SCRATCH_LEVELS[scratchLevel];
+    const gold = entry.gold;
     const host = document.getElementById('scratch-stage');
     host.innerHTML =
-      '<div class="scratch-card" id="scratch-card">' +
-        '<div class="sc-text">'+text+'</div>' +
+      '<div class="scratch-card'+(gold?' is-gold':'')+'" id="scratch-card">' +
+        (gold ? '<div class="sc-kicker">★ Gold card ★</div>' : '') +
+        '<div class="sc-title">'+entry.title+'</div>' +
+        '<div class="sc-text">'+fillCard(entry.text, scratchLeadIsHer)+'</div>' +
         '<canvas class="sc-canvas" id="sc-canvas"></canvas>' +
-        '<div class="sc-hint" id="sc-hint">scratch to reveal</div>' +
+        '<div class="sc-hint" id="sc-hint">'+(gold?'scratch the gold':'scratch to reveal')+'</div>' +
       '</div>' +
       '<div class="sc-controls">' +
         '<button class="gbtn ghost" id="sc-reveal">Reveal it</button>' +
@@ -1619,6 +1689,8 @@
     const hint = document.getElementById('sc-hint');
     const ctx = canvas.getContext('2d');
     let revealed = false;
+    const c1 = gold ? '#e7c45a' : lvl.cover1;
+    const c2 = gold ? '#b8902e' : lvl.cover2;
 
     function paintCover(){
       const r = card.getBoundingClientRect();
@@ -1630,13 +1702,11 @@
       canvas.style.height = r.height + 'px';
       ctx.setTransform(dpr,0,0,dpr,0,0);
       const g = ctx.createLinearGradient(0,0,r.width,r.height);
-      g.addColorStop(0,'#33484d'); g.addColorStop(1,'#1a2a2f');
+      g.addColorStop(0,c1); g.addColorStop(1,c2);
       ctx.fillStyle = g; ctx.fillRect(0,0,r.width,r.height);
-      // subtle sheen
-      ctx.fillStyle='rgba(255,255,255,.05)';
+      ctx.fillStyle='rgba(255,255,255,.07)';
       for(let i=0;i<r.width+r.height;i+=14){ ctx.fillRect(i-r.height,0,4,r.height); }
     }
-    // paint after layout settles
     requestAnimationFrame(()=>requestAnimationFrame(paintCover));
     window.addEventListener('resize', paintCover, {passive:true});
 
@@ -1646,13 +1716,10 @@
       const t=(e.touches&&e.touches[0])?e.touches[0]:e;
       return [t.clientX-r.left, t.clientY-r.top];
     }
-    function scratchAt(x,y){
-      ctx.globalCompositeOperation='destination-out';
-      ctx.beginPath(); ctx.arc(x,y,26,0,Math.PI*2); ctx.fill();
-    }
-    function start(e){ if(revealed)return; drawing=true; hint.style.opacity='0'; const[x,y]=pos(e); scratchAt(x,y); if(e.cancelable)e.preventDefault(); }
-    function move(e){ if(!drawing||revealed)return; const[x,y]=pos(e); scratchAt(x,y); if(e.cancelable)e.preventDefault(); }
-    function end(){ if(!drawing)return; drawing=false; if(clearedEnough()) doReveal(); }
+    function scratchAt(x,y){ ctx.globalCompositeOperation='destination-out'; ctx.beginPath(); ctx.arc(x,y,26,0,Math.PI*2); ctx.fill(); }
+    function startD(e){ if(revealed)return; drawing=true; hint.style.opacity='0'; const[x,y]=pos(e); scratchAt(x,y); if(e.cancelable)e.preventDefault(); }
+    function moveD(e){ if(!drawing||revealed)return; const[x,y]=pos(e); scratchAt(x,y); if(e.cancelable)e.preventDefault(); }
+    function endD(){ if(!drawing)return; drawing=false; if(clearedEnough()) doReveal(); }
     function clearedEnough(){
       try{
         const w=canvas.width,h=canvas.height;
@@ -1667,15 +1734,17 @@
       canvas.style.transition='opacity .5s ease'; canvas.style.opacity='0';
       hint.style.opacity='0';
       card.classList.add('revealed');
+      scratchStreak++;
+      const st=document.getElementById('scratch-streak'); if(st) st.textContent = scratchStreakLabel();
       setTimeout(()=>{ if(canvas.parentNode) canvas.style.display='none'; }, 520);
     }
 
-    canvas.addEventListener('mousedown',start);
-    canvas.addEventListener('mousemove',move);
-    window.addEventListener('mouseup',end);
-    canvas.addEventListener('touchstart',start,{passive:false});
-    canvas.addEventListener('touchmove',move,{passive:false});
-    canvas.addEventListener('touchend',end);
+    canvas.addEventListener('mousedown',startD);
+    canvas.addEventListener('mousemove',moveD);
+    window.addEventListener('mouseup',endD);
+    canvas.addEventListener('touchstart',startD,{passive:false});
+    canvas.addEventListener('touchmove',moveD,{passive:false});
+    canvas.addEventListener('touchend',endD);
 
     document.getElementById('sc-reveal').addEventListener('click', doReveal);
     document.getElementById('sc-new').addEventListener('click', ()=>{
