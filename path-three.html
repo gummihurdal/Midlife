@@ -757,7 +757,7 @@
         "{Gs} names three things about {Ro} that {gs} has never said aloud — small, true things {gs} has noticed and kept.",
         "{Gs} holds {Rp} face in both hands and looks into {Rp} eyes for one full minute. Neither of them speaks until the minute is over.",
         "{Gs} places one hand over {Rp} heart and tells {Ro}, slowly, something {gs} would never say to anyone else.",
-        "{Gs} tells {Ro} one thing {gs} is grateful for in being {Rp} — something that has nothing to do with the body. Specific.",
+        "{Gs} finishes the sentence out loud, slowly, and means it: \u2018The thing I would miss most if you were gone is\u2026\u2019",
         "{Gs} whispers, slowly, the most beautiful thing {gs} has noticed about {Rp} body this week. Not in general — this week."
       ],
       2:[
@@ -805,9 +805,9 @@
     // ============ PLAYFUL ============
     playful: {
       1:[
-        "{Gs} tells {Ro} three lies about what {gs} is planning tonight. {Rs} has to guess which one is true.",
+        "{Gs} tells {Ro} three outrageous things {gs} might do tonight \u2014 two are bluffs, one is a promise. {Rs} has to guess which, and {Gs} has to keep the promise.",
         "They sit a meter apart. {Gs} lists five compliments without smiling. If {Gs} smiles first, {Rs} picks the prize.",
-        "{Gs} makes up a name no one has ever called {Ro} and whispers it into {Rp} ear with total conviction.",
+        "{Gs} invents a ridiculous pet name for {Ro} and must use it, straight-faced, for the rest of the round. First to laugh owes a forfeit.",
         "{Gs} whispers one slightly embarrassing memory of the first time they met — the more awkward the detail, the better.",
         "{Gs} writes one word on {Rp} palm with a fingertip. {Rs} gets three guesses; if {rs} fails, {rs} owes {Go} the word's meaning.",
         "{Gs} tells {Ro} about the last dream {gs} had about {Ro}. If {gs} can't think of one, {gs} invents a better one."
@@ -815,9 +815,9 @@
       2:[
         "{Gs} races {Gp} fingertips along {Rp} arm from shoulder to wrist. If {gs} reaches the wrist, {Rs} picks the prize.",
         "{Gs} tickles {Ro} — gently — in three places {rs} would not expect. {Rs} may not tickle back yet.",
-        "{Gs} pretends to be a tailor taking {Rp} measurements, by touch only, slowly, improvising the units.",
+        "{Gs} is a very handsy tailor measuring {Ro} by touch alone \u2014 in invented units (\u201cthree kisses to the collarbone\u201d) \u2014 announcing each measurement out loud.",
         "{Rs} stands still while {Gs} brushes {Rp} hair the way it has not been brushed since childhood.",
-        "{Gs} chooses one item of {Rp} clothing and adjusts it — straightens it, smooths it — for one full minute.",
+        "{Gs} \u2018accidentally\u2019 keeps finding reasons to fix {Rp} clothing \u2014 a strap, a collar, a hem \u2014 each touch lasting a little longer than the last.",
         "{Rs} closes {Rp} eyes. {Gs} presses {Gp} nose against three places on {Rp} body and {Rs} guesses where each was."
       ],
       3:[
@@ -859,9 +859,9 @@
       1:[
         "{Gs} tells {Ro} a three-sentence story about two strangers meeting tonight. They are the strangers.",
         "They pretend they have never met. {Rs} is at a bar; {Gs} approaches and begins.",
-        "{Gs} makes up a name for tonight's version of {Go} and tells it to {Ro}, then asks for {Rp} name.",
+        "You invent new names and a wild backstory for each other \u2014 how you met, what you do, why you\u2019re really here tonight \u2014 and stay in character until the next card.",
         "{Gs} describes a place — real or invented — {gs} is taking {Ro} to in the imagination, in detail, for one full minute.",
-        "{Rs} chooses three words. {Gs} builds a one-paragraph story about {Ro} using only those ideas.",
+        "{Rs} names three random words. {Gs} has to spin them into a filthy little story starring the two of you, on the spot, out loud.",
         "{Gs} tells {Ro} about a parallel life {gs} has imagined for {Ro} — a profession, a country, a name. Detailed."
       ],
       2:[
@@ -1817,11 +1817,23 @@
     if (e.key === 'Escape' && state.active) exitGame();
   });
 
-  // reveal chapters on scroll
+  // reveal landing-page sections on scroll
+  const REVEAL_SELECTORS = '.chapter, .part, .intim-part, .practice, .bgame-tier';
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   },{rootMargin:'0px 0px -10% 0px'});
-  document.querySelectorAll('.chapter, .part, .intim-part, .practice, .bgame-tier').forEach(el=>io.observe(el));
+  document.querySelectorAll(REVEAL_SELECTORS).forEach(el=>io.observe(el));
+  // failsafe: reveal anything in view on load (and for no-IO browsers)
+  function failsafeReveal(){
+    document.querySelectorAll(REVEAL_SELECTORS).forEach(el=>{
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in');
+    });
+  }
+  window.addEventListener('load', ()=>{ failsafeReveal(); setTimeout(failsafeReveal, 400); });
+  if (!('IntersectionObserver' in window)){
+    document.querySelectorAll(REVEAL_SELECTORS).forEach(el=>el.classList.add('in'));
+  }
 
 </script>
 </body>
