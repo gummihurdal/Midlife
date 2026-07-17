@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#140a16">
+<title>Path Three · The Wheel of Desire</title>
+<meta name="description" content="Four wheels. One evening. Partners only.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#140a16;--room:#1a0e1c;--wall:#241326;
+  --paper:#f0e4d6;--paper-dim:#c9b8ad;
+  --ember:#c9a25e;--rose:#b0637f;--rouge:#8e3b3b;
+  --w1:#c9a25e;--w2:#b0637f;--w3:#8a2a3a;--w4:#5a9aa0;--wc:#a25c9e;
+  --hair:rgba(240,228,214,.14);
+  --serif:"Fraunces",Georgia,serif;--sans:"Outfit",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+body{background:var(--ink);color:var(--paper);font-family:var(--serif);font-weight:300;line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:var(--ember);text-decoration:none}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px;border-radius:2px}
+
+/* gate */
+#gate{position:fixed;inset:0;z-index:100;background:radial-gradient(ellipse at 50% 30%,#241326 0%,var(--ink) 70%);display:flex;align-items:center;justify-content:center;padding:2rem;text-align:center}
+#gate.open{display:none}
+.gate-box{max-width:26rem;width:100%}
+.gate-flame{font-size:1.6rem;color:var(--ember);margin-bottom:1.2rem;animation:flicker 4s ease-in-out infinite}
+@keyframes flicker{0%,100%{opacity:.85}45%{opacity:1}60%{opacity:.7}}
+.gate-box h1{font-weight:300;font-size:1.8rem;margin-bottom:.5rem}
+.gate-box h1 em{font-style:italic;color:var(--ember)}
+.gate-box p{color:var(--paper-dim);font-size:.95rem;margin-bottom:1.8rem}
+.gate-box input{width:100%;background:transparent;border:0;border-bottom:1px solid var(--hair);color:var(--paper);font-family:var(--serif);font-size:1.15rem;padding:.5rem .2rem;text-align:center;letter-spacing:.35em}
+.gate-box input:focus{outline:none;border-bottom-color:var(--ember)}
+.gate-box button{margin-top:1.6rem;background:none;border:1px solid var(--ember);color:var(--ember);font-family:var(--sans);font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;padding:.8rem 2.4rem;cursor:pointer;border-radius:2rem;transition:background .3s,color .3s}
+.gate-box button:hover{background:var(--ember);color:var(--ink)}
+.gate-err{color:var(--rose);font-size:.85rem;margin-top:1rem;min-height:1.2em;font-style:italic}
+
+/* layout */
+.wrap{max-width:42rem;margin:0 auto;padding:0 1.4rem}
+header.hero{padding:4.5rem 0 2.5rem;background:radial-gradient(ellipse 120% 80% at 50% 0%,#2b1630 0%,var(--ink) 75%)}
+.crumb{font-family:var(--sans);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--paper-dim)}
+.crumb a{color:var(--paper-dim)}
+.eyebrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--ember);margin:2.2rem 0 .8rem}
+h1.title{font-size:clamp(2.4rem,7.5vw,4rem);font-weight:300;line-height:1.05}
+h1.title em{font-style:italic;color:var(--ember)}
+.standfirst{margin-top:1.2rem;max-width:34rem;color:var(--paper-dim);font-size:1.02rem}
+.rule-line{margin-top:1.6rem;font-size:.95rem;color:var(--paper-dim)}
+.rule-line .rg{display:inline-block;font-family:var(--sans);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;background:var(--rouge);color:var(--paper);padding:.22rem .7rem;border-radius:2rem;margin-right:.4rem}
+
+/* wheel tabs */
+.tabs{display:flex;gap:.5rem;margin:2.4rem 0 0;flex-wrap:wrap}
+.tabs button{flex:1;min-width:7rem;background:var(--wall);border:1px solid var(--hair);border-radius:6px;color:var(--paper-dim);font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;padding:.85rem .4rem;cursor:pointer;transition:border-color .3s,color .3s}
+.tabs button .wn{display:block;font-family:var(--serif);font-size:1.15rem;letter-spacing:0;text-transform:none;color:var(--paper);margin-bottom:.2rem}
+.tabs button.on{border-color:var(--tab,#c9a25e);color:var(--tab,#c9a25e)}
+.tabs button.on .wn{color:var(--tab,#c9a25e)}
+
+/* spinner */
+.stage{margin:2.2rem 0 4rem;text-align:center}
+.wheel-desc{font-style:italic;color:var(--paper-dim);margin-bottom:1.8rem;min-height:1.5em}
+.card{background:var(--wall);border:1px solid var(--hair);border-left:3px solid var(--accent,#c9a25e);border-radius:6px;padding:2.2rem 1.8rem;min-height:11rem;display:flex;flex-direction:column;justify-content:center;text-align:left;transition:opacity .2s}
+.card.spinning{opacity:.35}
+.card .num{font-family:var(--sans);font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent,#c9a25e);margin-bottom:.7rem}
+.card .name{font-size:1.45rem;font-weight:400;margin-bottom:.7rem}
+.card .body{color:var(--paper-dim)}
+.card .empty-note{color:var(--paper-dim);font-style:italic;text-align:center}
+.card .empty-note code{font-family:var(--sans);font-size:.85em;color:var(--ember);background:rgba(201,162,94,.1);padding:.1rem .4rem;border-radius:3px}
+.spin-row{display:flex;gap:.8rem;justify-content:center;margin-top:1.6rem;flex-wrap:wrap}
+.spin-row button{background:none;border:1px solid var(--accent,#c9a25e);color:var(--accent,#c9a25e);font-family:var(--sans);font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;padding:.9rem 2.6rem;border-radius:2rem;cursor:pointer;transition:background .3s,color .3s}
+.spin-row button:hover{background:var(--accent,#c9a25e);color:var(--ink)}
+.spin-row button.chaos{border-color:var(--wc);color:var(--wc)}
+.spin-row button.chaos:hover{background:var(--wc);color:var(--ink)}
+
+/* phases table */
+.phases{border-top:1px solid var(--hair);padding:3rem 0 4rem}
+.phases h2{font-weight:300;font-size:1.7rem;margin-bottom:1.4rem}
+.phases h2 em{font-style:italic;color:var(--ember)}
+.ph-row{display:flex;align-items:baseline;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--hair)}
+.ph-row .ph-n{font-family:var(--sans);font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;min-width:5.5rem;color:var(--paper-dim)}
+.ph-row .ph-w{font-size:1.1rem;min-width:8rem}
+.ph-row .ph-v{color:var(--paper-dim);font-style:italic;font-size:.95rem}
+footer{padding:2.5rem 0 4rem;text-align:center;font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--paper-dim)}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="gate-box">
+    <div class="gate-flame">🕯</div>
+    <h1>For <em>partners</em> only</h1>
+    <p>This room opens with one word.<br>The thing that lights this room.</p>
+    <input id="pass" type="password" autocomplete="off" spellcheck="false" aria-label="Passphrase">
+    <div class="gate-err" id="gateErr"></div>
+    <button onclick="tryGate()">Enter</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="path-three.html">← The Playroom</a> · Path III</div>
+    <div class="eyebrow">One evening · Four wheels</div>
+    <h1 class="title">The Wheel<br>of <em>Desire</em></h1>
+    <p class="standfirst">One evening. Two of you. Four wheels that deepen as the night does — spin, do what it says, spin again. Either of you may call <strong>"Chaos"</strong> at any moment and spin the fifth wheel instead.</p>
+    <p class="rule-line"><span class="rg">Rouge</span> Spin means yes. Rouge means stop — instantly, no explanation, never part of the game. Everything else <em>is</em> the game.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="tabs" id="tabs">
+    <button data-w="0" style="--tab:var(--w1)" class="on"><span class="wn">I</span>Slow Burn</button>
+    <button data-w="1" style="--tab:var(--w2)"><span class="wn">II</span>Ignition</button>
+    <button data-w="2" style="--tab:var(--w3)"><span class="wn">III</span>Wildfire</button>
+    <button data-w="3" style="--tab:var(--w4)"><span class="wn">IV</span>Afterglow</button>
+  </div>
+
+  <div class="stage">
+    <p class="wheel-desc" id="wheelDesc"></p>
+    <div class="card" id="card">
+      <div class="empty-note" id="cardInner">Spin to begin.</div>
+    </div>
+    <div class="spin-row">
+      <button id="spinBtn" onclick="spin()">Spin</button>
+      <button class="chaos" onclick="chaos()">Chaos</button>
+    </div>
+  </div>
+
+  <div class="phases">
+    <h2>The shape of the <em>evening</em></h2>
+    <div class="ph-row"><div class="ph-n">Opening</div><div class="ph-w">Slow Burn</div><div class="ph-v">Teasing, anticipation, connection</div></div>
+    <div class="ph-row"><div class="ph-n">Rising</div><div class="ph-w">Ignition</div><div class="ph-v">Heat, exploration, surrender</div></div>
+    <div class="ph-row"><div class="ph-n">Peak</div><div class="ph-w">Wildfire</div><div class="ph-v">Primal, boundary-pushing, release</div></div>
+    <div class="ph-row"><div class="ph-n">Close</div><div class="ph-w">Afterglow</div><div class="ph-v">Softness, care, gratitude</div></div>
+  </div>
+
+</main>
+
+<footer>The Wheel of Desire · Path III · Made for two</footer>
+
+<script>
+/* ---------- soft gate ---------- */
+var PASS="candle";
+function tryGate(){
+  var v=(document.getElementById('pass').value||"").trim().toLowerCase();
+  if(v===PASS){sessionStorage.setItem('wheel-open','1');document.getElementById('gate').classList.add('open');}
+  else{document.getElementById('gateErr').textContent="Not the word.";}
+}
+document.getElementById('pass').addEventListener('keydown',function(e){if(e.key==='Enter')tryGate();});
+if(sessionStorage.getItem('wheel-open')==='1'){document.getElementById('gate').classList.add('open');}
+
+/* =====================================================
+   THE WHEELS
+   Each entry: ["Name","Text"].
+   WHEEL2 and WHEEL3 are yours to write — add entries
+   in the same format and the spinner picks them up
+   automatically. Empty wheels show an edit note.
+   ===================================================== */
+
+var WHEEL1 = [ /* Slow Burn — candles lit, clothes on, the night opens */
+["The Look","Sit facing each other, knees touching. Stare into their eyes. Two minutes. No smiling, no looking away. Let the tension become unbearable."],
+["The Confession","Whisper the moment today you first wanted them. Be specific — what they were wearing, what crossed your mind, why you said nothing."],
+["The Tease","Undress them halfway. Stop. Make them wait exactly like that while you pour the drinks. Let their skin cool. Let the wanting build."],
+["The Taste","Blindfold them. Feed them something — your fingers at their lips, their mouth catching the salt, the sweet, the heat. Take your time choosing."],
+["The Slow Dance","One song. Press together. Not dancing — bodies rediscovering each other through fabric. Hands wandering. Hips deciding things."],
+["The Massage","Oil, warmed in your palms. Start at the neck, work down, every inch, no rushing, no skipping. Make them melt before anything else happens."],
+["The Kiss","Kiss them like you just met. Like you've waited years. Like it's the first and last time. Five minutes minimum. Just mouths. Just hunger."],
+["The Praise","Kneel in front of them. Name five things you worship about them — touching each one as you say it. Lips afterward."],
+["The Memory","Describe the best moment the two of you have ever shared, in vivid detail. Then ask, quietly: \u201cShould we top it tonight?\u201d"],
+["The Mirror","Stand them in front of a mirror, you behind. Trace their reflection with a fingertip. Whisper what you see, what you want, what's about to happen."],
+["The Question","\u201cWhat do you need tonight that you haven't asked for?\u201d Listen to the whole answer. Then begin giving it."],
+["The Walk Away","Bring your mouth close enough that they feel your breath — hold it there for ten full seconds — then stand up and walk to the other room without a word. Let them come find you."]
+];
+
+var WHEEL2 = [ /* Ignition — write your own entries here, e.g. ["Name","What happens"] */
+];
+
+var WHEEL3 = [ /* Wildfire — write your own entries here, e.g. ["Name","What happens"] */
+];
+
+var WHEEL4 = [ /* Afterglow — bodies cooling, hearts pounding */
+["The Cuddle","Pull them close. Skin to skin, legs tangled. Trace lazy patterns on their back. Say nothing. Just breathe together."],
+["The Bath","Draw a bath and climb in together. Warm water, soap, laughter. Wash each other slowly, reverently."],
+["The Snack","Feed each other — fruit, chocolate, something cold, something sweet. Fingers to lips. Gratitude in every bite."],
+["The Recap","Whisper your favourite moment of the night. Then ask for theirs. Then what you each want next time — planting seeds for tomorrow."],
+["The Kisses","Soft kisses, everywhere, unhurried. Not going anywhere. Just gratitude in its gentlest form."],
+["The Massage, Reversed","Whoever did the most work tonight receives now. Slow, soothing, appreciation through touch."],
+["The Laughter","Talk about the funny parts — the awkward angles, the sounds nobody meant to make. Laugh together, unashamed."],
+["The Hydration","Water for both. Hold the glass to their lips, let them drink, kiss their forehead. Care is the final act of passion."],
+["The Tomorrow Plan","What happens tomorrow? Brunch, staying in bed, a rematch? Plan it out loud. The night doesn't end when the sun rises."],
+["The Sleep","Let them fall asleep in your arms. Watch them for a moment. Feel the weight of that trust. Close your eyes."]
+];
+
+var CHAOS = [
+["Swap Roles","Whoever was leading now follows. Whoever was following takes control. Ten minutes. Full commitment."],
+["Double Spin","Spin the current wheel twice. Do both. Simultaneously if you can figure out how."],
+["The Gauntlet","Spin every wheel that has entries. Complete one result from each before resuming. No breaks."],
+["Blindfold Everything","Whoever isn't blindfolded puts it on. Finish the current wheel blind."],
+["No Words","Ten minutes. No talking. Only sounds, only touch, only instinct."],
+["The Joker","Make up your own command — something you've never dared to say out loud. Say it. Do it. Now."]
+];
+
+var WHEELS=[
+{name:"Slow Burn",desc:"Candles lit. Clothes still on. The night opens its mouth.",data:WHEEL1,accent:"var(--w1)"},
+{name:"Ignition",desc:"Clothes gone. Hands exploring. The fire catches.",data:WHEEL2,accent:"var(--w2)"},
+{name:"Wildfire",desc:"The deep end. Boundaries tested. Primal takes over.",data:WHEEL3,accent:"var(--w3)"},
+{name:"Afterglow",desc:"Bodies cooling. Hearts pounding. The sacred aftermath.",data:WHEEL4,accent:"var(--w4)"}
+];
+
+var current=0,lastPick=-1;
+
+function setWheel(i){
+  current=i;lastPick=-1;
+  var w=WHEELS[i];
+  document.getElementById('wheelDesc').textContent=w.desc;
+  document.getElementById('card').style.setProperty('--accent',w.accent);
+  document.querySelectorAll('.spin-row button')[0].style.setProperty('--accent',w.accent);
+  var tabs=document.querySelectorAll('#tabs button');
+  tabs.forEach(function(b,j){b.classList.toggle('on',j===i);});
+  renderIdle();
+}
+function renderIdle(){
+  var w=WHEELS[current],inner=document.getElementById('cardInner');
+  if(!w.data.length){
+    inner.className="empty-note";
+    inner.innerHTML="This wheel is yours to write.<br><br>Open <code>the-wheel.html</code> in the repo and add entries to <code>"+(current===1?"WHEEL2":"WHEEL3")+"</code> — two lines each, name and action. The spinner picks them up automatically.";
+  }else{
+    inner.className="empty-note";
+    inner.textContent="Spin to begin.";
+  }
+}
+function showEntry(list,i,label,accent){
+  var card=document.getElementById('card');
+  card.style.setProperty('--accent',accent);
+  document.getElementById('cardInner').className="";
+  document.getElementById('cardInner').innerHTML=
+    '<div class="num">'+label+' · '+(i+1)+' of '+list.length+'</div>'+
+    '<div class="name">'+list[i][0]+'</div>'+
+    '<div class="body">'+list[i][1]+'</div>';
+}
+function animateSpin(list,label,accent){
+  var card=document.getElementById('card');card.classList.add('spinning');
+  var n=0,iv=setInterval(function(){
+    var r=Math.floor(Math.random()*list.length);
+    showEntry(list,r,label,accent);
+    if(++n>9){
+      clearInterval(iv);card.classList.remove('spinning');
+      var f;do{f=Math.floor(Math.random()*list.length);}while(list.length>1&&f===lastPick);
+      lastPick=f;showEntry(list,f,label,accent);
+      try{if(navigator.vibrate)navigator.vibrate(60);}catch(e){}
+    }
+  },85);
+}
+function spin(){
+  var w=WHEELS[current];
+  if(!w.data.length){renderIdle();return;}
+  animateSpin(w.data,w.name,w.accent);
+}
+function chaos(){
+  animateSpin(CHAOS,"Chaos","var(--wc)");
+}
+document.getElementById('tabs').addEventListener('click',function(e){
+  var b=e.target.closest('button');if(b)setWheel(+b.getAttribute('data-w'));
+});
+setWheel(0);
+</script>
+</body>
+</html>
