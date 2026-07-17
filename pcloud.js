@@ -75,7 +75,8 @@ window.PCSync = (function () {
               if (dash < 1) return;
               var key  = m.slice(0, dash).trim().toLowerCase();
               var name = m.slice(dash + 1).trim();
-              (out.cards[key] = out.cards[key] || []).push([name, body.trim()]);
+              var text = body.trim().replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\r?\n/g,"<br>");
+              (out.cards[key] = out.cards[key] || []).push([name, text]);
             })
             .catch(function () {});
         }));
