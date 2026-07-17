@@ -147,7 +147,7 @@ var PASS="candle";
 function tryGate(){
   var v=(document.getElementById('pass').value||"").trim().toLowerCase();
   if(v===PASS){sessionStorage.setItem('wheel-open','1');document.getElementById('gate').classList.add('open');}
-  else{document.getElementById('gateErr').textContent="Not the word.";}
+  else{document.getElementById('gateErr').textContent="Not the word. Romantic guess, though.";}
 }
 document.getElementById('pass').addEventListener('keydown',function(e){if(e.key==='Enter')tryGate();});
 if(sessionStorage.getItem('wheel-open')==='1'){document.getElementById('gate').classList.add('open');}
@@ -166,7 +166,7 @@ var WHEEL1 = [ /* Slow Burn — candles lit, clothes on, the night opens */
 ["The Tease","Undress them halfway. Stop. Make them wait exactly like that while you pour the drinks. Let their skin cool. Let the wanting build."],
 ["The Taste","Blindfold them. Feed them something — your fingers at their lips, their mouth catching the salt, the sweet, the heat. Take your time choosing."],
 ["The Slow Dance","One song. Press together. Not dancing — bodies rediscovering each other through fabric. Hands wandering. Hips deciding things."],
-["The Massage","Oil, warmed in your palms. Start at the neck, work down, every inch, no rushing, no skipping. Make them melt before anything else happens."],
+["The Massage","Oil, warmed in your palms. Start at the neck, work down, every inch, no rushing, no skipping. Make them melt before anything else happens. If they fall asleep, you overshot — recalibrate."],
 ["The Kiss","Kiss them like you just met. Like you've waited years. Like it's the first and last time. Five minutes minimum. Just mouths. Just hunger."],
 ["The Praise","Kneel in front of them. Name five things you worship about them — touching each one as you say it. Lips afterward."],
 ["The Memory","Describe the best moment the two of you have ever shared, in vivid detail. Then ask, quietly: \u201cShould we top it tonight?\u201d"],
@@ -200,7 +200,9 @@ var CHAOS = [
 ["The Gauntlet","Spin every wheel that has entries. Complete one result from each before resuming. No breaks."],
 ["Blindfold Everything","Whoever isn't blindfolded puts it on. Finish the current wheel blind."],
 ["No Words","Ten minutes. No talking. Only sounds, only touch, only instinct."],
-["The Joker","Make up your own command — something you've never dared to say out loud. Say it. Do it. Now."]
+["The Joker","Make up your own command — something you've never dared to say out loud. Say it. Do it. Now."],
+["Nature Documentary","For the next ten minutes, one of you narrates everything in a hushed wildlife-presenter voice. \u201cAnd here we observe the approach\u2026\u201d Breaking character costs you the next spin."],
+["The Critic","After the next result, they must review your performance in the style of a pretentious wine tasting. Notes of. Undertones. A lingering finish. You must stand there and take it."]
 ];
 
 var WHEELS=[
@@ -226,7 +228,7 @@ function renderIdle(){
   var w=WHEELS[current],inner=document.getElementById('cardInner');
   if(!w.data.length){
     inner.className="empty-note";
-    inner.innerHTML="This wheel is yours to write.<br><br>Open <code>the-wheel.html</code> in the repo and add entries to <code>"+(current===1?"WHEEL2":"WHEEL3")+"</code> — two lines each, name and action. The spinner picks them up automatically.";
+    inner.innerHTML="This wheel is yours to write — the house provides the stage, the script is bring-your-own.<br><br>Open <code>the-wheel.html</code> in the repo and add entries to <code>"+(current===1?"WHEEL2":"WHEEL3")+"</code> — two lines each, name and action. The spinner picks them up automatically. Write them together over wine. That's a whole evening by itself.";
   }else{
     inner.className="empty-note";
     inner.textContent="Spin to begin.";
