@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#140a16">
+<title>Path Three · The Architecture</title>
+<meta name="description" content="A private evening in four acts. For partners only.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#140a16;          /* near-black plum */
+  --room:#1a0e1c;         /* room shadow */
+  --wall:#241326;         /* card surface */
+  --paper:#f0e4d6;        /* warm text */
+  --paper-dim:#c9b8ad;    /* secondary text */
+  --ember:#c9a25e;        /* candle gold */
+  --rose:#b0637f;         /* plum-rose accent */
+  --rouge:#8e3b3b;        /* the stop word */
+  --hair:rgba(240,228,214,.14);
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"Outfit",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+body{background:var(--ink);color:var(--paper);font-family:var(--serif);font-weight:300;line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:var(--ember);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px;border-radius:2px}
+
+/* ---------- gate ---------- */
+#gate{position:fixed;inset:0;z-index:100;background:radial-gradient(ellipse at 50% 30%,#241326 0%,var(--ink) 70%);display:flex;align-items:center;justify-content:center;padding:2rem;text-align:center}
+#gate.open{display:none}
+.gate-box{max-width:26rem;width:100%}
+.gate-flame{font-size:1.6rem;color:var(--ember);margin-bottom:1.2rem;animation:flicker 4s ease-in-out infinite}
+@keyframes flicker{0%,100%{opacity:.85}45%{opacity:1}60%{opacity:.7}}
+.gate-box h1{font-weight:300;font-size:1.8rem;letter-spacing:.01em;margin-bottom:.5rem}
+.gate-box h1 em{font-style:italic;color:var(--ember)}
+.gate-box p{color:var(--paper-dim);font-size:.95rem;margin-bottom:1.8rem}
+.gate-box input{width:100%;background:transparent;border:0;border-bottom:1px solid var(--hair);color:var(--paper);font-family:var(--serif);font-size:1.15rem;padding:.5rem .2rem;text-align:center;letter-spacing:.35em}
+.gate-box input:focus{outline:none;border-bottom-color:var(--ember)}
+.gate-box button{margin-top:1.6rem;background:none;border:1px solid var(--ember);color:var(--ember);font-family:var(--sans);font-weight:400;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;padding:.8rem 2.4rem;cursor:pointer;border-radius:2rem;transition:background .3s,color .3s}
+.gate-box button:hover{background:var(--ember);color:var(--ink)}
+.gate-err{color:var(--rose);font-size:.85rem;margin-top:1rem;min-height:1.2em;font-style:italic}
+.gate-hint{margin-top:2.2rem;font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--paper-dim);opacity:.55}
+
+/* ---------- layout ---------- */
+.wrap{max-width:44rem;margin:0 auto;padding:0 1.4rem}
+header.hero{min-height:62vh;display:flex;flex-direction:column;justify-content:flex-end;padding:5rem 0 3.5rem;position:relative;background:radial-gradient(ellipse 120% 80% at 50% 0%,#2b1630 0%,var(--ink) 75%)}
+.crumb{font-family:var(--sans);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--paper-dim)}
+.crumb a{color:var(--paper-dim)}
+.eyebrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--ember);margin:2.6rem 0 1rem}
+h1.title{font-size:clamp(2.6rem,8vw,4.4rem);font-weight:300;line-height:1.05;letter-spacing:-.01em}
+h1.title em{font-style:italic;font-weight:300;color:var(--ember)}
+.standfirst{margin-top:1.4rem;max-width:34rem;color:var(--paper-dim);font-size:1.05rem}
+
+/* act ribbon */
+.ribbon{display:flex;gap:0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);margin:3rem 0 0;position:sticky;top:0;background:rgba(20,10,22,.92);backdrop-filter:blur(8px);z-index:40}
+.ribbon a{flex:1;text-align:center;padding:.9rem .3rem;font-family:var(--sans);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--paper-dim);border-right:1px solid var(--hair);transition:color .3s}
+.ribbon a:last-child{border-right:0}
+.ribbon a:hover{color:var(--ember);text-decoration:none}
+.ribbon a .n{display:block;font-family:var(--serif);font-size:1.05rem;letter-spacing:.05em;color:var(--paper);margin-bottom:.15rem}
+
+/* sections */
+section.act{padding:4.5rem 0 2rem;border-bottom:1px solid var(--hair)}
+.act-label{font-family:var(--sans);font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--ember)}
+.act h2{font-size:clamp(1.9rem,5vw,2.7rem);font-weight:300;margin:.6rem 0 .4rem}
+.act h2 em{font-style:italic;color:var(--ember)}
+.act .rule-note{font-style:italic;color:var(--paper-dim);font-size:.98rem;max-width:34rem;margin-bottom:2.4rem}
+.act .duration{font-family:var(--sans);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--paper-dim);margin-bottom:.4rem}
+
+.round{background:var(--wall);border:1px solid var(--hair);border-radius:6px;padding:1.8rem 1.6rem;margin:1.6rem 0}
+.round h3{font-weight:400;font-size:1.3rem;margin-bottom:.7rem}
+.round h3 .glyph{color:var(--ember);margin-right:.5rem;font-size:1rem}
+.round p{color:var(--paper-dim);margin-bottom:.9rem}
+.round p:last-child{margin-bottom:0}
+.round strong{color:var(--paper);font-weight:400}
+.round em{color:var(--paper)}
+.round ul,.round ol{margin:.4rem 0 1rem 1.2rem;color:var(--paper-dim)}
+.round li{margin-bottom:.55rem}
+.round li strong{color:var(--ember);font-weight:400}
+.dicechart{border-left:2px solid var(--ember);padding:.2rem 0 .2rem 1rem;margin:.8rem 0 1rem}
+.dicechart div{margin-bottom:.5rem;color:var(--paper-dim)}
+.dicechart .pip{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;color:var(--ember);margin-right:.5rem;white-space:nowrap}
+
+/* house rules */
+.house{background:linear-gradient(160deg,#2b1630, #1d0f20);border:1px solid rgba(201,162,94,.35);border-radius:6px;padding:2rem 1.7rem;margin:3rem 0 1rem}
+.house h3{font-weight:400;font-size:1.25rem;margin-bottom:1rem}
+.house .word{display:inline-block;font-family:var(--sans);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;padding:.28rem .8rem;border-radius:2rem;margin-right:.5rem}
+.word.rouge{background:var(--rouge);color:var(--paper)}
+.house p{color:var(--paper-dim);margin-bottom:.8rem}
+.house p:last-child{margin-bottom:0}
+
+/* tools drawer */
+#tools{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(26,14,28,.96);backdrop-filter:blur(10px);border-top:1px solid var(--hair);transform:translateY(calc(100% - 2.9rem));transition:transform .35s ease}
+#tools.up{transform:translateY(0)}
+#tools .pull{width:100%;background:none;border:0;color:var(--ember);font-family:var(--sans);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;padding:.9rem;cursor:pointer}
+.tool-row{display:flex;gap:.8rem;justify-content:center;align-items:stretch;padding:0 1.2rem 1.4rem;flex-wrap:wrap}
+.tool{flex:1;min-width:6.4rem;max-width:10rem;background:var(--wall);border:1px solid var(--hair);border-radius:6px;padding:.9rem .6rem;text-align:center}
+.tool .out{font-size:1.7rem;min-height:2.3rem;display:flex;align-items:center;justify-content:center;color:var(--paper)}
+.tool .out.small{font-size:1.15rem;letter-spacing:.06em}
+.tool button{margin-top:.5rem;background:none;border:1px solid var(--hair);color:var(--paper-dim);font-family:var(--sans);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;padding:.45rem .8rem;border-radius:2rem;cursor:pointer;transition:border-color .3s,color .3s}
+.tool button:hover{border-color:var(--ember);color:var(--ember)}
+.timer-presets{display:flex;gap:.3rem;justify-content:center;margin-top:.5rem;flex-wrap:wrap}
+.timer-presets button{margin-top:0;padding:.4rem .55rem}
+
+/* debrief + footer */
+.debrief{padding:4.5rem 0 3rem}
+.debrief ol{margin:1rem 0 0 1.2rem;color:var(--paper-dim)}
+.debrief li{margin-bottom:.7rem}
+.endmark{text-align:center;color:var(--paper-dim);font-style:italic;padding:2rem 0 1rem}
+footer{padding:2rem 0 8rem;text-align:center;font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--paper-dim)}
+</style>
+</head>
+<body>
+
+<!-- ======================= GATE ======================= -->
+<div id="gate">
+  <div class="gate-box">
+    <div class="gate-flame">🕯</div>
+    <h1>For <em>partners</em> only</h1>
+    <p>This room opens with one word.<br>The thing that lights this room.</p>
+    <input id="pass" type="password" autocomplete="off" spellcheck="false" aria-label="Passphrase">
+    <div class="gate-err" id="gateErr"></div>
+    <button onclick="tryGate()">Enter</button>
+    <div class="gate-hint">Path III · Private</div>
+  </div>
+</div>
+
+<!-- ======================= HERO ======================= -->
+<header class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="path-three.html">← The Playroom</a> · Path III</div>
+    <div class="eyebrow">A longform evening · Partners only</div>
+    <h1 class="title">The Architecture<br>of <em>Surrender</em></h1>
+    <p class="standfirst">One evening in four acts, moving from the mind to the hands to the edge of the map. A coin, a die, a blindfold, and a timer — the rest is the two of you. Three and a half hours, unhurried. No maximum.</p>
+  </div>
+</header>
+
+<nav class="ribbon" aria-label="Acts">
+  <a href="#prelude"><span class="n">0</span>Prelude</a>
+  <a href="#act1"><span class="n">I</span>Mind</a>
+  <a href="#act2"><span class="n">II</span>Command</a>
+  <a href="#act3"><span class="n">III</span>Kinetics</a>
+  <a href="#act4"><span class="n">IV</span>Vault</a>
+  <a href="#debrief"><span class="n">✦</span>Debrief</a>
+</nav>
+
+<main class="wrap">
+
+  <!-- house rule -->
+  <div class="house">
+    <p><span class="word rouge">Rouge</span> One word rules the room. It ends the game instantly, no explanation owed — and it is never a target in any round. Either of you may also skip anything, silently. That's the whole rulebook. Now play.</p>
+  </div>
+
+  <!-- ======================= PRELUDE ======================= -->
+  <section class="act" id="prelude">
+    <div class="act-label">Prelude</div>
+    <h2>The Key <em>Exchange</em></h2>
+    <p class="rule-note">Before anything begins, each of you writes two slips of paper. They will return — later.</p>
+
+    <div class="round">
+      <h3><span class="glyph">❖</span>Lock &amp; Key</h3>
+      <ul>
+        <li><strong>The Lock</strong> — a limit. Something you don't think you're ready for. Something that genuinely makes you hesitate. Honesty here is the whole foundation.</li>
+        <li><strong>The Key</strong> — a desire. The one thing you secretly hope tonight makes room for. Write it in enough detail that your handwriting blushes.</li>
+      </ul>
+      <p>Fold them. The Locks go into a bowl on the far side of the room. Each Key goes into the <em>other</em> person's pocket, unread. Carrying each other's sealed wish for three hours is the first act of the game.</p>
+    </div>
+  </section>
+
+  <!-- ======================= ACT I ======================= -->
+  <section class="act" id="act1">
+    <div class="act-label">Act I</div>
+    <h2>Layers of the <em>Mind</em></h2>
+    <div class="duration">45–60 minutes</div>
+    <p class="rule-note">Psychological nudity before physical. No touching below the neck for this entire act — regardless of provocation. The restraint is the engine.</p>
+
+    <div class="round">
+      <h3><span class="glyph">◉</span>The Mirror Gaze</h3>
+      <p>Sit facing each other, knees touching. Set the timer for two minutes. Silent eye contact — no smirking, no looking away. When the timer ends, whoever broke first rolls the die and answers:</p>
+      <div class="dicechart">
+        <div><span class="pip">⚀ ⚁</span>"What were you thinking that you were afraid I'd see?"</div>
+        <div><span class="pip">⚂ ⚃</span>"If you could steal one fantasy from my mind, what do you hope you'd find?"</div>
+        <div><span class="pip">⚄ ⚅</span>"What part of me were you most aware of during the silence — and why?"</div>
+      </div>
+      <p>Answers must be full sentences. Deflection restarts the timer.</p>
+    </div>
+
+    <div class="round">
+      <h3><span class="glyph">◉</span>The Interrogation</h3>
+      <p>Flip the coin — heads becomes the Inquisitor. Three questions, answered fully, no deflections. The Inquisitor rolls for each question's depth:</p>
+      <div class="dicechart">
+        <div><span class="pip">⚀ ⚁</span>"Tell me something you've done that you think I couldn't handle knowing."</div>
+        <div><span class="pip">⚂ ⚃</span>"Describe a time desire caught you somewhere completely inappropriate. Don't summarise — narrate."</div>
+        <div><span class="pip">⚄ ⚅</span>"If we were strangers tonight, walk me through how you'd win me. Second person. Slowly."</div>
+      </div>
+    </div>
+
+    <div class="round">
+      <h3><span class="glyph">◉</span>The Audio Confession</h3>
+      <p>Each of you takes two minutes alone with a voice-recorder app. Record one message containing three things: one instruction for later tonight, one unhurried compliment about your partner, and one sound you want to hear them make before the evening ends.</p>
+      <p><strong>Do not play them yet.</strong> They are ammunition for Act III. The anticipation is the point.</p>
+    </div>
+  </section>
+
+  <!-- ======================= ACT II ======================= -->
+  <section class="act" id="act2">
+    <div class="act-label">Act II</div>
+    <h2>The Anatomy of <em>Command</em></h2>
+    <div class="duration">60–90 minutes</div>
+    <p class="rule-note">Touch is now permitted — entirely on the commander's terms. This act is one-sided control and sensory patience. Swap roles halfway if you both wish, or let one of you rule the hour.</p>
+
+    <div class="round">
+      <h3><span class="glyph">❖</span>The Blind Architect</h3>
+      <p>Coin flip decides the Architect. The Architect blindfolds the other. For fifteen minutes the Architect has total positional authority but may touch with <strong>one fingertip at a time</strong>. No full hands. Drag it. Trace. Circle. Map the terrain as if it had never been touched before.</p>
+      <p>The blindfolded partner must narrate where they believe the finger will travel next. Every wrong guess earns a thirty-second pause in which the Architect stops all movement and simply breathes, audibly, close to the skin.</p>
+    </div>
+
+    <div class="round">
+      <h3><span class="glyph">❖</span>The Inventory</h3>
+      <p>Still blindfolded. The Architect rolls the die and must kiss that many distinct locations — each one <em>named aloud before the touch</em>. "Your collarbone. Your inner wrist. The crease behind your knee."</p>
+      <p>The receiving partner rates each aloud, one to ten. Low scores mean the Architect returns to that location and iterates until the number rises. Perfectionism through repetition.</p>
+    </div>
+
+    <div class="round">
+      <h3><span class="glyph">❖</span>The Living Sculpture</h3>
+      <p>Blindfold off. Roles reverse: the one who was blind now arranges their partner into the pose they find most arresting. Not comfortable — <em>composed</em>. Once posed, the sculpture holds for two minutes while the sculptor circles slowly, observing, and narrates in a detached, curatorial voice what this piece does to them. Museum vocabulary. Zero mercy.</p>
+    </div>
+
+    <div class="round">
+      <h3><span class="glyph">❖</span>The Whisper Campaign</h3>
+      <p>Both lie down, heads at opposite ends, lights low. For five minutes, alternate whispering single sentences into the dark about what the next act will hold. Every sentence begins with <em>"You are going to let me…"</em> or <em>"I am going to…"</em>. Build the blueprint together. Let anticipation do the heavy lifting.</p>
+    </div>
+  </section>
+
+  <!-- ======================= ACT III ======================= -->
+  <section class="act" id="act3">
+    <div class="act-label">Act III</div>
+    <h2>The Kinetics of <em>Risk</em></h2>
+    <div class="duration">60–90 minutes</div>
+    <p class="rule-note">Full contact is now permitted. Chance takes the wheel, and the whole apartment becomes fair territory. Somewhere in this act, play each other's Audio Confessions from Act I — at the worst possible moment.</p>
+
+    <div class="round">
+      <h3><span class="glyph">♦</span>The Dice Compass</h3>
+      <p>Each of you rolls. The lower number removes one piece of their own clothing. On a tie, the tying roller removes something from the <em>other</em> person — using only their mouth. This is the only legal way to undress in this act.</p>
+      <p>Then assign six stations to your space and let the die navigate:</p>
+      <div class="dicechart">
+        <div><span class="pip">⚀</span>Kitchen counter</div>
+        <div><span class="pip">⚁</span>Shower wall</div>
+        <div><span class="pip">⚂</span>Window, curtains drawn</div>
+        <div><span class="pip">⚃</span>Hallway floor</div>
+        <div><span class="pip">⚄</span>Dining table</div>
+        <div><span class="pip">⚅</span>Bedroom threshold — but not the bed</div>
+      </div>
+      <p>Roll. Go. Stay a minimum of one intensely focused minute. What happens there is improvised, but it must involve a surface, a grip, and a sound that isn't a word.</p>
+    </div>
+
+    <div class="round">
+      <h3><span class="glyph">♦</span>The Coin's Edge</h3>
+      <p>Press together and trap the coin between your bodies, held only by skin. The moment it falls, the active partner becomes the passive one. The goal is not to protect the coin — it's to discover how much you can move without losing it. A study in controlled pressure.</p>
+    </div>
+
+    <div class="round">
+      <h3><span class="glyph">♦</span>The Wheel of Sacrifice</h3>
+      <p>Roll the die three times. Each result must be delivered somewhere on your partner's body before the act ends — location of your choosing, intensity read from their eyes:</p>
+      <div class="dicechart">
+        <div><span class="pip">⚀</span><strong>A bite</strong> — firm enough to leave a brief impression, gone by morning.</div>
+        <div><span class="pip">⚁</span><strong>A growl</strong> — mouth pressed to spine, chest, or inner thigh, ten seconds. Let them feel the vibration.</div>
+        <div><span class="pip">⚂</span><strong>A spark</strong> — one open-palm clap on a place they choose. They point; you deliver; the sound should carry.</div>
+        <div><span class="pip">⚃</span><strong>A pin</strong> — your body weight immobilising one part of them, forty-five seconds of complete stillness.</div>
+        <div><span class="pip">⚄</span><strong>A reverse</strong> — they repeat the last thing you did to them, intensified.</div>
+        <div><span class="pip">⚅</span><strong>A mark</strong> — no bruise, but a temporary signature left somewhere only the two of you will know about tomorrow.</div>
+      </div>
+    </div>
+
+    <div class="round">
+      <h3><span class="glyph">♦</span>The Edge Map</h3>
+      <p>One partner lies completely still. The other explores the very border of what is familiar between you — and must <em>announce every intention aloud before acting on it</em>. The still partner may answer with only three words: <strong>"More," "Less,"</strong> or <strong>"Continue."</strong> "Continue" means the active partner pushes one degree further along the same line.</p>
+      <p>Pay attention to where the edges are. That map is the raw material of Act IV.</p>
+    </div>
+  </section>
+
+  <!-- ======================= ACT IV ======================= -->
+  <section class="act" id="act4">
+    <div class="act-label">Act IV</div>
+    <h2>The <em>Vault</em></h2>
+    <div class="duration">Final 45–60 minutes</div>
+    <p class="rule-note">The Keys come out of the pockets. The Locks are addressed. This is the summit — reached only because every step below it was consensual.</p>
+
+    <div class="round">
+      <h3><span class="glyph">✦</span>The Key Ritual</h3>
+      <p>Retrieve your partner's Key. Read it aloud, slowly, holding their gaze. Then roll:</p>
+      <div class="dicechart">
+        <div><span class="pip">⚀ ⚁</span>Bring it to life as written — a direct enactment, if you're both still glad it's on the paper.</div>
+        <div><span class="pip">⚂ ⚃</span>Bring it to life, but add one twist of your own. Narrate the twist first and watch their face.</div>
+        <div><span class="pip">⚄ ⚅</span>They fulfil it <em>for</em> you — but you are the voice. Dictate every step.</div>
+      </div>
+    </div>
+
+    <div class="round">
+      <h3><span class="glyph">✦</span>The Lock's Challenge</h3>
+      <p>Retrieve the Locks from the bowl and read them aloud. Now each of you chooses, freely:</p>
+      <ul>
+        <li><strong>Decline</strong> — the Lock returns to the bowl, unjudged. The game ends softly and beautifully. Declining is a full and honourable ending.</li>
+        <li><strong>Engage</strong> — you still don't do the Lock. Instead: a three-minute conversation about it, hands resting on your partner while you explain what makes you hesitate. The conversation must end by finding one smaller, adjacent thing you <em>are</em> willing to try, right then. A treaty signed at the border.</li>
+      </ul>
+    </div>
+
+    <div class="round">
+      <h3><span class="glyph">✦</span>The Final Room</h3>
+      <p>The game now sheds every rule except Rouge, which stays sovereign until morning. Set the timer for fifteen minutes. The single objective: be the one who makes the other surrender the word <strong>"Velvet"</strong> — in a whisper, a laugh, or a gasp. Velvet means <em>you win, I yield, don't stop being you</em>.</p>
+      <p>Note carefully: the surrender word is Velvet, never Rouge. The stop word cannot be won, chased, or played for — it stays outside every game, untouched. Whoever hears "Velvet" first wins the night. Winning looks like a shared, breathless, laughing collapse.</p>
+    </div>
+  </section>
+
+  <!-- ======================= DEBRIEF ======================= -->
+  <section class="debrief" id="debrief">
+    <div class="act-label">After</div>
+    <h2>The <em>Debrief</em></h2>
+    <p class="rule-note">Not optional. Water. A blanket. Ten minutes of quiet together, skin to skin, saying nothing. Then, three questions each — the true final round:</p>
+    <ol>
+      <li>"When did you feel most powerful tonight?"</li>
+      <li>"When did you feel most vulnerable?"</li>
+      <li>"What should I be sure to do again — and what should I never do again?"</li>
+    </ol>
+    <p style="margin-top:1.4rem;color:var(--paper-dim)">Write nothing down. Remember everything.</p>
+  </section>
+
+  <div class="endmark">Total running time: three and a half to five hours.<br>Required: unwavering consent, creative courage, and one well-charged phone.</div>
+
+</main>
+
+<!-- ======================= TOOLS DRAWER ======================= -->
+<div id="tools">
+  <button class="pull" onclick="document.getElementById('tools').classList.toggle('up')" aria-expanded="false">✦ &nbsp;Coin · Die · Timer&nbsp; ✦</button>
+  <div class="tool-row">
+    <div class="tool">
+      <div class="out small" id="coinOut">—</div>
+      <button onclick="flipCoin()">Flip coin</button>
+    </div>
+    <div class="tool">
+      <div class="out" id="dieOut">⚀</div>
+      <button onclick="rollDie()">Roll die</button>
+    </div>
+    <div class="tool" style="max-width:13rem">
+      <div class="out small" id="timerOut">00:00</div>
+      <div class="timer-presets">
+        <button onclick="startTimer(120)">2 m</button>
+        <button onclick="startTimer(300)">5 m</button>
+        <button onclick="startTimer(900)">15 m</button>
+        <button onclick="stopTimer()">Stop</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>The Architecture · Path III · Made for two</footer>
+
+<script>
+/* ---------- soft gate (privacy curtain, not a lock) ---------- */
+var PASS="candle"; // ← change this word if you like; lowercase
+function tryGate(){
+  var v=(document.getElementById('pass').value||"").trim().toLowerCase();
+  if(v===PASS){sessionStorage.setItem('arch-open','1');document.getElementById('gate').classList.add('open');}
+  else{document.getElementById('gateErr').textContent="Not the word.";}
+}
+document.getElementById('pass').addEventListener('keydown',function(e){if(e.key==='Enter')tryGate();});
+if(sessionStorage.getItem('arch-open')==='1'){document.getElementById('gate').classList.add('open');}
+
+/* ---------- coin ---------- */
+function flipCoin(){
+  var o=document.getElementById('coinOut'),n=0;
+  var iv=setInterval(function(){
+    o.textContent=(Math.random()<.5)?"HEADS":"TAILS";
+    if(++n>7){clearInterval(iv);}
+  },80);
+}
+
+/* ---------- die ---------- */
+var pips=["⚀","⚁","⚂","⚃","⚄","⚅"];
+function rollDie(){
+  var o=document.getElementById('dieOut'),n=0;
+  var iv=setInterval(function(){
+    o.textContent=pips[Math.floor(Math.random()*6)];
+    if(++n>9){clearInterval(iv);}
+  },70);
+}
+
+/* ---------- timer ---------- */
+var tHandle=null,tEnd=0;
+function startTimer(sec){
+  stopTimer();
+  tEnd=Date.now()+sec*1000;
+  tHandle=setInterval(tick,250);
+  tick();
+  document.getElementById('tools').classList.add('up');
+}
+function tick(){
+  var ms=tEnd-Date.now(),o=document.getElementById('timerOut');
+  if(ms<=0){o.textContent="✦ time ✦";stopTimer(true);try{if(navigator.vibrate)navigator.vibrate([200,100,200]);}catch(e){}return;}
+  var s=Math.ceil(ms/1000),m=Math.floor(s/60);s=s%60;
+  o.textContent=(m<10?"0":"")+m+":"+(s<10?"0":"")+s;
+}
+function stopTimer(keep){
+  if(tHandle){clearInterval(tHandle);tHandle=null;}
+  if(!keep){document.getElementById('timerOut').textContent="00:00";}
+}
+</script>
+</body>
+</html>
