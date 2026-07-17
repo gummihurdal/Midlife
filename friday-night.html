@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#140a16">
+<title>Path Three · Friday Night</title>
+<meta name="description" content="A zero-prep card game for two. Five phases. One night.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#140a16;--wall:#241326;
+  --paper:#f0e4d6;--paper-dim:#c9b8ad;
+  --ember:#c9a25e;--rose:#b0637f;--rouge:#8e3b3b;--jaune:#8a6a2f;--vert:#4c7a5a;
+  --p1:#c9a25e;--p2:#b0637f;--p3:#8a2a3a;--p4:#a25c9e;--p5:#5a9aa0;
+  --hair:rgba(240,228,214,.14);
+  --serif:"Fraunces",Georgia,serif;--sans:"Outfit",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+body{background:var(--ink);color:var(--paper);font-family:var(--serif);font-weight:300;line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:var(--ember);text-decoration:none}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px;border-radius:2px}
+
+#gate{position:fixed;inset:0;z-index:100;background:radial-gradient(ellipse at 50% 30%,#241326 0%,var(--ink) 70%);display:flex;align-items:center;justify-content:center;padding:2rem;text-align:center}
+#gate.open{display:none}
+.gate-box{max-width:26rem;width:100%}
+.gate-flame{font-size:1.6rem;color:var(--ember);margin-bottom:1.2rem;animation:flicker 4s ease-in-out infinite}
+@keyframes flicker{0%,100%{opacity:.85}45%{opacity:1}60%{opacity:.7}}
+.gate-box h1{font-weight:300;font-size:1.8rem;margin-bottom:.5rem}
+.gate-box h1 em{font-style:italic;color:var(--ember)}
+.gate-box p{color:var(--paper-dim);font-size:.95rem;margin-bottom:1.8rem}
+.gate-box input{width:100%;background:transparent;border:0;border-bottom:1px solid var(--hair);color:var(--paper);font-family:var(--serif);font-size:1.15rem;padding:.5rem .2rem;text-align:center;letter-spacing:.35em}
+.gate-box input:focus{outline:none;border-bottom-color:var(--ember)}
+.gate-box button{margin-top:1.6rem;background:none;border:1px solid var(--ember);color:var(--ember);font-family:var(--sans);font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;padding:.8rem 2.4rem;cursor:pointer;border-radius:2rem;transition:background .3s,color .3s}
+.gate-box button:hover{background:var(--ember);color:var(--ink)}
+.gate-err{color:var(--rose);font-size:.85rem;margin-top:1rem;min-height:1.2em;font-style:italic}
+
+.wrap{max-width:42rem;margin:0 auto;padding:0 1.4rem}
+header.hero{padding:4.5rem 0 2.5rem;background:radial-gradient(ellipse 120% 80% at 50% 0%,#2b1630 0%,var(--ink) 75%)}
+.crumb{font-family:var(--sans);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--paper-dim)}
+.crumb a{color:var(--paper-dim)}
+.eyebrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--ember);margin:2.2rem 0 .8rem}
+h1.title{font-size:clamp(2.4rem,7.5vw,4rem);font-weight:300;line-height:1.05}
+h1.title em{font-style:italic;color:var(--ember)}
+.standfirst{margin-top:1.2rem;max-width:34rem;color:var(--paper-dim);font-size:1.02rem}
+
+.lights{display:flex;gap:.6rem;margin-top:1.8rem;flex-wrap:wrap}
+.light{flex:1;min-width:10rem;background:var(--wall);border:1px solid var(--hair);border-radius:6px;padding:1rem 1.1rem;font-size:.9rem;color:var(--paper-dim)}
+.light b{display:inline-block;font-family:var(--sans);font-weight:400;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--paper);padding:.18rem .65rem;border-radius:2rem;margin-bottom:.45rem}
+.light.rg b{background:var(--rouge)}
+.light.jn b{background:var(--jaune)}
+.light.vt b{background:var(--vert)}
+
+.phases-nav{display:flex;gap:.5rem;margin:2.4rem 0 0;flex-wrap:wrap}
+.phases-nav button{flex:1;min-width:6.2rem;background:var(--wall);border:1px solid var(--hair);border-radius:6px;color:var(--paper-dim);font-family:var(--sans);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;padding:.8rem .3rem;cursor:pointer;transition:border-color .3s,color .3s}
+.phases-nav button .pn{display:block;font-family:var(--serif);font-size:1.1rem;letter-spacing:0;text-transform:none;color:var(--paper);margin-bottom:.15rem}
+.phases-nav button.on{border-color:var(--tab);color:var(--tab)}
+.phases-nav button.on .pn{color:var(--tab)}
+
+.stage{margin:2.2rem 0 4rem;text-align:center}
+.mech{font-family:var(--sans);font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent,#c9a25e);margin-bottom:.5rem}
+.phase-desc{font-style:italic;color:var(--paper-dim);margin-bottom:1.8rem;min-height:1.5em}
+.card{background:var(--wall);border:1px solid var(--hair);border-left:3px solid var(--accent,#c9a25e);border-radius:6px;padding:2.2rem 1.8rem;min-height:11rem;display:flex;flex-direction:column;justify-content:center;text-align:left;transition:opacity .2s}
+.card.spinning{opacity:.35}
+.card .num{font-family:var(--sans);font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent,#c9a25e);margin-bottom:.7rem}
+.card .name{font-size:1.45rem;font-weight:400;margin-bottom:.7rem}
+.card .body{color:var(--paper-dim)}
+.card .idle{color:var(--paper-dim);font-style:italic;text-align:center;width:100%}
+.duel{display:flex;gap:1.6rem;justify-content:center;font-size:2rem;margin-bottom:1rem;min-height:2.6rem;align-items:center}
+.duel .vs{font-family:var(--sans);font-size:.7rem;letter-spacing:.3em;color:var(--paper-dim)}
+.action-row{display:flex;gap:.8rem;justify-content:center;margin-top:1.6rem;flex-wrap:wrap}
+.action-row button{background:none;border:1px solid var(--accent,#c9a25e);color:var(--accent,#c9a25e);font-family:var(--sans);font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;padding:.85rem 2.2rem;border-radius:2rem;cursor:pointer;transition:background .3s,color .3s}
+.action-row button:hover{background:var(--accent,#c9a25e);color:var(--ink)}
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:.8rem;margin-top:1.4rem;text-align:left}
+.choice-grid button{background:var(--wall);border:1px solid var(--hair);border-radius:6px;color:var(--paper);font-family:var(--serif);font-weight:300;font-size:1rem;text-align:left;padding:1.1rem 1.2rem;cursor:pointer;transition:border-color .3s}
+.choice-grid button:hover{border-color:var(--p5)}
+.choice-grid button small{display:block;color:var(--paper-dim);font-size:.85rem;margin-top:.3rem}
+.hint{margin-top:1.2rem;font-size:.85rem;color:var(--paper-dim);font-style:italic}
+.hint code{font-family:var(--sans);font-size:.85em;color:var(--ember);background:rgba(201,162,94,.1);padding:.1rem .4rem;border-radius:3px}
+footer{padding:2.5rem 0 4rem;text-align:center;font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--paper-dim)}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="gate-box">
+    <div class="gate-flame">🕯</div>
+    <h1>For <em>partners</em> only</h1>
+    <p>This room opens with one word.<br>The thing that lights this room.</p>
+    <input id="pass" type="password" autocomplete="off" spellcheck="false" aria-label="Passphrase">
+    <div class="gate-err" id="gateErr"></div>
+    <button onclick="tryGate()">Enter</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="path-three.html">← The Playroom</a> · Path III</div>
+    <div class="eyebrow">Zero prep · Five phases · One night</div>
+    <h1 class="title">Friday<br><em>Night</em></h1>
+    <p class="standfirst">Open this. Play. No setup, no history, no app. Five phases, each with its own mechanic — dice, coins, duels, a red-black draw, and finally a choice. What the card says, happens. No winners, no losers, no points. Just two people and the courage to open the cards.</p>
+    <div class="lights">
+      <div class="light rg"><b>Rouge</b>Full stop, instantly. No questions, no judgment. Then water, breath, and a decision made together. Not failure — trust made visible.</div>
+      <div class="light jn"><b>Jaune</b>Slow down and adjust. "Softer." "Different." "Not that — this." Adjustment is wisdom, not weakness. Then play on, modified.</div>
+      <div class="light vt"><b>Vert</b>All good, keep going. Say it when they check in, or as a gift of confirmation when the intensity is welcome.</div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="phases-nav" id="pnav">
+    <button data-p="0" style="--tab:var(--p1)" class="on"><span class="pn">1</span>Unlock</button>
+    <button data-p="1" style="--tab:var(--p2)"><span class="pn">2</span>Heat</button>
+    <button data-p="2" style="--tab:var(--p3)"><span class="pn">3</span>Wildfire</button>
+    <button data-p="3" style="--tab:var(--p4)"><span class="pn">4</span>Vault</button>
+    <button data-p="4" style="--tab:var(--p5)"><span class="pn">5</span>Afterglow</button>
+  </div>
+
+  <div class="stage" id="stage">
+    <div class="mech" id="mech"></div>
+    <p class="phase-desc" id="pdesc"></p>
+    <div class="duel" id="duel" style="display:none"><span id="d1">⚀</span><span class="vs">vs</span><span id="d2">⚀</span></div>
+    <div class="card" id="card"><div class="idle" id="cardInner">Draw to begin.</div></div>
+    <div class="action-row" id="actions"></div>
+    <div class="choice-grid" id="choices" style="display:none"></div>
+    <p class="hint" id="hint"></p>
+  </div>
+
+</main>
+
+<footer>Friday Night · Path III · Shuffle. Draw. Play.</footer>
+
+<script>
+/* ---------- soft gate ---------- */
+var PASS="candle";
+function tryGate(){
+  var v=(document.getElementById('pass').value||"").trim().toLowerCase();
+  if(v===PASS){sessionStorage.setItem('friday-open','1');document.getElementById('gate').classList.add('open');}
+  else{document.getElementById('gateErr').textContent="Not the word. Romantic guess, though.";}
+}
+document.getElementById('pass').addEventListener('keydown',function(e){if(e.key==='Enter')tryGate();});
+if(sessionStorage.getItem('friday-open')==='1'){document.getElementById('gate').classList.add('open');}
+
+/* =====================================================
+   THE DECKS
+   Every deck below is live. Each phase also has a
+   YOUR_CARDS array — add your own entries there in the
+   same ["Name","Text"] format and the randomizer deals
+   them into the deck automatically. Write them together.
+   ===================================================== */
+
+/* ---- Phase 1: Unlock — dice roll ---- */
+var P1 = [
+["The Window","Describe the view from your window right now. Now describe what you wish someone standing out there could guess is about to happen inside. Your partner watches your face the whole time you speak."],
+["The Toast","Pour two drinks. Raise yours and toast, out loud, to one specific thing about them that undid you this week. Clink. Hold eye contact while you drink. All of it."],
+["The Inventory","Look at your partner, clothes still on. Point to five places, one at a time. For each, say what tonight has planned for it. Vague is forbidden. Polite is worse."],
+["The Confession","Ask it: \u201cWhat do you want me to do tonight that I haven't done yet?\u201d No laughing it off. Real answer only. Then it becomes a promise."],
+["The Countdown","Name the exact moment today you decided tonight was happening — where you were, what triggered it, and how long you've been carrying it around since."],
+["The Command","Give one direct, physical instruction. \u201cUnbutton my shirt.\u201d \u201cKiss my neck.\u201d \u201cCome here.\u201d They obey immediately. One command. Instant action. Choose it like it matters — it sets the tone for everything after."]
+];
+var P1_YOUR_CARDS = [];
+
+/* ---- Phase 2: Heat — coin flip + deck ---- */
+var P2_HEADS = [
+["The Necklace","Kiss their neck. Not a peck — a slow, open-mouthed kiss that takes its time deciding what it wants to become."],
+["The Strip","Remove one piece of their clothing using only your mouth. No hands. If it takes five minutes, it takes five minutes."],
+["The Lap","Straddle your partner, clothes still between you. Move slow. Watch their face. Don't stop until they make a sound they didn't authorize."],
+["The Mirror","Stand behind them, both facing a mirror. Your hands roam; their reflection watches. Whisper what you see and what comes next."],
+["The Blindfold","Improvise a blindfold — tie, scarf, shirt. Cover their eyes. Now touch them everywhere except where they most want it. Three minutes. No mercy."],
+["The Trade","Whisper one thing you want in the next hour. They whisper one back. Seal the trade however feels binding."]
+];
+var P2_TAILS = [
+["The Pin","Ease them against the nearest wall, hands above their head, your body holding them there. Breathe into their ear: \u201cYou're not going anywhere.\u201d"],
+["The Remove","They remove one piece of your clothing using one hand only. The other hand stays on you — somewhere, anywhere, moving."],
+["The Massage","Oil or lotion, warmed in your hands. Shoulders first, then down. Slow, deep, every knot, every curve. Rushing restarts the clock."],
+["The Mouth Trail","Lips only. Start at their ankle and travel upward, unhurried, every stop announced by nothing but breath. By the time you reach their mouth, they should be a different temperature."],
+["The Whisper","Sit behind them, pull them back against your chest, wrap around them. Whisper a fantasy into their ear — second person, present tense — and don't stop until the story reaches its ending."],
+["The Stillness","They must hold completely still for two minutes while you do exactly as you please. Every movement they make adds thirty seconds. Watch them lose on purpose."]
+];
+var P2_YOUR_CARDS_HEADS = [];
+var P2_YOUR_CARDS_TAILS = [];
+
+/* ---- Phase 3: Wildfire — dice duel ---- */
+var P3_WIN = [
+["The Throne","Sit. They kneel. Three commands, no pause between them, each obeyed before the next is spoken. Physical. Creative. Decisive."],
+["The Chase","You get a thirty-second head start — hide anywhere in the home. When they find you, they owe you one act of your choosing, delivered on the spot."],
+["The Director","Direct a three-minute scene. Position them, script their first line, control the action. You are the auteur; they are your star. Make cinema."],
+["The Puppeteer","For two minutes they move only when and how you move them — an arm lifted, a chin turned, a step backward. A body with your hands as its only will."],
+["The Toll","For the next ten minutes, they may not cross the room, sit down, or stand up without paying a toll you set on the spot. Set them steep."],
+["The Sixty","Set a sixty-second timer. Break their composure before it dies — any sound they can't control counts. Succeed and name your reward; fail and they name theirs."]
+];
+var P3_LOSE = [
+["The Kneel","On your knees, hands behind your back. Look up. Say: \u201cTell me what you want.\u201d Then deliver it. All of it."],
+["The Service","You are their hands for five minutes. They place your hands, move your fingers, set the pressure. You are the instrument; they are the musician."],
+["The Pose","They arrange your body like art — bent, turned, positioned exactly how they want to see you. Hold it for two minutes while they admire, comment, and plan out loud."],
+["The Statue","Hold completely still while they do as they please. Your only permitted movement is breathing. They will test this. That's the point."],
+["The Echo","For five minutes, every sound they draw out of you must be repeated back — louder. Yes, you will feel ridiculous. That's also the point."],
+["The Errand","Fetch anything they name from anywhere in the home, wearing exactly what they decide you wear to fetch it. Return promptly. Present it properly."]
+];
+var P3_WILD = [
+["The Swap","Whatever dynamic tonight has built, reverse it. Whoever led now follows. Ten minutes, full commitment to the reversal."],
+["The Silence","Ten minutes. No words — no instructions, no requests, no narration. Only touch, only breath, only instinct. Find your way without language."],
+["The Standoff","Face each other, one step apart. Neither may touch first. Anything else is legal — words, proximity, breath. First to break and reach out serves the other for ten minutes."]
+];
+var P3_YOUR_CARDS_WIN = [];
+var P3_YOUR_CARDS_LOSE = [];
+var P3_YOUR_CARDS_WILD = [];
+
+/* ---- Phase 4: The Vault — red / black ---- */
+var P4_RED = [
+["The Question","Ask the question you've been circling all night. They answer — full truth. Then they ask one back. No softening. No escape. The truth sits between you."],
+["The Recording","Audio only, three minutes. Capture this moment — the sounds, the words, the breathing. Play it back immediately and watch each other's faces while it plays."],
+["The Mark","Leave a temporary mark — lipstick, a faint trace, a signature of pressure — somewhere hidden, somewhere only the two of you will know about tomorrow."],
+["The Stranger","New names, new scenario. You just met. How do strangers touch? What do strangers dare? Fifteen minutes. Stay in character. Let the anonymity liberate you."],
+["The Letter","Write one full sentence on their skin with a fingertip, slowly, letter by letter. They must read it back to you correctly. Wrong guesses mean you start the sentence over."],
+["The Wager","Each of you secretly writes down what happens next. Reveal together. Matching answers: do it, immediately. Different answers: the coin decides — and the loser assists with enthusiasm."]
+];
+var P4_BLACK = [
+["The Moan","Make noise. Louder than usual, deliberately. Fill the room. No holding back, no muffling. Let the walls remember."],
+["The Watch","Position yourselves in front of a mirror or a dark window's reflection. Don't close your eyes. Watch yourselves. Witness your own want."],
+["The Blackout","All lights off. One phone-torch or one candle, held by whoever is bolder, aimed wherever they choose. Everything else happens in the dark."],
+["The Tempo","One of you controls the tempo of everything — with two words only: \u201cfaster\u201d and \u201cslower.\u201d The other obeys instantly, no matter how unreasonable the timing becomes."],
+["The Countdown","Whisper a slow count from twenty to one against their skin, moving somewhere new with each number. At \u201cone,\u201d whatever you've arrived at — commit."],
+["The Collapse","Build toward the night's peak together and time it. When one of you says \u201cnow,\u201d you both let go. The ultimate synchronization."]
+];
+var P4_YOUR_CARDS_RED = [];
+var P4_YOUR_CARDS_BLACK = [];
+
+/* ---- Phase 5: Afterglow — choice ---- */
+var P5 = [
+["The Cleanse","A bath or shower, together, warm. Wash each other slowly. Towel them dry. Kiss each newly dried place."],
+["The Praise","Lie facing each other. Three things each: \u201cWhat I loved most was\u2026\u201d Specific. Sincere. Let it land. Let it plant tomorrow."],
+["The Snack","Kitchen raid, dressed however the night left you. Fruit, chocolate, cold water. Feed each other. Laugh at the absurdity. It's earned."],
+["The Cuddle","Spoon, tangle, or however your bodies fit. Skin to skin, heartbeats slowing, breath syncing. No words needed."],
+["The Recap","Whisper your favourite moment, then theirs, then one thing for next time. Let the anticipation for the next Friday begin before this one ends."],
+["The Sleep","Pull the covers up. Tuck them in. Kiss their forehead. Feel the weight of that trust. Close your eyes. The night is yours."]
+];
+
+/* =====================================================
+   ENGINE
+   ===================================================== */
+var PHASES=[
+{name:"Unlock",mech:"Roll the die",desc:"The door opens. The mind first, always.",accent:"var(--p1)"},
+{name:"Heat",mech:"Flip, then draw",desc:"Clothes loosen. Hands wander. The temperature rises.",accent:"var(--p2)"},
+{name:"Wildfire",mech:"Dice duel — both roll",desc:"Higher roll commands. Lower roll serves. A tie is a wildcard.",accent:"var(--p3)"},
+{name:"The Vault",mech:"Red or black",desc:"The deep cut. The thing you'll still remember on Tuesday.",accent:"var(--p4)"},
+{name:"Afterglow",mech:"No randomizer — just choose",desc:"The comedown. The reverence. The seal on the night.",accent:"var(--p5)"}
+];
+var cur=0,lastPick=-1,pips=["⚀","⚁","⚂","⚃","⚄","⚅"];
+function deck(base,extra){return extra&&extra.length?base.concat(extra):base;}
+function el(id){return document.getElementById(id);}
+
+function setPhase(i){
+  cur=i;lastPick=-1;
+  var p=PHASES[i];
+  el('mech').textContent=p.mech;
+  el('pdesc').textContent=p.desc;
+  el('stage').style.setProperty('--accent',p.accent);
+  el('card').style.setProperty('--accent',p.accent);
+  el('duel').style.display=(i===2)?"flex":"none";
+  el('choices').style.display=(i===4)?"grid":"none";
+  el('card').style.display=(i===4)?"none":"flex";
+  document.querySelectorAll('#pnav button').forEach(function(b,j){b.classList.toggle('on',j===i);});
+  el('cardInner').className="idle";el('cardInner').textContent="Draw to begin.";
+  buildActions();buildChoices();buildHint();
+}
+function buildActions(){
+  var a=el('actions');a.innerHTML="";
+  function btn(label,fn){var b=document.createElement('button');b.textContent=label;b.onclick=fn;a.appendChild(b);return b;}
+  if(cur===0)btn("Roll",function(){deal(deck(P1,P1_YOUR_CARDS),"Unlock");});
+  if(cur===1){btn("Flip · Heads deck",function(){deal(deck(P2_HEADS,P2_YOUR_CARDS_HEADS),"Heat · Heads");});
+              btn("Flip · Tails deck",function(){deal(deck(P2_TAILS,P2_YOUR_CARDS_TAILS),"Heat · Tails");});}
+  if(cur===2)btn("Duel",duel);
+  if(cur===3){btn("Draw Red",function(){deal(deck(P4_RED,P4_YOUR_CARDS_RED),"Vault · Red");});
+              btn("Draw Black",function(){deal(deck(P4_BLACK,P4_YOUR_CARDS_BLACK),"Vault · Black");});}
+  if(cur===4)a.innerHTML="";
+}
+function buildChoices(){
+  var c=el('choices');c.innerHTML="";
+  if(cur!==4)return;
+  P5.forEach(function(e){
+    var b=document.createElement('button');
+    b.innerHTML="<b style='font-weight:400'>"+e[0]+"</b><small>"+e[1]+"</small>";
+    c.appendChild(b);
+  });
+}
+function buildHint(){
+  var h=el('hint');
+  if(cur===0)h.innerHTML="Repeat as often as you like, then advance. The night is yours. Add your own cards in <code>P1_YOUR_CARDS</code>.";
+  if(cur===1)h.innerHTML="Flip a real coin, then draw from the matching deck. Play at least three cards before advancing. Extend with <code>P2_YOUR_CARDS_HEADS</code> / <code>_TAILS</code>.";
+  if(cur===2)h.innerHTML="Both roll. Winner draws command, loser draws service, tie draws wildcard. At least three duels before advancing. Extend with <code>P3_YOUR_CARDS_WIN</code> / <code>_LOSE</code> / <code>_WILD</code>.";
+  if(cur===3)h.innerHTML="Draw two cards from the Vault, then advance. Extend with <code>P4_YOUR_CARDS_RED</code> / <code>_BLACK</code>. Write them together over wine — that's a whole evening by itself.";
+  if(cur===4)h.innerHTML="Choose one each, or play the same card together. The comedown is sacred. Always close here.";
+}
+function showEntry(list,i,label){
+  el('cardInner').className="";
+  el('cardInner').innerHTML='<div class="num">'+label+' · '+(i+1)+' of '+list.length+'</div>'+
+    '<div class="name">'+list[i][0]+'</div><div class="body">'+list[i][1]+'</div>';
+}
+function deal(list,label){
+  var card=el('card');card.classList.add('spinning');
+  var n=0,iv=setInterval(function(){
+    showEntry(list,Math.floor(Math.random()*list.length),label);
+    if(++n>8){clearInterval(iv);card.classList.remove('spinning');
+      var f;do{f=Math.floor(Math.random()*list.length);}while(list.length>1&&f===lastPick);
+      lastPick=f;showEntry(list,f,label);
+      try{if(navigator.vibrate)navigator.vibrate(60);}catch(e){}}
+  },85);
+}
+function duel(){
+  var a=el('d1'),b=el('d2'),n=0;
+  var iv=setInterval(function(){
+    a.textContent=pips[Math.floor(Math.random()*6)];
+    b.textContent=pips[Math.floor(Math.random()*6)];
+    if(++n>9){clearInterval(iv);
+      var r1=Math.floor(Math.random()*6),r2=Math.floor(Math.random()*6);
+      a.textContent=pips[r1];b.textContent=pips[r2];
+      if(r1===r2)deal(deck(P3_WILD,P3_YOUR_CARDS_WILD),"Wildfire · Wildcard");
+      else deal(r1>r2?deck(P3_WIN,P3_YOUR_CARDS_WIN):deck(P3_LOSE,P3_YOUR_CARDS_LOSE),
+                r1>r2?"Wildfire · Left commands":"Wildfire · Right commands");}
+  },80);
+}
+el('pnav').addEventListener('click',function(e){
+  var b=e.target.closest('button');if(b)setPhase(+b.getAttribute('data-p'));
+});
+setPhase(0);
+</script>
+</body>
+</html>
